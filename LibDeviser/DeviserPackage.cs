@@ -36,10 +36,16 @@ namespace LibDeviser
     /// </summary>
     public List<DeviserPlugin> Plugins { get; set; }
 
+    /// <summary>
+    /// All Enumerations defined by this package
+    /// </summary>
+    public List<DeviserEnum> Enums { get; set; }
+
     public DeviserPackage ()
     {
       Elements = new List<DeviserClass>();
       Plugins = new List<DeviserPlugin>();
+      Enums = new List<DeviserEnum>();
     }
 
     public DeviserPackage(XmlNode node) : this()
@@ -58,6 +64,11 @@ namespace LibDeviser
       return Elements.FirstOrDefault(e => e.Name == name);
     }
 
+    public DeviserEnum GetEnum(string name)
+    {
+      return Enums.FirstOrDefault(e => e.Name == name);
+    }
+
     public DeviserPlugin GetPlugin(string name)
     {
       return Plugins.FirstOrDefault(e => e.ExtensionPoint == name);
@@ -73,6 +84,7 @@ namespace LibDeviser
                   
       Elements.InitializeFrom(Util.getElement(element, "element"));
       Plugins.InitializeFrom(Util.getElement(element, "plugin"));
+      Enums.InitializeFrom(Util.getElement(element, "enum"));
 
       SetParent(this);
     }
@@ -82,6 +94,7 @@ namespace LibDeviser
       Document = doc;
       Elements.SetParent(doc);
       Plugins.SetParent(doc);
+      Enums.SetParent(doc);
     }
 
     public void ReadFromFile(string fileName)
@@ -96,6 +109,7 @@ namespace LibDeviser
 
       Elements = new List<DeviserClass>();
       Plugins = new List<DeviserPlugin>();
+      Enums = new List<DeviserEnum>();
 
       InitializeFrom(oDocument.DocumentElement);
     }
@@ -121,6 +135,7 @@ namespace LibDeviser
 
       Elements.WriteListWithName(writer, "elements");
       Plugins.WriteListWithName(writer, "plugins");
+      Enums.WriteListWithName(writer, "enums");
 
       
     }

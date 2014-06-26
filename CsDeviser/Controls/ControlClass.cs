@@ -11,23 +11,13 @@ using LibDeviser;
 
 namespace CsDeviser.Controls
 {
-  public partial class ControlClass : UserControl
+  public partial class ControlClass : DeviserControl
   {
     public ControlClass()
     {
       InitializeComponent();
     }
 
-
-    public bool Initializing { get; set; }
-
-    public event EventHandler RenamedEvent;
-
-    protected virtual void OnRenamedEvent()
-    {
-      var handler = RenamedEvent;
-      if (handler != null) handler(this, EventArgs.Empty);
-    }
 
     public DeviserClass Current { get; set; }
 
@@ -64,12 +54,11 @@ namespace CsDeviser.Controls
       chkHasListOf.Checked = Current.HasListOf;
       chkHasMath.Checked = Current.HasMath;
 
-
       foreach( var newAttr in Current.Attributes)
       gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
 
       foreach (var newAttr in Current.Concretes)
-      gridAttributes.Rows.Add(newAttr.Name, newAttr.Element);
+      gridConcrete.Rows.Add(newAttr.Name, newAttr.Element);
 
       Initializing = false;
     }
@@ -133,7 +122,7 @@ namespace CsDeviser.Controls
 
     }
 
-    private void cmdAddAttribute_Click(object sender, EventArgs e)
+    private void OnAddAttributeClick(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
 
@@ -146,7 +135,7 @@ namespace CsDeviser.Controls
 
     }
 
-    private void cmdAddConcrete_Click(object sender, EventArgs e)
+    private void OnAddConcreteClick(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
       var newAttr = new DeviserConcrete { Name = "Concrete" + (Current.Attributes.Count + 1).ToString() };
@@ -188,6 +177,19 @@ namespace CsDeviser.Controls
     private void gridConcrete_CellValueChanged(object sender, DataGridViewCellEventArgs e)
     {
       if (Current == null || Initializing) return;
+
+      var row = gridConcrete.Rows[e.RowIndex];
+      var attribute = Current.Concretes[e.RowIndex];
+
+      switch (e.ColumnIndex)
+      {
+        case 0:
+          attribute.Name = row.Cells[0].Value as string;
+          break;
+        case 1:
+          attribute.Element = row.Cells[1].Value as string;
+          break;
+      }
     }
 
     private void txtName_Leave(object sender, EventArgs e)

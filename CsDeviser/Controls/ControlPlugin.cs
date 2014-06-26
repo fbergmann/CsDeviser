@@ -11,23 +11,12 @@ using LibDeviser;
 
 namespace CsDeviser.Controls
 {
-  public partial class ControlPlugin : UserControl
+  public partial class ControlPlugin : DeviserControl
   {
     public ControlPlugin()
     {
       InitializeComponent();
     }
-
-    public event EventHandler RenamedEvent;
-
-    public bool Initializing { get; set; }
-
-    protected virtual void OnRenamedEvent()
-    {
-      var handler = RenamedEvent;
-      if (handler != null) handler(this, EventArgs.Empty);
-    }
-
 
     public DeviserPlugin Current { get; set; }
 

@@ -50,6 +50,12 @@
     <Compile Include="Controls\ControlClass.Designer.cs">
       <DependentUpon>ControlClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ControlEnum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ControlEnum.Designer.cs">
+      <DependentUpon>ControlEnum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ControlPackage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,6 +67,12 @@
     </Compile>
     <Compile Include="Controls\ControlPlugin.Designer.cs">
       <DependentUpon>ControlPlugin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeviserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DeviserControl.Designer.cs">
+      <DependentUpon>DeviserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -78,6 +90,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\ControlClass.resx">
       <DependentUpon>ControlClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ControlEnum.resx">
+      <DependentUpon>ControlEnum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlPackage.resx">
       <DependentUpon>ControlPackage.cs</DependentUpon>

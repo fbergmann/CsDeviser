@@ -341,7 +341,7 @@
       this.cmdAddConcrete.TabIndex = 4;
       this.cmdAddConcrete.Text = "Add Concrete";
       this.cmdAddConcrete.UseVisualStyleBackColor = true;
-      this.cmdAddConcrete.Click += new System.EventHandler(this.cmdAddConcrete_Click);
+      this.cmdAddConcrete.Click += new System.EventHandler(this.OnAddConcreteClick);
       // 
       // label3
       // 
@@ -360,7 +360,7 @@
       this.cmdAddAttribute.TabIndex = 2;
       this.cmdAddAttribute.Text = "Add Attribute";
       this.cmdAddAttribute.UseVisualStyleBackColor = true;
-      this.cmdAddAttribute.Click += new System.EventHandler(this.cmdAddAttribute_Click);
+      this.cmdAddAttribute.Click += new System.EventHandler(this.OnAddAttributeClick);
       // 
       // label4
       // 

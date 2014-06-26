@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="DeviserConcrete.cs" />
     <Compile Include="DeviserBase.cs" />
+    <Compile Include="DeviserEnum.cs" />
     <Compile Include="DeviserPackage.cs" />
     <Compile Include="DeviserPlugin.cs" />
     <Compile Include="DeviserReferenceAttribute.cs" />
+    <Compile Include="DeviserEnumValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DeviserAttribute.cs" />
     <Compile Include="DeviserClass.cs" />

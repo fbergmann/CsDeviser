@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="Multi" number="1400" offset="7000000">
   <elements>
+    <element name="PossibleSpeciesFeatureValue" typeCode="SBML_MULTI_POSSIBLE_SPECIES_FEATURE_VALUE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="name" required="false" type="string" abstract="false" />
+        <attribute name="numericValue" required="false" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SpeciesFeatureValue" typeCode="SBML_MULTI_SPECIES_FEATURE_VALUE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="value" required="true" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
     <element name="CompartmentReference" typeCode="SBML_MULTI_COMPARTMENT_REFERENCE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
@@ -8,9 +20,13 @@
         <attribute name="compartment" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="DenotedSpeciesTypeComponentIndex" typeCode="SBML_MULTI_DENOTED_SPECIES_TYPE_COMPONENT_INDEX" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="SpeciesTypeInstance" typeCode="SBML_MULTI_SPECIES_TYPE_INSTANCE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="speciesTypeComponentIndex" required="true" type="SIdRef" abstract="false" />
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="name" required="false" type="string" abstract="false" />
+        <attribute name="speciesType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="compartmentReference" required="false" type="SIdRef" abstract="false" />
+        <attribute name="occur" required="true" type="uint" abstract="false" />
       </attributes>
     </element>
     <element name="InSpeciesTypeBond" typeCode="SBML_MULTI_IN_SPECIES_TYPE_BOND" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
@@ -21,38 +37,15 @@
         <attribute name="bindingSite2" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="MultiSpeciesType" typeCode="SBML_MULTI_SPECIES_TYPE" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="DenotedSpeciesTypeComponentIndex" typeCode="SBML_MULTI_DENOTED_SPECIES_TYPE_COMPONENT_INDEX" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="name" required="false" type="string" abstract="false" />
-        <attribute name="isBindingSite" required="true" type="bool" abstract="false" />
-        <attribute name="compartment" required="false" type="SIdRef" abstract="false" />
-        <attribute name="speciesFeatureType" required="false" type="lo_element" element="SpeciesFeatureType" abstract="false" />
-        <attribute name="speciesTypeInstance" required="false" type="lo_element" element="SpeciesTypeInstance" abstract="false" />
-        <attribute name="speciesTypeComponentIndex" required="false" type="lo_element" element="SpeciesTypeComponentIndex" abstract="false" />
-        <attribute name="inSpeciesTypeBond" required="false" type="lo_element" element="InSpeciesTypeBond" abstract="false" />
+        <attribute name="speciesTypeComponentIndex" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
     <element name="OutwardBindingSite" typeCode="SBML_MULTI_OUTWARD_BINDING_SITE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="bindingStatus" required="true" type="BindingStatus" abstract="false" />
+        <attribute name="bindingStatus" required="true" type="enum" element="BindingStatus" abstract="false" />
         <attribute name="component" required="true" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
-    <element name="PossibleSpeciesFeatureValue" typeCode="SBML_MULTI_POSSIBLE_SPECIES_FEATURE_VALUE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="name" required="false" type="string" abstract="false" />
-        <attribute name="numericValue" required="false" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
-    <element name="SpeciesFeature" typeCode="SBML_MULTI_SPECIES_FEATURE" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="false" type="SId" abstract="false" />
-        <attribute name="speciesFeatureType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="occur" required="true" type="uint" abstract="false" />
-        <attribute name="component" required="false" type="SIdRef" abstract="false" />
-        <attribute name="speciesFeatureValue" required="false" type="lo_element" element="SpeciesFeatureValue" abstract="false" />
       </attributes>
     </element>
     <element name="SpeciesFeatureChange" typeCode="SBML_MULTI_SPECIES_FEATURE_CHANGE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
@@ -70,11 +63,6 @@
         <attribute name="possibleSpeciesFeatureValue" required="false" type="lo_element" element="PossibleSpeciesFeatureValue" abstract="false" />
       </attributes>
     </element>
-    <element name="SpeciesFeatureValue" typeCode="SBML_MULTI_SPECIES_FEATURE_VALUE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="value" required="true" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
     <element name="SpeciesTypeComponentIndex" typeCode="SBML_MULTI_SPECIES_TYPE_COMPONENT_INDEX" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
@@ -82,6 +70,15 @@
         <attribute name="occur" required="true" type="uint" abstract="false" />
         <attribute name="identifyingParent" required="false" type="SIdRef" abstract="false" />
         <attribute name="denotedSpeciesTypeComponentIndex" required="false" type="lo_element" element="DenotedSpeciesTypeComponentIndex" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SpeciesFeature" typeCode="SBML_MULTI_SPECIES_FEATURE" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="speciesFeatureType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="occur" required="true" type="uint" abstract="false" />
+        <attribute name="component" required="false" type="SIdRef" abstract="false" />
+        <attribute name="speciesFeatureValue" required="false" type="lo_element" element="SpeciesFeatureValue" abstract="false" />
       </attributes>
     </element>
     <element name="SpeciesTypeComponentMapInProduct" typeCode="SBML_MULTI_SPECIES_TYPE_COMPONENT_MAP_IN_PRODUCT" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
@@ -92,13 +89,16 @@
         <attribute name="speciesFeatureChange" required="false" type="lo_element" element="SpeciesFeatureChange" abstract="false" />
       </attributes>
     </element>
-    <element name="SpeciesTypeInstance" typeCode="SBML_MULTI_SPECIES_TYPE_INSTANCE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="MultiSpeciesType" typeCode="SBML_MULTI_SPECIES_TYPE" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
-        <attribute name="speciesType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="compartmentReference" required="false" type="SIdRef" abstract="false" />
-        <attribute name="occur" required="true" type="uint" abstract="false" />
+        <attribute name="isBindingSite" required="true" type="bool" abstract="false" />
+        <attribute name="compartment" required="false" type="SIdRef" abstract="false" />
+        <attribute name="speciesFeatureType" required="false" type="lo_element" element="SpeciesFeatureType" abstract="false" />
+        <attribute name="speciesTypeInstance" required="false" type="lo_element" element="SpeciesTypeInstance" abstract="false" />
+        <attribute name="speciesTypeComponentIndex" required="false" type="lo_element" element="SpeciesTypeComponentIndex" abstract="false" />
+        <attribute name="inSpeciesTypeBond" required="false" type="lo_element" element="InSpeciesTypeBond" abstract="false" />
       </attributes>
     </element>
   </elements>
@@ -144,4 +144,14 @@
       </references>
     </plugin>
   </plugins>
+  <enums>
+    <enum name="BindingStatus">
+      <enumValues>
+        <enumValue name="MULTI_BINDING_STATUS_BOUND" />
+        <enumValue name="MULTI_BINDING_STATUS_UNBOUND" />
+        <enumValue name="MULTI_BINDING_STATUS_EITHER" />
+        <enumValue name="MULTI_BINDING_STATUS_UNKNOWN" />
+      </enumValues>
+    </enum>
+  </enums>
 </package>

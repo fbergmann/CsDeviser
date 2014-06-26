@@ -22,11 +22,13 @@ namespace CsDeviser
       controlClass1.RenamedEvent += (o, e) => UpdateUI();
       controlPackage1.RenamedEvent += (o, e) => UpdateUI();
       controlPlugin1.RenamedEvent += (o, e) => UpdateUI();
+      controlEnum1.RenamedEvent += (o, e) => UpdateUI();
 
       NewDocument();
     }
 
     const string NODE_PACKAGE = "nodePackage";
+    const string NODE_ENUMS = "nodeEnums";
     const string NODE_CLASSES = "nodeClasses";
     const string NODE_PLUGINS = "nodePlugins";
 
@@ -65,6 +67,16 @@ namespace CsDeviser
         }
       }
 
+      tree.Nodes[NODE_ENUMS].Nodes.Clear();
+      if (Model != null)
+      {
+        foreach (var item in Model.Enums)
+        {
+          tree.Nodes[NODE_ENUMS].Nodes.Add(item.Name);
+        }
+      }
+
+
       UpdateTitle();
 
       if (Current == null)
@@ -81,6 +93,7 @@ namespace CsDeviser
         controlPackage1.Visible = false;
         controlClass1.Visible = false;
         controlPlugin1.Visible = false;
+        controlEnum1.Visible = false;
         return;
       }
 
@@ -89,6 +102,7 @@ namespace CsDeviser
         controlClass1.Visible = false;
         controlPlugin1.Visible = false;
         controlPackage1.Visible = true;
+        controlEnum1.Visible = false;
         controlPackage1.InitializeFrom(Current as DeviserPackage);
         return;
       }
@@ -98,6 +112,7 @@ namespace CsDeviser
         controlClass1.Visible = false;
         controlPlugin1.Visible = true;
         controlPackage1.Visible = false;
+        controlEnum1.Visible = false;
         controlPlugin1.InitializeFrom(Current as DeviserPlugin);
         return;
       }
@@ -107,7 +122,18 @@ namespace CsDeviser
         controlClass1.Visible = true;
         controlPlugin1.Visible = false;
         controlPackage1.Visible = false;
-        controlClass1.InitializeFrom(Current as DeviserClass);        
+        controlEnum1.Visible = false;
+        controlClass1.InitializeFrom(Current as DeviserClass);
+        return;
+      }
+
+      if (Current is DeviserEnum)
+      {
+        controlClass1.Visible = false;
+        controlPlugin1.Visible = false;
+        controlPackage1.Visible = false;
+        controlEnum1.Visible = true;
+        controlEnum1.InitializeFrom(Current as DeviserEnum);
       }
 
 
@@ -126,6 +152,11 @@ namespace CsDeviser
       if (e.Node.Level == 1 && e.Node.Parent.Name == NODE_PLUGINS)
       {
         Current = Model.GetPlugin(e.Node.Text);
+      }
+
+      if (e.Node.Level == 1 && e.Node.Parent.Name == NODE_ENUMS)
+      {
+        Current = Model.GetEnum(e.Node.Text);
       }
 
       UpdateFromCurrent();
@@ -225,6 +256,17 @@ namespace CsDeviser
       UpdateFromCurrent();
     }
 
+    private void OnAddEnumClick(object sender, EventArgs e)
+    {
+      var element = new DeviserEnum { Name = "Enum" + (Model.Enums.Count + 1).ToString() };
+      Model.Enums.Add(element);
+      tree.Nodes[NODE_ENUMS].Nodes.Add(element.Name);
+      Current = element;
+      UpdateFromCurrent();
+
+    }
+
+
     private void OnAddPluginClick(object sender, EventArgs e)
     {
       var element = new DeviserPlugin { ExtensionPoint = "Extension" + (Model.Plugins.Count + 1).ToString() };
@@ -262,5 +304,6 @@ namespace CsDeviser
     {
       UpdateUI();
     }
+
   }
 }
