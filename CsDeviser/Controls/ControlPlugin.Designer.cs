@@ -53,6 +53,7 @@
       this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.cmdDelAttr = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -97,11 +98,12 @@
       this.tableLayoutPanel1.RowCount = 2;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(463, 261);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(519, 267);
       this.tableLayoutPanel1.TabIndex = 6;
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.cmdDelAttr);
       this.panel1.Controls.Add(this.cmdAddAttribute);
       this.panel1.Controls.Add(this.chkHasAdditional);
       this.panel1.Controls.Add(this.label1);
@@ -109,16 +111,17 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(3, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(457, 28);
+      this.panel1.Size = new System.Drawing.Size(513, 28);
       this.panel1.TabIndex = 0;
       // 
       // cmdAddAttribute
       // 
-      this.cmdAddAttribute.Location = new System.Drawing.Point(281, 3);
+      this.cmdAddAttribute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdAddAttribute.Location = new System.Drawing.Point(344, 3);
       this.cmdAddAttribute.Name = "cmdAddAttribute";
-      this.cmdAddAttribute.Size = new System.Drawing.Size(75, 23);
+      this.cmdAddAttribute.Size = new System.Drawing.Size(68, 23);
       this.cmdAddAttribute.TabIndex = 1;
-      this.cmdAddAttribute.Text = "Add Attr";
+      this.cmdAddAttribute.Text = "Add &Attr";
       this.cmdAddAttribute.UseVisualStyleBackColor = true;
       this.cmdAddAttribute.Click += new System.EventHandler(this.cmdAddAttribute_Click);
       // 
@@ -126,7 +129,7 @@
       // 
       this.chkHasAdditional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.chkHasAdditional.AutoSize = true;
-      this.chkHasAdditional.Location = new System.Drawing.Point(362, 6);
+      this.chkHasAdditional.Location = new System.Drawing.Point(418, 6);
       this.chkHasAdditional.Name = "chkHasAdditional";
       this.chkHasAdditional.Size = new System.Drawing.Size(92, 17);
       this.chkHasAdditional.TabIndex = 2;
@@ -148,8 +151,8 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.gridAttributes);
-      this.splitContainer1.Size = new System.Drawing.Size(457, 221);
-      this.splitContainer1.SplitterDistance = 180;
+      this.splitContainer1.Size = new System.Drawing.Size(513, 227);
+      this.splitContainer1.SplitterDistance = 184;
       this.splitContainer1.TabIndex = 1;
       // 
       // tableLayoutPanel2
@@ -166,7 +169,7 @@
       this.tableLayoutPanel2.Name = "tableLayoutPanel2";
       this.tableLayoutPanel2.RowCount = 1;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(457, 180);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(513, 184);
       this.tableLayoutPanel2.TabIndex = 0;
       // 
       // groupBox1
@@ -175,7 +178,7 @@
       this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupBox1.Location = new System.Drawing.Point(3, 3);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(179, 174);
+      this.groupBox1.Size = new System.Drawing.Size(207, 178);
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = " Define Classes: ";
@@ -186,7 +189,7 @@
       this.lstAllClasses.FormattingEnabled = true;
       this.lstAllClasses.Location = new System.Drawing.Point(3, 16);
       this.lstAllClasses.Name = "lstAllClasses";
-      this.lstAllClasses.Size = new System.Drawing.Size(173, 155);
+      this.lstAllClasses.Size = new System.Drawing.Size(201, 159);
       this.lstAllClasses.TabIndex = 0;
       this.lstAllClasses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnAllClassesMouseDoubleClick);
       // 
@@ -194,9 +197,9 @@
       // 
       this.groupBox2.Controls.Add(this.lstChildClasses);
       this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.groupBox2.Location = new System.Drawing.Point(275, 3);
+      this.groupBox2.Location = new System.Drawing.Point(303, 3);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(179, 174);
+      this.groupBox2.Size = new System.Drawing.Size(207, 178);
       this.groupBox2.TabIndex = 1;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = " Child Classes: ";
@@ -207,7 +210,7 @@
       this.lstChildClasses.FormattingEnabled = true;
       this.lstChildClasses.Location = new System.Drawing.Point(3, 16);
       this.lstChildClasses.Name = "lstChildClasses";
-      this.lstChildClasses.Size = new System.Drawing.Size(173, 155);
+      this.lstChildClasses.Size = new System.Drawing.Size(201, 159);
       this.lstChildClasses.TabIndex = 0;
       this.lstChildClasses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnChildClassesMouseDoubleClick);
       // 
@@ -218,16 +221,16 @@
       this.panel2.Controls.Add(this.cmdRemove);
       this.panel2.Controls.Add(this.cmdAdd);
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(188, 3);
+      this.panel2.Location = new System.Drawing.Point(216, 3);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(81, 174);
+      this.panel2.Size = new System.Drawing.Size(81, 178);
       this.panel2.TabIndex = 2;
       // 
       // cmdUp
       // 
       this.cmdUp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdUp.Location = new System.Drawing.Point(3, 119);
+      this.cmdUp.Location = new System.Drawing.Point(3, 123);
       this.cmdUp.Name = "cmdUp";
       this.cmdUp.Size = new System.Drawing.Size(75, 23);
       this.cmdUp.TabIndex = 2;
@@ -239,7 +242,7 @@
       // 
       this.cmdDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdDown.Location = new System.Drawing.Point(3, 148);
+      this.cmdDown.Location = new System.Drawing.Point(3, 152);
       this.cmdDown.Name = "cmdDown";
       this.cmdDown.Size = new System.Drawing.Size(75, 23);
       this.cmdDown.TabIndex = 3;
@@ -285,7 +288,7 @@
       this.gridAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
-      this.gridAttributes.Size = new System.Drawing.Size(457, 37);
+      this.gridAttributes.Size = new System.Drawing.Size(513, 39);
       this.gridAttributes.TabIndex = 0;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
       // 
@@ -314,6 +317,17 @@
       this.colAbstract.HeaderText = "Abstract";
       this.colAbstract.Name = "colAbstract";
       // 
+      // cmdDelAttr
+      // 
+      this.cmdDelAttr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdDelAttr.Location = new System.Drawing.Point(270, 3);
+      this.cmdDelAttr.Name = "cmdDelAttr";
+      this.cmdDelAttr.Size = new System.Drawing.Size(68, 23);
+      this.cmdDelAttr.TabIndex = 5;
+      this.cmdDelAttr.Text = "Del &Attr";
+      this.cmdDelAttr.UseVisualStyleBackColor = true;
+      this.cmdDelAttr.Click += new System.EventHandler(this.cmdDelAttr_Click);
+      // 
       // ControlPlugin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,7 +335,7 @@
       this.Controls.Add(this.tableLayoutPanel1);
       this.MinimumSize = new System.Drawing.Size(463, 261);
       this.Name = "ControlPlugin";
-      this.Size = new System.Drawing.Size(463, 261);
+      this.Size = new System.Drawing.Size(519, 267);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
@@ -364,5 +378,6 @@
     private System.Windows.Forms.DataGridViewCheckBoxColumn colRequired;
     private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
+    private System.Windows.Forms.Button cmdDelAttr;
   }
 }

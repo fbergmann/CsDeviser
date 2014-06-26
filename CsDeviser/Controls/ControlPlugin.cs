@@ -199,13 +199,28 @@ namespace CsDeviser.Controls
       var newAttr = new DeviserAttribute { Name = "Attribute" + (Current.Attributes.Count + 1).ToString() };
       Current.Attributes.Add(newAttr);
 
-      gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
-
+      var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+      gridAttributes.Rows[row].Selected = true;
+      gridAttributes.Focus();
     }
 
     private void txtExtensionPoint_Leave(object sender, EventArgs e)
     {
       OnRenamedEvent();
+    }
+
+    private void cmdDelAttr_Click(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+
+      var row = gridAttributes.SelectedRows;
+      for (int i = row.Count - 1; i >= 0; i--)
+      {
+        gridAttributes.Rows.Remove(row[i]);
+        var attr = Current.Attributes.FirstOrDefault(a => a.Name == row[i].Cells[0].Value as string);
+        if (attr != null)
+          Current.Attributes.Remove(attr);
+      }
     }
   }
 }
