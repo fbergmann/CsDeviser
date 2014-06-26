@@ -73,20 +73,15 @@ namespace LibDeviser
                   
       Elements.InitializeFrom(Util.getElement(element, "element"));
       Plugins.InitializeFrom(Util.getElement(element, "plugin"));
+
+      SetParent(this);
     }
 
     public override void SetParent(DeviserPackage doc)
     {
-      foreach (var item in Elements)
-      {
-        item.SetParent(doc);
-      }
-
-      foreach (var item in Plugins)
-      {
-        item.SetParent(doc);
-      }
-
+      Document = doc;
+      Elements.SetParent(doc);
+      Plugins.SetParent(doc);
     }
 
     public void ReadFromFile(string fileName)

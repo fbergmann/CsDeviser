@@ -66,6 +66,8 @@
       this.controlPlugin1 = new CsDeviser.Controls.ControlPlugin();
       this.controlClass1 = new CsDeviser.Controls.ControlClass();
       this.controlPackage1 = new CsDeviser.Controls.ControlPackage();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+      this.cmdRefresh = new System.Windows.Forms.ToolStripButton();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
       this.toolStripContainer1.ContentPanel.SuspendLayout();
       this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -298,6 +300,8 @@
             this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton,
+            this.toolStripSeparator2,
+            this.cmdRefresh,
             this.toolStripSeparator6,
             this.cmdAddClass,
             this.cmdAddPlugin,
@@ -305,7 +309,7 @@
             this.helpToolStripButton});
       this.toolStrip1.Location = new System.Drawing.Point(3, 24);
       this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(249, 25);
+      this.toolStrip1.Size = new System.Drawing.Size(336, 25);
       this.toolStrip1.TabIndex = 1;
       // 
       // newToolStripButton
@@ -408,6 +412,21 @@
       this.controlPackage1.TabIndex = 0;
       this.controlPackage1.Visible = false;
       // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+      // 
+      // cmdRefresh
+      // 
+      this.cmdRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.cmdRefresh.Image = ((System.Drawing.Image)(resources.GetObject("cmdRefresh.Image")));
+      this.cmdRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.cmdRefresh.Name = "cmdRefresh";
+      this.cmdRefresh.Size = new System.Drawing.Size(50, 22);
+      this.cmdRefresh.Text = "Refresh";
+      this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,6 +492,8 @@
     private Controls.ControlPackage controlPackage1;
     private Controls.ControlPlugin controlPlugin1;
     private Controls.ControlClass controlClass1;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+    private System.Windows.Forms.ToolStripButton cmdRefresh;
   }
 }
 

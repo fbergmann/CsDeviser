@@ -11,11 +11,13 @@ namespace LibDeviser
   {
     public string ExtensionPoint { get; set; }
 
-    public List<DeviserReferenceAttribute> Attributes { get; set; }
+    public List<DeviserReferenceAttribute> References { get; set; }
+    public List<DeviserAttribute> Attributes { get; set; }
 
     public DeviserPlugin()
     {
-      Attributes = new List<DeviserReferenceAttribute>();
+      Attributes = new List<DeviserAttribute>();
+      References = new List<DeviserReferenceAttribute>();
     }
 
     public DeviserPlugin(XmlNode node)
@@ -26,11 +28,9 @@ namespace LibDeviser
 
     public override void SetParent(DeviserPackage doc)
     {
-      foreach (var item in Attributes)
-      {
-        item.SetParent(doc);
-      }
-
+      Document = doc;
+      Attributes.SetParent(doc);
+      References.SetParent(doc);
     }
     public override void InitializeFrom(XmlElement element)
     {
@@ -38,8 +38,9 @@ namespace LibDeviser
 
       ExtensionPoint = element.GetAttribute("extensionPoint");
 
-      Attributes = new List<DeviserReferenceAttribute>();
-      Attributes.InitializeFrom(Util.getElement(element, "reference"));
+      References = new List<DeviserReferenceAttribute>();
+      References.InitializeFrom(Util.getElement(element, "reference"));
+      Attributes = new List<DeviserAttribute>();
       Attributes.InitializeFrom(Util.getElement(element, "attribute"));
     }
 
@@ -55,6 +56,7 @@ namespace LibDeviser
     {
       base.WriteElementsTo(writer);
 
+      References.WriteListWithName(writer, "references");
       Attributes.WriteListWithName(writer, "attributes");
 
     }

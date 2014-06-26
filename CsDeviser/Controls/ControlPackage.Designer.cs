@@ -41,7 +41,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(25, 17);
+      this.label1.Location = new System.Drawing.Point(12, 6);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(41, 13);
       this.label1.TabIndex = 0;
@@ -49,16 +49,17 @@
       // 
       // txtPackage
       // 
-      this.txtPackage.Location = new System.Drawing.Point(72, 14);
+      this.txtPackage.Location = new System.Drawing.Point(59, 3);
       this.txtPackage.Name = "txtPackage";
       this.txtPackage.Size = new System.Drawing.Size(100, 20);
       this.txtPackage.TabIndex = 1;
       this.toolTip1.SetToolTip(this.txtPackage, "The name of the package");
       this.txtPackage.TextChanged += new System.EventHandler(this.txtPackage_TextChanged);
+      this.txtPackage.Leave += new System.EventHandler(this.txtPackage_Leave);
       // 
       // txtStartNumber
       // 
-      this.txtStartNumber.Location = new System.Drawing.Point(72, 40);
+      this.txtStartNumber.Location = new System.Drawing.Point(59, 29);
       this.txtStartNumber.Name = "txtStartNumber";
       this.txtStartNumber.Size = new System.Drawing.Size(100, 20);
       this.txtStartNumber.TabIndex = 3;
@@ -70,7 +71,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(16, 43);
+      this.label2.Location = new System.Drawing.Point(3, 32);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(50, 13);
       this.label2.TabIndex = 2;
@@ -78,7 +79,7 @@
       // 
       // txtOffset
       // 
-      this.txtOffset.Location = new System.Drawing.Point(72, 66);
+      this.txtOffset.Location = new System.Drawing.Point(59, 55);
       this.txtOffset.Name = "txtOffset";
       this.txtOffset.Size = new System.Drawing.Size(100, 20);
       this.txtOffset.TabIndex = 5;
@@ -90,7 +91,7 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(25, 69);
+      this.label3.Location = new System.Drawing.Point(12, 58);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(41, 13);
       this.label3.TabIndex = 4;

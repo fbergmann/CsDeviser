@@ -17,6 +17,16 @@ namespace CsDeviser.Controls
     {
       InitializeComponent();
     }
+    
+    public event EventHandler RenamedEvent;
+
+    public bool Initializing { get; set; }
+
+    protected virtual void OnRenamedEvent()
+    {
+      var handler = RenamedEvent;
+      if (handler != null) handler(this, EventArgs.Empty);
+    }
 
     public DeviserPackage Current { get; set; }
 
@@ -31,23 +41,22 @@ namespace CsDeviser.Controls
       Current = package;
 
       if (Current == null) return;
-
+      Initializing = true;
       txtOffset.Text = Current.Offset.ToString();
       txtStartNumber.Text = Current.StartNumber.ToString();
       txtPackage.Text = Current.Name;
-
+      Initializing = false;
     }
 
     private void txtPackage_TextChanged(object sender, EventArgs e)
     {
-      if (Current == null) return;
-      Current.Name = txtPackage.Text;
-
+      if (Current == null || Initializing) return;
+      Current.Name = txtPackage.Text;      
     }
 
     private void txtStartNumber_TextChanged(object sender, EventArgs e)
     {
-      if (Current == null) return;
+      if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtStartNumber.Text, out number))
         Current.StartNumber = number;
@@ -55,10 +64,15 @@ namespace CsDeviser.Controls
 
     private void txtOffset_TextChanged(object sender, EventArgs e)
     {
-      if (Current == null) return;
+      if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtOffset.Text, out number))
         Current.Offset = number;
+    }
+
+    private void txtPackage_Leave(object sender, EventArgs e)
+    {
+      OnRenamedEvent();
     }
   }
 }

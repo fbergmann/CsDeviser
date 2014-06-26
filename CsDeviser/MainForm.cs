@@ -19,6 +19,10 @@ namespace CsDeviser
     {
       InitializeComponent();
 
+      controlClass1.RenamedEvent += (o, e) => UpdateUI();
+      controlPackage1.RenamedEvent += (o, e) => UpdateUI();
+      controlPlugin1.RenamedEvent += (o, e) => UpdateUI();
+
       NewDocument();
     }
 
@@ -112,7 +116,8 @@ namespace CsDeviser
 
     private void OnItemSelect(object sender, TreeViewEventArgs e)
     {
-      if (e.Node.Level == 0) return;
+      if (e.Node.Level == 0)        
+        Current = Model;
 
       if (e.Node.Level == 1 && e.Node.Parent.Name == NODE_CLASSES)
       {
@@ -250,6 +255,11 @@ namespace CsDeviser
           Current = Model;
       }
 
+      UpdateUI();
+    }
+
+    private void cmdRefresh_Click(object sender, EventArgs e)
+    {
       UpdateUI();
     }
   }

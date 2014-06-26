@@ -39,4 +39,6 @@ Icon
 # obj files
 obj
 *.pdb
+*.suo
+*.user
 bin

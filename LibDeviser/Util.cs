@@ -10,6 +10,15 @@ namespace LibDeviser
 {
   public static class Util
   {
+    public static void SetParent<T>(this List<T> list, DeviserPackage doc)
+      where T : DeviserBase
+    {
+      foreach (var item in list)
+      {
+        item.SetParent(doc);
+      }
+      
+    }
 
     public static void InitializeFrom<T>(this List<T> list, XmlNodeList nodes, DeviserPackage parent = null)
    where T : DeviserBase, new()

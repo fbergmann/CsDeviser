@@ -93,15 +93,9 @@ namespace LibDeviser
 
     public override void SetParent(DeviserPackage doc)
     {
-      foreach (var item in Attributes)
-      {
-        item.SetParent(doc);
-      }
-
-      foreach (var item in Concretes)
-      {
-        item.SetParent(doc);
-      }
+      Document = doc;
+      Attributes.SetParent(doc);
+      Concretes.SetParent(doc);
 
     }
 
