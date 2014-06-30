@@ -42,6 +42,7 @@
     <Compile Include="DeviserConcrete.cs" />
     <Compile Include="DeviserBase.cs" />
     <Compile Include="DeviserEnum.cs" />
+    <Compile Include="DeviserMessage.cs" />
     <Compile Include="DeviserPackage.cs" />
     <Compile Include="DeviserPlugin.cs" />
     <Compile Include="DeviserReferenceAttribute.cs" />

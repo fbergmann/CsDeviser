@@ -53,7 +53,6 @@ namespace LibDeviser
       InitializeFrom(node);
     }
 
-
     public DeviserPackage(string fileName)  : this()
     {
       ReadFromFile(fileName);
@@ -73,7 +72,6 @@ namespace LibDeviser
     {
       return Plugins.FirstOrDefault(e => e.ExtensionPoint == name);
     }
-
 
     public override void InitializeFrom(XmlElement element)
     {
@@ -136,7 +134,6 @@ namespace LibDeviser
       Elements.WriteListWithName(writer, "elements");
       Plugins.WriteListWithName(writer, "plugins");
       Enums.WriteListWithName(writer, "enums");
-
       
     }
 
@@ -180,10 +177,175 @@ namespace LibDeviser
                  Util.ReformatXML(builder.ToString()));
     }
 
-
     public override void WriteTo(XmlWriter writer)
     {
       WriteElementWithNameTo(writer, "package");
+    }
+
+    /// <summary>
+    /// Go through all elements, and verify that the hasChildren element is set correctly
+    /// </summary>
+    /// <param name="log"></param>
+    /// <param name="correct"></param>
+    private void TestForInconsistenciesInHasChildren(List<DeviserMessage> log, bool correct)
+    {
+      foreach (var item in Elements)
+      {
+        var hasChildren = item.HasChildren;
+        int numChildren = 0;
+        foreach (var attr in item.Attributes)
+        {
+          if (attr.Type == "element" || attr.Type == "lo_element")
+            ++numChildren;
+        }
+
+        if (hasChildren && numChildren == 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' has hasChildren=true, but no children", item.Name),
+            Element = item
+          });
+          if (correct)
+            item.HasChildren = false;
+        }
+
+        if (!hasChildren && numChildren > 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' has hasChildren=false, but children", item.Name),
+            Element = item
+          });
+          if (correct)
+            item.HasChildren = true;
+        }
+      }
+    }
+
+    private void TestForInconsistenciesInHasListOf(List<DeviserMessage> log, bool correct)
+    {
+      foreach (var current in Elements)
+      {
+        var hasListOf = current.HasListOf;
+
+        int countUses = 0;
+        foreach (var item in Elements)
+        {
+          if (item == current) continue;
+
+          foreach (var attr in item.Attributes)
+          {
+            if (attr.Type != "lo_element") continue;
+            if (attr.Element != current.Name) continue;
+
+            ++countUses;
+            if (!hasListOf)
+            {
+              log.Add(new DeviserMessage
+              {
+                Message = string.Format("Class: '{0}' uses a list of '{1}', which is not marked having a list",
+                  item.Name, current.Name),
+                Element = item
+              });
+              if (correct)
+                current.HasListOf = true;
+            }
+          }
+        }
+
+        foreach (var item in Plugins)
+        {
+          foreach (var attr in item.Attributes)
+          {
+            if (attr.Type != "lo_element") continue;
+            if (attr.Element != current.Name) continue;
+
+            ++countUses;
+            if (!hasListOf)
+            {
+              log.Add(new DeviserMessage
+              {
+                Message = string.Format("Plugin for '{0}' uses a list of '{1}', which is not marked having a list",
+                  item.ExtensionPoint, current.Name),
+                Element = item
+              });
+              if (correct)
+                current.HasListOf = true;
+            }
+          }
+        }
+
+        if (hasListOf && countUses == 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' is marked as having a list of, but no litof of it is used", current.Name),
+            Element = current
+          });
+          if (correct)
+            current.HasListOf = false;
+        }
+
+      }
+    }
+
+    private void TestForInconsistenciesInAbstract(List<DeviserMessage> log, bool correct)
+    {
+      foreach (var current in Elements)
+      {
+        var isAbstract = current.Abstract;
+
+        int countUses = 0;
+        foreach (var item in Elements)
+        {
+          if (item == current) continue;
+          if (item.BaseClass == current.Name)
+          {
+            ++countUses;
+            if (!isAbstract)
+            {
+              log.Add(new DeviserMessage
+              {
+                Message = string.Format("Class: '{0}' has uses BaseClass '{1}', which is not marked as abstract", item.Name),
+                Element = item
+              });
+              if (correct)
+                current.Abstract = true;                
+            }
+          }
+        }
+
+        
+        if (isAbstract && countUses== 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' is marked as abstract, but not used", current.Name),
+            Element = current
+          });
+          if (correct)
+            current.Abstract = false;
+        }
+
+      }
+    }
+
+    /// <summary>
+    /// Analyze descriptoon for inconsistencies
+    /// </summary>
+    /// <param name="correct"></param>
+    /// <returns></returns>
+    public List<DeviserMessage> AnalyzeDescription(bool correct = false)
+    {
+      var log = new List<DeviserMessage>();
+
+      // test for inconsistencies in elements
+      TestForInconsistenciesInHasChildren(log, correct);
+      TestForInconsistenciesInHasListOf(log, correct);
+      TestForInconsistenciesInAbstract(log, correct);
+
+      return log;
     }
   }
 }

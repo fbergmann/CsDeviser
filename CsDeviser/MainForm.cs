@@ -306,5 +306,63 @@ namespace CsDeviser
       UpdateUI();
     }
 
+    private void OnValidateDescriptionClick(object sender, EventArgs e)
+    {
+      var log = Model.AnalyzeDescription(false);
+
+      if (log.Count == 0)
+      {
+        MessageBox.Show(
+          "Could not find inconsistencies.",
+          "Could not find inconsistencies.",
+          MessageBoxButtons.OK,
+          MessageBoxIcon.Information
+          );
+      }
+      else
+      {
+        var builder = new StringBuilder();
+        builder.AppendLine("Found the following inconsistencies: ");
+        builder.AppendLine();
+        foreach (var item in log)
+          builder.AppendLine(item.Message);
+        builder.AppendLine();
+        builder.AppendLine("Would you like to correct them?");
+
+        if (MessageBox.Show(
+          builder.ToString(),
+          "Found inconsistencies.",
+          MessageBoxButtons.YesNo,
+          MessageBoxIcon.Warning
+          ) == System.Windows.Forms.DialogResult.Yes)
+        {
+          Model.AnalyzeDescription(true);
+        }
+      }
+
+    }
+
+    private void OnFixErrorsClick(object sender, EventArgs e)
+    {
+      var log = Model.AnalyzeDescription(true);
+      if (log.Count > 0)
+      {
+        var builder = new StringBuilder();
+        builder.AppendLine("Corrected the following inconsistencies: ");
+        builder.AppendLine();
+        foreach (var item in log)
+          builder.AppendLine(item.Message);
+        builder.AppendLine();
+
+        MessageBox.Show(builder.ToString(),
+          "Correctd inconsistencies.",
+          MessageBoxButtons.OK,
+          MessageBoxIcon.Information
+          );
+        
+
+      }
+    }
+
   }
 }
