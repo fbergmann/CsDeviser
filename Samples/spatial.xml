@@ -1,70 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="Spatial" number="300" offset="1200000">
   <elements>
-    <element name="CompartmentMapping" typeCode="SBML_SPATIAL_COMPARTMENTMAPPING" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="unitSize" required="true" type="double" abstract="false" />
-      </attributes>
-    </element>
-    <element name="SpatialSymbolReference" typeCode="SBML_SPATIAL_SPATIALSYMBOLREFERENCE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="spatialRef" required="true" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
-    <element name="CoordinateReference" typeCode="SBML_SPATIAL_COORDINATEREFERENCE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="coordinate" required="true" type="enum" element="CoordinateKind" abstract="false" />
-      </attributes>
-    </element>
-    <element name="DiffusionCoefficient" typeCode="SBML_SPATIAL_DIFFUSIONCOEFFICIENT" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
-        <attribute name="type" required="true" type="enum" element="DiffusionKind" abstract="false" />
-        <attribute name="coordinateReference" required="false" type="lo_element" element="CoordinateReference" abstract="false" />
-      </attributes>
-    </element>
-    <element name="AdvectionCoefficient" typeCode="SBML_SPATIAL_ADVECTIONCOEFFICIENT" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
-        <attribute name="coordinate" required="true" type="enum" element="CoordinateKind" abstract="false" />
-      </attributes>
-    </element>
-    <element name="BoundaryCondition" typeCode="SBML_SPATIAL_BOUNDARYCONDITION" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
-        <attribute name="type" required="true" type="enum" element="BoundaryConditionKind" abstract="false" />
-        <attribute name="coordinateBoundary" required="false" type="SIdRef" abstract="false" />
-        <attribute name="boundaryDomainType" required="false" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
-    <element name="Geometry" typeCode="SBML_SPATIAL_GEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="coordinateSystem" required="true" type="enum" element="GeometryKind" abstract="false" />
-        <attribute name="coordinateComponent" required="false" type="lo_element" element="CoordinateComponent" abstract="false" />
-        <attribute name="domainType" required="false" type="lo_element" element="DomainType" abstract="false" />
-        <attribute name="domain" required="false" type="lo_element" element="Domain" abstract="false" />
-        <attribute name="adjacentDomains" required="false" type="lo_element" element="AdjacentDomains" abstract="false" />
-        <attribute name="geometryDefinition" required="false" type="lo_element" element="GeometryDefinition" abstract="true" />
-      </attributes>
-    </element>
-    <element name="CoordinateComponent" typeCode="SBML_SPATIAL_COORDINATECOMPONENT" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="componentType" required="true" type="enum" element="CoordinateKind" abstract="false" />
-        <attribute name="unit" required="true" type="SIdRef" abstract="false" />
-        <attribute name="boundaryMin" required="true" type="element" element="Boundary" abstract="false" />
-        <attribute name="boundaryMax" required="true" type="element" element="Boundary" abstract="false" />
-      </attributes>
-    </element>
-    <element name="Boundary" typeCode="SBML_SPATIAL_BOUNDARY" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="value" required="true" type="double" abstract="false" />
-      </attributes>
-    </element>
     <element name="DomainType" typeCode="SBML_SPATIAL_DOMAINTYPE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
@@ -85,6 +21,12 @@
         <attribute name="coord3" required="false" type="double" abstract="false" />
       </attributes>
     </element>
+    <element name="Boundary" typeCode="SBML_SPATIAL_BOUNDARY" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="value" required="true" type="double" abstract="false" />
+      </attributes>
+    </element>
     <element name="AdjacentDomains" typeCode="SBML_SPATIAL_ADJACENTDOMAINS" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
@@ -103,18 +45,20 @@
         <concrete name="parametricGeometry" element="ParametricGeometry" />
       </concretes>
     </element>
-    <element name="AnalyticGeometry" typeCode="SBML_SPATIAL_ANALYTICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
+    <element name="CompartmentMapping" typeCode="SBML_SPATIAL_COMPARTMENTMAPPING" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="analyticVolume" required="false" type="lo_element" element="AnalyticVolume" abstract="false" />
+        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="unitSize" required="true" type="double" abstract="false" />
       </attributes>
     </element>
-    <element name="AnalyticVolume" typeCode="SBML_SPATIAL_ANALYTICVOLUME" hasListOf="true" hasChildren="false" hasMath="true" baseClass="SBase" abstract="false">
+    <element name="CoordinateComponent" typeCode="SBML_SPATIAL_COORDINATECOMPONENT" hasListOf="true" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="functionType" required="true" type="enum" element="FunctionKind" abstract="false" />
-        <attribute name="ordinal" required="false" type="int" abstract="false" />
-        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="componentType" required="true" type="enum" element="CoordinateKind" abstract="false" />
+        <attribute name="unit" required="true" type="SIdRef" abstract="false" />
+        <attribute name="boundaryMin" required="true" type="element" element="Boundary" abstract="false" />
+        <attribute name="boundaryMax" required="true" type="element" element="Boundary" abstract="false" />
       </attributes>
     </element>
     <element name="SampledFieldGeometry" typeCode="SBML_SPATIAL_SAMPLEDFIELDGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
@@ -122,15 +66,6 @@
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="sampledVolume" required="false" type="lo_element" element="SampledVolume" abstract="false" />
         <attribute name="sampledField" required="false" type="element" element="SampledField" abstract="false" />
-      </attributes>
-    </element>
-    <element name="SampledVolume" typeCode="SBML_SPATIAL_SAMPLEDVOLUME" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="sampledValue" required="true" type="double" abstract="false" />
-        <attribute name="minValue" required="false" type="double" abstract="false" />
-        <attribute name="maxValue" required="false" type="double" abstract="false" />
       </attributes>
     </element>
     <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
@@ -147,9 +82,61 @@
     </element>
     <element name="ImageData" typeCode="SBML_SPATIAL_IMAGEDATA" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="samples" required="true" type="int*" abstract="false" />
+        <attribute name="samples" required="true" type="array" element="int" abstract="false" />
         <attribute name="samplesLength" required="true" type="int" abstract="false" />
         <attribute name="dataType" required="true" type="string" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SampledVolume" typeCode="SBML_SPATIAL_SAMPLEDVOLUME" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="sampledValue" required="true" type="double" abstract="false" />
+        <attribute name="minValue" required="false" type="double" abstract="false" />
+        <attribute name="maxValue" required="false" type="double" abstract="false" />
+      </attributes>
+    </element>
+    <element name="AnalyticGeometry" typeCode="SBML_SPATIAL_ANALYTICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="analyticVolume" required="false" type="lo_element" element="AnalyticVolume" abstract="false" />
+      </attributes>
+    </element>
+    <element name="AnalyticVolume" typeCode="SBML_SPATIAL_ANALYTICVOLUME" hasListOf="true" hasChildren="false" hasMath="true" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="functionType" required="true" type="enum" element="FunctionKind" abstract="false" />
+        <attribute name="ordinal" required="false" type="int" abstract="false" />
+        <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+    <element name="ParametricGeometry" typeCode="SBML_SPATIAL_PARAMETRICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="spatialPoint" required="false" type="lo_element" element="SpatialPoint" abstract="false" />
+        <attribute name="parametricObject" required="false" type="element" element="ParametricObject" abstract="false" />
+      </attributes>
+    </element>
+    <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="polygonType" required="true" type="string" abstract="false" />
+        <attribute name="domain" required="true" type="SIdRef" abstract="false" />
+        <attribute name="polygonObject" required="true" type="element" element="PolygonObject" abstract="false" />
+      </attributes>
+    </element>
+    <element name="PolygonObject" typeCode="SBML_SPATIAL_POLYGONOBJECT" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="pointIndex" required="true" type="array" element="int" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SpatialPoint" typeCode="SBML_SPATIAL_SPATIALPOINT" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="coord1" required="true" type="double" abstract="false" />
+        <attribute name="coord2" required="false" type="double" abstract="false" />
+        <attribute name="coord3" required="false" type="double" abstract="false" />
+        <attribute name="domain" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
     <element name="CSGeometry" typeCode="SBML_SPATIAL_CSGGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
@@ -176,25 +163,6 @@
         <concrete name="csgPseudoPrimitive" element="CSGPseudoPrimitive" />
         <concrete name="csgSetOperator" element="CSGSetOperator" />
       </concretes>
-    </element>
-    <element name="CSGPrimitive" typeCode="SBML_SPATIAL_CSGPRIMITIVE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="CSGNode" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="primitiveType" required="true" type="string" abstract="false" />
-      </attributes>
-    </element>
-    <element name="CSGPseudoPrimitive" typeCode="SBML_SPATIAL_CSGPSEUDOPRIMITIVE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="CSGNode" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="csgObjectRef" required="true" type="SIdRef" abstract="false" />
-      </attributes>
-    </element>
-    <element name="CSGSetOperator" typeCode="SBML_SPATIAL_CSGSETOPERATOR" hasListOf="false" hasChildren="true" hasMath="false" baseClass="CSGNode" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="operationType" required="true" type="enum" element="SetOperation" abstract="false" />
-        <attribute name="csgNode" required="false" type="lo_element" element="CSGNode" abstract="true" />
-      </attributes>
     </element>
     <element name="CSGTransformation" typeCode="SBML_SPATIAL_CSGTRANSFORMATION" hasListOf="false" hasChildren="true" hasMath="false" baseClass="CSGNode" abstract="true">
       <attributes>
@@ -238,37 +206,69 @@
     </element>
     <element name="TransformationComponent" typeCode="SBML_SPATIAL_TRANSFORMATIONCOMPONENTS" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="components" required="true" type="double*" abstract="false" />
+        <attribute name="components" required="true" type="array" element="double" abstract="false" />
         <attribute name="componentsLength" required="true" type="int" abstract="false" />
       </attributes>
     </element>
-    <element name="ParametricGeometry" typeCode="SBML_SPATIAL_PARAMETRICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">
+    <element name="CSGPrimitive" typeCode="SBML_SPATIAL_CSGPRIMITIVE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="CSGNode" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="spatialPoint" required="false" type="lo_element" element="SpatialPoint" abstract="false" />
-        <attribute name="parametricObject" required="false" type="element" element="ParametricObject" abstract="false" />
+        <attribute name="primitiveType" required="true" type="string" abstract="false" />
       </attributes>
     </element>
-    <element name="SpatialPoint" typeCode="SBML_SPATIAL_SPATIALPOINT" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="CSGPseudoPrimitive" typeCode="SBML_SPATIAL_CSGPSEUDOPRIMITIVE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="CSGNode" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="coord1" required="true" type="double" abstract="false" />
-        <attribute name="coord2" required="false" type="double" abstract="false" />
-        <attribute name="coord3" required="false" type="double" abstract="false" />
-        <attribute name="domain" required="true" type="SIdRef" abstract="false" />
+        <attribute name="csgObjectRef" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="CSGSetOperator" typeCode="SBML_SPATIAL_CSGSETOPERATOR" hasListOf="false" hasChildren="true" hasMath="false" baseClass="CSGNode" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="polygonType" required="true" type="string" abstract="false" />
-        <attribute name="domain" required="true" type="SIdRef" abstract="false" />
-        <attribute name="polygonObject" required="true" type="element" element="PolygonObject" abstract="false" />
+        <attribute name="operationType" required="true" type="enum" element="SetOperation" abstract="false" />
+        <attribute name="csgNode" required="false" type="lo_element" element="CSGNode" abstract="true" />
       </attributes>
     </element>
-    <element name="PolygonObject" typeCode="SBML_SPATIAL_POLYGONOBJECT" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+    <element name="SpatialSymbolReference" typeCode="SBML_SPATIAL_SPATIALSYMBOLREFERENCE" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="pointIndex" required="true" type="int*" abstract="false" />
+        <attribute name="spatialRef" required="true" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+    <element name="DiffusionCoefficient" typeCode="SBML_SPATIAL_DIFFUSIONCOEFFICIENT" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
+        <attribute name="type" required="true" type="enum" element="DiffusionKind" abstract="false" />
+        <attribute name="coordinateReference" required="false" type="lo_element" element="CoordinateReference" abstract="false" />
+      </attributes>
+    </element>
+    <element name="AdvectionCoefficient" typeCode="SBML_SPATIAL_ADVECTIONCOEFFICIENT" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
+        <attribute name="coordinate" required="true" type="enum" element="CoordinateKind" abstract="false" />
+      </attributes>
+    </element>
+    <element name="BoundaryCondition" typeCode="SBML_SPATIAL_BOUNDARYCONDITION" hasListOf="false" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
+        <attribute name="type" required="true" type="enum" element="BoundaryConditionKind" abstract="false" />
+        <attribute name="coordinateBoundary" required="false" type="SIdRef" abstract="false" />
+        <attribute name="boundaryDomainType" required="false" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+    <element name="Geometry" typeCode="SBML_SPATIAL_GEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="coordinateSystem" required="true" type="enum" element="GeometryKind" abstract="false" />
+        <attribute name="coordinateComponent" required="false" type="lo_element" element="CoordinateComponent" abstract="false" />
+        <attribute name="domainType" required="false" type="lo_element" element="DomainType" abstract="false" />
+        <attribute name="domain" required="false" type="lo_element" element="Domain" abstract="false" />
+        <attribute name="adjacentDomains" required="false" type="lo_element" element="AdjacentDomains" abstract="false" />
+        <attribute name="geometryDefinition" required="false" type="lo_element" element="GeometryDefinition" abstract="true" />
+      </attributes>
+    </element>
+    <element name="CoordinateReference" typeCode="SBML_SPATIAL_COORDINATEREFERENCE" hasListOf="true" hasChildren="false" hasMath="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="coordinate" required="true" type="enum" element="CoordinateKind" abstract="false" />
       </attributes>
     </element>
   </elements>
