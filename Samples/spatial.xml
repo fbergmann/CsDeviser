@@ -108,6 +108,7 @@
         <attribute name="functionType" required="true" type="enum" element="FunctionKind" abstract="false" />
         <attribute name="ordinal" required="false" type="int" abstract="false" />
         <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
+        <attribute name="math" required="false" type="element" element="ASTNode*" abstract="false" />
       </attributes>
     </element>
     <element name="ParametricGeometry" typeCode="SBML_SPATIAL_PARAMETRICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" baseClass="GeometryDefinition" abstract="false">

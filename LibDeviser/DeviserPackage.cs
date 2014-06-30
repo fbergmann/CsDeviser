@@ -223,6 +223,44 @@ namespace LibDeviser
       }
     }
 
+    private void TestForInconsistenciesInHasMath(List<DeviserMessage> log, bool correct)
+    {
+      foreach (var item in Elements)
+      {
+        var hasMath = item.HasMath;
+        int numChildren = 0;
+        foreach (var attr in item.Attributes)
+        {
+          if (attr.Name == "math")
+            ++numChildren;
+        }
+
+        if (hasMath && numChildren == 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' has hasMath=true, but no math child", item.Name),
+            Element = item
+          });
+          if (correct)
+          {
+            item.Attributes.Add(new DeviserAttribute {Name="math", Type="element", Element="ASTNode*"});            
+          }
+        }
+
+        if (!hasMath && numChildren > 0)
+        {
+          log.Add(new DeviserMessage
+          {
+            Message = string.Format("Class: '{0}' has a child 'math' but hasMath=false", item.Name),
+            Element = item
+          });
+          if (correct)
+            item.HasMath = true;
+        }
+      }
+    }
+
     private void TestForInconsistenciesInHasListOf(List<DeviserMessage> log, bool correct)
     {
       foreach (var current in Elements)
@@ -344,6 +382,7 @@ namespace LibDeviser
       TestForInconsistenciesInHasChildren(log, correct);
       TestForInconsistenciesInHasListOf(log, correct);
       TestForInconsistenciesInAbstract(log, correct);
+      TestForInconsistenciesInHasMath(log, correct);
 
       return log;
     }
