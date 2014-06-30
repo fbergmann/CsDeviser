@@ -34,6 +34,7 @@
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmdDelAttr = new System.Windows.Forms.Button();
       this.cmdAddAttribute = new System.Windows.Forms.Button();
       this.chkHasAdditional = new System.Windows.Forms.CheckBox();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -53,7 +54,6 @@
       this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.cmdDelAttr = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -113,6 +113,17 @@
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(513, 28);
       this.panel1.TabIndex = 0;
+      // 
+      // cmdDelAttr
+      // 
+      this.cmdDelAttr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdDelAttr.Location = new System.Drawing.Point(270, 3);
+      this.cmdDelAttr.Name = "cmdDelAttr";
+      this.cmdDelAttr.Size = new System.Drawing.Size(68, 23);
+      this.cmdDelAttr.TabIndex = 5;
+      this.cmdDelAttr.Text = "&Del Attr";
+      this.cmdDelAttr.UseVisualStyleBackColor = true;
+      this.cmdDelAttr.Click += new System.EventHandler(this.cmdDelAttr_Click);
       // 
       // cmdAddAttribute
       // 
@@ -316,17 +327,6 @@
       // 
       this.colAbstract.HeaderText = "Abstract";
       this.colAbstract.Name = "colAbstract";
-      // 
-      // cmdDelAttr
-      // 
-      this.cmdDelAttr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdDelAttr.Location = new System.Drawing.Point(270, 3);
-      this.cmdDelAttr.Name = "cmdDelAttr";
-      this.cmdDelAttr.Size = new System.Drawing.Size(68, 23);
-      this.cmdDelAttr.TabIndex = 5;
-      this.cmdDelAttr.Text = "Del &Attr";
-      this.cmdDelAttr.UseVisualStyleBackColor = true;
-      this.cmdDelAttr.Click += new System.EventHandler(this.cmdDelAttr_Click);
       // 
       // ControlPlugin
       // 

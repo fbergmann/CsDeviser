@@ -189,8 +189,9 @@ namespace CsDeviser.Controls
       Current.Attributes.Add(newAttr);
 
       var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
-      gridAttributes.Rows[row].Selected = true;
+      gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
+      gridAttributes.BeginEdit(true);
     }
 
     private void txtExtensionPoint_Leave(object sender, EventArgs e)

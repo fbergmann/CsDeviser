@@ -182,6 +182,7 @@ namespace CsDeviser
       FileName = fileName;
       Current = Model;
       UpdateUI();
+      tree.ExpandAll();
     }
 
     private void OnOpenClick(object sender, EventArgs e)

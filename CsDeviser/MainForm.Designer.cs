@@ -29,10 +29,10 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Package");
-      System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Classes");
-      System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Plugins");
-      System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Enums");
+      System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Package");
+      System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Classes");
+      System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Plugins");
+      System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Enums");
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -43,6 +43,10 @@
       this.addPluginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.controlEnum1 = new CsDeviser.Controls.ControlEnum();
+      this.controlPlugin1 = new CsDeviser.Controls.ControlPlugin();
+      this.controlClass1 = new CsDeviser.Controls.ControlClass();
+      this.controlPackage1 = new CsDeviser.Controls.ControlPackage();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,10 +71,9 @@
       this.cmdAddEnum = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
       this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-      this.controlEnum1 = new CsDeviser.Controls.ControlEnum();
-      this.controlPlugin1 = new CsDeviser.Controls.ControlPlugin();
-      this.controlClass1 = new CsDeviser.Controls.ControlClass();
-      this.controlPackage1 = new CsDeviser.Controls.ControlPackage();
+      this.addClassToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.addPluginToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.addEnumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
       this.toolStripContainer1.ContentPanel.SuspendLayout();
       this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -142,21 +145,21 @@
       this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tree.Location = new System.Drawing.Point(0, 0);
       this.tree.Name = "tree";
-      treeNode1.Name = "nodePackage";
-      treeNode1.Text = "Package";
-      treeNode2.Name = "nodeClasses";
-      treeNode2.Text = "Classes";
-      treeNode2.ToolTipText = "All Classes Defined by this Package";
-      treeNode3.Name = "nodePlugins";
-      treeNode3.Text = "Plugins";
-      treeNode3.ToolTipText = "All Plugins of this package";
-      treeNode4.Name = "nodeEnums";
-      treeNode4.Text = "Enums";
+      treeNode5.Name = "nodePackage";
+      treeNode5.Text = "Package";
+      treeNode6.Name = "nodeClasses";
+      treeNode6.Text = "Classes";
+      treeNode6.ToolTipText = "All Classes Defined by this Package";
+      treeNode7.Name = "nodePlugins";
+      treeNode7.Text = "Plugins";
+      treeNode7.ToolTipText = "All Plugins of this package";
+      treeNode8.Name = "nodeEnums";
+      treeNode8.Text = "Enums";
       this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8});
       this.tree.Size = new System.Drawing.Size(197, 490);
       this.tree.TabIndex = 0;
       this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnItemSelect);
@@ -197,6 +200,51 @@
       this.deleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
       this.deleteToolStripMenuItem.Text = "Delete";
       this.deleteToolStripMenuItem.Click += new System.EventHandler(this.OnDeleteClick);
+      // 
+      // controlEnum1
+      // 
+      this.controlEnum1.Current = null;
+      this.controlEnum1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.controlEnum1.Initializing = false;
+      this.controlEnum1.Location = new System.Drawing.Point(0, 0);
+      this.controlEnum1.Name = "controlEnum1";
+      this.controlEnum1.Size = new System.Drawing.Size(583, 490);
+      this.controlEnum1.TabIndex = 3;
+      this.controlEnum1.Visible = false;
+      // 
+      // controlPlugin1
+      // 
+      this.controlPlugin1.Current = null;
+      this.controlPlugin1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.controlPlugin1.Initializing = false;
+      this.controlPlugin1.Location = new System.Drawing.Point(0, 0);
+      this.controlPlugin1.MinimumSize = new System.Drawing.Size(377, 207);
+      this.controlPlugin1.Name = "controlPlugin1";
+      this.controlPlugin1.Size = new System.Drawing.Size(583, 490);
+      this.controlPlugin1.TabIndex = 2;
+      this.controlPlugin1.Visible = false;
+      // 
+      // controlClass1
+      // 
+      this.controlClass1.Current = null;
+      this.controlClass1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.controlClass1.Initializing = false;
+      this.controlClass1.Location = new System.Drawing.Point(0, 0);
+      this.controlClass1.Name = "controlClass1";
+      this.controlClass1.Size = new System.Drawing.Size(583, 490);
+      this.controlClass1.TabIndex = 1;
+      this.controlClass1.Visible = false;
+      // 
+      // controlPackage1
+      // 
+      this.controlPackage1.Current = null;
+      this.controlPackage1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.controlPackage1.Initializing = false;
+      this.controlPackage1.Location = new System.Drawing.Point(0, 0);
+      this.controlPackage1.Name = "controlPackage1";
+      this.controlPackage1.Size = new System.Drawing.Size(583, 490);
+      this.controlPackage1.TabIndex = 0;
+      this.controlPackage1.Visible = false;
       // 
       // menuStrip1
       // 
@@ -282,6 +330,10 @@
       // 
       // editToolStripMenuItem
       // 
+      this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addClassToolStripMenuItem1,
+            this.addPluginToolStripMenuItem1,
+            this.addEnumToolStripMenuItem});
       this.editToolStripMenuItem.Name = "editToolStripMenuItem";
       this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.editToolStripMenuItem.Text = "&Edit";
@@ -416,50 +468,29 @@
       this.helpToolStripButton.Text = "He&lp";
       this.helpToolStripButton.Click += new System.EventHandler(this.OnAboutClick);
       // 
-      // controlEnum1
+      // addClassToolStripMenuItem1
       // 
-      this.controlEnum1.Current = null;
-      this.controlEnum1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.controlEnum1.Initializing = false;
-      this.controlEnum1.Location = new System.Drawing.Point(0, 0);
-      this.controlEnum1.Name = "controlEnum1";
-      this.controlEnum1.Size = new System.Drawing.Size(583, 490);
-      this.controlEnum1.TabIndex = 3;
-      this.controlEnum1.Visible = false;
+      this.addClassToolStripMenuItem1.Name = "addClassToolStripMenuItem1";
+      this.addClassToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D1)));
+      this.addClassToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
+      this.addClassToolStripMenuItem1.Text = "Add Class";
+      this.addClassToolStripMenuItem1.Click += new System.EventHandler(this.OnAddClassClick);
       // 
-      // controlPlugin1
+      // addPluginToolStripMenuItem1
       // 
-      this.controlPlugin1.Current = null;
-      this.controlPlugin1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.controlPlugin1.Initializing = false;
-      this.controlPlugin1.Location = new System.Drawing.Point(0, 0);
-      this.controlPlugin1.MinimumSize = new System.Drawing.Size(377, 207);
-      this.controlPlugin1.Name = "controlPlugin1";
-      this.controlPlugin1.Size = new System.Drawing.Size(583, 490);
-      this.controlPlugin1.TabIndex = 2;
-      this.controlPlugin1.Visible = false;
+      this.addPluginToolStripMenuItem1.Name = "addPluginToolStripMenuItem1";
+      this.addPluginToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D2)));
+      this.addPluginToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
+      this.addPluginToolStripMenuItem1.Text = "Add Plugin";
+      this.addPluginToolStripMenuItem1.Click += new System.EventHandler(this.OnAddPluginClick);
       // 
-      // controlClass1
+      // addEnumToolStripMenuItem
       // 
-      this.controlClass1.Current = null;
-      this.controlClass1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.controlClass1.Initializing = false;
-      this.controlClass1.Location = new System.Drawing.Point(0, 0);
-      this.controlClass1.Name = "controlClass1";
-      this.controlClass1.Size = new System.Drawing.Size(583, 490);
-      this.controlClass1.TabIndex = 1;
-      this.controlClass1.Visible = false;
-      // 
-      // controlPackage1
-      // 
-      this.controlPackage1.Current = null;
-      this.controlPackage1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.controlPackage1.Initializing = false;
-      this.controlPackage1.Location = new System.Drawing.Point(0, 0);
-      this.controlPackage1.Name = "controlPackage1";
-      this.controlPackage1.Size = new System.Drawing.Size(583, 490);
-      this.controlPackage1.TabIndex = 0;
-      this.controlPackage1.Visible = false;
+      this.addEnumToolStripMenuItem.Name = "addEnumToolStripMenuItem";
+      this.addEnumToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D3)));
+      this.addEnumToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+      this.addEnumToolStripMenuItem.Text = "Add Enum";
+      this.addEnumToolStripMenuItem.Click += new System.EventHandler(this.OnAddEnumClick);
       // 
       // MainForm
       // 
@@ -530,6 +561,9 @@
     private System.Windows.Forms.ToolStripButton cmdRefresh;
     private System.Windows.Forms.ToolStripButton cmdAddEnum;
     private Controls.ControlEnum controlEnum1;
+    private System.Windows.Forms.ToolStripMenuItem addClassToolStripMenuItem1;
+    private System.Windows.Forms.ToolStripMenuItem addPluginToolStripMenuItem1;
+    private System.Windows.Forms.ToolStripMenuItem addEnumToolStripMenuItem;
   }
 }
 

@@ -58,8 +58,10 @@ namespace CsDeviser.Controls
       Current.Values.Add(newAttr);
 
       var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Value);
-      gridAttributes.Rows[row].Selected = true;
+      gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
+      gridAttributes.BeginEdit(true);
+
     }
 
     private void cmdRemoveAttr_Click(object sender, EventArgs e)

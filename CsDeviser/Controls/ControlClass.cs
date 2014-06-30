@@ -130,20 +130,23 @@ namespace CsDeviser.Controls
       Current.Attributes.Add(newAttr);
 
       var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
-      gridAttributes.Rows[row].Selected = true;
+      gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
+      gridAttributes.BeginEdit(true);
 
     }
 
     private void OnAddConcreteClick(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      var newAttr = new DeviserConcrete { Name = "Concrete" + (Current.Attributes.Count + 1).ToString() };
+      var newAttr = new DeviserConcrete { Name = "Concrete" + (Current.Concretes.Count + 1).ToString() };
       Current.Concretes.Add(newAttr);
 
       var row = gridConcrete.Rows.Add(newAttr.Name, newAttr.Element);
-      gridConcrete.Rows[row].Selected = true;
+      gridConcrete.CurrentCell = gridConcrete[0, row];
       gridConcrete.Focus();
+      gridConcrete.BeginEdit(true);
+
     }
 
     private void gridAttributes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -221,9 +224,7 @@ namespace CsDeviser.Controls
         var attr = Current.Concretes.FirstOrDefault(a => a.Name == row[i].Cells[0].Value as string);
         if (attr != null)
           Current.Concretes.Remove(attr);
-      }
-      
-
+      }      
     }
 
   }

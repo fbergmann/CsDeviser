@@ -109,7 +109,7 @@
       this.txtBaseClass.Location = new System.Drawing.Point(88, 3);
       this.txtBaseClass.Name = "txtBaseClass";
       this.txtBaseClass.Size = new System.Drawing.Size(159, 20);
-      this.txtBaseClass.TabIndex = 0;
+      this.txtBaseClass.TabIndex = 8;
       this.toolTip1.SetToolTip(this.txtBaseClass, "The name of this element");
       this.txtBaseClass.TextChanged += new System.EventHandler(this.txtBaseClass_TextChanged);
       // 
@@ -120,7 +120,7 @@
       this.txtElementName.Location = new System.Drawing.Point(88, 26);
       this.txtElementName.Name = "txtElementName";
       this.txtElementName.Size = new System.Drawing.Size(159, 20);
-      this.txtElementName.TabIndex = 1;
+      this.txtElementName.TabIndex = 9;
       this.toolTip1.SetToolTip(this.txtElementName, "The name of this element");
       this.txtElementName.TextChanged += new System.EventHandler(this.txtElementName_TextChanged);
       // 
@@ -139,7 +139,7 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(511, 298);
-      this.tableLayoutPanel1.TabIndex = 4;
+      this.tableLayoutPanel1.TabIndex = 0;
       // 
       // panel1
       // 
@@ -227,7 +227,7 @@
       this.splitContainer1.Panel2.Controls.Add(this.gridConcrete);
       this.splitContainer1.Size = new System.Drawing.Size(505, 184);
       this.splitContainer1.SplitterDistance = 132;
-      this.splitContainer1.TabIndex = 1;
+      this.splitContainer1.TabIndex = 14;
       // 
       // gridAttributes
       // 
@@ -244,7 +244,7 @@
       this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
       this.gridAttributes.Size = new System.Drawing.Size(505, 132);
-      this.gridAttributes.TabIndex = 0;
+      this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAttributes_CellValueChanged);
       // 
       // colName
@@ -284,7 +284,7 @@
       this.gridConcrete.Location = new System.Drawing.Point(0, 0);
       this.gridConcrete.Name = "gridConcrete";
       this.gridConcrete.Size = new System.Drawing.Size(505, 48);
-      this.gridConcrete.TabIndex = 0;
+      this.gridConcrete.TabIndex = 15;
       this.gridConcrete.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridConcrete_CellValueChanged);
       // 
       // colConcreteName
@@ -318,7 +318,7 @@
       this.cmdDelConcrete.Location = new System.Drawing.Point(118, 76);
       this.cmdDelConcrete.Name = "cmdDelConcrete";
       this.cmdDelConcrete.Size = new System.Drawing.Size(106, 23);
-      this.cmdDelConcrete.TabIndex = 5;
+      this.cmdDelConcrete.TabIndex = 13;
       this.cmdDelConcrete.Text = "Del Concrete";
       this.cmdDelConcrete.UseVisualStyleBackColor = true;
       this.cmdDelConcrete.Click += new System.EventHandler(this.OnRemoveConcreteClick);
@@ -328,8 +328,8 @@
       this.cmdRemoveAttr.Location = new System.Drawing.Point(118, 51);
       this.cmdRemoveAttr.Name = "cmdRemoveAttr";
       this.cmdRemoveAttr.Size = new System.Drawing.Size(106, 23);
-      this.cmdRemoveAttr.TabIndex = 3;
-      this.cmdRemoveAttr.Text = "Del Attribute";
+      this.cmdRemoveAttr.TabIndex = 11;
+      this.cmdRemoveAttr.Text = "&Del Attribute";
       this.cmdRemoveAttr.UseVisualStyleBackColor = true;
       this.cmdRemoveAttr.Click += new System.EventHandler(this.OnRemoveAttrClick);
       // 
@@ -338,8 +338,8 @@
       this.cmdAddConcrete.Location = new System.Drawing.Point(6, 76);
       this.cmdAddConcrete.Name = "cmdAddConcrete";
       this.cmdAddConcrete.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddConcrete.TabIndex = 4;
-      this.cmdAddConcrete.Text = "Add Concrete";
+      this.cmdAddConcrete.TabIndex = 12;
+      this.cmdAddConcrete.Text = "Add &Concrete";
       this.cmdAddConcrete.UseVisualStyleBackColor = true;
       this.cmdAddConcrete.Click += new System.EventHandler(this.OnAddConcreteClick);
       // 
@@ -357,8 +357,8 @@
       this.cmdAddAttribute.Location = new System.Drawing.Point(6, 52);
       this.cmdAddAttribute.Name = "cmdAddAttribute";
       this.cmdAddAttribute.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddAttribute.TabIndex = 2;
-      this.cmdAddAttribute.Text = "Add Attribute";
+      this.cmdAddAttribute.TabIndex = 10;
+      this.cmdAddAttribute.Text = "&Add Attribute";
       this.cmdAddAttribute.UseVisualStyleBackColor = true;
       this.cmdAddAttribute.Click += new System.EventHandler(this.OnAddAttributeClick);
       // 
