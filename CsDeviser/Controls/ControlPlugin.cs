@@ -102,7 +102,8 @@ namespace CsDeviser.Controls
 
       lstChildClasses.Items.RemoveAt(index);
       lstChildClasses.Items.Insert(index - 1, elem.Name);
-      
+
+      lstChildClasses.SelectedIndex = index - 1;
     }
 
     private void OnDownClick(object sender, EventArgs e)
@@ -116,7 +117,8 @@ namespace CsDeviser.Controls
 
       lstChildClasses.Items.RemoveAt(index);
       lstChildClasses.Items.Insert(index + 1, elem.Name);
-      
+
+      lstChildClasses.SelectedIndex = index + 1;
     }
 
     private void OnChildClassesMouseDoubleClick(object sender, MouseEventArgs e)
