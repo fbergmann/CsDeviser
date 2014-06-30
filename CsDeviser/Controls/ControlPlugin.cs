@@ -32,6 +32,7 @@ namespace CsDeviser.Controls
 
       splitContainer1.Panel2Collapsed = true;
       cmdAddAttribute.Visible = false;
+      cmdDelAttr.Visible = false;
 
       Current = package;
 
@@ -46,6 +47,7 @@ namespace CsDeviser.Controls
         chkHasAdditional.Checked = true;
         splitContainer1.Panel2Collapsed = false;
         cmdAddAttribute.Visible = true;
+        cmdDelAttr.Visible = true;
       }
       else
       {
@@ -76,6 +78,7 @@ namespace CsDeviser.Controls
     {
       splitContainer1.Panel2Collapsed = !chkHasAdditional.Checked;
       cmdAddAttribute.Visible = chkHasAdditional.Checked;
+      cmdDelAttr.Visible = chkHasAdditional.Checked;
     }
 
     private void OnAddClick(object sender, EventArgs e)

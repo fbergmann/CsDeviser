@@ -250,7 +250,7 @@ namespace CsDeviser
 
     private void OnAddClassClick(object sender, EventArgs e)
     {
-      var element = new DeviserClass {Name = "Class" + (Model.Elements.Count + 1).ToString()};
+      var element = new DeviserClass { Name = "Class" + (Model.Elements.Count + 1).ToString(), Document = Model };
       Model.Elements.Add(element);
       tree.Nodes[NODE_CLASSES].Nodes.Add(element.Name);
       Current = element;
@@ -259,7 +259,7 @@ namespace CsDeviser
 
     private void OnAddEnumClick(object sender, EventArgs e)
     {
-      var element = new DeviserEnum { Name = "Enum" + (Model.Enums.Count + 1).ToString() };
+      var element = new DeviserEnum { Name = "Enum" + (Model.Enums.Count + 1).ToString(), Document = Model };
       Model.Enums.Add(element);
       tree.Nodes[NODE_ENUMS].Nodes.Add(element.Name);
       Current = element;
@@ -270,7 +270,7 @@ namespace CsDeviser
 
     private void OnAddPluginClick(object sender, EventArgs e)
     {
-      var element = new DeviserPlugin { ExtensionPoint = "Extension" + (Model.Plugins.Count + 1).ToString() };
+      var element = new DeviserPlugin { ExtensionPoint = "Extension" + (Model.Plugins.Count + 1).ToString(), Document = Model };
       Model.Plugins.Add(element);
       tree.Nodes[NODE_PLUGINS].Nodes.Add(element.ExtensionPoint);
       Current = element;
