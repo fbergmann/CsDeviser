@@ -59,6 +59,7 @@
       this.label3 = new System.Windows.Forms.Label();
       this.cmdAddAttribute = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
+      this.chkChildrenOverwriteElementName = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -143,6 +144,7 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.chkChildrenOverwriteElementName);
       this.panel1.Controls.Add(this.chkHasChildren);
       this.panel1.Controls.Add(this.txtTypeCode);
       this.panel1.Controls.Add(this.chkHasListOf);
@@ -371,6 +373,18 @@
       this.label4.TabIndex = 11;
       this.label4.Text = "ElementName: ";
       // 
+      // chkChildrenOverwriteElementName
+      // 
+      this.chkChildrenOverwriteElementName.AutoSize = true;
+      this.chkChildrenOverwriteElementName.Location = new System.Drawing.Point(152, 76);
+      this.chkChildrenOverwriteElementName.Name = "chkChildrenOverwriteElementName";
+      this.chkChildrenOverwriteElementName.Size = new System.Drawing.Size(90, 17);
+      this.chkChildrenOverwriteElementName.TabIndex = 8;
+      this.chkChildrenOverwriteElementName.Text = "Children Over";
+      this.toolTip1.SetToolTip(this.chkChildrenOverwriteElementName, "Children overwrite Element Name");
+      this.chkChildrenOverwriteElementName.UseVisualStyleBackColor = true;
+      this.chkChildrenOverwriteElementName.CheckedChanged += new System.EventHandler(this.chkChildrenOverwriteElementName_CheckedChanged);
+      // 
       // ControlClass
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -425,6 +439,7 @@
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.Button cmdDelConcrete;
     private System.Windows.Forms.Button cmdRemoveAttr;
+    private System.Windows.Forms.CheckBox chkChildrenOverwriteElementName;
 
   }
 }

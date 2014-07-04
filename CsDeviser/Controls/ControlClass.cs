@@ -52,6 +52,7 @@ namespace CsDeviser.Controls
       cmdDelConcrete.Visible = Current.Abstract;
       chkHasChildren.Checked = Current.HasChildren;
       chkHasListOf.Checked = Current.HasListOf;
+      chkChildrenOverwriteElementName.Checked = Current.ChildrenOverwriteElementName;
       chkHasMath.Checked = Current.HasMath;
 
       foreach( var newAttr in Current.Attributes)
@@ -225,6 +226,12 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.Concretes.Remove(attr);
       }      
+    }
+
+    private void chkChildrenOverwriteElementName_CheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.ChildrenOverwriteElementName = chkChildrenOverwriteElementName.Checked;
     }
 
   }

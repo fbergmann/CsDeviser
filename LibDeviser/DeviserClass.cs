@@ -21,6 +21,8 @@ namespace LibDeviser
     public bool Abstract { get; set; }
     public string ElementName { get; set; }
 
+    public bool ChildrenOverwriteElementName { get; set; }
+
     public List<DeviserAttribute> Attributes { get; set; }
 
     public List<DeviserConcrete> Concretes { get; set; }
@@ -51,6 +53,7 @@ namespace LibDeviser
       HasChildren = Util.readBool(element, "hasChildren");
       HasMath = Util.readBool(element, "hasMath");
       Abstract = Util.readBool(element, "abstract");
+      ChildrenOverwriteElementName = Util.readBool(element, "childrenOverwriteElementName");
       ElementName = element.GetAttribute("elementName");
 
       Attributes = new List<DeviserAttribute>();
@@ -70,6 +73,7 @@ namespace LibDeviser
       writer.WriteAttributeString("hasListOf", HasListOf.ToString().ToLowerInvariant());
       writer.WriteAttributeString("hasChildren", HasChildren.ToString().ToLowerInvariant());
       writer.WriteAttributeString("hasMath", HasMath.ToString().ToLowerInvariant());
+      writer.WriteAttributeString("childrenOverwriteElementName", ChildrenOverwriteElementName.ToString().ToLowerInvariant());
 
       if (!string.IsNullOrWhiteSpace(BaseClass))
         writer.WriteAttributeString("baseClass", BaseClass);

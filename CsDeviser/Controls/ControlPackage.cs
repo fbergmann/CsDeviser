@@ -28,6 +28,8 @@ namespace CsDeviser.Controls
       txtOffset.Text = "0";
       txtStartNumber.Text = "0";
       txtPackage.Text = "";
+      txtAdditionalImpl.Text = "";
+      txtAdditionalDecl.Text = "";
 
       lstClasses.Items.Clear();
 
@@ -38,7 +40,10 @@ namespace CsDeviser.Controls
       txtOffset.Text = Current.Offset.ToString();
       txtStartNumber.Text = Current.StartNumber.ToString();
       txtPackage.Text = Current.Name;
-      
+
+      txtAdditionalDecl.Text = Current.AdditionalDeclarations;
+      txtAdditionalImpl.Text = Current.AdditionalDefinitions;
+
       foreach(var item in package.Elements)
         lstClasses.Items.Add(item.Name);
       
@@ -100,6 +105,19 @@ namespace CsDeviser.Controls
       lstClasses.Items.Insert(index - 1, elem.Name);
 
       lstClasses.SelectedIndex = index - 1;
+
+    }
+
+    private void txtAdditionalDecl_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDeclarations = txtAdditionalDecl.Text;
+    }
+
+    private void txtAdditionalImpl_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDefinitions = txtAdditionalImpl.Text;
 
     }
   }
