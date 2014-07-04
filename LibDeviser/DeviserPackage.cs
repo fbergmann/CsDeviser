@@ -41,16 +41,6 @@ namespace LibDeviser
     /// </summary>
     public List<DeviserEnum> Enums { get; set; }
 
-    /// <summary>
-    /// Code to be included in header file
-    /// </summary>
-    public string AdditionalDeclarations { get; set; }
-
-    /// <summary>
-    /// Code to be included in implementation file
-    /// </summary>
-    public string AdditionalDefinitions { get; set; }
-
     public DeviserPackage ()
     {
       Elements = new List<DeviserClass>();
@@ -89,8 +79,6 @@ namespace LibDeviser
 
       StartNumber = Util.readInt(element, "number");
       Offset = Util.readInt(element, "offset");
-      AdditionalDeclarations = element.GetAttribute("additionalDecls");
-      AdditionalDefinitions = element.GetAttribute("additionalDefs");
                   
       Elements.InitializeFrom(Util.getElement(element, "element"));
       Plugins.InitializeFrom(Util.getElement(element, "plugin"));
@@ -136,11 +124,6 @@ namespace LibDeviser
       
       if (Offset!= 0)
         writer.WriteAttributeString("offset", Offset.ToString());
-
-      if (!string.IsNullOrWhiteSpace(AdditionalDeclarations))
-        writer.WriteAttributeString("additionalDecls", AdditionalDeclarations);
-      if (!string.IsNullOrWhiteSpace(AdditionalDefinitions))
-        writer.WriteAttributeString("additionalDefs", AdditionalDefinitions);
 
     }
 

@@ -30,6 +30,10 @@ namespace CsDeviser.Controls
       txtElementName.Text = "";
       txtTypeCode.Text = "";
 
+      txtListOfName.Text = "";
+      txtAddDecl.Text = "";
+      txtAddImpl.Text = "";
+
       gridConcrete.Rows.Clear();
       gridAttributes.Rows.Clear();
 
@@ -45,6 +49,9 @@ namespace CsDeviser.Controls
       txtBaseClass.Text = Current.BaseClass;
       txtElementName.Text = Current.ElementName;
       txtTypeCode.Text = Current.TypeCode;
+      txtListOfName.Text = Current.ListOfName;
+      txtAddDecl.Text = Current.AdditionalDeclarations;
+      txtAddImpl.Text = Current.AdditionalDefinitions;
 
       chkAbstract.Checked = Current.Abstract;
       splitContainer1.Panel2Collapsed = !Current.Abstract;
@@ -232,6 +239,24 @@ namespace CsDeviser.Controls
     {
       if (Current == null) return;
       Current.ChildrenOverwriteElementName = chkChildrenOverwriteElementName.Checked;
+    }
+
+    private void txtListOfName_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.ListOfName = txtListOfName.Text;
+    }
+
+    private void txtAddDecl_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDeclarations = txtAddDecl.Text;
+    }
+
+    private void txtAddImpl_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDefinitions = txtAddDecl.Text;
     }
 
   }

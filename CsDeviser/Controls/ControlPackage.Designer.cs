@@ -36,16 +36,12 @@
       this.label2 = new System.Windows.Forms.Label();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.txtOffset = new System.Windows.Forms.TextBox();
-      this.txtAdditionalDecl = new System.Windows.Forms.TextBox();
-      this.txtAdditionalImpl = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.lstClasses = new System.Windows.Forms.ListBox();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.toolCmdDown = new System.Windows.Forms.ToolStripButton();
       this.toolCmdUp = new System.Windows.Forms.ToolStripButton();
-      this.label4 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.toolStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -99,24 +95,6 @@
       this.txtOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
       this.toolTip1.SetToolTip(this.txtOffset, "The offset for the validation numbers");
       this.txtOffset.TextChanged += new System.EventHandler(this.txtOffset_TextChanged);
-      // 
-      // txtAdditionalDecl
-      // 
-      this.txtAdditionalDecl.Location = new System.Drawing.Point(257, 3);
-      this.txtAdditionalDecl.Name = "txtAdditionalDecl";
-      this.txtAdditionalDecl.Size = new System.Drawing.Size(300, 20);
-      this.txtAdditionalDecl.TabIndex = 6;
-      this.toolTip1.SetToolTip(this.txtAdditionalDecl, "additional declarations to be included");
-      this.txtAdditionalDecl.TextChanged += new System.EventHandler(this.txtAdditionalDecl_TextChanged);
-      // 
-      // txtAdditionalImpl
-      // 
-      this.txtAdditionalImpl.Location = new System.Drawing.Point(257, 29);
-      this.txtAdditionalImpl.Name = "txtAdditionalImpl";
-      this.txtAdditionalImpl.Size = new System.Drawing.Size(300, 20);
-      this.txtAdditionalImpl.TabIndex = 7;
-      this.toolTip1.SetToolTip(this.txtAdditionalImpl, "Methods to be included in the generated code");
-      this.txtAdditionalImpl.TextChanged += new System.EventHandler(this.txtAdditionalImpl_TextChanged);
       // 
       // label3
       // 
@@ -183,32 +161,10 @@
       this.toolCmdUp.Text = "&Up";
       this.toolCmdUp.Click += new System.EventHandler(this.OnMoveClassUp);
       // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(176, 6);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(78, 13);
-      this.label4.TabIndex = 7;
-      this.label4.Text = "Additional Decl";
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(179, 32);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(75, 13);
-      this.label5.TabIndex = 8;
-      this.label5.Text = "Additional Impl";
-      // 
       // ControlPackage
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.txtAdditionalImpl);
-      this.Controls.Add(this.txtAdditionalDecl);
-      this.Controls.Add(this.label5);
-      this.Controls.Add(this.label4);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.txtOffset);
       this.Controls.Add(this.label3);
@@ -241,9 +197,5 @@
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripButton toolCmdDown;
     private System.Windows.Forms.ToolStripButton toolCmdUp;
-    private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.TextBox txtAdditionalDecl;
-    private System.Windows.Forms.TextBox txtAdditionalImpl;
   }
 }

@@ -79,7 +79,7 @@
         <attribute name="imageData" required="true" type="element" element="ImageData" abstract="false" />
       </attributes>
     </element>
-    <element name="ImageData" typeCode="SBML_SPATIAL_IMAGEDATA" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="ImageData" typeCode="SBML_SPATIAL_IMAGEDATA" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_imagedata.h.txt" additionalDefs="spatial_imagedata.cpp.txt">
       <attributes>
         <attribute name="samples" required="true" type="array" element="int" abstract="false" />
         <attribute name="samplesLength" required="true" type="int" abstract="false" />
@@ -282,7 +282,7 @@
         <attribute name="isSpatial" required="false" type="bool" abstract="false" />
       </attributes>
     </plugin>
-    <plugin extensionPoint="Parameter">
+    <plugin extensionPoint="Parameter" additionalDecls="spatial_param.h.txt" additionalDefs="spatial_param.cpp.txt">
       <references>
         <reference name="SpatialSymbolReference" />
         <reference name="AdvectionCoefficient" />

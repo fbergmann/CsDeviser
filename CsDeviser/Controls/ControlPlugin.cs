@@ -25,6 +25,8 @@ namespace CsDeviser.Controls
       Current = null;
 
       txtExtensionPoint.Text = "";
+      txtAddDecls.Text = "";
+      txtAddImpls.Text = "";
 
       lstAllClasses.Items.Clear();
       lstChildClasses.Items.Clear();
@@ -41,6 +43,8 @@ namespace CsDeviser.Controls
       Initializing = true;
 
       txtExtensionPoint.Text = Current.ExtensionPoint;
+      txtAddDecls.Text = Current.AdditionalDeclarations;
+      txtAddImpls.Text = Current.AdditionalDefinitions;
 
       if (Current.Attributes.Count > 0)
       {
@@ -216,6 +220,18 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.Attributes.Remove(attr);
       }
+    }
+
+    private void txtAddImpls_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDefinitions = txtAddImpls.Text;
+    }
+
+    private void txtAddDecls_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.AdditionalDeclarations = txtAddDecls.Text;
     }
   }
 }

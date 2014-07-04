@@ -54,6 +54,10 @@
       this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.label2 = new System.Windows.Forms.Label();
+      this.txtAddDecls = new System.Windows.Forms.TextBox();
+      this.label3 = new System.Windows.Forms.Label();
+      this.txtAddImpls = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -96,13 +100,17 @@
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(519, 267);
       this.tableLayoutPanel1.TabIndex = 6;
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.label3);
+      this.panel1.Controls.Add(this.txtAddImpls);
+      this.panel1.Controls.Add(this.label2);
+      this.panel1.Controls.Add(this.txtAddDecls);
       this.panel1.Controls.Add(this.cmdDelAttr);
       this.panel1.Controls.Add(this.cmdAddAttribute);
       this.panel1.Controls.Add(this.chkHasAdditional);
@@ -111,7 +119,7 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(3, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(513, 28);
+      this.panel1.Size = new System.Drawing.Size(513, 50);
       this.panel1.TabIndex = 0;
       // 
       // cmdDelAttr
@@ -151,7 +159,7 @@
       // splitContainer1
       // 
       this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainer1.Location = new System.Drawing.Point(3, 37);
+      this.splitContainer1.Location = new System.Drawing.Point(3, 59);
       this.splitContainer1.Name = "splitContainer1";
       this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
@@ -162,8 +170,8 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.gridAttributes);
-      this.splitContainer1.Size = new System.Drawing.Size(513, 227);
-      this.splitContainer1.SplitterDistance = 184;
+      this.splitContainer1.Size = new System.Drawing.Size(513, 205);
+      this.splitContainer1.SplitterDistance = 166;
       this.splitContainer1.TabIndex = 1;
       // 
       // tableLayoutPanel2
@@ -180,7 +188,7 @@
       this.tableLayoutPanel2.Name = "tableLayoutPanel2";
       this.tableLayoutPanel2.RowCount = 1;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(513, 184);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(513, 166);
       this.tableLayoutPanel2.TabIndex = 0;
       // 
       // groupBox1
@@ -189,7 +197,7 @@
       this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupBox1.Location = new System.Drawing.Point(3, 3);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(207, 178);
+      this.groupBox1.Size = new System.Drawing.Size(207, 160);
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = " Define Classes: ";
@@ -200,7 +208,7 @@
       this.lstAllClasses.FormattingEnabled = true;
       this.lstAllClasses.Location = new System.Drawing.Point(3, 16);
       this.lstAllClasses.Name = "lstAllClasses";
-      this.lstAllClasses.Size = new System.Drawing.Size(201, 159);
+      this.lstAllClasses.Size = new System.Drawing.Size(201, 141);
       this.lstAllClasses.TabIndex = 0;
       this.lstAllClasses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnAllClassesMouseDoubleClick);
       // 
@@ -210,7 +218,7 @@
       this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupBox2.Location = new System.Drawing.Point(303, 3);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(207, 178);
+      this.groupBox2.Size = new System.Drawing.Size(207, 160);
       this.groupBox2.TabIndex = 1;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = " Child Classes: ";
@@ -221,7 +229,7 @@
       this.lstChildClasses.FormattingEnabled = true;
       this.lstChildClasses.Location = new System.Drawing.Point(3, 16);
       this.lstChildClasses.Name = "lstChildClasses";
-      this.lstChildClasses.Size = new System.Drawing.Size(201, 159);
+      this.lstChildClasses.Size = new System.Drawing.Size(201, 141);
       this.lstChildClasses.TabIndex = 0;
       this.lstChildClasses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnChildClassesMouseDoubleClick);
       // 
@@ -234,14 +242,14 @@
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel2.Location = new System.Drawing.Point(216, 3);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(81, 178);
+      this.panel2.Size = new System.Drawing.Size(81, 160);
       this.panel2.TabIndex = 2;
       // 
       // cmdUp
       // 
       this.cmdUp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdUp.Location = new System.Drawing.Point(3, 123);
+      this.cmdUp.Location = new System.Drawing.Point(3, 105);
       this.cmdUp.Name = "cmdUp";
       this.cmdUp.Size = new System.Drawing.Size(75, 23);
       this.cmdUp.TabIndex = 2;
@@ -253,7 +261,7 @@
       // 
       this.cmdDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdDown.Location = new System.Drawing.Point(3, 152);
+      this.cmdDown.Location = new System.Drawing.Point(3, 134);
       this.cmdDown.Name = "cmdDown";
       this.cmdDown.Size = new System.Drawing.Size(75, 23);
       this.cmdDown.TabIndex = 3;
@@ -299,7 +307,7 @@
       this.gridAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
-      this.gridAttributes.Size = new System.Drawing.Size(513, 39);
+      this.gridAttributes.Size = new System.Drawing.Size(513, 35);
       this.gridAttributes.TabIndex = 0;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
       // 
@@ -327,6 +335,42 @@
       // 
       this.colAbstract.HeaderText = "Abstract";
       this.colAbstract.Name = "colAbstract";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(27, 32);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(59, 13);
+      this.label2.TabIndex = 7;
+      this.label2.Text = "Add Decls:";
+      // 
+      // txtAddDecls
+      // 
+      this.txtAddDecls.Location = new System.Drawing.Point(92, 29);
+      this.txtAddDecls.Name = "txtAddDecls";
+      this.txtAddDecls.Size = new System.Drawing.Size(173, 20);
+      this.txtAddDecls.TabIndex = 6;
+      this.toolTip1.SetToolTip(this.txtAddDecls, "The extension point of this plugin");
+      this.txtAddDecls.TextChanged += new System.EventHandler(this.txtAddDecls_TextChanged);
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(272, 32);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(56, 13);
+      this.label3.TabIndex = 9;
+      this.label3.Text = "Add Impls:";
+      // 
+      // txtAddImpls
+      // 
+      this.txtAddImpls.Location = new System.Drawing.Point(334, 29);
+      this.txtAddImpls.Name = "txtAddImpls";
+      this.txtAddImpls.Size = new System.Drawing.Size(173, 20);
+      this.txtAddImpls.TabIndex = 8;
+      this.toolTip1.SetToolTip(this.txtAddImpls, "The extension point of this plugin");
+      this.txtAddImpls.TextChanged += new System.EventHandler(this.txtAddImpls_TextChanged);
       // 
       // ControlPlugin
       // 
@@ -379,5 +423,9 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
     private System.Windows.Forms.Button cmdDelAttr;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.TextBox txtAddImpls;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.TextBox txtAddDecls;
   }
 }

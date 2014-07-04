@@ -20,11 +20,23 @@ namespace LibDeviser
 
     public bool Abstract { get; set; }
     public string ElementName { get; set; }
+    public string ListOfName { get; set; }
 
     public bool ChildrenOverwriteElementName { get; set; }
 
-    public List<DeviserAttribute> Attributes { get; set; }
+    /// <summary>
+    /// Code to be included in header file
+    /// </summary>
+    public string AdditionalDeclarations { get; set; }
 
+    /// <summary>
+    /// Code to be included in implementation file
+    /// </summary>
+    public string AdditionalDefinitions { get; set; }
+
+
+
+    public List<DeviserAttribute> Attributes { get; set; }
     public List<DeviserConcrete> Concretes { get; set; }
 
     public DeviserClass()
@@ -55,6 +67,10 @@ namespace LibDeviser
       Abstract = Util.readBool(element, "abstract");
       ChildrenOverwriteElementName = Util.readBool(element, "childrenOverwriteElementName");
       ElementName = element.GetAttribute("elementName");
+      ListOfName = element.GetAttribute("listOfName");
+
+      AdditionalDeclarations = element.GetAttribute("additionalDecls");
+      AdditionalDefinitions = element.GetAttribute("additionalDefs");
 
       Attributes = new List<DeviserAttribute>();
       Attributes.InitializeFrom(Util.getElement(element, "attribute"));
@@ -82,6 +98,15 @@ namespace LibDeviser
 
       if (!string.IsNullOrWhiteSpace(ElementName))
         writer.WriteAttributeString("elementName", ElementName);
+
+      if (!string.IsNullOrWhiteSpace(ListOfName))
+        writer.WriteAttributeString("listOfName", ListOfName);
+
+      if (!string.IsNullOrWhiteSpace(AdditionalDeclarations))
+        writer.WriteAttributeString("additionalDecls", AdditionalDeclarations);
+      if (!string.IsNullOrWhiteSpace(AdditionalDefinitions))
+        writer.WriteAttributeString("additionalDefs", AdditionalDefinitions);
+
 
     }
 
