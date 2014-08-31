@@ -142,3 +142,12 @@ ImageData::uncompress_data(void *data, size_t length, int*& result, int& outLeng
 #endif
 }
 
+void 
+ImageData::copySampleArrays(int* &target, int& targetLength, int* source, int sourceLength)
+{
+    targetLength = sourceLength;
+    target = (int*)malloc(sizeof(int)*sourceLength);
+    memset(target, 0, sizeof(int)*sourceLength);
+    memcpy(target, source, sizeof(int)*sourceLength);
+}
+
