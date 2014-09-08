@@ -69,7 +69,7 @@
         <attribute name="sampledField" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_sampledfield.h.txt" additionalDefs="spatial_sampledfield.cpp.txt">
+    <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_sampledfield.h.txt" additionalDefs="spatial_sampledfield.cpp.txt">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="dataType" required="true" type="enum" element="DataKind" abstract="false" />
@@ -218,7 +218,7 @@
         <attribute name="operationType" required="true" type="enum" element="SetOperation" abstract="false" />
         <attribute name="complementA" required="false" type="SIdRef" abstract="false" />
         <attribute name="complementB" required="false" type="SIdRef" abstract="false" />
-        <attribute name="csgNode" required="false" type="lo_element" element="CSGNode" abstract="false" />
+        <attribute name="csgNode" required="false" type="lo_element" element="CSGNode" abstract="true" />
       </attributes>
     </element>
     <element name="SpatialSymbolReference" typeCode="SBML_SPATIAL_SPATIALSYMBOLREFERENCE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
@@ -265,13 +265,13 @@
         <attribute name="coordinate" required="true" type="enum" element="CoordinateKind" abstract="false" />
       </attributes>
     </element>
-    <element name="MixedGeometry" typeCode="SBML_SPATIAL_MIXEDGEOMETRY" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GeometryDefinition" abstract="false">
+    <element name="MixedGeometry" typeCode="SBML_SPATIAL_MIXEDGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GeometryDefinition" abstract="false">
       <attributes>
         <attribute name="geometryDefinition" required="false" type="lo_element" element="GeometryDefinition" abstract="true" />
         <attribute name="ordinalMapping" required="false" type="lo_element" element="OrdinalMapping" abstract="false" />
       </attributes>
     </element>
-    <element name="OrdinalMapping" typeCode="SBML_SPATIAL_ORDINALMAPPING" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="OrdinalMapping" typeCode="SBML_SPATIAL_ORDINALMAPPING" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="geometryDefinition" required="true" type="SIdRef" abstract="false" />
         <attribute name="ordinal" required="true" type="int" abstract="false" />

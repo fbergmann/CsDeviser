@@ -29,7 +29,7 @@ void
 SampledField::uncompress()
 {
   freeUncompressed();
-  if (mDataType.empty() || mDataType == "compressed")
+  if (mCompression == SPATIAL_COMPRESSIONKIND_DEFLATED)
   {
     char* csamples = (char*)malloc(sizeof(char)*mSamplesLength);
     for (unsigned int i = 0 ; i < mSamplesLength; ++i)
