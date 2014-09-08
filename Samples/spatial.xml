@@ -44,6 +44,7 @@
         <concrete name="sampledFieldGeometry" element="SampledFieldGeometry" />
         <concrete name="csGeometry" element="CSGeometry" />
         <concrete name="parametricGeometry" element="ParametricGeometry" />
+        <concrete name="mixedGeometry" element="MixedGeometry" />
       </concretes>
     </element>
     <element name="CompartmentMapping" typeCode="SBML_SPATIAL_COMPARTMENTMAPPING" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
@@ -68,23 +69,17 @@
         <attribute name="sampledField" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_sampledfield.h.txt" additionalDefs="spatial_sampledfield.cpp.txt">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="dataType" required="false" type="string" abstract="false" />
+        <attribute name="dataType" required="true" type="enum" element="DataKind" abstract="false" />
         <attribute name="numSamples1" required="true" type="int" abstract="false" />
         <attribute name="numSamples2" required="false" type="int" abstract="false" />
         <attribute name="numSamples3" required="false" type="int" abstract="false" />
-        <attribute name="interpolationType" required="false" type="string" abstract="false" />
-        <attribute name="encoding" required="true" type="string" abstract="false" />
-        <attribute name="imageData" required="true" type="element" element="ImageData" abstract="false" />
-      </attributes>
-    </element>
-    <element name="ImageData" typeCode="SBML_SPATIAL_IMAGEDATA" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_imagedata.h.txt" additionalDefs="spatial_imagedata.h.txt">
-      <attributes>
+        <attribute name="interpolationType" required="false" type="enum" element="InterpolationKind" abstract="false" />
+        <attribute name="compression" required="true" type="enum" element="CompressionKind" abstract="false" />
         <attribute name="samples" required="true" type="array" element="int" abstract="false" />
         <attribute name="samplesLength" required="true" type="int" abstract="false" />
-        <attribute name="dataType" required="true" type="string" abstract="false" />
       </attributes>
     </element>
     <element name="SampledVolume" typeCode="SBML_SPATIAL_SAMPLEDVOLUME" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
@@ -373,6 +368,21 @@
         <enumValue name="SPATIAL_PRIMITIVEKIND_CONE" value="cone" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_SQUARE" value="square" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_RIGHTTRIANGLE" value="rightTriangle" />
+      </enumValues>
+    </enum>
+    <enum name="DataKind">
+      <enumValues>
+        <enumValue name="SPATIAL_DATAKIND_DOUBLE" value="double" />
+        <enumValue name="SPATIAL_DATAKIND_FLOAT" value="float" />
+        <enumValue name="SPATIAL_DATAKIND_UINT8" value="uint8" />
+        <enumValue name="SPATIAL_DATAKIND_UINT16" value="uint16" />
+        <enumValue name="SPATIAL_DATAKIND_UINT32" value="uint32" />
+      </enumValues>
+    </enum>
+    <enum name="CompressionKind">
+      <enumValues>
+        <enumValue name="SPATIAL_COMPRESSIONKIND_UNCOMPRESSED" value="uncompressed" />
+        <enumValue name="SPATIAL_COMPRESSIONKIND_DEFLATED" value="deflated" />
       </enumValues>
     </enum>
   </enums>
