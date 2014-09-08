@@ -256,7 +256,7 @@ namespace CsDeviser.Controls
     private void txtAddImpl_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
-      Current.AdditionalDefinitions = txtAddDecl.Text;
+      Current.AdditionalDefinitions = txtAddImpl.Text;
     }
 
   }
