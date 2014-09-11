@@ -367,6 +367,7 @@
         <enumValue name="SPATIAL_PRIMITIVEKIND_CUBE" value="cube" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_CYLINDER" value="cylinder" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_CONE" value="cone" />
+        <enumValue name="SPATIAL_PRIMITIVEKIND_CIRCLE" value="circle" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_SQUARE" value="square" />
         <enumValue name="SPATIAL_PRIMITIVEKIND_RIGHTTRIANGLE" value="rightTriangle" />
       </enumValues>
