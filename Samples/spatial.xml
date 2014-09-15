@@ -108,10 +108,10 @@
     <element name="ParametricGeometry" typeCode="SBML_SPATIAL_PARAMETRICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GeometryDefinition" abstract="false">
       <attributes>
         <attribute name="spatialPoint" required="false" type="lo_element" element="SpatialPoint" abstract="false" />
-        <attribute name="parametricObject" required="false" type="element" element="ParametricObject" abstract="false" />
+        <attribute name="parametricObject" required="false" type="lo_element" element="ParametricObject" abstract="false" />
       </attributes>
     </element>
-    <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="polygonType" required="true" type="enum" element="PolygonKind" abstract="false" />
