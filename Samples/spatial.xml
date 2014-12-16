@@ -226,7 +226,7 @@
         <attribute name="spatialRef" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="DiffusionCoefficient" typeCode="SBML_SPATIAL_DIFFUSIONCOEFFICIENT" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="DiffusionCoefficient" typeCode="SBML_SPATIAL_DIFFUSIONCOEFFICIENT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="variable" required="true" type="SIdRef" abstract="false" />
         <attribute name="type" required="true" type="enum" element="DiffusionKind" abstract="false" />

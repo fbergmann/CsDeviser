@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="Dyn" number="400" offset="9000000">
   <elements>
-    <element name="DynElement" typeCode="SBML_DYN_ELEMENT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="element" listOfName="listOfElements">
+    <element name="DynElement" typeCode="SBML_DYN_ELEMENT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="dynElement" listOfName="listOfDynElements">
       <attributes>
-        <attribute name="element" required="true" type="SIdRef" abstract="false" />
+        <attribute name="idRef" required="true" type="SIdRef" abstract="false" />
+        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="name" required="false" type="string" abstract="false" />
+        <attribute name="metaIdRef" required="false" type="string" abstract="false" />
       </attributes>
     </element>
     <element name="SpatialComponent" typeCode="SBML_DYN_SPATIALCOMPONENT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="spatialIndex" required="true" type="enum" element="SpatialKind" abstract="false" />
         <attribute name="variable" required="true" type="SIdRef" abstract="false" />
+        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="name" required="false" type="string" abstract="false" />
       </attributes>
     </element>
   </elements>
