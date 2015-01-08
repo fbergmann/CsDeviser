@@ -58,7 +58,7 @@
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="type" required="true" type="enum" element="CoordinateKind" abstract="false" />
-        <attribute name="unit" required="true" type="SIdRef" abstract="false" />
+        <attribute name="unit" required="false" type="SIdRef" abstract="false" />
         <attribute name="boundaryMin" required="true" type="element" element="Boundary" abstract="false" />
         <attribute name="boundaryMax" required="true" type="element" element="Boundary" abstract="false" />
       </attributes>
@@ -76,7 +76,7 @@
         <attribute name="numSamples1" required="true" type="int" abstract="false" />
         <attribute name="numSamples2" required="false" type="int" abstract="false" />
         <attribute name="numSamples3" required="false" type="int" abstract="false" />
-        <attribute name="interpolationType" required="false" type="enum" element="InterpolationKind" abstract="false" />
+        <attribute name="interpolationType" required="true" type="enum" element="InterpolationKind" abstract="false" />
         <attribute name="compression" required="true" type="enum" element="CompressionKind" abstract="false" />
         <attribute name="samples" required="true" type="array" element="int" abstract="false" />
         <attribute name="samplesLength" required="true" type="int" abstract="false" />
@@ -100,14 +100,14 @@
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="functionType" required="true" type="enum" element="FunctionKind" abstract="false" />
-        <attribute name="ordinal" required="true" type="int" abstract="false" />
+        <attribute name="ordinal" required="false" type="int" abstract="false" />
         <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
         <attribute name="math" required="false" type="element" element="ASTNode*" abstract="false" />
       </attributes>
     </element>
     <element name="ParametricGeometry" typeCode="SBML_SPATIAL_PARAMETRICGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GeometryDefinition" abstract="false">
       <attributes>
-        <attribute name="spatialPoint" required="false" type="lo_element" element="SpatialPoint" abstract="false" />
+        <attribute name="spatialPoints" required="false" type="element" element="SpatialPoints" abstract="false" />
         <attribute name="parametricObject" required="false" type="lo_element" element="ParametricObject" abstract="false" />
       </attributes>
     </element>
@@ -116,22 +116,10 @@
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="polygonType" required="true" type="enum" element="PolygonKind" abstract="false" />
         <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="polygonObject" required="true" type="element" element="PolygonObject" abstract="false" />
-      </attributes>
-    </element>
-    <element name="PolygonObject" typeCode="SBML_SPATIAL_POLYGONOBJECT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
-      <attributes>
         <attribute name="pointIndex" required="true" type="array" element="int" abstract="false" />
-        <attribute name="pointIndexLength" required="false" type="int" abstract="false" />
-      </attributes>
-    </element>
-    <element name="SpatialPoint" typeCode="SBML_SPATIAL_SPATIALPOINT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="coord1" required="true" type="double" abstract="false" />
-        <attribute name="coord2" required="false" type="double" abstract="false" />
-        <attribute name="coord3" required="false" type="double" abstract="false" />
-        <attribute name="domain" required="true" type="SIdRef" abstract="false" />
+        <attribute name="pointIndexLength" required="true" type="int" abstract="false" />
+        <attribute name="compression" required="true" type="enum" element="CompressionKind" abstract="false" />
+        <attribute name="dataType" required="false" type="enum" element="DataKind" abstract="false" />
       </attributes>
     </element>
     <element name="CSGeometry" typeCode="SBML_SPATIAL_CSGEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GeometryDefinition" abstract="false" elementName="csGeometry">
@@ -143,13 +131,13 @@
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
-        <attribute name="ordinal" required="true" type="int" abstract="false" />
+        <attribute name="ordinal" required="false" type="int" abstract="false" />
         <attribute name="csgNode" required="true" type="element" element="CSGNode" abstract="true" />
       </attributes>
     </element>
     <element name="CSGNode" typeCode="SBML_SPATIAL_CSGNODE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true" elementName="csgNode">
       <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="id" required="false" type="SId" abstract="false" />
       </attributes>
       <concretes>
         <concrete name="csgPrimitive" element="CSGPrimitive" />
@@ -250,7 +238,7 @@
     </element>
     <element name="Geometry" typeCode="SBML_SPATIAL_GEOMETRY" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="coordinateSystem" required="true" type="enum" element="GeometryKind" abstract="false" />
         <attribute name="coordinateComponent" required="false" type="lo_element" element="CoordinateComponent" abstract="false" />
         <attribute name="domainType" required="false" type="lo_element" element="DomainType" abstract="false" />
@@ -275,6 +263,15 @@
       <attributes>
         <attribute name="geometryDefinition" required="true" type="SIdRef" abstract="false" />
         <attribute name="ordinal" required="true" type="int" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SpatialPoints" typeCode="SBML_SPATIAL_SPATIALPOINTS" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="compression" required="true" type="enum" element="CompressionKind" abstract="false" />
+        <attribute name="arrayData" required="true" type="array" element="double" abstract="false" />
+        <attribute name="arrayDataLength" required="true" type="int" abstract="false" />
+        <attribute name="dataType" required="false" type="enum" element="DataKind" abstract="false" />
       </attributes>
     </element>
   </elements>

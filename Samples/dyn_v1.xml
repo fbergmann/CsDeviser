@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package name="Dyn" number="400" offset="9000000">
+  <elements>
+    <element name="DynElement" typeCode="SBML_DYN_ELEMENT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="element" listOfName="listOfElements">
+      <attributes>
+        <attribute name="element" required="true" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+    <element name="SpatialComponent" typeCode="SBML_DYN_SPATIALCOMPONENT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+      <attributes>
+        <attribute name="spatialIndex" required="true" type="enum" element="SpatialKind" abstract="false" />
+        <attribute name="variable" required="true" type="SIdRef" abstract="false" />
+      </attributes>
+    </element>
+  </elements>
+  <plugins>
+    <plugin extensionPoint="Compartment">
+      <attributes>
+        <attribute name="cboTerm" required="false" type="string" abstract="false" />
+        <attribute name="spatialComponent" required="false" type="lo_element" element="SpatialComponent" abstract="false" />
+      </attributes>
+    </plugin>
+    <plugin extensionPoint="Event">
+      <attributes>
+        <attribute name="cboTerm" required="false" type="string" abstract="false" />
+        <attribute name="applyToAll" required="true" type="bool" abstract="false" />
+        <attribute name="element" required="false" type="lo_element" element="DynElement" abstract="false" />
+      </attributes>
+    </plugin>
+    <plugin extensionPoint="SBase">
+      <attributes>
+        <attribute name="cboTerm" required="false" type="string" abstract="false" />
+      </attributes>
+    </plugin>
+  </plugins>
+  <enums>
+    <enum name="SpatialKind">
+      <enumValues>
+        <enumValue name="DYN_SPATIALKIND_CARTESIANX" value="cartesianX" />
+        <enumValue name="DYN_SPATIALKIND_CARTESIANY" value="cartesianY" />
+        <enumValue name="DYN_SPATIALKIND_CARTESIANZ" value="cartesianZ" />
+        <enumValue name="DYN_SPATIALKIND_ALPHA" value="alpha" />
+        <enumValue name="DYN_SPATIALKIND_BETA" value="beta" />
+        <enumValue name="DYN_SPATIALKIND_GAMMA" value="gamma" />
+        <enumValue name="DYN_SPATIALKIND_FX" value="F_x" />
+        <enumValue name="DYN_SPATIALKIND_FY" value="F_y" />
+        <enumValue name="DYN_SPATIALKIND_FZ" value="F_z" />
+      </enumValues>
+    </enum>
+  </enums>
+</package>
