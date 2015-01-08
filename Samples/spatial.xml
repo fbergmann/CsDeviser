@@ -127,7 +127,7 @@
         <attribute name="csgObject" required="false" type="lo_element" element="CSGObject" abstract="false" />
       </attributes>
     </element>
-    <element name="CSGObject" typeCode="SBML_SPATIAL_CSGOBJECT" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="csgObject">
+    <element name="CSGObject" typeCode="SBML_SPATIAL_CSGOBJECT" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="csgObject" listOfName="listOfCSGObjects">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="domainType" required="true" type="SIdRef" abstract="false" />
