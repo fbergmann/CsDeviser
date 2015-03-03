@@ -247,6 +247,8 @@ namespace CsDeviser
           {
             fileName = dialog.FileName;
           }
+          else
+            return;
         }  
       }
 
