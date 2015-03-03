@@ -29,10 +29,10 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Package");
-      System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Classes");
-      System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Plugins");
-      System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Enums");
+      System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Package");
+      System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Classes");
+      System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Plugins");
+      System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Enums");
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -148,21 +148,21 @@
       this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tree.Location = new System.Drawing.Point(0, 0);
       this.tree.Name = "tree";
-      treeNode1.Name = "nodePackage";
-      treeNode1.Text = "Package";
-      treeNode2.Name = "nodeClasses";
-      treeNode2.Text = "Classes";
-      treeNode2.ToolTipText = "All Classes Defined by this Package";
-      treeNode3.Name = "nodePlugins";
-      treeNode3.Text = "Plugins";
-      treeNode3.ToolTipText = "All Plugins of this package";
-      treeNode4.Name = "nodeEnums";
-      treeNode4.Text = "Enums";
+      treeNode5.Name = "nodePackage";
+      treeNode5.Text = "Package";
+      treeNode6.Name = "nodeClasses";
+      treeNode6.Text = "Classes";
+      treeNode6.ToolTipText = "All Classes Defined by this Package";
+      treeNode7.Name = "nodePlugins";
+      treeNode7.Text = "Plugins";
+      treeNode7.ToolTipText = "All Plugins of this package";
+      treeNode8.Name = "nodeEnums";
+      treeNode8.Text = "Enums";
       this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8});
       this.tree.Size = new System.Drawing.Size(197, 490);
       this.tree.TabIndex = 0;
       this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnItemSelect);
@@ -275,7 +275,6 @@
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
       this.fileToolStripMenuItem.Text = "&File";
-      this.fileToolStripMenuItem.Click += new System.EventHandler(this.OnNewClick);
       // 
       // newToolStripMenuItem
       // 
@@ -283,7 +282,7 @@
       this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.newToolStripMenuItem.Name = "newToolStripMenuItem";
       this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-      this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+      this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.newToolStripMenuItem.Text = "&New";
       this.newToolStripMenuItem.Click += new System.EventHandler(this.OnNewClick);
       // 
@@ -293,14 +292,14 @@
       this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.openToolStripMenuItem.Name = "openToolStripMenuItem";
       this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-      this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+      this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.openToolStripMenuItem.Text = "&Open";
       this.openToolStripMenuItem.Click += new System.EventHandler(this.OnOpenClick);
       // 
       // toolStripSeparator
       // 
       this.toolStripSeparator.Name = "toolStripSeparator";
-      this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+      this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
       // 
       // saveToolStripMenuItem
       // 
@@ -308,26 +307,26 @@
       this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
       this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-      this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+      this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.saveToolStripMenuItem.Text = "&Save";
       this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveClick);
       // 
       // saveAsToolStripMenuItem
       // 
       this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-      this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+      this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.saveAsToolStripMenuItem.Text = "Save &As";
       this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
       // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.exitToolStripMenuItem.Text = "E&xit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
       // 
@@ -528,6 +527,7 @@
       this.MinimumSize = new System.Drawing.Size(640, 480);
       this.Name = "MainForm";
       this.Text = "Deviser";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
       this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
       this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
       this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);

@@ -17,7 +17,6 @@ namespace CsDeviser.Controls
       InitializeComponent();
     }
 
-
     public bool Initializing { get; set; }
 
     public event EventHandler RenamedEvent;
@@ -27,5 +26,11 @@ namespace CsDeviser.Controls
       var handler = RenamedEvent;
       if (handler != null) handler(this, EventArgs.Empty);
     }
+
+    public virtual void OnCommitChanges()
+    {
+      
+    }
+
   }
 }

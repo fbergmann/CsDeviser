@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsDeviser.Forms;
+using CsDeviser.Controls;
 using LibDeviser;
 
 namespace CsDeviser
@@ -35,6 +36,27 @@ namespace CsDeviser
     public DeviserPackage Model { get; set; }
 
     public DeviserBase Current { get; set; }
+
+    public DeviserControl CurrentControl
+    {
+      get
+      {
+        if (controlPackage1.Visible) return controlPackage1;
+        if (controlClass1.Visible) return controlClass1;
+        if (controlPlugin1.Visible) return controlPlugin1;
+        if (controlEnum1.Visible) return controlEnum1;
+
+        return null;
+      }
+    }
+
+    void CommitControls()
+    {
+      var current = CurrentControl;
+      if (current == null) return;
+      current.OnCommitChanges();
+    }
+
 
     public string FileName { get; set; }
 
@@ -173,20 +195,28 @@ namespace CsDeviser
 
     private void OnNewClick(object sender, EventArgs e)
     {
+      if (SaveModelIfDirtyOrCancel())
+        return;
+
       NewDocument();
     }
 
     public void LoadFile(string fileName)
-    {
+    {      
+
       Model = DeviserPackage.FromFile(fileName);
       FileName = fileName;
       Current = Model;
+      Model.Dirty = false;
       UpdateUI();
       tree.ExpandAll();
     }
 
     private void OnOpenClick(object sender, EventArgs e)
     {
+      if (SaveModelIfDirtyOrCancel())
+        return;
+
       using (var dialog = new OpenFileDialog
       {
         AutoUpgradeEnabled = true,
@@ -220,8 +250,12 @@ namespace CsDeviser
         }  
       }
 
+
+      CommitControls();
       Model.WriteTo(fileName);
       FileName = fileName;
+      Model.Dirty = false;
+
       UpdateTitle();
     }
 
@@ -254,6 +288,7 @@ namespace CsDeviser
       Model.Elements.Add(element);
       tree.Nodes[NODE_CLASSES].Nodes.Add(element.Name);
       Current = element;
+      Model.Dirty = true;
       UpdateFromCurrent();
     }
 
@@ -263,6 +298,7 @@ namespace CsDeviser
       Model.Enums.Add(element);
       tree.Nodes[NODE_ENUMS].Nodes.Add(element.Name);
       Current = element;
+      Model.Dirty = true;
       UpdateFromCurrent();
 
     }
@@ -274,6 +310,7 @@ namespace CsDeviser
       Model.Plugins.Add(element);
       tree.Nodes[NODE_PLUGINS].Nodes.Add(element.ExtensionPoint);
       Current = element;
+      Model.Dirty = true;
       UpdateFromCurrent();
     }
 
@@ -298,6 +335,7 @@ namespace CsDeviser
           Current = Model;
       }
 
+      Model.Dirty = true;
       UpdateUI();
     }
 
@@ -372,7 +410,7 @@ namespace CsDeviser
       {
         var sFilenames = (string[])e.Data.GetData(DataFormats.FileDrop);
         var oInfo = new FileInfo(sFilenames[0]);
-        if (oInfo.Extension.ToLower() == ".xml" || oInfo.Extension.ToLower() == ".sbml")
+        if (oInfo.Extension.ToLower() == ".xml")
         {
           LoadFile(sFilenames[0]);
         }
@@ -388,7 +426,7 @@ namespace CsDeviser
       {
         var sFilenames = (string[])e.Data.GetData(DataFormats.FileDrop);
         var oInfo = new FileInfo(sFilenames[0]);
-        if (oInfo.Extension.ToLower() == ".xml" || oInfo.Extension.ToLower() == ".sbml")
+        if (oInfo.Extension.ToLower() == ".xml")
         {
           e.Effect = DragDropEffects.Copy;
           return;
@@ -399,6 +437,38 @@ namespace CsDeviser
 
     #endregion
 
+    /// <summary>
+    /// This function asks a user whether the model should be saved
+    /// </summary>
+    /// <returns>true, if model is dirty and the user pressed cancel, false otherwise</returns>
+    private bool SaveModelIfDirtyOrCancel()
+    {
+      if (Model == null || !Model.Dirty) return false;
+
+      DialogResult result =
+        MessageBox.Show(this,
+          "There are unsaved changes in the model. Would you like to save them?",
+          "Save changes?",
+          MessageBoxButtons.YesNoCancel,
+          MessageBoxIcon.Question,
+          MessageBoxDefaultButton.Button3);
+
+      if (result == DialogResult.Cancel)
+      {
+        return true;
+      }
+
+      if (result == DialogResult.Yes)
+      {
+        OnSaveClick(this, EventArgs.Empty);
+      }
+
+      return false;
+    }
+    private void OnFormClosing(object sender, FormClosingEventArgs e)
+    {
+      e.Cancel = SaveModelIfDirtyOrCancel();
+    }
 
   }
 }

@@ -233,5 +233,13 @@ namespace CsDeviser.Controls
       if (Current == null) return;
       Current.AdditionalDeclarations = txtAddDecls.Text;
     }
+
+
+    public override void OnCommitChanges()
+    {
+      gridAttributes.EndEdit();
+    }    
+
+
   }
 }

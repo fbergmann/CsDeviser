@@ -18,7 +18,6 @@ namespace CsDeviser.Controls
       InitializeComponent();
     }
 
-
     public DeviserClass Current { get; set; }
 
     public void InitializeFrom(DeviserClass package)
@@ -257,6 +256,12 @@ namespace CsDeviser.Controls
     {
       if (Current == null) return;
       Current.AdditionalDefinitions = txtAddImpl.Text;
+    }
+
+    public override void OnCommitChanges()
+    {
+      gridAttributes.EndEdit();
+      gridConcrete.EndEdit();
     }
 
   }

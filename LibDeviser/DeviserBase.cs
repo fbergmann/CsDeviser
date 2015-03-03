@@ -9,6 +9,10 @@ namespace LibDeviser
 {
   public class DeviserBase
   {
+    /// <summary>
+    /// Get set Dirty state of package
+    /// </summary>
+    public bool Dirty { get; set; }
 
     public virtual void InitializeFrom(XmlNode node)
     {

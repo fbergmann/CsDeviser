@@ -105,6 +105,10 @@ namespace CsDeviser.Controls
     }
 
 
+    public override void OnCommitChanges()
+    {
+      gridAttributes.EndEdit();      
+    }    
 
   }
 }

@@ -17,8 +17,7 @@ namespace CsDeviser.Controls
     {
       InitializeComponent();
     }
-    
-   
+       
     public DeviserPackage Current { get; set; }
 
     public void InitializeFrom(DeviserPackage package)

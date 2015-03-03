@@ -11,6 +11,7 @@ namespace LibDeviser
 
   public class DeviserPackage : DeviserBase
   {
+
     /// <summary>
     /// Name of the package
     /// </summary>
