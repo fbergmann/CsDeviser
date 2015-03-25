@@ -18,6 +18,11 @@ namespace LibDeviser
     public string Name { get; set; }
 
     /// <summary>
+    /// Full Name of the package
+    /// </summary>
+    public string FullName { get; set; }
+
+    /// <summary>
     /// Start number for the type codes enum
     /// </summary>
     public int StartNumber { get; set; }
@@ -77,6 +82,7 @@ namespace LibDeviser
     public override void InitializeFrom(XmlElement element)
     {
       Name = element.GetAttribute("name");
+      FullName = element.GetAttribute("fullname");
 
       StartNumber = Util.readInt(element, "number");
       Offset = Util.readInt(element, "offset");
@@ -119,6 +125,9 @@ namespace LibDeviser
       
       if (!string.IsNullOrWhiteSpace(Name))
         writer.WriteAttributeString("name", Name);
+
+      if (!string.IsNullOrWhiteSpace(FullName))
+        writer.WriteAttributeString("fullname", FullName);
       
       if (StartNumber != 0)
         writer.WriteAttributeString("number", StartNumber.ToString());

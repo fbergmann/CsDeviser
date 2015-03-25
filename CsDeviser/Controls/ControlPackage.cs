@@ -37,6 +37,7 @@ namespace CsDeviser.Controls
       txtOffset.Text = Current.Offset.ToString();
       txtStartNumber.Text = Current.StartNumber.ToString();
       txtPackage.Text = Current.Name;
+      txtFullName.Text = Current.FullName;
 
       foreach(var item in package.Elements)
         lstClasses.Items.Add(item.Name);
@@ -100,6 +101,12 @@ namespace CsDeviser.Controls
 
       lstClasses.SelectedIndex = index - 1;
 
+    }
+
+    private void txtFullName_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      Current.Name = txtFullName.Text;   
     }
 
   }

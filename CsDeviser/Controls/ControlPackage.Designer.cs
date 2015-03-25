@@ -42,6 +42,8 @@
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.toolCmdDown = new System.Windows.Forms.ToolStripButton();
       this.toolCmdUp = new System.Windows.Forms.ToolStripButton();
+      this.txtFullName = new System.Windows.Forms.TextBox();
+      this.label4 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.toolStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -161,10 +163,30 @@
       this.toolCmdUp.Text = "&Up";
       this.toolCmdUp.Click += new System.EventHandler(this.OnMoveClassUp);
       // 
+      // txtFullName
+      // 
+      this.txtFullName.Location = new System.Drawing.Point(234, 3);
+      this.txtFullName.Name = "txtFullName";
+      this.txtFullName.Size = new System.Drawing.Size(182, 20);
+      this.txtFullName.TabIndex = 11;
+      this.toolTip1.SetToolTip(this.txtFullName, "The full name of the package as used in the specification and error messages");
+      this.txtFullName.TextChanged += new System.EventHandler(this.txtFullName_TextChanged);
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(168, 6);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(60, 13);
+      this.label4.TabIndex = 10;
+      this.label4.Text = "Full Name: ";
+      // 
       // ControlPackage
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.txtFullName);
+      this.Controls.Add(this.label4);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.txtOffset);
       this.Controls.Add(this.label3);
@@ -197,5 +219,7 @@
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripButton toolCmdDown;
     private System.Windows.Forms.ToolStripButton toolCmdUp;
+    private System.Windows.Forms.TextBox txtFullName;
+    private System.Windows.Forms.Label label4;
   }
 }
