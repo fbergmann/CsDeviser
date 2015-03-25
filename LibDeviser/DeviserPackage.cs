@@ -355,7 +355,7 @@ namespace LibDeviser
             {
               log.Add(new DeviserMessage
               {
-                Message = string.Format("Class: '{0}' has uses BaseClass '{1}', which is not marked as abstract", item.Name),
+                Message = string.Format("Class: '{0}' uses BaseClass '{1}', which is not marked as abstract", item.Name, item.BaseClass),
                 Element = item
               });
               if (correct)
