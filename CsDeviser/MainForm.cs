@@ -234,7 +234,7 @@ namespace CsDeviser
 
     private void SaveAs(string fileName = "")
     {
-      if (string.IsNullOrWhiteSpace(FileName) || FileName == "untitled.xml")
+      if (string.IsNullOrWhiteSpace(fileName) || fileName == "untitled.xml")
       {
         using (var dialog = new SaveFileDialog
         {
