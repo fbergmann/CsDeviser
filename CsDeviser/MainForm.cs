@@ -472,5 +472,35 @@ namespace CsDeviser
       e.Cancel = SaveModelIfDirtyOrCancel();
     }
 
+    private void OnEditPreferences(object sender, EventArgs e)
+    {
+      using (var dlg = new FormPreferences())
+      {
+        dlg.LoadSettings(DeviserSettings.Instance);
+        if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+        {
+          dlg.WriteToSettings(DeviserSettings.Instance);
+          DeviserSettings.Instance.Save();
+          toolGenerate.Enabled = DeviserSettings.Instance.CanGenerate;
+        }
+      }
+    }
+
+    private void OnLoad(object sender, EventArgs e)
+    {
+      DeviserSettings.Instance = DeviserSettings.GetDefault(Size);
+      toolGenerate.Enabled = DeviserSettings.Instance.CanGenerate;
+    }
+
+    private void OnGenerateClick(object sender, EventArgs e)
+    {
+      if (!DeviserSettings.Instance.CanGenerate)
+        return;
+
+      using (var dlg = new FormGenerate { Package = FileName, PackageName = Model.Name})
+        dlg.ShowDialog(this);
+
+    }
+
   }
 }

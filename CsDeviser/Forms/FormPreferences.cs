@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LibDeviser;
 
 namespace CsDeviser.Forms
 {
@@ -17,6 +18,22 @@ namespace CsDeviser.Forms
     {
       InitializeComponent();
     }
+
+    public void LoadSettings(DeviserSettings settings)
+    {
+      PythonInterpreter = settings.PythonInterpreter;
+      DeviserRepo = settings.DeviserRepository;
+      DefaultOutputDir = settings.DefaultOutputDir;
+    }
+
+    public void WriteToSettings(DeviserSettings settings)
+    {
+      settings.PythonInterpreter = PythonInterpreter;
+      settings.DeviserRepository = DeviserRepo;
+      settings.DefaultOutputDir = DefaultOutputDir;
+    }
+
+    public string DefaultOutputDir { get { return txtDefaultDir.Text; } set { txtDefaultDir.Text = value; } }
 
     public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }
     
@@ -33,11 +50,32 @@ namespace CsDeviser.Forms
 
     private void cmdBrowseRepo_Click(object sender, EventArgs e)
     {
-      using (var dialog = new FolderBrowserDialog { Description = "Locate DeviserRepository", 
-        SelectedPath = Path.GetFullPath(txtDeviserRepo.Text)})
+      string defaultPath = !string.IsNullOrWhiteSpace(txtDeviserRepo.Text) ? Path.GetFullPath(txtDeviserRepo.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate DeviserRepository",
+        SelectedPath = defaultPath
+      })
       {
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtDeviserRepo.Text = dialog.SelectedPath;
+      }
+    }
+
+    private void cmdBrowseOutput_Click(object sender, EventArgs e)
+    {
+
+      string defaultPath = !string.IsNullOrWhiteSpace(txtDefaultDir.Text) ? Path.GetFullPath(txtDefaultDir.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate Default Output Dir",
+        SelectedPath = defaultPath
+      })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtDefaultDir.Text = dialog.SelectedPath;
       }
     }
   }

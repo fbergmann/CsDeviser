@@ -8,7 +8,6 @@ using System.Xml;
 
 namespace LibDeviser
 {
-
   public class DeviserPackage : DeviserBase
   {
 
