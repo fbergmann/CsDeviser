@@ -81,6 +81,20 @@ namespace CsDeviser.Forms
     private void FormGenerate_Load(object sender, EventArgs e)
     {
       txtOutDir.Text = DeviserSettings.Instance.DefaultOutputDir;
+
+      cmdGeneratePackage.Enabled = DeviserSettings.Instance.CanGenerate;
+      cmdGenerateTex.Enabled = DeviserSettings.Instance.CanGenerate;
+      cmdCompileTex.Enabled = DeviserSettings.Instance.CanCompileTeX;
+
+    }
+
+    private void cmdCompileTex_Click(object sender, EventArgs e)
+    {
+      txtResult.Text =
+      Deviser.CompileTex(DeviserSettings.Instance.MikTexDir,
+        DeviserSettings.Instance.SBMLPkgSpecDir,
+        txtOutDir.Text, Package, PackageName
+        );
     }
   }
 }

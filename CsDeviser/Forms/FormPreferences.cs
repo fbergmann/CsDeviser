@@ -24,6 +24,8 @@ namespace CsDeviser.Forms
       PythonInterpreter = settings.PythonInterpreter;
       DeviserRepo = settings.DeviserRepository;
       DefaultOutputDir = settings.DefaultOutputDir;
+      MikTexDir = settings.MikTexDir;
+      SBMLPkgSpecDir = settings.SBMLPkgSpecDir;
     }
 
     public void WriteToSettings(DeviserSettings settings)
@@ -31,8 +33,12 @@ namespace CsDeviser.Forms
       settings.PythonInterpreter = PythonInterpreter;
       settings.DeviserRepository = DeviserRepo;
       settings.DefaultOutputDir = DefaultOutputDir;
+      settings.SBMLPkgSpecDir = SBMLPkgSpecDir;
+      settings.MikTexDir = MikTexDir;
     }
 
+    public string SBMLPkgSpecDir { get { return txtSBMLPkgSpeciDir.Text; } set { txtSBMLPkgSpeciDir.Text = value; } }
+    public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }
     public string DefaultOutputDir { get { return txtDefaultDir.Text; } set { txtDefaultDir.Text = value; } }
 
     public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }
@@ -76,6 +82,37 @@ namespace CsDeviser.Forms
       {
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtDefaultDir.Text = dialog.SelectedPath;
+      }
+    }
+
+    private void cmdBrowsePkgSpec_Click(object sender, EventArgs e)
+    {
+      
+      string defaultPath = !string.IsNullOrWhiteSpace(txtSBMLPkgSpeciDir.Text) ? Path.GetFullPath(txtSBMLPkgSpeciDir.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate sbmlpkgspec Dir",
+        SelectedPath = defaultPath
+      })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtSBMLPkgSpeciDir.Text = dialog.SelectedPath;
+      }
+    }
+
+    private void cmdBrowseMikTex_Click(object sender, EventArgs e)
+    {
+      string defaultPath = !string.IsNullOrWhiteSpace(txtMikTex.Text) ? Path.GetFullPath(txtMikTex.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate MikTeX bin Dir",
+        SelectedPath = defaultPath
+      })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtMikTex.Text = dialog.SelectedPath;
       }
     }
   }

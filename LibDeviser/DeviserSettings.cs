@@ -11,6 +11,8 @@ namespace LibDeviser
     public string PythonInterpreter { get; set; }
     public string DeviserRepository { get; set; }
     public string DefaultOutputDir { get; set; }
+    public string SBMLPkgSpecDir { get; set; }
+    public string MikTexDir { get; set; }
 
     public static DeviserSettings Instance
     {
@@ -96,6 +98,17 @@ namespace LibDeviser
           Directory.Exists(DeviserRepository) &&
           !string.IsNullOrWhiteSpace(PythonInterpreter) && 
           File.Exists(PythonInterpreter);
+      }
+    }
+
+    public bool CanCompileTeX
+    {
+      get
+      {
+        return !string.IsNullOrWhiteSpace(MikTexDir) &&
+          Directory.Exists(MikTexDir) &&
+          !string.IsNullOrWhiteSpace(SBMLPkgSpecDir) &&
+          Directory.Exists(SBMLPkgSpecDir);
       }
     }
 

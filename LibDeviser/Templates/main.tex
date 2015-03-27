@@ -1,0 +1,21 @@
+%\documentclass{sbmlpkgspec}
+\documentclass[draftspec]{sbmlpkgspec}
+\frontNotice{\centering This is a working draft of release 1 of the specification for the package ``@@PACKAGENAME@@'' and not a normative document. Please send feedback to the Package Working Group mailing list at sbml-@@PACKAGENAME@@@lists.sourceforge.net.}
+
+\begin{document}
+
+\packageTitle{SBML Level 3 Package: @@PACKAGENAME@@ (`@@PACKAGENAME@@')}
+\packageVersion{Version 1, Release 1} \packageVersionDate{\today}
+
+\renewcommand\graphicspath{{logos}}
+
+\maketitlepage
+\maketableofcontents
+
+\input{body}
+
+\appendix
+\input{apdx-validation}
+
+
+\end{document}
