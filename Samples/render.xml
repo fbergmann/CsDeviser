@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="render" fullname="Render" number="1000" offset="1300000">
   <elements>
-    <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
+    <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="value" required="false" type="string" abstract="false" />
@@ -49,7 +49,7 @@
         <attribute name="text-anchor" required="false" type="enum" element="HTextAnchor" abstract="false" />
         <attribute name="vtext-anchor" required="false" type="enum" element="VTextAnchor" abstract="false" />
         <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="drawableObjects" required="false" type="lo_element" element="ListOfDrawables" abstract="false" />
+        <attribute name="elements" required="false" type="inline_lo_element" element="Transformation2D" abstract="true" />
       </attributes>
     </element>
     <element name="Image" typeCode="SBML_RENDER_IMAGE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="false" elementName="image">
@@ -86,7 +86,7 @@
         <attribute name="style" required="false" type="lo_element" element="LocalStyle" abstract="false" />
       </attributes>
     </element>
-    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style">
+    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style">
       <attributes>
         <attribute name="idList" required="false" type="string" abstract="false" />
       </attributes>
@@ -118,7 +118,7 @@
         <attribute name="rY" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="RelAbsVector" typeCode="SBML_RENDER_RELABSVECTOR" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" abstract="false">
+    <element name="RelAbsVector" typeCode="SBML_RENDER_RELABSVECTOR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" abstract="false">
       <attributes>
         <attribute name="abs" required="false" type="double" abstract="false" />
         <attribute name="rel" required="false" type="double" abstract="false" />
@@ -165,17 +165,17 @@
         <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="Transformation2D" typeCode="SBML_RENDER_TRANSFORMATION2D" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true">
+    <element name="Transformation2D" typeCode="SBML_RENDER_TRANSFORMATION2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true">
       <attributes>
         <attribute name="transform" required="false" type="array" element="double" abstract="false" />
       </attributes>
     </element>
-    <element name="Transformation" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
+    <element name="Transformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="transform" required="true" type="array" element="double" abstract="false" />
       </attributes>
     </element>
-    <element name="GraphicalPrimitive1D" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
+    <element name="GraphicalPrimitive1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="stroke" required="false" type="string" abstract="false" />
@@ -183,7 +183,7 @@
         <attribute name="stroke-dasharray" required="false" type="array" element="unsigned integer" abstract="false" />
       </attributes>
     </element>
-    <element name="GraphicalPrimitive2D" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
+    <element name="GraphicalPrimitive2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
       <attributes>
         <attribute name="fill" required="false" type="string" abstract="false" />
         <attribute name="fill-rule" required="false" type="enum" element="FillRule" abstract="false" />
@@ -195,17 +195,6 @@
         <concrete name="image" element="Image" />
         <concrete name="curve" element="RenderCurve" />
         <concrete name="text" element="Text" />
-      </concretes>
-    </element>
-    <element name="ListOfDrawables" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true" elementName="listOfDrawables">
-      <concretes>
-        <concrete name="g" element="RenderGroup" />
-        <concrete name="curve" element="RenderCurve" />
-        <concrete name="polygon" element="Polygon" />
-        <concrete name="rectangle" element="Rectangle" />
-        <concrete name="ellipse" element="Ellipse" />
-        <concrete name="text" element="Text" />
-        <concrete name="image" element="Image" />
       </concretes>
     </element>
     <element name="Style" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
@@ -230,13 +219,13 @@
         <attribute name="lineEnding" required="false" type="lo_element" element="LineEnding" abstract="false" />
       </attributes>
     </element>
-    <element name="ListOfLocalRenderInformation" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfRenderInformation">
+    <element name="ListOfLocalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfRenderInformation">
       <attributes>
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
       </attributes>
     </element>
-    <element name="ListOfGlobalRenderInformation" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfGlobalRenderInformation">
+    <element name="ListOfGlobalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfGlobalRenderInformation">
       <attributes>
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
         <attribute name="versionMinor" required="true" type="uint" abstract="false" />
