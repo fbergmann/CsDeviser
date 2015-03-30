@@ -28,6 +28,8 @@ namespace CsDeviser.Forms
       set { textBox1.Text = value; }
     }
 
+    public string Style { get { return cmpStyle.SelectedItem as string; } }
+
     public void InitializeFrom(DeviserPackage package)
     {
       Package = package;
@@ -38,7 +40,7 @@ namespace CsDeviser.Forms
 
     private void OnUpdateClick(object sender, EventArgs e)
     {
-      string baseUri = "http://yuml.me/diagram/plain/class/";
+      string baseUri = "http://yuml.me/diagram/"+ Style+ "/class/";
       using(WebClient client = new WebClient())
       {
         try
@@ -78,7 +80,7 @@ namespace CsDeviser.Forms
         case ".svg":
         {
 
-          string baseUri = "http://yuml.me/diagram/plain/class/";
+          string baseUri = "http://yuml.me/diagram/" + Style + "/class/";
           using (WebClient client = new WebClient())
           {
             byte[] response =
@@ -133,6 +135,11 @@ namespace CsDeviser.Forms
         pnlPicture.AutoScroll = true;
         pnlPicture.Location = new Point(0, 0);
       }
+    }
+
+    private void OnStyleIndexChanged(object sender, EventArgs e)
+    {
+      OnUpdateClick (this, e);
     }
   }
 }

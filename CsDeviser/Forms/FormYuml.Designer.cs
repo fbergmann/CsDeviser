@@ -42,6 +42,7 @@
       this.tabYuml = new System.Windows.Forms.TabPage();
       this.textBox1 = new System.Windows.Forms.TextBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.cmpStyle = new System.Windows.Forms.ComboBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.tabControl1.SuspendLayout();
@@ -68,6 +69,7 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.cmpStyle);
       this.panel1.Controls.Add(this.chkFitDrawing);
       this.panel1.Controls.Add(this.cmdSaveAs);
       this.panel1.Controls.Add(this.cmdUpdateImage);
@@ -188,6 +190,22 @@
       this.textBox1.Size = new System.Drawing.Size(604, 367);
       this.textBox1.TabIndex = 0;
       // 
+      // cmpStyle
+      // 
+      this.cmpStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmpStyle.FormattingEnabled = true;
+      this.cmpStyle.Items.AddRange(new object[] {
+            "plain",
+            "nofunky",
+            "scruffy"});
+      this.cmpStyle.Location = new System.Drawing.Point(385, 5);
+      this.cmpStyle.Name = "cmpStyle";
+      this.cmpStyle.Size = new System.Drawing.Size(80, 21);
+      this.cmpStyle.TabIndex = 4;
+      this.cmpStyle.Text = "plain";
+      this.toolTip1.SetToolTip(this.cmpStyle, "Choose the style of the drawing");
+      this.cmpStyle.SelectedIndexChanged += new System.EventHandler(this.OnStyleIndexChanged);
+      // 
       // FormYuml
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,5 +247,6 @@
     private System.Windows.Forms.Panel pnlPicture;
     private System.Windows.Forms.Button cmdSaveAs;
     private System.Windows.Forms.CheckBox chkFitDrawing;
+    private System.Windows.Forms.ComboBox cmpStyle;
   }
 }
