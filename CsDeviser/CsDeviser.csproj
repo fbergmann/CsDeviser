@@ -92,6 +92,12 @@
     <Compile Include="Forms\FormPreferences.Designer.cs">
       <DependentUpon>FormPreferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormYuml.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYuml.Designer.cs">
+      <DependentUpon>FormYuml.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     <EmbeddedResource Include="Forms\FormPreferences.resx">
       <DependentUpon>FormPreferences.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYuml.resx">
+      <DependentUpon>FormYuml.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -146,7 +156,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\invalid.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibDeviser\LibDeviser.csproj">
       <Project>{bb71fe28-ec9f-44bf-aacb-8e40454b0a69}</Project>

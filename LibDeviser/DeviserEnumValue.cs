@@ -42,9 +42,18 @@ namespace LibDeviser
 
     }
 
+    public override string ToYuml(bool usecolor = true)
+    {
+      if (string.IsNullOrWhiteSpace(Value))
+        return Name;
+      return string.Format("{0} = {1}", Name, Value);
+    }
+
     public override void WriteTo(XmlWriter writer)
     {
       WriteElementWithNameTo(writer, "enumValue");
     }
+
+    
   }
 }

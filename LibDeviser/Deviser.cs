@@ -8,6 +8,12 @@ namespace LibDeviser
 {
   public static class Deviser
   {
+
+    public static string ClassColor { get { return "linen"; } }
+    public static string EnumColor { get { return "gold"; } }
+    public static string ExtensionColor { get { return "palegreen"; } }
+
+
     public static string GenerateLatex(string python, string repo, string outDir,
       string packageDesc, string packageName)
     {
@@ -30,8 +36,8 @@ namespace LibDeviser
           Arguments = args.ToString(),
           WorkingDirectory = destDir,
           UseShellExecute = false,
-          CreateNoWindow = true, 
-          RedirectStandardError = true, 
+          CreateNoWindow = true,
+          RedirectStandardError = true,
           RedirectStandardOutput = true,
         };
 
@@ -39,11 +45,11 @@ namespace LibDeviser
         p.WaitForExit();
 
         var result = p.StandardOutput.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(result)) 
-        builder.AppendLine(result);        
+        if (!string.IsNullOrWhiteSpace(result))
+          builder.AppendLine(result);
         var error = p.StandardError.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(error)) 
-        builder.AppendLine(error);
+        if (!string.IsNullOrWhiteSpace(error))
+          builder.AppendLine(error);
 
       }
 
@@ -54,13 +60,29 @@ namespace LibDeviser
       return builder.ToString();
     }
 
-    public static string GeneratePackage(string python, string repo, string outDir, 
+    public static string GeneratePackage(string python, string repo, string outDir,
       string packageDesc, string packageName)
     {
       var builder = new StringBuilder();
       builder.AppendLine("Generating Package");
       builder.AppendLine("================");
       builder.AppendLine();
+
+
+
+      if (!File.Exists(python))
+      {
+        builder.AppendLine("Error: The python interpreter could not be found, please ensure you have the full path to it entered correctly: '" + python + "'.");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(Path.Combine(repo, "createDirStruct.py")) ||
+          !File.Exists(Path.Combine(repo, "run.py"))
+        )
+      {
+        builder.AppendLine("Error: The 'run.py' and 'createDirStruct.py' scripts could not be found in '" + repo + "'.");
+        return builder.ToString();
+      }
 
       if (!Directory.Exists(Path.Combine(outDir, packageName.ToLowerInvariant())))
       {
@@ -142,14 +164,33 @@ namespace LibDeviser
       builder.AppendLine();
 
       string destDir = Path.Combine(outDir, packageName + "-spec");
+      if (!Directory.Exists(destDir))
+      {
+        builder.AppendLine("Error: Please 'generate latex' first before trying to compile. (latex dir not present)");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(Path.Combine(destDir, "apdx-validation.tex")) ||
+        !File.Exists(Path.Combine(destDir, "body.tex")) ||
+        !File.Exists(Path.Combine(destDir, "macros.tex")))
+      {
+        builder.AppendLine("Error: Please 'generate latex' first before trying to compile, that should have generated three files: 'body.tex', 'macros.tex' and 'apdx-validation.tex' however those files are not present.");
+        return builder.ToString();
+      }
+
+
       string mainFile = Path.Combine(destDir, "main.tex");
       if (!File.Exists(mainFile))
       {
         File.WriteAllText(mainFile, Properties.Resources.main.Replace("@@PACKAGENAME@@", packageName));
       }
 
-      if (!Directory.Exists(destDir))
-        Directory.CreateDirectory(destDir);
+      if (!File.Exists(Path.Combine(mikTexDir, "texify.exe")))
+      {
+        builder.AppendLine("Error: texify.exe was not present in '" + mikTexDir + "' please ensure you have the path entered correctly.");
+        return builder.ToString();
+      }
+
       {
         var args = new StringBuilder();
         args.AppendFormat("--pdf --batch ");

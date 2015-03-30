@@ -407,5 +407,18 @@ namespace LibDeviser
 
       return log;
     }
+
+    public override string ToYuml(bool usecolor = true)
+    {
+      StringBuilder builder = new StringBuilder();
+      foreach (var item in this.Plugins)
+        builder.AppendLine(item.ToYuml(usecolor));
+      foreach (var item in this.Enums)
+        builder.AppendLine(item.ToYuml(usecolor));
+      foreach (var item in this.Elements)
+        builder.AppendLine(item.ToYuml(usecolor));
+      return builder.ToString();
+    }
+
   }
 }

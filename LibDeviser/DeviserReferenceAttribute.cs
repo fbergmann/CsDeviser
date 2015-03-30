@@ -39,6 +39,11 @@ namespace LibDeviser
 
     }
 
+    public override string ToYuml(bool usecolor=true)
+    {
+      return Name;
+    }
+
     public override void WriteTo(XmlWriter writer)
     {
       WriteElementWithNameTo(writer, "reference");

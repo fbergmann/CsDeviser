@@ -235,7 +235,7 @@
   <plugins>
     <plugin extensionPoint="GraphicalObject">
       <attributes>
-        <attribute name="objectRole" required="false" abstract="false" />
+        <attribute name="objectRole" required="false" type="SIdRef" abstract="false" />
       </attributes>
     </plugin>
     <plugin extensionPoint="Layout">

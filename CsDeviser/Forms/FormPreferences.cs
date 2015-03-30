@@ -49,10 +49,10 @@ namespace CsDeviser.Forms
     {
       string defaultPath = !string.IsNullOrWhiteSpace(txtPython.Text) ? Path.GetFullPath(txtPython.Text)
        : null;
-      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = Path.GetFullPath(txtPython.Text)})
+      string defaultFile = !string.IsNullOrWhiteSpace(txtPython.Text) ? Path.GetFileName(txtPython.Text)
+       : null;
+      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
       {
-        if (!string.IsNullOrWhiteSpace(defaultPath))
-          dialog.FileName = defaultPath;
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtPython.Text = dialog.FileName;
       }

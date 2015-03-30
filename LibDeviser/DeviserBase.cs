@@ -71,5 +71,10 @@ namespace LibDeviser
       Document = doc;
     }
 
+    public virtual string ToYuml(bool usecolor = true)
+    {
+      return "";
+    }
+
   }
 }

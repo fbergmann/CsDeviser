@@ -43,6 +43,50 @@ namespace LibDeviser
       Attributes.SetParent(doc);
       References.SetParent(doc);
     }
+
+    public override string ToYuml(bool usecolor=true)
+    {
+      var builder = new StringBuilder();
+      builder.Append("[" + ExtensionPoint);
+      if (Attributes.Any() || References.Any())
+        builder.Append("|");
+      var list = new List<DeviserAttribute>();
+      for (int i = 0; i < Attributes.Count; i++)
+      {
+        var item = Attributes[i];
+        if (Attributes[i].IsComplexType)
+        {
+          list.Add(Attributes[i]);
+          //continue;
+        }
+        builder.Append(item.ToYuml(usecolor));
+        if (i + 1 < Attributes.Count)
+        {
+          builder.Append(";");
+        }
+      }
+      if (usecolor)
+        builder.Append("{bg:" + Deviser.ExtensionColor + "}");
+
+      builder.Append("]");
+      builder.AppendLine();
+
+      foreach (var item in list)
+      {
+        builder.AppendLine(item.GetYumlReferences(ExtensionPoint));
+      }
+
+
+      for (int i = 0; i < References.Count; i++)
+      {
+        var item = References[i];
+        builder.AppendLine("["+ExtensionPoint+ "]-->[" + item.Name + "]");
+      }
+
+      
+      return builder.ToString();
+    }
+
     public override void InitializeFrom(XmlElement element)
     {
       base.InitializeFrom(element);

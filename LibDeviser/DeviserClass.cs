@@ -125,6 +125,12 @@ namespace LibDeviser
 
     }
 
+    public string GetListOfName()
+    {
+      if (!string.IsNullOrWhiteSpace(ListOfName))
+        return ListOfName;
+      return "ListOf" + Name.GuessPlural();
+    }
 
     public override void SetParent(DeviserPackage doc)
     {
@@ -133,6 +139,72 @@ namespace LibDeviser
       ListOfAttributes.SetParent(doc);
       Concretes.SetParent(doc);
 
+    }
+
+    public override string ToYuml(bool usecolor = true)
+    {
+      var builder = new StringBuilder();
+      if (!string.IsNullOrWhiteSpace(BaseClass))
+      {
+        builder.AppendFormat("[{0}]<>--", BaseClass);
+      }
+      builder.Append("[" + Name);
+      if (Attributes.Any())
+        builder.Append("|");
+      var list = new List<DeviserAttribute>();
+      for (int i = 0; i < Attributes.Count; i++)
+      {
+        if (Attributes[i].IsComplexType)
+        {
+          list.Add(Attributes[i]);
+          //continue;
+        }
+
+        builder.Append(Attributes[i].ToYuml());
+        if (i + 1 < Attributes.Count)
+          builder.Append(";");
+      }
+      if (usecolor)
+        builder.AppendFormat("{{bg:{0}}}", Deviser.ClassColor);
+
+      builder.Append("]");
+      builder.AppendLine();
+      foreach (var item in list)
+      {
+        builder.AppendLine(item.GetYumlReferences(Name));
+      }
+      if (HasListOf)
+      {
+        string listOf = GetListOfName();
+        builder.Append("[ListOf]<>--[" + listOf);
+        if (ListOfAttributes.Any())
+          builder.Append("|");
+        list = new List<DeviserAttribute>();
+        for (int i = 0; i < ListOfAttributes.Count; i++)
+        {
+          if (ListOfAttributes[i].IsComplexType)
+          {
+            list.Add(ListOfAttributes[i]);
+            //continue;
+          }
+          builder.Append(ListOfAttributes[i].ToYuml());
+          if (i + 1 < ListOfAttributes.Count)
+            builder.Append(";");
+        }
+
+        builder.Append("]");
+        builder.AppendLine();
+        builder.AppendLine(string.Format("[{0}]-{1}  1..*>[{2}]", listOf, Name.LowerFirst(), Name));
+
+        foreach (var item in list)
+        {
+          builder.AppendLine(item.GetYumlReferences(Name));
+        }
+
+      }
+
+      builder.AppendLine();
+      return builder.ToString();
     }
 
     public override void WriteTo(XmlWriter writer)

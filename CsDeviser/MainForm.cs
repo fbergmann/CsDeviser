@@ -502,5 +502,14 @@ namespace CsDeviser
 
     }
 
+    private void cmdViewUML_Click(object sender, EventArgs e)
+    {
+      using (var dlg = new FormYuml {})
+      {
+        dlg.InitializeFrom(Model);
+        dlg.ShowDialog(this);
+      }
+    }
+
   }
 }

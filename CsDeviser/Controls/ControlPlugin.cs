@@ -60,7 +60,16 @@ namespace CsDeviser.Controls
       
       if (Current.Document != null)
       foreach (var item in Current.Document.Elements)
+      { 
         lstAllClasses.Items.Add(item.Name);
+        if (item.HasListOf)
+        {
+          if (!string.IsNullOrWhiteSpace(item.ListOfName))
+            lstAllClasses.Items.Add(item.ListOfName);
+          else
+            lstAllClasses.Items.Add("ListOf" + item.Name + "s");
+        }
+      }
 
       foreach (var newAttr in Current.References)
         lstChildClasses.Items.Add(newAttr.Name);

@@ -20,6 +20,21 @@ namespace LibDeviser
       
     }
 
+    public static string LowerFirst(this string str)
+    {
+      string result = str.Substring(0, 1).ToLowerInvariant() + str.Substring(1, str.Length -1);      
+      return result;
+    }
+
+    public static string GuessPlural(this string str)
+    {
+      if (str.EndsWith("Information")) return str;
+      if (str.EndsWith("Index")) return str.Replace("Index", "Indices");
+      if (str.EndsWith("s")) return str;
+      if (str.EndsWith("x")) return str + "es";
+      return str + "s";
+    }
+
     public static void InitializeFrom<T>(this List<T> list, XmlNodeList nodes, DeviserPackage parent = null)
    where T : DeviserBase, new()
     {

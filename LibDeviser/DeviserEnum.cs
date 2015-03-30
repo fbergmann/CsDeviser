@@ -29,6 +29,25 @@ namespace LibDeviser
       Values.SetParent(doc);
     }
 
+    public override string ToYuml(bool usecolor = true)
+    {
+      var builder = new StringBuilder();
+      builder.Append("[Enumeration;" + Name);
+      if (Values.Any())
+        builder.Append("|");
+      for (int i = 0; i < Values.Count; i++)
+      {
+        builder.Append(Values[i].ToYuml());
+        if (i+1 < Values.Count)
+          builder.Append(";");
+      }
+      if (usecolor)
+      builder.Append("{bg:" + Deviser.EnumColor  + "}");
+      builder.Append("]");
+      builder.AppendLine();
+      return builder.ToString();
+    }
+
     public override void InitializeFrom(XmlElement element)
     {
       base.InitializeFrom(element);
