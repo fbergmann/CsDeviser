@@ -222,7 +222,7 @@
     <element name="ListOfLocalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfRenderInformation">
       <attributes>
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
-        <attribute name="versionMajor" required="true" type="uint" abstract="false" />
+        <attribute name="versionMinor" required="true" type="uint" abstract="false" />
       </attributes>
     </element>
     <element name="ListOfGlobalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfGlobalRenderInformation">
