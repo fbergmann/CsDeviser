@@ -1,55 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="render" fullname="Render" number="1000" offset="1300000">
   <elements>
-    <element name="Transformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
-      <attributes>
-        <attribute name="transform" required="true" type="array" element="double" abstract="false" />
-      </attributes>
-    </element>
-    <element name="Transformation2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="false">
-      <attributes>
-        <attribute name="transform" required="false" type="array" element="double" abstract="false" />
-      </attributes>
-    </element>
-    <element name="GraphicalPrimitive1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="false">
+    <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
-        <attribute name="stroke" required="false" type="string" abstract="false" />
-        <attribute name="stroke-width" required="false" type="string" abstract="false" />
-        <attribute name="stroke-dasharray" required="false" type="array" element="unsigned integer" abstract="false" />
-      </attributes>
-    </element>
-    <element name="GraphicalPrimitive2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false">
-      <attributes>
-        <attribute name="fill" required="false" type="string" abstract="false" />
-        <attribute name="fill-rule" required="false" type="enum" element="FillRule" abstract="false" />
-      </attributes>
-    </element>
-    <element name="RelAbsVector" typeCode="SBML_RENDER_RELABSVECTOR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" abstract="false">
-      <attributes>
-        <attribute name="abs" required="false" type="double" abstract="false" />
-        <attribute name="rel" required="false" type="double" abstract="false" />
-      </attributes>
-    </element>
-    <element name="RenderPoint" typeCode="SBML_RENDER_POINT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="element" listOfName="listOfElements">
-      <attributes>
-        <attribute name="x" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="y" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="z" required="false" type="element" element="RelAbsVector" abstract="false" />
-      </attributes>
-      <concretes>
-        <concrete name="element" element="RenderPoint" />
-        <concrete name="element" element="RenderCubicBezier" />
-      </concretes>
-    </element>
-    <element name="RenderCubicBezier" typeCode="SBML_RENDER_CUBICBEZIER" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderPoint" abstract="false" elementName="element">
-      <attributes>
-        <attribute name="basepoint1_x" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="basepoint1_y" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="basepoint1_z" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="basepoint2_x" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="basepoint2_y" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="basepoint2_z" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="value" required="false" type="string" abstract="false" />
       </attributes>
     </element>
     <element name="Ellipse" typeCode="SBML_RENDER_ELLIPSE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="ellipse">
@@ -61,11 +16,95 @@
         <attribute name="ry" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="RenderCurve" typeCode="SBML_RENDER_CURVE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false">
+    <element name="GlobalRenderInformation" typeCode="SBML_RENDER_GLOBALRENDERINFORMATION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
+      <attributes>
+        <attribute name="style" required="false" type="lo_element" element="GlobalStyle" abstract="false" />
+      </attributes>
+    </element>
+    <element name="GlobalStyle" typeCode="SBML_RENDER_GLOBALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" />
+    <element name="GradientBase" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="ListOfGradientDefinitions">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="spreadMethod" required="false" type="enum" element="GradientSpreadMethod" abstract="false" />
+        <attribute name="stop" required="false" type="lo_element" element="GradientStop" abstract="false" />
+      </attributes>
+      <concretes>
+        <concrete name="linearGradient" element="LinearGradient" />
+        <concrete name="radialGradient" element="RadialGradient" />
+      </concretes>
+    </element>
+    <element name="GradientStop" typeCode="SBML_RENDER_GRADIENT_STOP" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="stop">
+      <attributes>
+        <attribute name="offset" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="stop-color" required="true" type="string" abstract="false" />
+      </attributes>
+    </element>
+    <element name="RenderGroup" typeCode="SBML_RENDER_GROUP" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="text">
       <attributes>
         <attribute name="startHead" required="false" type="SIdRef" abstract="false" />
         <attribute name="endHead" required="false" type="SIdRef" abstract="false" />
+        <attribute name="font-family" required="false" type="string" element="FontFamily" abstract="false" />
+        <attribute name="font-weight" required="false" type="enum" element="FontWeight" abstract="false" />
+        <attribute name="font-style" required="false" type="enum" element="FontStyle" abstract="false" />
+        <attribute name="text-anchor" required="false" type="enum" element="HTextAnchor" abstract="false" />
+        <attribute name="vtext-anchor" required="false" type="enum" element="VTextAnchor" abstract="false" />
+        <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="drawableObjects" required="false" type="lo_element" element="ListOfDrawables" abstract="false" />
+      </attributes>
+    </element>
+    <element name="Image" typeCode="SBML_RENDER_IMAGE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="false" elementName="image">
+      <attributes>
+        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="x" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="y" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="z" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="width" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="height" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="href" required="true" type="string" abstract="false" />
+      </attributes>
+    </element>
+    <element name="LineEnding" typeCode="SBML_RENDER_LINEENDING" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="lineEnding">
+      <attributes>
+        <attribute name="id" required="true" type="SId" abstract="false" />
+        <attribute name="enableRotationalMapping" required="false" type="boolean" abstract="false" />
+        <attribute name="g" required="false" type="element" element="RenderGroup" abstract="false" />
+        <attribute name="boundingBox" required="false" type="element" element="BoundingBox" abstract="false" />
+      </attributes>
+    </element>
+    <element name="LinearGradient" typeCode="SBML_RENDER_LINEARGRADIENT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GradientBase" abstract="false" elementName="linearGradient">
+      <attributes>
+        <attribute name="x1" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="y1" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="z1" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="x2" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="y2" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="z2" required="false" type="element" element="RelAbsVector" abstract="false" />
+      </attributes>
+    </element>
+    <element name="LocalRenderInformation" typeCode="SBML_RENDER_LOCALRENDERINFORMATION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
+      <attributes>
+        <attribute name="style" required="false" type="lo_element" element="LocalStyle" abstract="false" />
+      </attributes>
+    </element>
+    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style">
+      <attributes>
+        <attribute name="idList" required="false" type="string" abstract="false" />
+      </attributes>
+    </element>
+    <element name="Polygon" typeCode="SBML_RENDER_POLYGON" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="polygon">
+      <attributes>
         <attribute name="element" required="true" type="lo_element" element="RenderPoint" abstract="false" />
+      </attributes>
+    </element>
+    <element name="RadialGradient" typeCode="SBML_RENDER_RADIALGRADIENT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GradientBase" abstract="false" elementName="radialGradient">
+      <attributes>
+        <attribute name="cx" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="cy" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="cz" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="r" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="fx" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="fy" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="fz" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
     <element name="Rectangle" typeCode="SBML_RENDER_RECTANGLE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="rectangle">
@@ -79,16 +118,39 @@
         <attribute name="rY" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="Image" typeCode="SBML_RENDER_IMAGE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="false" elementName="image">
+    <element name="RelAbsVector" typeCode="SBML_RENDER_RELABSVECTOR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" abstract="false">
       <attributes>
-        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="abs" required="false" type="double" abstract="false" />
+        <attribute name="rel" required="false" type="double" abstract="false" />
+      </attributes>
+    </element>
+    <element name="RenderCubicBezier" typeCode="SBML_RENDER_CUBICBEZIER" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderPoint" abstract="false" elementName="element">
+      <attributes>
+        <attribute name="basepoint1_x" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="basepoint1_y" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="basepoint1_z" required="false" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="basepoint2_x" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="basepoint2_y" required="true" type="element" element="RelAbsVector" abstract="false" />
+        <attribute name="basepoint2_z" required="false" type="element" element="RelAbsVector" abstract="false" />
+      </attributes>
+    </element>
+    <element name="RenderCurve" typeCode="SBML_RENDER_CURVE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="curve">
+      <attributes>
+        <attribute name="startHead" required="false" type="SIdRef" abstract="false" />
+        <attribute name="endHead" required="false" type="SIdRef" abstract="false" />
+        <attribute name="element" required="true" type="lo_element" element="RenderPoint" abstract="false" />
+      </attributes>
+    </element>
+    <element name="RenderPoint" typeCode="SBML_RENDER_POINT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="element" listOfName="listOfElements">
+      <attributes>
         <attribute name="x" required="true" type="element" element="RelAbsVector" abstract="false" />
         <attribute name="y" required="true" type="element" element="RelAbsVector" abstract="false" />
         <attribute name="z" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="width" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="height" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="href" required="true" type="string" abstract="false" />
       </attributes>
+      <concretes>
+        <concrete name="element" element="RenderPoint" />
+        <concrete name="element" element="RenderCubicBezier" />
+      </concretes>
     </element>
     <element name="Text" typeCode="SBML_RENDER_TEXT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="text">
       <attributes>
@@ -103,23 +165,37 @@
         <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="Polygon" typeCode="SBML_RENDER_POLYGON" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="polygon">
+    <element name="Transformation2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true">
       <attributes>
-        <attribute name="element" required="true" type="lo_element" element="RenderPoint" abstract="false" />
+        <attribute name="transform" required="false" type="array" element="double" abstract="false" />
       </attributes>
     </element>
-    <element name="RenderGroup" typeCode="SBML_RENDER_GROUP" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="text">
+    <element name="Transformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
-        <attribute name="startHead" required="false" type="SId" abstract="false" />
-        <attribute name="endHead" required="false" type="SId" abstract="false" />
-        <attribute name="font-family" required="false" type="string" element="FontFamily" abstract="false" />
-        <attribute name="font-weight" required="false" type="enum" element="FontWeight" abstract="false" />
-        <attribute name="font-style" required="false" type="enum" element="FontStyle" abstract="false" />
-        <attribute name="text-anchor" required="false" type="enum" element="HTextAnchor" abstract="false" />
-        <attribute name="vtext-anchor" required="false" type="enum" element="VTextAnchor" abstract="false" />
-        <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="drawableObjects" required="false" type="lo_element" element="ListOfDrawables" abstract="false" />
+        <attribute name="transform" required="true" type="array" element="double" abstract="false" />
       </attributes>
+    </element>
+    <element name="GraphicalPrimitive1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
+      <attributes>
+        <attribute name="id" required="false" type="SId" abstract="false" />
+        <attribute name="stroke" required="false" type="string" abstract="false" />
+        <attribute name="stroke-width" required="false" type="string" abstract="false" />
+        <attribute name="stroke-dasharray" required="false" type="array" element="unsigned integer" abstract="false" />
+      </attributes>
+    </element>
+    <element name="GraphicalPrimitive2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
+      <attributes>
+        <attribute name="fill" required="false" type="string" abstract="false" />
+        <attribute name="fill-rule" required="false" type="enum" element="FillRule" abstract="false" />
+      </attributes>
+      <concretes>
+        <concrete name="ellipse" element="Ellipse" />
+        <concrete name="rectangle" element="Rectangle" />
+        <concrete name="polygon" element="Polygon" />
+        <concrete name="image" element="Image" />
+        <concrete name="curve" element="RenderCurve" />
+        <concrete name="text" element="Text" />
+      </concretes>
     </element>
     <element name="ListOfDrawables" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true" elementName="listOfDrawables">
       <concretes>
@@ -129,54 +205,10 @@
         <concrete name="rectangle" element="Rectangle" />
         <concrete name="ellipse" element="Ellipse" />
         <concrete name="text" element="Text" />
-        <concrete name="image" />
+        <concrete name="image" element="Image" />
       </concretes>
     </element>
-    <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
-      <attributes>
-        <attribute name="id" required="false" type="SId" abstract="false" />
-        <attribute name="value" required="false" type="string" abstract="false" />
-      </attributes>
-    </element>
-    <element name="GradientStop" typeCode="SBML_RENDER_GRADIENT_STOP" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="stop">
-      <attributes>
-        <attribute name="offset" required="true" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="stop-color" required="true" type="string" abstract="false" />
-      </attributes>
-    </element>
-    <element name="GradientBase" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="ListOfGradientDefinitions">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="spreadMethod" required="false" type="enum" element="GradientSpreadMethod" abstract="false" />
-        <attribute name="stop" required="false" type="lo_element" element="GradientStop" abstract="false" />
-      </attributes>
-      <concretes>
-        <concrete name="linearGradient" element="LinearGradient" />
-        <concrete name="radialGradient" element="RadialGradient" />
-      </concretes>
-    </element>
-    <element name="LinearGradient" typeCode="SBML_RENDER_LINEARGRADIENT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GradientBase" abstract="false" elementName="linearGradient">
-      <attributes>
-        <attribute name="x1" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="y1" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="z1" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="x2" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="y2" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="z2" required="false" type="element" element="RelAbsVector" abstract="false" />
-      </attributes>
-    </element>
-    <element name="RadialGradient" typeCode="SBML_RENDER_RADIALGRADIENT" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GradientBase" abstract="false" elementName="radialGradient">
-      <attributes>
-        <attribute name="cx" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="cy" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="cz" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="r" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="fx" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="fy" required="false" type="element" element="RelAbsVector" abstract="false" />
-        <attribute name="fz" required="false" type="element" element="RelAbsVector" abstract="false" />
-      </attributes>
-    </element>
-    <element name="Style" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="Style" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
@@ -184,25 +216,8 @@
         <attribute name="typeList" required="false" type="string" abstract="false" />
         <attribute name="g" required="false" type="element" element="RenderGroup" abstract="false" />
       </attributes>
-      <concretes>
-        <concrete name="style" />
-      </concretes>
     </element>
-    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style">
-      <attributes>
-        <attribute name="idList" required="false" type="string" abstract="false" />
-      </attributes>
-    </element>
-    <element name="GlobalStyle" typeCode="SBML_RENDER_GLOBALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" />
-    <element name="LineEnding" typeCode="SBML_RENDER_LINEENDING" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="lineEnding">
-      <attributes>
-        <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="enableRotationalMapping" required="false" type="boolean" abstract="false" />
-        <attribute name="g" required="false" type="element" element="RenderGroup" abstract="false" />
-        <attribute name="boundingBox" required="false" type="element" element="BoundingBox" abstract="false" />
-      </attributes>
-    </element>
-    <element name="RenderInformationBase" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="RenderInformationBase" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
@@ -215,26 +230,16 @@
         <attribute name="lineEnding" required="false" type="lo_element" element="LineEnding" abstract="false" />
       </attributes>
     </element>
-    <element name="LocalRenderInformation" typeCode="SBML_RENDER_LOCALRENDERINFORMATION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
-      <attributes>
-        <attribute name="style" required="false" type="lo_element" element="LocalStyle" abstract="false" />
-      </attributes>
-    </element>
     <element name="ListOfLocalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfRenderInformation">
       <attributes>
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
       </attributes>
     </element>
-    <element name="GlobalRenderInformation" typeCode="SBML_RENDER_GLOBALRENDERINFORMATION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
-      <attributes>
-        <attribute name="style" required="false" type="lo_element" element="GlobalStyle" abstract="false" />
-      </attributes>
-    </element>
     <element name="ListOfGlobalRenderInformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="ListOf" abstract="false" elementName="listOfGlobalRenderInformation">
       <attributes>
         <attribute name="versionMajor" required="true" type="uint" abstract="false" />
-        <attribute name="versionMinor" required="false" type="uint" abstract="false" />
+        <attribute name="versionMinor" required="true" type="uint" abstract="false" />
       </attributes>
     </element>
   </elements>
