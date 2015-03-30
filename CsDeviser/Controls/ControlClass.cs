@@ -35,10 +35,15 @@ namespace CsDeviser.Controls
 
       gridConcrete.Rows.Clear();
       gridAttributes.Rows.Clear();
+      gridLoAttributes.Rows.Clear();
 
       splitContainer1.Panel2Collapsed = true;
+      splitContainer2.Panel2Collapsed = true;
       cmdAddConcrete.Visible = false;
       cmdDelConcrete.Visible = false;
+      cmdAddLoAttribute.Visible = false;
+      cmdDelLoAttribute.Visible = false;
+
 
       Current = package;
 
@@ -58,11 +63,18 @@ namespace CsDeviser.Controls
       cmdDelConcrete.Visible = Current.Abstract;
       chkHasChildren.Checked = Current.HasChildren;
       chkHasListOf.Checked = Current.HasListOf;
+      splitContainer2.Panel2Collapsed = !Current.HasListOf;
+      cmdAddLoAttribute.Visible = Current.HasListOf;
+      cmdDelLoAttribute.Visible = Current.HasListOf;
+
       chkChildrenOverwriteElementName.Checked = Current.ChildrenOverwriteElementName;
       chkHasMath.Checked = Current.HasMath;
 
       foreach( var newAttr in Current.Attributes)
       gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+
+      foreach (var newAttr in Current.ListOfAttributes)
+        gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
 
       foreach (var newAttr in Current.Concretes)
       gridConcrete.Rows.Add(newAttr.Name, newAttr.Element);
@@ -73,7 +85,7 @@ namespace CsDeviser.Controls
     private void txtName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Name= txtName.Text;      
+      Current.Name= txtName.Text;
 
     }
 
@@ -102,6 +114,9 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.HasListOf = chkHasListOf.Checked;
+      splitContainer1.Panel2Collapsed = !Current.HasListOf;
+      cmdAddLoAttribute.Visible = Current.HasListOf;
+      cmdDelLoAttribute.Visible = Current.HasListOf;
 
     }
 
@@ -261,7 +276,61 @@ namespace CsDeviser.Controls
     public override void OnCommitChanges()
     {
       gridAttributes.EndEdit();
+      gridLoAttributes.EndEdit();
       gridConcrete.EndEdit();
+    }
+
+    private void gridLoAttributes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+    {
+      if (Current == null || Initializing) return;
+
+      var row = gridLoAttributes.Rows[e.RowIndex];
+      var attribute = Current.ListOfAttributes[e.RowIndex];
+
+      switch (e.ColumnIndex)
+      {
+        case 0:
+          attribute.Name = row.Cells[0].Value as string;
+          break;
+        case 1:
+          attribute.Type = row.Cells[1].Value as string;
+          break;
+        case 2:
+          attribute.Required = (bool)row.Cells[2].Value;
+          break;
+        case 3:
+          attribute.Element = row.Cells[3].Value as string;
+          break;
+        case 4:
+          attribute.Abstract = (bool)row.Cells[4].Value;
+          break;
+      }
+    }
+
+    private void OnAddLoAttributeClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+
+      var newAttr = new DeviserListOfAttribute { Name = "ListOfAttribute" + (Current.ListOfAttributes.Count + 1).ToString() };
+      Current.ListOfAttributes.Add(newAttr);
+
+      var row = gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+      gridLoAttributes.CurrentCell = gridLoAttributes[0, row];
+      gridLoAttributes.Focus();
+      gridLoAttributes.BeginEdit(true);
+    }
+
+    private void OnRemoveLoAttributeClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      var row = gridLoAttributes.SelectedRows;
+      for (int i = row.Count - 1; i >= 0; i--)
+      {
+        gridLoAttributes.Rows.Remove(row[i]);
+        var attr = Current.ListOfAttributes.FirstOrDefault(a => a.Name == row[i].Cells[0].Value as string);
+        if (attr != null)
+          Current.ListOfAttributes.Remove(attr);
+      }
     }
 
   }

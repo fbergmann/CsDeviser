@@ -39,6 +39,7 @@
       this.txtListOfName = new System.Windows.Forms.TextBox();
       this.txtAddDecl = new System.Windows.Forms.TextBox();
       this.txtAddImpl = new System.Windows.Forms.TextBox();
+      this.cmdAddLoAttribute = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label7 = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@
       this.colConcreteName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colConcreteElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.cmdDelLoAttribute = new System.Windows.Forms.Button();
       this.label5 = new System.Windows.Forms.Label();
       this.cmdDelConcrete = new System.Windows.Forms.Button();
       this.cmdRemoveAttr = new System.Windows.Forms.Button();
@@ -66,6 +68,13 @@
       this.label3 = new System.Windows.Forms.Label();
       this.cmdAddAttribute = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
+      this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+      this.gridLoAttributes = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -75,6 +84,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).BeginInit();
       this.panel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+      this.splitContainer2.Panel1.SuspendLayout();
+      this.splitContainer2.Panel2.SuspendLayout();
+      this.splitContainer2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).BeginInit();
       this.SuspendLayout();
       // 
       // txtName
@@ -176,19 +190,30 @@
       this.toolTip1.SetToolTip(this.txtAddImpl, "file with additional implementations");
       this.txtAddImpl.TextChanged += new System.EventHandler(this.txtAddImpl_TextChanged);
       // 
+      // cmdAddLoAttribute
+      // 
+      this.cmdAddLoAttribute.Location = new System.Drawing.Point(7, 80);
+      this.cmdAddLoAttribute.Name = "cmdAddLoAttribute";
+      this.cmdAddLoAttribute.Size = new System.Drawing.Size(106, 23);
+      this.cmdAddLoAttribute.TabIndex = 16;
+      this.cmdAddLoAttribute.Text = "Add &LoAttribute";
+      this.toolTip1.SetToolTip(this.cmdAddLoAttribute, "Adds an attribute for the ListOf Class");
+      this.cmdAddLoAttribute.UseVisualStyleBackColor = true;
+      this.cmdAddLoAttribute.Click += new System.EventHandler(this.OnAddLoAttributeClick);
+      // 
       // tableLayoutPanel1
       // 
       this.tableLayoutPanel1.ColumnCount = 2;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
       this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+      this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 1);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 158F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(511, 391);
       this.tableLayoutPanel1.TabIndex = 0;
@@ -211,7 +236,7 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(3, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(249, 145);
+      this.panel1.Size = new System.Drawing.Size(249, 152);
       this.panel1.TabIndex = 0;
       // 
       // label7
@@ -287,9 +312,8 @@
       // 
       // splitContainer1
       // 
-      this.tableLayoutPanel1.SetColumnSpan(this.splitContainer1, 2);
       this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainer1.Location = new System.Drawing.Point(3, 154);
+      this.splitContainer1.Location = new System.Drawing.Point(0, 0);
       this.splitContainer1.Name = "splitContainer1";
       this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
@@ -300,8 +324,8 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.gridConcrete);
-      this.splitContainer1.Size = new System.Drawing.Size(505, 234);
-      this.splitContainer1.SplitterDistance = 167;
+      this.splitContainer1.Size = new System.Drawing.Size(505, 159);
+      this.splitContainer1.SplitterDistance = 113;
       this.splitContainer1.TabIndex = 14;
       // 
       // gridAttributes
@@ -318,7 +342,7 @@
       this.gridAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
-      this.gridAttributes.Size = new System.Drawing.Size(505, 167);
+      this.gridAttributes.Size = new System.Drawing.Size(505, 113);
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAttributes_CellValueChanged);
       // 
@@ -358,7 +382,7 @@
       this.gridConcrete.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridConcrete.Location = new System.Drawing.Point(0, 0);
       this.gridConcrete.Name = "gridConcrete";
-      this.gridConcrete.Size = new System.Drawing.Size(505, 63);
+      this.gridConcrete.Size = new System.Drawing.Size(505, 42);
       this.gridConcrete.TabIndex = 15;
       this.gridConcrete.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridConcrete_CellValueChanged);
       // 
@@ -374,6 +398,8 @@
       // 
       // panel2
       // 
+      this.panel2.Controls.Add(this.cmdDelLoAttribute);
+      this.panel2.Controls.Add(this.cmdAddLoAttribute);
       this.panel2.Controls.Add(this.label5);
       this.panel2.Controls.Add(this.txtListOfName);
       this.panel2.Controls.Add(this.cmdDelConcrete);
@@ -387,8 +413,19 @@
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel2.Location = new System.Drawing.Point(258, 3);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(250, 145);
+      this.panel2.Size = new System.Drawing.Size(250, 152);
       this.panel2.TabIndex = 2;
+      // 
+      // cmdDelLoAttribute
+      // 
+      this.cmdDelLoAttribute.Location = new System.Drawing.Point(119, 79);
+      this.cmdDelLoAttribute.Name = "cmdDelLoAttribute";
+      this.cmdDelLoAttribute.Size = new System.Drawing.Size(106, 23);
+      this.cmdDelLoAttribute.TabIndex = 17;
+      this.cmdDelLoAttribute.Text = "Del LoAttribute";
+      this.toolTip1.SetToolTip(this.cmdDelLoAttribute, "Deletes the selected attribute from the class");
+      this.cmdDelLoAttribute.UseVisualStyleBackColor = true;
+      this.cmdDelLoAttribute.Click += new System.EventHandler(this.OnRemoveLoAttributeClick);
       // 
       // label5
       // 
@@ -401,7 +438,7 @@
       // 
       // cmdDelConcrete
       // 
-      this.cmdDelConcrete.Location = new System.Drawing.Point(118, 115);
+      this.cmdDelConcrete.Location = new System.Drawing.Point(119, 129);
       this.cmdDelConcrete.Name = "cmdDelConcrete";
       this.cmdDelConcrete.Size = new System.Drawing.Size(106, 23);
       this.cmdDelConcrete.TabIndex = 14;
@@ -411,17 +448,18 @@
       // 
       // cmdRemoveAttr
       // 
-      this.cmdRemoveAttr.Location = new System.Drawing.Point(118, 90);
+      this.cmdRemoveAttr.Location = new System.Drawing.Point(119, 104);
       this.cmdRemoveAttr.Name = "cmdRemoveAttr";
       this.cmdRemoveAttr.Size = new System.Drawing.Size(106, 23);
       this.cmdRemoveAttr.TabIndex = 12;
       this.cmdRemoveAttr.Text = "&Del Attribute";
+      this.toolTip1.SetToolTip(this.cmdRemoveAttr, "Removes the selected Attribute from the class");
       this.cmdRemoveAttr.UseVisualStyleBackColor = true;
       this.cmdRemoveAttr.Click += new System.EventHandler(this.OnRemoveAttrClick);
       // 
       // cmdAddConcrete
       // 
-      this.cmdAddConcrete.Location = new System.Drawing.Point(6, 115);
+      this.cmdAddConcrete.Location = new System.Drawing.Point(7, 129);
       this.cmdAddConcrete.Name = "cmdAddConcrete";
       this.cmdAddConcrete.Size = new System.Drawing.Size(106, 23);
       this.cmdAddConcrete.TabIndex = 13;
@@ -440,11 +478,12 @@
       // 
       // cmdAddAttribute
       // 
-      this.cmdAddAttribute.Location = new System.Drawing.Point(6, 91);
+      this.cmdAddAttribute.Location = new System.Drawing.Point(7, 105);
       this.cmdAddAttribute.Name = "cmdAddAttribute";
       this.cmdAddAttribute.Size = new System.Drawing.Size(106, 23);
       this.cmdAddAttribute.TabIndex = 11;
       this.cmdAddAttribute.Text = "&Add Attribute";
+      this.toolTip1.SetToolTip(this.cmdAddAttribute, "Adds an Attribute to this Class");
       this.cmdAddAttribute.UseVisualStyleBackColor = true;
       this.cmdAddAttribute.Click += new System.EventHandler(this.OnAddAttributeClick);
       // 
@@ -456,6 +495,68 @@
       this.label4.Size = new System.Drawing.Size(76, 13);
       this.label4.TabIndex = 11;
       this.label4.Text = "ElementName:";
+      // 
+      // splitContainer2
+      // 
+      this.tableLayoutPanel1.SetColumnSpan(this.splitContainer2, 2);
+      this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitContainer2.Location = new System.Drawing.Point(3, 161);
+      this.splitContainer2.Name = "splitContainer2";
+      this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // splitContainer2.Panel1
+      // 
+      this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+      // 
+      // splitContainer2.Panel2
+      // 
+      this.splitContainer2.Panel2.Controls.Add(this.gridLoAttributes);
+      this.splitContainer2.Size = new System.Drawing.Size(505, 227);
+      this.splitContainer2.SplitterDistance = 159;
+      this.splitContainer2.TabIndex = 15;
+      // 
+      // gridLoAttributes
+      // 
+      this.gridLoAttributes.AllowUserToAddRows = false;
+      this.gridLoAttributes.AllowUserToDeleteRows = false;
+      this.gridLoAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.gridLoAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewCheckBoxColumn2});
+      this.gridLoAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.gridLoAttributes.Location = new System.Drawing.Point(0, 0);
+      this.gridLoAttributes.Name = "gridLoAttributes";
+      this.gridLoAttributes.Size = new System.Drawing.Size(505, 64);
+      this.gridLoAttributes.TabIndex = 15;
+      this.gridLoAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLoAttributes_CellValueChanged);
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Type";
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      // 
+      // dataGridViewCheckBoxColumn1
+      // 
+      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
+      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.HeaderText = "Element";
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      // 
+      // dataGridViewCheckBoxColumn2
+      // 
+      this.dataGridViewCheckBoxColumn2.HeaderText = "Abstract";
+      this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
       // 
       // ControlClass
       // 
@@ -475,6 +576,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).EndInit();
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
+      this.splitContainer2.Panel1.ResumeLayout(false);
+      this.splitContainer2.Panel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+      this.splitContainer2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -518,6 +624,15 @@
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.TextBox txtListOfName;
+    private System.Windows.Forms.Button cmdDelLoAttribute;
+    private System.Windows.Forms.Button cmdAddLoAttribute;
+    private System.Windows.Forms.SplitContainer splitContainer2;
+    private System.Windows.Forms.DataGridView gridLoAttributes;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
 
   }
 }

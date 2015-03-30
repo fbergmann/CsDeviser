@@ -47,8 +47,12 @@ namespace CsDeviser.Forms
 
     private void cmdBrowsePython_Click(object sender, EventArgs e)
     {
-      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter= "Executables|*.exe|All files|*.*", InitialDirectory = Path.GetFullPath(txtPython.Text), FileName = Path.GetFileName(txtPython.Text) })
+      string defaultPath = !string.IsNullOrWhiteSpace(txtPython.Text) ? Path.GetFullPath(txtPython.Text)
+       : null;
+      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = Path.GetFullPath(txtPython.Text)})
       {
+        if (!string.IsNullOrWhiteSpace(defaultPath))
+          dialog.FileName = defaultPath;
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtPython.Text = dialog.FileName;
       }

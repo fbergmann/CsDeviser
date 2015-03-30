@@ -207,6 +207,12 @@ namespace LibDeviser
           if (attr.Type == "element" || attr.Type == "lo_element")
             ++numChildren;
         }
+        foreach (var attr in item.ListOfAttributes)
+        {
+          if (attr.Type == "element" || attr.Type == "lo_element")
+            ++numChildren;
+        }
+
 
         if (hasChildren && numChildren == 0)
         {
@@ -239,6 +245,12 @@ namespace LibDeviser
         var hasMath = item.HasMath;
         int numChildren = 0;
         foreach (var attr in item.Attributes)
+        {
+          if (attr.Name == "math")
+            ++numChildren;
+        }
+
+        foreach (var attr in item.ListOfAttributes)
         {
           if (attr.Name == "math")
             ++numChildren;
@@ -327,7 +339,7 @@ namespace LibDeviser
         {
           log.Add(new DeviserMessage
           {
-            Message = string.Format("Class: '{0}' is marked as having a list of, but no litof of it is used", current.Name),
+            Message = string.Format("Class: '{0}' is marked as having a list of, but no listOf of it is used", current.Name),
             Element = current
           });
           if (correct)

@@ -37,12 +37,14 @@ namespace LibDeviser
 
 
     public List<DeviserAttribute> Attributes { get; set; }
+    public List<DeviserListOfAttribute> ListOfAttributes { get; set; }
     public List<DeviserConcrete> Concretes { get; set; }
 
     public DeviserClass()
     {
       BaseClass = "SBase";
       Attributes = new List<DeviserAttribute>();
+      ListOfAttributes = new List<DeviserListOfAttribute>();
       Concretes = new List<DeviserConcrete>();
     }
 
@@ -74,6 +76,9 @@ namespace LibDeviser
 
       Attributes = new List<DeviserAttribute>();
       Attributes.InitializeFrom(Util.getElement(element, "attribute"));
+      ListOfAttributes = new List<DeviserListOfAttribute>();
+      ListOfAttributes.InitializeFrom(Util.getElement(element, "listOfAttribute"));
+      Concretes = new List<DeviserConcrete>();
       Concretes.InitializeFrom(Util.getElement(element, "concrete"));
     }
 
@@ -115,6 +120,7 @@ namespace LibDeviser
       base.WriteElementsTo(writer);
 
       Attributes.WriteListWithName(writer, "attributes");
+      ListOfAttributes.WriteListWithName(writer, "listOfAttributes");
       Concretes.WriteListWithName(writer, "concretes");
 
     }
@@ -124,6 +130,7 @@ namespace LibDeviser
     {
       Document = doc;
       Attributes.SetParent(doc);
+      ListOfAttributes.SetParent(doc);
       Concretes.SetParent(doc);
 
     }
