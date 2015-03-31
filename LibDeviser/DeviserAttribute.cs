@@ -20,7 +20,7 @@ namespace LibDeviser
       get
       {
         return Type == "element" || Type == "lo_element" ||
-        Type == "enum";
+        Type == "enum" || Type == "inline_lo_element";
       }
     }
 

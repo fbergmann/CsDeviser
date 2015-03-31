@@ -146,7 +146,7 @@ namespace LibDeviser
       var builder = new StringBuilder();
       if (!string.IsNullOrWhiteSpace(BaseClass))
       {
-        builder.AppendFormat("[{0}]<>--", BaseClass);
+        builder.AppendFormat("[{0}]<>-", BaseClass);
       }
       builder.Append("[" + Name);
       if (Attributes.Any())
@@ -176,7 +176,7 @@ namespace LibDeviser
       if (HasListOf)
       {
         string listOf = GetListOfName();
-        builder.Append("[ListOf]<>--[" + listOf);
+        builder.Append("[ListOf]<>-[" + listOf);
         if (ListOfAttributes.Any())
           builder.Append("|");
         list = new List<DeviserAttribute>();

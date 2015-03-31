@@ -31,6 +31,7 @@
       this.components = new System.ComponentModel.Container();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmpStyle = new System.Windows.Forms.ComboBox();
       this.chkFitDrawing = new System.Windows.Forms.CheckBox();
       this.cmdSaveAs = new System.Windows.Forms.Button();
       this.cmdUpdateImage = new System.Windows.Forms.Button();
@@ -40,9 +41,8 @@
       this.pnlPicture = new System.Windows.Forms.Panel();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.tabYuml = new System.Windows.Forms.TabPage();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.txtYuml = new System.Windows.Forms.TextBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.cmpStyle = new System.Windows.Forms.ComboBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.tabControl1.SuspendLayout();
@@ -80,6 +80,22 @@
       this.panel1.Size = new System.Drawing.Size(618, 30);
       this.panel1.TabIndex = 0;
       // 
+      // cmpStyle
+      // 
+      this.cmpStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmpStyle.FormattingEnabled = true;
+      this.cmpStyle.Items.AddRange(new object[] {
+            "plain",
+            "nofunky",
+            "scruffy"});
+      this.cmpStyle.Location = new System.Drawing.Point(385, 5);
+      this.cmpStyle.Name = "cmpStyle";
+      this.cmpStyle.Size = new System.Drawing.Size(80, 21);
+      this.cmpStyle.TabIndex = 4;
+      this.cmpStyle.Text = "plain";
+      this.toolTip1.SetToolTip(this.cmpStyle, "Choose the style of the drawing");
+      this.cmpStyle.SelectedIndexChanged += new System.EventHandler(this.OnStyleIndexChanged);
+      // 
       // chkFitDrawing
       // 
       this.chkFitDrawing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -101,7 +117,7 @@
       this.cmdSaveAs.Name = "cmdSaveAs";
       this.cmdSaveAs.Size = new System.Drawing.Size(75, 23);
       this.cmdSaveAs.TabIndex = 2;
-      this.cmdSaveAs.Text = "Save As";
+      this.cmdSaveAs.Text = "&Save As";
       this.cmdSaveAs.UseVisualStyleBackColor = true;
       this.cmdSaveAs.Click += new System.EventHandler(this.OnSaveAsClick);
       // 
@@ -111,7 +127,7 @@
       this.cmdUpdateImage.Name = "cmdUpdateImage";
       this.cmdUpdateImage.Size = new System.Drawing.Size(75, 23);
       this.cmdUpdateImage.TabIndex = 1;
-      this.cmdUpdateImage.Text = "Update";
+      this.cmdUpdateImage.Text = "&Update";
       this.toolTip1.SetToolTip(this.cmdUpdateImage, "Generates a new Image from the Description");
       this.cmdUpdateImage.UseVisualStyleBackColor = true;
       this.cmdUpdateImage.Click += new System.EventHandler(this.OnUpdateClick);
@@ -170,7 +186,7 @@
       // 
       // tabYuml
       // 
-      this.tabYuml.Controls.Add(this.textBox1);
+      this.tabYuml.Controls.Add(this.txtYuml);
       this.tabYuml.Location = new System.Drawing.Point(4, 22);
       this.tabYuml.Name = "tabYuml";
       this.tabYuml.Padding = new System.Windows.Forms.Padding(3);
@@ -179,32 +195,17 @@
       this.tabYuml.Text = "Edit";
       this.tabYuml.UseVisualStyleBackColor = true;
       // 
-      // textBox1
+      // txtYuml
       // 
-      this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.textBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBox1.Location = new System.Drawing.Point(3, 3);
-      this.textBox1.Multiline = true;
-      this.textBox1.Name = "textBox1";
-      this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBox1.Size = new System.Drawing.Size(604, 367);
-      this.textBox1.TabIndex = 0;
-      // 
-      // cmpStyle
-      // 
-      this.cmpStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmpStyle.FormattingEnabled = true;
-      this.cmpStyle.Items.AddRange(new object[] {
-            "plain",
-            "nofunky",
-            "scruffy"});
-      this.cmpStyle.Location = new System.Drawing.Point(385, 5);
-      this.cmpStyle.Name = "cmpStyle";
-      this.cmpStyle.Size = new System.Drawing.Size(80, 21);
-      this.cmpStyle.TabIndex = 4;
-      this.cmpStyle.Text = "plain";
-      this.toolTip1.SetToolTip(this.cmpStyle, "Choose the style of the drawing");
-      this.cmpStyle.SelectedIndexChanged += new System.EventHandler(this.OnStyleIndexChanged);
+      this.txtYuml.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.txtYuml.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.txtYuml.Location = new System.Drawing.Point(3, 3);
+      this.txtYuml.Multiline = true;
+      this.txtYuml.Name = "txtYuml";
+      this.txtYuml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.txtYuml.Size = new System.Drawing.Size(604, 367);
+      this.txtYuml.TabIndex = 0;
+      this.txtYuml.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
       // 
       // FormYuml
       // 
@@ -243,7 +244,7 @@
     private System.Windows.Forms.TabPage tabImage;
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.TabPage tabYuml;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox txtYuml;
     private System.Windows.Forms.Panel pnlPicture;
     private System.Windows.Forms.Button cmdSaveAs;
     private System.Windows.Forms.CheckBox chkFitDrawing;

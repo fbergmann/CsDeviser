@@ -80,7 +80,7 @@ namespace LibDeviser
       for (int i = 0; i < References.Count; i++)
       {
         var item = References[i];
-        builder.AppendLine("["+ExtensionPoint+ "]-->[" + item.Name + "]");
+        builder.AppendLine("["+ExtensionPoint+ "]->[" + item.Name + "]");
       }
 
       

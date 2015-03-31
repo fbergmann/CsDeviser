@@ -40,6 +40,9 @@
       this.txtAddDecl = new System.Windows.Forms.TextBox();
       this.txtAddImpl = new System.Windows.Forms.TextBox();
       this.cmdAddLoAttribute = new System.Windows.Forms.Button();
+      this.cmdDelLoAttribute = new System.Windows.Forms.Button();
+      this.cmdRemoveAttr = new System.Windows.Forms.Button();
+      this.cmdAddAttribute = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label7 = new System.Windows.Forms.Label();
@@ -49,6 +52,13 @@
       this.chkAbstract = new System.Windows.Forms.CheckBox();
       this.label2 = new System.Windows.Forms.Label();
       this.chkHasMath = new System.Windows.Forms.CheckBox();
+      this.panel2 = new System.Windows.Forms.Panel();
+      this.label5 = new System.Windows.Forms.Label();
+      this.cmdDelConcrete = new System.Windows.Forms.Button();
+      this.cmdAddConcrete = new System.Windows.Forms.Button();
+      this.label3 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
       this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,16 +69,6 @@
       this.gridConcrete = new System.Windows.Forms.DataGridView();
       this.colConcreteName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colConcreteElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.panel2 = new System.Windows.Forms.Panel();
-      this.cmdDelLoAttribute = new System.Windows.Forms.Button();
-      this.label5 = new System.Windows.Forms.Label();
-      this.cmdDelConcrete = new System.Windows.Forms.Button();
-      this.cmdRemoveAttr = new System.Windows.Forms.Button();
-      this.cmdAddConcrete = new System.Windows.Forms.Button();
-      this.label3 = new System.Windows.Forms.Label();
-      this.cmdAddAttribute = new System.Windows.Forms.Button();
-      this.label4 = new System.Windows.Forms.Label();
-      this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.gridLoAttributes = new System.Windows.Forms.DataGridView();
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,17 +77,17 @@
       this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
+      this.panel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+      this.splitContainer2.Panel1.SuspendLayout();
+      this.splitContainer2.Panel2.SuspendLayout();
+      this.splitContainer2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).BeginInit();
-      this.panel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-      this.splitContainer2.Panel1.SuspendLayout();
-      this.splitContainer2.Panel2.SuspendLayout();
-      this.splitContainer2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).BeginInit();
       this.SuspendLayout();
       // 
@@ -195,11 +195,44 @@
       this.cmdAddLoAttribute.Location = new System.Drawing.Point(7, 80);
       this.cmdAddLoAttribute.Name = "cmdAddLoAttribute";
       this.cmdAddLoAttribute.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddLoAttribute.TabIndex = 16;
+      this.cmdAddLoAttribute.TabIndex = 11;
       this.cmdAddLoAttribute.Text = "Add &LoAttribute";
       this.toolTip1.SetToolTip(this.cmdAddLoAttribute, "Adds an attribute for the ListOf Class");
       this.cmdAddLoAttribute.UseVisualStyleBackColor = true;
       this.cmdAddLoAttribute.Click += new System.EventHandler(this.OnAddLoAttributeClick);
+      // 
+      // cmdDelLoAttribute
+      // 
+      this.cmdDelLoAttribute.Location = new System.Drawing.Point(119, 79);
+      this.cmdDelLoAttribute.Name = "cmdDelLoAttribute";
+      this.cmdDelLoAttribute.Size = new System.Drawing.Size(106, 23);
+      this.cmdDelLoAttribute.TabIndex = 12;
+      this.cmdDelLoAttribute.Text = "Del LoAttribute";
+      this.toolTip1.SetToolTip(this.cmdDelLoAttribute, "Deletes the selected attribute from the class");
+      this.cmdDelLoAttribute.UseVisualStyleBackColor = true;
+      this.cmdDelLoAttribute.Click += new System.EventHandler(this.OnRemoveLoAttributeClick);
+      // 
+      // cmdRemoveAttr
+      // 
+      this.cmdRemoveAttr.Location = new System.Drawing.Point(119, 104);
+      this.cmdRemoveAttr.Name = "cmdRemoveAttr";
+      this.cmdRemoveAttr.Size = new System.Drawing.Size(106, 23);
+      this.cmdRemoveAttr.TabIndex = 14;
+      this.cmdRemoveAttr.Text = "&Del Attribute";
+      this.toolTip1.SetToolTip(this.cmdRemoveAttr, "Removes the selected Attribute from the class");
+      this.cmdRemoveAttr.UseVisualStyleBackColor = true;
+      this.cmdRemoveAttr.Click += new System.EventHandler(this.OnRemoveAttrClick);
+      // 
+      // cmdAddAttribute
+      // 
+      this.cmdAddAttribute.Location = new System.Drawing.Point(7, 105);
+      this.cmdAddAttribute.Name = "cmdAddAttribute";
+      this.cmdAddAttribute.Size = new System.Drawing.Size(106, 23);
+      this.cmdAddAttribute.TabIndex = 13;
+      this.cmdAddAttribute.Text = "&Add Attribute";
+      this.toolTip1.SetToolTip(this.cmdAddAttribute, "Adds an Attribute to this Class");
+      this.cmdAddAttribute.UseVisualStyleBackColor = true;
+      this.cmdAddAttribute.Click += new System.EventHandler(this.OnAddAttributeClick);
       // 
       // tableLayoutPanel1
       // 
@@ -310,6 +343,92 @@
       this.chkHasMath.UseVisualStyleBackColor = true;
       this.chkHasMath.CheckedChanged += new System.EventHandler(this.chkHasMath_CheckedChanged);
       // 
+      // panel2
+      // 
+      this.panel2.Controls.Add(this.cmdDelLoAttribute);
+      this.panel2.Controls.Add(this.cmdAddLoAttribute);
+      this.panel2.Controls.Add(this.label5);
+      this.panel2.Controls.Add(this.txtListOfName);
+      this.panel2.Controls.Add(this.cmdDelConcrete);
+      this.panel2.Controls.Add(this.cmdRemoveAttr);
+      this.panel2.Controls.Add(this.cmdAddConcrete);
+      this.panel2.Controls.Add(this.txtBaseClass);
+      this.panel2.Controls.Add(this.label3);
+      this.panel2.Controls.Add(this.cmdAddAttribute);
+      this.panel2.Controls.Add(this.label4);
+      this.panel2.Controls.Add(this.txtElementName);
+      this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panel2.Location = new System.Drawing.Point(258, 3);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(250, 152);
+      this.panel2.TabIndex = 2;
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(17, 58);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(65, 13);
+      this.label5.TabIndex = 15;
+      this.label5.Text = "ListOfName:";
+      // 
+      // cmdDelConcrete
+      // 
+      this.cmdDelConcrete.Location = new System.Drawing.Point(119, 129);
+      this.cmdDelConcrete.Name = "cmdDelConcrete";
+      this.cmdDelConcrete.Size = new System.Drawing.Size(106, 23);
+      this.cmdDelConcrete.TabIndex = 16;
+      this.cmdDelConcrete.Text = "Del Concrete";
+      this.cmdDelConcrete.UseVisualStyleBackColor = true;
+      this.cmdDelConcrete.Click += new System.EventHandler(this.OnRemoveConcreteClick);
+      // 
+      // cmdAddConcrete
+      // 
+      this.cmdAddConcrete.Location = new System.Drawing.Point(7, 129);
+      this.cmdAddConcrete.Name = "cmdAddConcrete";
+      this.cmdAddConcrete.Size = new System.Drawing.Size(106, 23);
+      this.cmdAddConcrete.TabIndex = 15;
+      this.cmdAddConcrete.Text = "Add &Concrete";
+      this.cmdAddConcrete.UseVisualStyleBackColor = true;
+      this.cmdAddConcrete.Click += new System.EventHandler(this.OnAddConcreteClick);
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(20, 6);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(62, 13);
+      this.label3.TabIndex = 6;
+      this.label3.Text = "BaseClass: ";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(6, 32);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(76, 13);
+      this.label4.TabIndex = 11;
+      this.label4.Text = "ElementName:";
+      // 
+      // splitContainer2
+      // 
+      this.tableLayoutPanel1.SetColumnSpan(this.splitContainer2, 2);
+      this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitContainer2.Location = new System.Drawing.Point(3, 161);
+      this.splitContainer2.Name = "splitContainer2";
+      this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // splitContainer2.Panel1
+      // 
+      this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+      // 
+      // splitContainer2.Panel2
+      // 
+      this.splitContainer2.Panel2.Controls.Add(this.gridLoAttributes);
+      this.splitContainer2.Size = new System.Drawing.Size(505, 227);
+      this.splitContainer2.SplitterDistance = 159;
+      this.splitContainer2.TabIndex = 15;
+      // 
       // splitContainer1
       // 
       this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -396,125 +515,6 @@
       this.colConcreteElement.HeaderText = "Element";
       this.colConcreteElement.Name = "colConcreteElement";
       // 
-      // panel2
-      // 
-      this.panel2.Controls.Add(this.cmdDelLoAttribute);
-      this.panel2.Controls.Add(this.cmdAddLoAttribute);
-      this.panel2.Controls.Add(this.label5);
-      this.panel2.Controls.Add(this.txtListOfName);
-      this.panel2.Controls.Add(this.cmdDelConcrete);
-      this.panel2.Controls.Add(this.cmdRemoveAttr);
-      this.panel2.Controls.Add(this.cmdAddConcrete);
-      this.panel2.Controls.Add(this.txtBaseClass);
-      this.panel2.Controls.Add(this.label3);
-      this.panel2.Controls.Add(this.cmdAddAttribute);
-      this.panel2.Controls.Add(this.label4);
-      this.panel2.Controls.Add(this.txtElementName);
-      this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(258, 3);
-      this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(250, 152);
-      this.panel2.TabIndex = 2;
-      // 
-      // cmdDelLoAttribute
-      // 
-      this.cmdDelLoAttribute.Location = new System.Drawing.Point(119, 79);
-      this.cmdDelLoAttribute.Name = "cmdDelLoAttribute";
-      this.cmdDelLoAttribute.Size = new System.Drawing.Size(106, 23);
-      this.cmdDelLoAttribute.TabIndex = 17;
-      this.cmdDelLoAttribute.Text = "Del LoAttribute";
-      this.toolTip1.SetToolTip(this.cmdDelLoAttribute, "Deletes the selected attribute from the class");
-      this.cmdDelLoAttribute.UseVisualStyleBackColor = true;
-      this.cmdDelLoAttribute.Click += new System.EventHandler(this.OnRemoveLoAttributeClick);
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(17, 58);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(65, 13);
-      this.label5.TabIndex = 15;
-      this.label5.Text = "ListOfName:";
-      // 
-      // cmdDelConcrete
-      // 
-      this.cmdDelConcrete.Location = new System.Drawing.Point(119, 129);
-      this.cmdDelConcrete.Name = "cmdDelConcrete";
-      this.cmdDelConcrete.Size = new System.Drawing.Size(106, 23);
-      this.cmdDelConcrete.TabIndex = 14;
-      this.cmdDelConcrete.Text = "Del Concrete";
-      this.cmdDelConcrete.UseVisualStyleBackColor = true;
-      this.cmdDelConcrete.Click += new System.EventHandler(this.OnRemoveConcreteClick);
-      // 
-      // cmdRemoveAttr
-      // 
-      this.cmdRemoveAttr.Location = new System.Drawing.Point(119, 104);
-      this.cmdRemoveAttr.Name = "cmdRemoveAttr";
-      this.cmdRemoveAttr.Size = new System.Drawing.Size(106, 23);
-      this.cmdRemoveAttr.TabIndex = 12;
-      this.cmdRemoveAttr.Text = "&Del Attribute";
-      this.toolTip1.SetToolTip(this.cmdRemoveAttr, "Removes the selected Attribute from the class");
-      this.cmdRemoveAttr.UseVisualStyleBackColor = true;
-      this.cmdRemoveAttr.Click += new System.EventHandler(this.OnRemoveAttrClick);
-      // 
-      // cmdAddConcrete
-      // 
-      this.cmdAddConcrete.Location = new System.Drawing.Point(7, 129);
-      this.cmdAddConcrete.Name = "cmdAddConcrete";
-      this.cmdAddConcrete.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddConcrete.TabIndex = 13;
-      this.cmdAddConcrete.Text = "Add &Concrete";
-      this.cmdAddConcrete.UseVisualStyleBackColor = true;
-      this.cmdAddConcrete.Click += new System.EventHandler(this.OnAddConcreteClick);
-      // 
-      // label3
-      // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(20, 6);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(62, 13);
-      this.label3.TabIndex = 6;
-      this.label3.Text = "BaseClass: ";
-      // 
-      // cmdAddAttribute
-      // 
-      this.cmdAddAttribute.Location = new System.Drawing.Point(7, 105);
-      this.cmdAddAttribute.Name = "cmdAddAttribute";
-      this.cmdAddAttribute.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddAttribute.TabIndex = 11;
-      this.cmdAddAttribute.Text = "&Add Attribute";
-      this.toolTip1.SetToolTip(this.cmdAddAttribute, "Adds an Attribute to this Class");
-      this.cmdAddAttribute.UseVisualStyleBackColor = true;
-      this.cmdAddAttribute.Click += new System.EventHandler(this.OnAddAttributeClick);
-      // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(6, 32);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(76, 13);
-      this.label4.TabIndex = 11;
-      this.label4.Text = "ElementName:";
-      // 
-      // splitContainer2
-      // 
-      this.tableLayoutPanel1.SetColumnSpan(this.splitContainer2, 2);
-      this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainer2.Location = new System.Drawing.Point(3, 161);
-      this.splitContainer2.Name = "splitContainer2";
-      this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-      // 
-      // splitContainer2.Panel1
-      // 
-      this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
-      // 
-      // splitContainer2.Panel2
-      // 
-      this.splitContainer2.Panel2.Controls.Add(this.gridLoAttributes);
-      this.splitContainer2.Size = new System.Drawing.Size(505, 227);
-      this.splitContainer2.SplitterDistance = 159;
-      this.splitContainer2.TabIndex = 15;
-      // 
       // gridLoAttributes
       // 
       this.gridLoAttributes.AllowUserToAddRows = false;
@@ -568,18 +568,18 @@
       this.tableLayoutPanel1.ResumeLayout(false);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
-      this.splitContainer1.Panel1.ResumeLayout(false);
-      this.splitContainer1.Panel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-      this.splitContainer1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).EndInit();
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
       this.splitContainer2.Panel1.ResumeLayout(false);
       this.splitContainer2.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
       this.splitContainer2.ResumeLayout(false);
+      this.splitContainer1.Panel1.ResumeLayout(false);
+      this.splitContainer1.Panel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+      this.splitContainer1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).EndInit();
       this.ResumeLayout(false);
 

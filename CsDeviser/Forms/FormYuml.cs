@@ -24,8 +24,8 @@ namespace CsDeviser.Forms
 
     public DeviserPackage Package { get; set; }
     public string RawYuml {
-      get { return textBox1.Text; }
-      set { textBox1.Text = value; }
+      get { return txtYuml.Text; }
+      set { txtYuml.Text = value; }
     }
 
     public string Style { get { return cmpStyle.SelectedItem as string; } }
@@ -140,6 +140,18 @@ namespace CsDeviser.Forms
     private void OnStyleIndexChanged(object sender, EventArgs e)
     {
       OnUpdateClick (this, e);
+    }
+
+    private void OnKeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.Control & e.KeyCode == Keys.A)
+        txtYuml.SelectAll();
+      //else if (e.Control & e.KeyCode == Keys.C)
+      //  txtYuml.Copy();
+      //else if (e.Control & e.KeyCode == Keys.X)
+      //  txtYuml.Cut();
+      //else if (e.Control & e.KeyCode == Keys.V)
+      //  txtYuml.Paste();
     }
   }
 }

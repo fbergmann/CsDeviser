@@ -106,7 +106,7 @@ namespace CsDeviser.Controls
     private void txtFullName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Name = txtFullName.Text;   
+      Current.FullName = txtFullName.Text;   
     }
 
   }

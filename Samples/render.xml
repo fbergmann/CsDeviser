@@ -173,7 +173,7 @@
         <attribute name="font-size" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="Transformation2D" typeCode="SBML_RENDER_TRANSFORMATION2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true">
+    <element name="Transformation2D" typeCode="SBML_RENDER_TRANSFORMATION2D" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true" elementName="listOfDrawables" listOfName="ListOfDrawables">
       <attributes>
         <attribute name="transform" required="false" type="array" element="double" abstract="false" />
       </attributes>
@@ -227,7 +227,7 @@
         <attribute name="refenceRenderInformation" required="false" type="string" abstract="false" />
         <attribute name="backgroundColor" required="false" type="string" abstract="false" />
         <attribute name="colorDefinition" required="false" type="lo_element" element="ColorDefinition" abstract="false" />
-        <attribute name="gradientDefinition" required="false" type="lo_element" element="GradientDefinitiion" abstract="false" />
+        <attribute name="gradientDefinition" required="false" type="lo_element" element="GradientBase" abstract="false" />
         <attribute name="lineEnding" required="false" type="lo_element" element="LineEnding" abstract="false" />
       </attributes>
     </element>
