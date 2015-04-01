@@ -174,6 +174,7 @@
       this.pnlPicture.Name = "pnlPicture";
       this.pnlPicture.Size = new System.Drawing.Size(604, 367);
       this.pnlPicture.TabIndex = 1;
+      this.pnlPicture.MouseEnter += new System.EventHandler(this.pnlPicture_MouseEnter);
       // 
       // pictureBox1
       // 
@@ -183,6 +184,7 @@
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
+      this.pictureBox1.MouseEnter += new System.EventHandler(this.pnlPicture_MouseEnter);
       // 
       // tabYuml
       // 
@@ -214,6 +216,7 @@
       this.CancelButton = this.cmdClose;
       this.ClientSize = new System.Drawing.Size(624, 441);
       this.Controls.Add(this.tableLayoutPanel1);
+      this.DoubleBuffered = true;
       this.MinimumSize = new System.Drawing.Size(640, 480);
       this.Name = "FormYuml";
       this.ShowIcon = false;

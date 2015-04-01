@@ -153,5 +153,10 @@ namespace CsDeviser.Forms
       //else if (e.Control & e.KeyCode == Keys.V)
       //  txtYuml.Paste();
     }
+
+    private void pnlPicture_MouseEnter(object sender, EventArgs e)
+    {
+      pnlPicture.Focus();
+    }
   }
 }
