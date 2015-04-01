@@ -32,7 +32,7 @@ namespace LibDeviser
     public override string ToYuml(bool usecolor = true)
     {
       var builder = new StringBuilder();
-      builder.Append("[Enumeration;" + Name);
+      builder.Append("[" + Deviser.EnumPrefix + Name);
       if (Values.Any())
         builder.Append("|");
       for (int i = 0; i < Values.Count; i++)

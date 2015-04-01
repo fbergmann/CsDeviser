@@ -12,7 +12,7 @@ namespace LibDeviser
     public static string ClassColor { get { return "linen"; } }
     public static string EnumColor { get { return "gold"; } }
     public static string ExtensionColor { get { return "palegreen"; } }
-
+    public static string EnumPrefix { get { return "\u00ABEnumeration\u00BB;"; } }
 
     public static string GenerateLatex(string python, string repo, string outDir,
       string packageDesc, string packageName)
@@ -22,8 +22,8 @@ namespace LibDeviser
       builder.AppendLine("================");
       builder.AppendLine();
 
-
-      string destDir = Path.Combine(outDir, packageName + "-spec");
+      string lowerCasePackageName = packageName.ToLowerInvariant();
+      string destDir = Path.Combine(outDir, lowerCasePackageName + "-spec");
       if (!Directory.Exists(destDir))
         Directory.CreateDirectory(destDir);
       {
@@ -163,7 +163,8 @@ namespace LibDeviser
       builder.AppendLine("================");
       builder.AppendLine();
 
-      string destDir = Path.Combine(outDir, packageName + "-spec");
+      string lowerCasePackageName = packageName.ToLowerInvariant();
+      string destDir = Path.Combine(outDir, lowerCasePackageName + "-spec");
       if (!Directory.Exists(destDir))
       {
         builder.AppendLine("Error: Please 'generate latex' first before trying to compile. (latex dir not present)");
@@ -182,7 +183,8 @@ namespace LibDeviser
       string mainFile = Path.Combine(destDir, "main.tex");
       if (!File.Exists(mainFile))
       {
-        File.WriteAllText(mainFile, Properties.Resources.main.Replace("@@PACKAGENAME@@", packageName));
+        string mainText = Properties.Resources.main.Replace("@@PACKAGENAME@@", lowerCasePackageName);
+        File.WriteAllText(mainFile, mainText);
       }
 
       if (!File.Exists(Path.Combine(mikTexDir, "texify.exe")))

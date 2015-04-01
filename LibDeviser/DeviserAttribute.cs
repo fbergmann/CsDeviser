@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +24,13 @@ namespace LibDeviser
       }
     }
 
+    public bool IsListOf
+    {
+      get
+      {
+        return Type == "lo_element";
+      }
+    }
 
 
     public DeviserAttribute()
@@ -65,14 +72,40 @@ namespace LibDeviser
       WriteElementWithNameTo(writer, "attribute");
     }
 
+    public DeviserClass GetUnderLyingElement()
+    {
+      if (Document == null) return null;
+      return Document.Elements.FirstOrDefault(e => e.Name == Element);
+    }
     public override string ToYuml(bool usecolor = true)
     {
       var builder = new StringBuilder();
       builder.Append(Name);
       if (!string.IsNullOrWhiteSpace(Type))
-        builder.Append(" : " + Type);
+      { 
+        if (!IsComplexType)
+        { 
+          builder.Append(" : " + Type);
+        }
+        else
+        {
+          var element = GetUnderLyingElement();
+          if (element == null)
+            if (IsListOf)
+              builder.Append(" : " + "ListOf" + Element.GuessPlural());
+            else
+              builder.Append(" : " + Element);
+          else
+            if (IsListOf)
+            builder.Append(" : " + element.GetListOfName());
+            else 
+            builder.Append(" : " + element.Name);
+
+
+        }
+      }
       if (!Required)
-        builder.Append(" use='optional'");
+        builder.Append(" use=\u201Coptional\u201D");
       return builder.ToString();
     }
 
@@ -80,13 +113,19 @@ namespace LibDeviser
     {
       if (Type == "element")
       {
-        return string.Format("[{0}]-{1}{3}>[{2}]", source, Name.LowerFirst(), Element,
-        Required ? " ..1" : " ..0,1");
+        return string.Format("[{2}]<{1}{3}-[{0}]", source, Name.LowerFirst(), Element,
+          true ? "" : Required ? " ..1" : " ..0,1");
       }
-      
+
+      if (Type == "inline_lo_element")
+      {
+        return string.Format("[{0}]-{1}{3}>[{2}]", source, Name.LowerFirst(), Element,
+        Required ? " 1..* " : " *");
+      }
+
       if (Type == "enum")
       {
-        return string.Format("[{0}]-{1}>[Enumeration;{2}]", source, Name.LowerFirst(), Element);
+        return string.Format("[{0}]-{1}>[{3}{2}]", source, Name.LowerFirst(), Element, Deviser.EnumPrefix);
       }
       
       string elementName = Element;
@@ -94,8 +133,8 @@ namespace LibDeviser
       string listOfName = string.Format("ListOf{0}", elementName.GuessPlural());
       if (element != null && !string.IsNullOrWhiteSpace(element.ListOfName))
         listOfName = element.ListOfName;
-      return string.Format("[{0}]-{1}{3}>[{2}]", source, listOfName.LowerFirst(), listOfName,
-        Required ? " ..1" : " ..0,1");
+      return string.Format("[{2}]-{1}{3}>[{0}]", source, listOfName.LowerFirst(), listOfName,
+        true ? "" : Required ? " ..1" : " ..0,1");
     }
   }
 

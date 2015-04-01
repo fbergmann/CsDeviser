@@ -194,7 +194,7 @@ namespace LibDeviser
 
         builder.Append("]");
         builder.AppendLine();
-        builder.AppendLine(string.Format("[{0}]-{1}  1..*>[{2}]", listOf, Name.LowerFirst(), Name));
+        builder.AppendLine(string.Format("[{2}]-{1}  1..*>[{0}]", listOf, Name.LowerFirst(), Name));
 
         foreach (var item in list)
         {
