@@ -29,6 +29,8 @@ namespace CsDeviser.Controls
       txtPackage.Text = "";
       txtFullName.Text = "";
       txtVersion.Text = "0";
+      txtAddDecls.Text = "";
+      txtAddImpls.Text = "";
       chkRequired.Checked = false;
 
       lstClasses.Items.Clear();
@@ -43,6 +45,8 @@ namespace CsDeviser.Controls
       txtFullName.Text = Current.FullName;
       txtVersion.Text = Current.Version.ToString();
       chkRequired.Checked = Current.Required;
+      txtAddDecls.Text = Current.AdditionalDeclarations;
+      txtAddImpls.Text = Current.AdditionalDefinitions;
 
       foreach(var item in package.Elements)
         lstClasses.Items.Add(item.Name);
@@ -126,6 +130,20 @@ namespace CsDeviser.Controls
       int number;
       if (int.TryParse(txtVersion.Text, out number))
         Current.Version = number;
+    }
+
+    private void txtAddDecls_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      Current.AdditionalDeclarations = txtAddDecls.Text;   
+
+    }
+
+    private void txtAddImpls_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      Current.AdditionalDefinitions = txtAddImpls.Text;   
+
     }
 
   }

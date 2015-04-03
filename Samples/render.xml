@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package name="render" fullname="Render" number="1000" offset="1300000" version="1" required="false">
+<package name="Render" fullname="Render" number="1000" offset="1300000" version="1" required="false" additionalDecls="RenderExtension_add.h" additionalDefs="RenderExtension_add.cpp">
   <elements>
     <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
       <attributes>
@@ -197,7 +197,7 @@
         <concrete name="text" element="Text" />
       </concretes>
     </element>
-    <element name="GraphicalPrimitive2D" typeCode="SBML_RENDER_GRAPHICALPRIMITIVE1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
+    <element name="GraphicalPrimitive2D" typeCode="SBML_RENDER_GRAPHICALPRIMITIVE2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
       <attributes>
         <attribute name="fill" required="false" type="string" abstract="false" />
         <attribute name="fill-rule" required="false" type="enum" element="FillRule" abstract="false" />

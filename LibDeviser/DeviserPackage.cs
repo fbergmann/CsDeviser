@@ -36,6 +36,16 @@ namespace LibDeviser
     public bool Required { get; set; }
 
     /// <summary>
+    /// Code to be included in header file
+    /// </summary>
+    public string AdditionalDeclarations { get; set; }
+
+    /// <summary>
+    /// Code to be included in implementation file
+    /// </summary>
+    public string AdditionalDefinitions { get; set; }
+
+    /// <summary>
     /// All Elements defined by this Package
     /// </summary>
     public List<DeviserClass> Elements { get; set; }
@@ -86,6 +96,9 @@ namespace LibDeviser
     {
       Name = element.GetAttribute("name");
       FullName = element.GetAttribute("fullname");
+      AdditionalDeclarations = element.GetAttribute("additionalDecls");
+      AdditionalDefinitions = element.GetAttribute("additionalDefs");
+
 
       StartNumber = Util.readInt(element, "number");
       Offset = Util.readInt(element, "offset");
@@ -144,6 +157,12 @@ namespace LibDeviser
         writer.WriteAttributeString("version", Version.ToString());
 
       writer.WriteAttributeString("required", Required ? "true" : "false");
+
+      if (!string.IsNullOrWhiteSpace(AdditionalDeclarations))
+        writer.WriteAttributeString("additionalDecls", AdditionalDeclarations);
+      if (!string.IsNullOrWhiteSpace(AdditionalDefinitions))
+        writer.WriteAttributeString("additionalDefs", AdditionalDefinitions);
+
     }
 
     public override void WriteElementsTo(XmlWriter writer)
