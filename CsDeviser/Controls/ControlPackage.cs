@@ -27,6 +27,9 @@ namespace CsDeviser.Controls
       txtOffset.Text = "0";
       txtStartNumber.Text = "0";
       txtPackage.Text = "";
+      txtFullName.Text = "";
+      txtVersion.Text = "0";
+      chkRequired.Checked = false;
 
       lstClasses.Items.Clear();
 
@@ -38,6 +41,8 @@ namespace CsDeviser.Controls
       txtStartNumber.Text = Current.StartNumber.ToString();
       txtPackage.Text = Current.Name;
       txtFullName.Text = Current.FullName;
+      txtVersion.Text = Current.Version.ToString();
+      chkRequired.Checked = Current.Required;
 
       foreach(var item in package.Elements)
         lstClasses.Items.Add(item.Name);
@@ -107,6 +112,20 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.FullName = txtFullName.Text;   
+    }
+
+    private void chkRequired_CheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      Current.Required = chkRequired.Checked;   
+    }
+
+    private void txtVersion_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      int number;
+      if (int.TryParse(txtVersion.Text, out number))
+        Current.Version = number;
     }
 
   }

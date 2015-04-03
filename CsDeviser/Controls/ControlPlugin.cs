@@ -45,6 +45,8 @@ namespace CsDeviser.Controls
       txtExtensionPoint.Text = Current.ExtensionPoint;
       txtAddDecls.Text = Current.AdditionalDeclarations;
       txtAddImpls.Text = Current.AdditionalDefinitions;
+      txtTypeCode.Text = Current.TypeCode;
+      txtPackage.Text = Current.Package;
 
       if (Current.Attributes.Count > 0)
       {
@@ -247,6 +249,18 @@ namespace CsDeviser.Controls
     public override void OnCommitChanges()
     {
       gridAttributes.EndEdit();
+    }
+
+    private void txtTypeCode_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.TypeCode = txtTypeCode.Text;
+    }
+
+    private void txtPackage_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      Current.Package = txtPackage.Text;
     }    
 
 

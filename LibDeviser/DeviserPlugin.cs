@@ -21,6 +21,8 @@ namespace LibDeviser
     /// </summary>
     public string AdditionalDefinitions { get; set; }
 
+    public string TypeCode { get; set; }
+    public string Package { get; set; }
 
     public List<DeviserReferenceAttribute> References { get; set; }
     public List<DeviserAttribute> Attributes { get; set; }
@@ -94,6 +96,8 @@ namespace LibDeviser
       ExtensionPoint = element.GetAttribute("extensionPoint");
       AdditionalDeclarations = element.GetAttribute("additionalDecls");
       AdditionalDefinitions = element.GetAttribute("additionalDefs");
+      TypeCode = element.GetAttribute("typecode");
+      Package = element.GetAttribute("package");
 
       References = new List<DeviserReferenceAttribute>();
       References.InitializeFrom(Util.getElement(element, "reference"));
@@ -104,6 +108,11 @@ namespace LibDeviser
     public override void WriteAttributesTo(XmlWriter writer)
     {
       base.WriteAttributesTo(writer);
+
+      if (!string.IsNullOrWhiteSpace(TypeCode))
+        writer.WriteAttributeString("typecode", TypeCode);
+      if (!string.IsNullOrWhiteSpace(Package))
+        writer.WriteAttributeString("package", Package);
 
       if (!string.IsNullOrWhiteSpace(ExtensionPoint))
         writer.WriteAttributeString("extensionPoint", ExtensionPoint);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package name="Fbc" fullname="Flux Balance Constraints" number="800" offset="2000000">
+<package name="Fbc" fullname="Flux Balance Constraints" number="800" offset="2000000" version="2" required="false">
   <elements>
     <element name="Association" typeCode="SBML_FBC_ASSOCIATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true">
       <concretes>

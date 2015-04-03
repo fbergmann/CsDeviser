@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package name="render" fullname="Render" number="1000" offset="1300000">
+<package name="render" fullname="Render" number="1000" offset="1300000" version="1" required="false">
   <elements>
     <element name="ColorDefinition" typeCode="SBML_RENDER_COLORDEFINITION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="colorDefinition">
       <attributes>
@@ -26,7 +26,7 @@
       </listOfAttributes>
     </element>
     <element name="GlobalStyle" typeCode="SBML_RENDER_GLOBALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" />
-    <element name="GradientBase" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="ListOfGradientDefinitions">
+    <element name="GradientBase" typeCode="SBML_RENDER_GRADIENTDEFINITION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="ListOfGradientDefinitions">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="spreadMethod" required="false" type="enum" element="GradientSpreadMethod" abstract="false" />
@@ -181,12 +181,12 @@
         <concrete name="image" element="Image" />
       </concretes>
     </element>
-    <element name="Transformation" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
+    <element name="Transformation" typeCode="SBML_RENDER_TRANSFORMATION" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="transform" required="true" type="array" element="double" abstract="false" />
       </attributes>
     </element>
-    <element name="GraphicalPrimitive1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
+    <element name="GraphicalPrimitive1D" typeCode="SBML_RENDER_GRAPHICALPRIMITIVE1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="stroke" required="false" type="string" abstract="false" />
@@ -197,7 +197,7 @@
         <concrete name="text" element="Text" />
       </concretes>
     </element>
-    <element name="GraphicalPrimitive2D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
+    <element name="GraphicalPrimitive2D" typeCode="SBML_RENDER_GRAPHICALPRIMITIVE1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="true">
       <attributes>
         <attribute name="fill" required="false" type="string" abstract="false" />
         <attribute name="fill-rule" required="false" type="enum" element="FillRule" abstract="false" />
@@ -209,7 +209,7 @@
         <concrete name="curve" element="RenderCurve" />
       </concretes>
     </element>
-    <element name="Style" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
+    <element name="Style" typeCode="SBML_RENDER_STYLE_BASE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
@@ -218,7 +218,7 @@
         <attribute name="g" required="false" type="element" element="RenderGroup" abstract="false" />
       </attributes>
     </element>
-    <element name="RenderInformationBase" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
+    <element name="RenderInformationBase" typeCode="SBML_RENDER_RENDERINFORMATION_BASE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
@@ -233,17 +233,17 @@
     </element>
   </elements>
   <plugins>
-    <plugin extensionPoint="GraphicalObject">
+    <plugin typecode="SBML_LAYOUT_GRAPHICALOBJECT" package="layout" extensionPoint="GraphicalObject">
       <attributes>
         <attribute name="objectRole" required="false" type="SIdRef" abstract="false" />
       </attributes>
     </plugin>
-    <plugin extensionPoint="Layout">
+    <plugin typecode="SBML_LAYOUT_LAYOUT" package="layout" extensionPoint="Layout">
       <references>
         <reference name="ListOfLocalRenderInformation" />
       </references>
     </plugin>
-    <plugin extensionPoint="ListOfLayouts">
+    <plugin typecode="SBML_LIST_OF" package="layout" extensionPoint="ListOfLayouts">
       <references>
         <reference name="ListOfGlobalRenderInformation" />
       </references>

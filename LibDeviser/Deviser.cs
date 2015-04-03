@@ -61,7 +61,7 @@ namespace LibDeviser
       var temp = new StringBuilder();
       temp.AppendLine("@echo off");
       temp.AppendFormat("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir);
+      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir);
       temp.AppendLine("nmake");
       temp.AppendLine("nmake install");
 

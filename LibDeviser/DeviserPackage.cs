@@ -31,6 +31,10 @@ namespace LibDeviser
     /// </summary>
     public int Offset { get; set; }
 
+    public int Version { get; set; }
+
+    public bool Required { get; set; }
+
     /// <summary>
     /// All Elements defined by this Package
     /// </summary>
@@ -85,7 +89,9 @@ namespace LibDeviser
 
       StartNumber = Util.readInt(element, "number");
       Offset = Util.readInt(element, "offset");
-                  
+      Version = Util.readInt(element, "version");
+      Required = Util.readBool(element, "required");
+         
       Elements.InitializeFrom(Util.getElement(element, "element"));
       Plugins.InitializeFrom(Util.getElement(element, "plugin"));
       Enums.InitializeFrom(Util.getElement(element, "enum"));
@@ -134,6 +140,10 @@ namespace LibDeviser
       if (Offset!= 0)
         writer.WriteAttributeString("offset", Offset.ToString());
 
+      if (Version != 0)
+        writer.WriteAttributeString("version", Version.ToString());
+
+      writer.WriteAttributeString("required", Required ? "true" : "false");
     }
 
     public override void WriteElementsTo(XmlWriter writer)
