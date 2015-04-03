@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="Fbc" fullname="Flux Balance Constraints" number="800" offset="2000000">
   <elements>
-    <element name="Association" typeCode="SBML_FBC_ASSOCIATION" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true">
+    <element name="Association" typeCode="SBML_FBC_ASSOCIATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true">
       <concretes>
         <concrete name="and" element="FbcAnd" />
         <concrete name="or" element="FbcOr" />
@@ -55,12 +55,12 @@
         <attribute name="geneProduct" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="FbcAnd" typeCode="SBML_FBC_AND" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false">
+    <element name="FbcAnd" typeCode="SBML_FBC_AND" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="and">
       <attributes>
         <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
       </attributes>
     </element>
-    <element name="FbcOr" typeCode="SBML_FBC_OR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false">
+    <element name="FbcOr" typeCode="SBML_FBC_OR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="or">
       <attributes>
         <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
       </attributes>

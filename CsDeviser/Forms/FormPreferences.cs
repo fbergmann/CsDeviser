@@ -17,15 +17,24 @@ namespace CsDeviser.Forms
     public FormPreferences()
     {
       InitializeComponent();
+      InitializeCompilers();
+
+      if (cmbCompilers.Items.Count > 0)
+        cmbCompilers.SelectedIndex = 0;
+
     }
 
     public void LoadSettings(DeviserSettings settings)
-    {
+    {      
       PythonInterpreter = settings.PythonInterpreter;
       DeviserRepo = settings.DeviserRepository;
       DefaultOutputDir = settings.DefaultOutputDir;
       MikTexDir = settings.MikTexDir;
       SBMLPkgSpecDir = settings.SBMLPkgSpecDir;
+      CMake = settings.CMake;
+      LibSBMLSourceDir = settings.LibSBMLSourceDir;
+      DependenciesSourceDir= settings.DependenciesSourceDir;
+      VSBatch = settings.VSBatchFile;
     }
 
     public void WriteToSettings(DeviserSettings settings)
@@ -35,14 +44,25 @@ namespace CsDeviser.Forms
       settings.DefaultOutputDir = DefaultOutputDir;
       settings.SBMLPkgSpecDir = SBMLPkgSpecDir;
       settings.MikTexDir = MikTexDir;
+      settings.CMake = CMake;
+      settings.LibSBMLSourceDir = LibSBMLSourceDir;
+      settings.DependenciesSourceDir = DependenciesSourceDir;
+      settings.VSBatchFile = VSBatch;
     }
 
+    public string VSBatch { get { return Compilers[cmbCompilers.SelectedItem as string]; } 
+      set { 
+        var entry = Compilers.FirstOrDefault(e => e.Value == value);
+        cmbCompilers.SelectedItem = entry.Key;
+      } 
+    }
+    public string CMake { get { return txtCmake.Text; } set { txtCmake.Text = value; } }
+    public string LibSBMLSourceDir { get { return txtlibSBMLSource.Text; } set { txtlibSBMLSource.Text = value; } }
+    public string DependenciesSourceDir { get { return txtDependenciesSourceDir.Text; } set { txtDependenciesSourceDir.Text = value; } }
     public string SBMLPkgSpecDir { get { return txtSBMLPkgSpeciDir.Text; } set { txtSBMLPkgSpeciDir.Text = value; } }
-    public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }
+    public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }    
     public string DefaultOutputDir { get { return txtDefaultDir.Text; } set { txtDefaultDir.Text = value; } }
-
-    public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }
-    
+    public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }    
     public string DeviserRepo { get { return txtDeviserRepo.Text; } set { txtDeviserRepo.Text = value; } }
 
     private void cmdBrowsePython_Click(object sender, EventArgs e)
@@ -117,6 +137,68 @@ namespace CsDeviser.Forms
       {
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtMikTex.Text = dialog.SelectedPath;
+      }
+    }
+
+    private Dictionary<string, string> Compilers { get; set; }
+
+    private void InitializeCompilers()
+    {
+      Compilers = new Dictionary<string, string>();
+      string vs12 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 12.0\VC\vcvarsall.bat");
+      string vs11 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 11.0\VC\vcvarsall.bat");
+      string vs10 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 10.0\VC\vcvarsall.bat");
+      string vs09 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 9.0\VC\vcvarsall.bat");
+      if (File.Exists(vs12)) Compilers["Microsoft Visual Studio 2013"] = vs12;
+      if (File.Exists(vs11)) Compilers["Microsoft Visual Studio 2012"] = vs11;
+      if (File.Exists(vs10)) Compilers["Microsoft Visual Studio 2010"] = vs10;
+      if (File.Exists(vs09)) Compilers["Microsoft Visual Studio 2008"] = vs09;
+
+      cmbCompilers.Items.Clear();
+      foreach (var key in Compilers.Keys)
+        cmbCompilers.Items.Add(key);
+    }
+
+    private void cmdBrowseSource_Click(object sender, EventArgs e)
+    {
+      string defaultPath = !string.IsNullOrWhiteSpace(txtlibSBMLSource.Text) ? Path.GetFullPath(txtlibSBMLSource.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate SBML source Dir",
+        SelectedPath = defaultPath
+      })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtlibSBMLSource.Text = dialog.SelectedPath;
+      }
+    }
+
+    private void cmdBrowseCMake_Click(object sender, EventArgs e)
+    {
+      string defaultPath = !string.IsNullOrWhiteSpace(txtCmake.Text) ? Path.GetFullPath(txtCmake.Text)
+             : null;
+      string defaultFile = !string.IsNullOrWhiteSpace(txtCmake.Text) ? Path.GetFileName(txtCmake.Text)
+       : null;
+      using (var dialog = new OpenFileDialog { Title = "Locate CMake Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtCmake.Text = dialog.FileName;
+      }
+    }
+
+    private void cmdBrowseDependencies_Click(object sender, EventArgs e)
+    {
+      string defaultPath = !string.IsNullOrWhiteSpace(txtDependenciesSourceDir.Text) ? Path.GetFullPath(txtDependenciesSourceDir.Text)
+       : null;
+      using (var dialog = new FolderBrowserDialog
+      {
+        Description = "Locate Dependencies source dir",
+        SelectedPath = defaultPath
+      })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtDependenciesSourceDir.Text = dialog.SelectedPath;
       }
     }
   }

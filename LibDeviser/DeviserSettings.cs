@@ -13,6 +13,10 @@ namespace LibDeviser
     public string DefaultOutputDir { get; set; }
     public string SBMLPkgSpecDir { get; set; }
     public string MikTexDir { get; set; }
+    public string LibSBMLSourceDir { get; set; }
+    public string DependenciesSourceDir { get; set; }
+    public string VSBatchFile{ get; set; }
+    public string CMake { get; set; }
 
     public static DeviserSettings Instance
     {
@@ -109,6 +113,17 @@ namespace LibDeviser
           Directory.Exists(MikTexDir) &&
           !string.IsNullOrWhiteSpace(SBMLPkgSpecDir) &&
           Directory.Exists(SBMLPkgSpecDir);
+      }
+    }
+
+    public bool CanCompilePackage
+    {
+      get
+      {
+        return !string.IsNullOrWhiteSpace(VSBatchFile) && File.Exists(VSBatchFile) &&
+               !string.IsNullOrWhiteSpace(LibSBMLSourceDir) && Directory.Exists(LibSBMLSourceDir) &&
+               !string.IsNullOrWhiteSpace(DependenciesSourceDir) && Directory.Exists(DependenciesSourceDir) &&
+               !string.IsNullOrWhiteSpace(CMake) && File.Exists(CMake);
       }
     }
 

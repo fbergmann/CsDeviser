@@ -299,7 +299,7 @@
       <enumValues>
         <enumValue name="START" value="start" />
         <enumValue name="MIDDLE" value="middle" />
-        <enumValue name="END" />
+        <enumValue name="END" value="end" />
       </enumValues>
     </enum>
     <enum name="FontFamily">

@@ -86,15 +86,78 @@ namespace CsDeviser.Forms
       cmdGenerateTex.Enabled = DeviserSettings.Instance.CanGenerate;
       cmdCompileTex.Enabled = DeviserSettings.Instance.CanCompileTeX;
 
+      cmdAddPackageToSource.Enabled = DeviserSettings.Instance.CanCompilePackage;
+      cmdRemovePackageFromSource.Enabled = DeviserSettings.Instance.CanCompilePackage;
+      cmdCompileDependencies.Enabled = DeviserSettings.Instance.CanCompilePackage;
+      cmdCompilePackage.Enabled = DeviserSettings.Instance.CanCompilePackage;
     }
 
     private void cmdCompileTex_Click(object sender, EventArgs e)
     {
-      txtResult.Text =
-      Deviser.CompileTex(DeviserSettings.Instance.MikTexDir,
-        DeviserSettings.Instance.SBMLPkgSpecDir,
-        txtOutDir.Text, Package, PackageName
-        );
+      Enabled = false;
+      try
+      {
+        txtResult.Text =
+          Deviser.CompileTex(DeviserSettings.Instance.MikTexDir,
+            DeviserSettings.Instance.SBMLPkgSpecDir,
+            txtOutDir.Text, Package, PackageName
+            );
+      }
+      finally
+      {
+        Enabled = true;
+      }
+    }
+
+    private void cmdCompileDependencies_Click(object sender, EventArgs e)
+    {
+      this.Enabled = false;
+      try
+      {
+        txtResult.Text =
+          Deviser.CompileDependencies(DeviserSettings.Instance.DependenciesSourceDir,
+            DeviserSettings.Instance.CMake,
+            DeviserSettings.Instance.VSBatchFile,
+            txtOutDir.Text);
+        
+      }
+      finally
+      {
+        Enabled = true;
+      }
+        
+    }
+
+    private void cmdAddPackageToSource_Click(object sender, EventArgs e)
+    {
+      txtResult.Text = Deviser.AddPackageToSource(DeviserSettings.Instance.LibSBMLSourceDir,
+        txtOutDir.Text,
+        txtPackageName.Text);
+    }
+
+    private void cmdRemovePackageFromSource_Click(object sender, EventArgs e)
+    {
+      txtResult.Text = Deviser.RemovePackageFromSource(DeviserSettings.Instance.LibSBMLSourceDir,
+        txtPackageName.Text);
+    }
+
+    private void cmdCompilePackage_Click(object sender, EventArgs e)
+    {
+      this.Enabled = false;
+      try
+      {
+        txtResult.Text =
+          Deviser.CompilePackage(DeviserSettings.Instance.LibSBMLSourceDir,
+            DeviserSettings.Instance.CMake,
+            DeviserSettings.Instance.VSBatchFile,
+            txtOutDir.Text, 
+            txtPackageName.Text);
+
+      }
+      finally
+      {
+        Enabled = true;
+      }
     }
   }
 }

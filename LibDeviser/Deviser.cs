@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LibDeviser
 {
@@ -13,6 +14,188 @@ namespace LibDeviser
     public static string EnumColor { get { return "gold"; } }
     public static string ExtensionColor { get { return "palegreen"; } }
     public static string EnumPrefix { get { return "\u00ABEnumeration\u00BB;"; } }
+
+    public static string CompilePackage(string libSBMLSourceDir, string cMake, string vsBatchFile, string outdir, string packageName)
+    {
+      var builder = new StringBuilder();
+      builder.AppendLine("Compile Package");
+      builder.AppendLine("===============");
+      builder.AppendLine();
+
+      if (!Directory.Exists(libSBMLSourceDir))
+      {
+        builder.AppendLine("Error: The libsbml source dir does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(cMake))
+      {
+        builder.AppendLine("Error: The CMake executable does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(vsBatchFile))
+      {
+        builder.AppendLine("Error: The Visual studio file does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!Directory.Exists(outdir))
+      {
+        builder.AppendLine("Error: The outdput dir does not exist, please create it first.");
+        return builder.ToString();
+      }
+
+      string depDir = Path.Combine(outdir, "install_dependencies");
+      if (!Directory.Exists(depDir))
+      {
+        builder.AppendLine("Error: The dependency install dir does not exist, please compile dependencies first.");
+        return builder.ToString();
+      }
+
+      var buildDir = Path.Combine(outdir, "build_" + packageName.ToLowerInvariant() + "_package");
+
+      if (!Directory.Exists(buildDir))
+        Directory.CreateDirectory(buildDir);
+
+      var temp = new StringBuilder();
+      temp.AppendLine("@echo off");
+      temp.AppendFormat("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
+      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir);
+      temp.AppendLine("nmake");
+      temp.AppendLine("nmake install");
+
+      var file = Path.Combine(buildDir, "script.bat");
+      File.WriteAllText(file, temp.ToString());
+
+      {
+        var args = new StringBuilder();
+        var info = new ProcessStartInfo
+        {
+          FileName = file,
+          Arguments = args.ToString(),
+          WorkingDirectory = buildDir,
+          UseShellExecute = false,
+          CreateNoWindow = true,
+          RedirectStandardError = true,
+          RedirectStandardOutput = true,
+        };
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
+
+      }
+
+
+      builder.AppendLine();
+      builder.AppendLine("DONE");
+      builder.AppendLine();
+
+      return builder.ToString();
+    }
+
+    public static string CompileDependencies(string dependenciesSourceDir, string cMake, string vSBatchFile, string outdir)
+    {
+      var builder = new StringBuilder();
+      builder.AppendLine("Compile Dependencies");
+      builder.AppendLine("====================");
+      builder.AppendLine();
+
+      if (!Directory.Exists(dependenciesSourceDir))
+      {
+        builder.AppendLine("Error: The dependencies source dir does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(cMake))
+      {
+        builder.AppendLine("Error: The CMake executable does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!File.Exists(vSBatchFile))
+      {
+        builder.AppendLine("Error: The Visual studio file does not exist, please validate your settings.");
+        return builder.ToString();
+      }
+
+      if (!Directory.Exists(outdir))
+      {
+        builder.AppendLine("Error: The outdput dir does not exist, please create it first");
+        return builder.ToString();
+      }
+
+      var buildDir = Path.Combine(outdir, "build_dependencies");
+
+      if (!Directory.Exists(buildDir))
+        Directory.CreateDirectory(buildDir);
+
+      var temp = new StringBuilder();
+      temp.AppendLine("@echo off");
+      temp.AppendFormat("call \"{0}\"{1}", vSBatchFile, Environment.NewLine);
+      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}", dependenciesSourceDir, Environment.NewLine);
+      temp.AppendLine("nmake");
+      temp.AppendLine("nmake install");
+
+      var file = Path.Combine(buildDir, "script.bat");
+      File.WriteAllText(file, temp.ToString());
+
+      {
+        var args = new StringBuilder();        
+        var info = new ProcessStartInfo
+        {
+          FileName = file,
+          Arguments = args.ToString(),
+          WorkingDirectory = buildDir,
+          UseShellExecute = false,
+          CreateNoWindow = true,
+          RedirectStandardError = true,
+          RedirectStandardOutput = true,
+        };
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
+
+      }
+
+
+      builder.AppendLine();
+      builder.AppendLine("DONE");
+      builder.AppendLine();
+
+      return builder.ToString();
+
+    }
+
+    static Task<string> RunProcessAsync(ProcessStartInfo info)
+    {
+      // there is no non-generic TaskCompletionSource
+      var tcs = new TaskCompletionSource<string>();
+
+      var result = new StringBuilder();
+
+      var process = new Process
+      {
+        EnableRaisingEvents = true,
+        StartInfo = info,        
+      };
+
+      process.ErrorDataReceived += (sender, args) => result.AppendLine(args.Data);
+      process.OutputDataReceived += (sender, args) => result.AppendLine(args.Data);
+
+      process.Exited += (sender, args) =>
+      {
+        tcs.SetResult(result.ToString());
+        process.Dispose();
+      };
+
+      process.Start();
+      process.BeginOutputReadLine();
+      process.BeginErrorReadLine();
+
+
+      return tcs.Task;
+    }
 
     public static string GenerateLatex(string python, string repo, string outDir,
       string packageDesc, string packageName)
@@ -41,15 +224,9 @@ namespace LibDeviser
           RedirectStandardOutput = true,
         };
 
-        var p = Process.Start(info);
-        p.WaitForExit();
-
-        var result = p.StandardOutput.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(result))
-          builder.AppendLine(result);
-        var error = p.StandardError.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(error))
-          builder.AppendLine(error);
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
 
       }
 
@@ -65,7 +242,7 @@ namespace LibDeviser
     {
       var builder = new StringBuilder();
       builder.AppendLine("Generating Package");
-      builder.AppendLine("================");
+      builder.AppendLine("==================");
       builder.AppendLine();
 
 
@@ -100,15 +277,10 @@ namespace LibDeviser
           RedirectStandardOutput = true,
         };
 
-        var p = Process.Start(info);
-        p.WaitForExit();
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
 
-        var result = p.StandardOutput.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(result))
-          builder.AppendLine(result);
-        var error = p.StandardError.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(error))
-          builder.AppendLine(error);
       }
       {
         var args = new StringBuilder();
@@ -126,15 +298,10 @@ namespace LibDeviser
           RedirectStandardOutput = true,
         };
 
-        var p = Process.Start(info);
-        p.WaitForExit();
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
 
-        var result = p.StandardOutput.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(result))
-          builder.AppendLine(result);
-        var error = p.StandardError.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(error))
-          builder.AppendLine(error);
       }
 
       builder.AppendLine();
@@ -160,7 +327,7 @@ namespace LibDeviser
     {
       var builder = new StringBuilder();
       builder.AppendLine("Compile Latex");
-      builder.AppendLine("================");
+      builder.AppendLine("=============");
       builder.AppendLine();
 
       string lowerCasePackageName = packageName.ToLowerInvariant();
@@ -214,15 +381,9 @@ namespace LibDeviser
         info.EnvironmentVariables.Add("TEXINPUTS", sbmlPkgSpecDir);
         info.EnvironmentVariables.Add("BIBINPUTS", sbmlPkgSpecDir);
 
-        var p = Process.Start(info);
-        //p.WaitForExit();
-
-        var result = p.StandardOutput.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(result))
-          builder.AppendLine(result);
-        var error = p.StandardError.ReadToEnd();
-        if (!string.IsNullOrWhiteSpace(error))
-          builder.AppendLine(error);
+        var task = RunProcessAsync(info);
+        task.Wait();
+        builder.AppendLine(task.Result);
 
       }
 
@@ -232,5 +393,138 @@ namespace LibDeviser
 
       return builder.ToString();
     }
+
+    public static string AddPackageToSource(string libSBMLSourceDir, string outDir, string packageName)
+    {
+      var builder = new StringBuilder();
+      builder.AppendLine("Adding Package to Source");
+      builder.AppendLine("========================");
+      builder.AppendLine();
+
+      var lowerFirst = packageName.LowerFirst();
+      var packageDir = Path.Combine(outDir, lowerFirst);
+      if (!Directory.Exists(packageDir))
+      {
+        builder.AppendLine("Error: please export package first.");
+        return builder.ToString();
+      }
+
+      if (!Directory.Exists(libSBMLSourceDir))
+      {
+        builder.AppendLine("Error: Missing source dir.");
+        return builder.ToString();
+      }
+
+      {
+        CopyFiles(outDir, 
+          Path.Combine(packageDir, @"src"), 
+          Path.Combine(libSBMLSourceDir, @"src"), builder);
+      }
+
+      {
+        CopyFiles(outDir,
+          Path.Combine(packageDir, lowerFirst + "-package.cmake"),
+          libSBMLSourceDir, builder, false);
+      }
+
+      builder.AppendLine();
+      builder.AppendLine("DONE");
+      builder.AppendLine();
+
+      return builder.ToString();
+    }
+
+    private static void CopyFiles(string outDir, string source, string target, StringBuilder builder, bool recursive = true)
+    {
+      var args = new StringBuilder();
+      args.AppendFormat("\"{0}\" ", source);
+      args.AppendFormat("\"{0}\" ", target);
+      if (recursive)
+      args.AppendFormat("/e ");
+      args.AppendFormat("/y ");
+      var info = new ProcessStartInfo
+      {
+        FileName = "xcopy",
+        Arguments = args.ToString(),
+        WorkingDirectory = outDir,
+        UseShellExecute = false,
+        CreateNoWindow = true,
+        RedirectStandardError = true,
+        RedirectStandardOutput = true,
+      };
+
+      var task = RunProcessAsync(info);
+      task.Wait();
+      builder.AppendLine(task.Result);
+    }
+
+    public static string RemovePackageFromSource(string libSBMLSourceDir, string packageName)
+    {
+      var builder = new StringBuilder();
+      builder.AppendLine("Remove Package From Source");
+      builder.AppendLine("==========================");
+      builder.AppendLine();
+
+      if (!Directory.Exists(libSBMLSourceDir))
+      {
+        builder.AppendLine("Error: Missing source dir.");
+        return builder.ToString();
+      }
+
+      var lowerFirst = packageName.LowerFirst();
+
+      DeleteFile(Path.Combine(libSBMLSourceDir, lowerFirst + "-package.cmake"));
+      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\" + lowerFirst + "-package.cmake"));
+      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\sbml\packages" + lowerFirst + "-register.cxx"));
+      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\sbml\packages" + lowerFirst + "-register.h"));
+      DeleteDir(Path.Combine(libSBMLSourceDir, @"src\sbml\packages\" + lowerFirst));
+
+      DeleteRecursive(Path.Combine(libSBMLSourceDir, @"src\bindings"), lowerFirst, builder);
+
+      builder.AppendLine();
+      builder.AppendLine("DONE");
+      builder.AppendLine();
+
+      return builder.ToString();
+    }
+
+    private static void DeleteDir(string dir)
+    {
+      if (Directory.Exists(dir))
+      Directory.Delete(dir, true);
+    }
+
+    private static void DeleteFile(string file)
+    {
+      if (!File.Exists(file)) return;
+      
+      File.Delete(file);
+    }
+
+    private static void DeleteRecursive(string dir, string filter, StringBuilder builder)
+    {
+      var args = new StringBuilder();
+      args.AppendFormat("/C ");
+      args.AppendFormat("del "); 
+      args.AppendFormat("\"*{0}*\" ", filter);
+      args.AppendFormat("/s ");
+      args.AppendFormat("/q ");
+      var info = new ProcessStartInfo
+      {
+        FileName = "cmd",
+        Arguments = args.ToString(),
+        WorkingDirectory = dir,
+        UseShellExecute = false,
+        CreateNoWindow = true,
+        RedirectStandardError = true,
+        RedirectStandardOutput = true,
+      };
+
+      var task = RunProcessAsync(info);
+      task.Wait();
+      builder.AppendLine(task.Result);      
+    }
+
+    
   }
 }

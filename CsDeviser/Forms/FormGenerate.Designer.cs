@@ -28,11 +28,13 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.label1 = new System.Windows.Forms.Label();
       this.txtOutDir = new System.Windows.Forms.TextBox();
       this.cmdBrowseDir = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmdCompileTex = new System.Windows.Forms.Button();
       this.txtResult = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.txtPackageName = new System.Windows.Forms.TextBox();
@@ -43,7 +45,11 @@
       this.cmdOpenOutDir = new System.Windows.Forms.Button();
       this.panel2 = new System.Windows.Forms.Panel();
       this.cmdClose = new System.Windows.Forms.Button();
-      this.cmdCompileTex = new System.Windows.Forms.Button();
+      this.cmdCompileDependencies = new System.Windows.Forms.Button();
+      this.cmdCompilePackage = new System.Windows.Forms.Button();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.cmdAddPackageToSource = new System.Windows.Forms.Button();
+      this.cmdRemovePackageFromSource = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
@@ -92,11 +98,15 @@
       this.tableLayoutPanel1.RowCount = 2;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 441);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 491);
       this.tableLayoutPanel1.TabIndex = 3;
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.cmdRemovePackageFromSource);
+      this.panel1.Controls.Add(this.cmdAddPackageToSource);
+      this.panel1.Controls.Add(this.cmdCompilePackage);
+      this.panel1.Controls.Add(this.cmdCompileDependencies);
       this.panel1.Controls.Add(this.cmdCompileTex);
       this.panel1.Controls.Add(this.txtResult);
       this.panel1.Controls.Add(this.label3);
@@ -112,8 +122,19 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(3, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(618, 400);
+      this.panel1.Size = new System.Drawing.Size(618, 450);
       this.panel1.TabIndex = 0;
+      // 
+      // cmdCompileTex
+      // 
+      this.cmdCompileTex.Location = new System.Drawing.Point(407, 95);
+      this.cmdCompileTex.Name = "cmdCompileTex";
+      this.cmdCompileTex.Size = new System.Drawing.Size(75, 23);
+      this.cmdCompileTex.TabIndex = 6;
+      this.cmdCompileTex.Text = "Compile TeX";
+      this.toolTip1.SetToolTip(this.cmdCompileTex, "compiles the latex sources");
+      this.cmdCompileTex.UseVisualStyleBackColor = true;
+      this.cmdCompileTex.Click += new System.EventHandler(this.cmdCompileTex_Click);
       // 
       // txtResult
       // 
@@ -121,13 +142,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.txtResult.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.txtResult.Location = new System.Drawing.Point(3, 140);
+      this.txtResult.Location = new System.Drawing.Point(3, 153);
       this.txtResult.Multiline = true;
       this.txtResult.Name = "txtResult";
       this.txtResult.ReadOnly = true;
       this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.txtResult.Size = new System.Drawing.Size(612, 257);
-      this.txtResult.TabIndex = 10;
+      this.txtResult.Size = new System.Drawing.Size(612, 294);
+      this.txtResult.TabIndex = 11;
       // 
       // label3
       // 
@@ -169,31 +190,34 @@
       // 
       // cmdGeneratePackage
       // 
-      this.cmdGeneratePackage.Location = new System.Drawing.Point(385, 111);
+      this.cmdGeneratePackage.Location = new System.Drawing.Point(294, 95);
       this.cmdGeneratePackage.Name = "cmdGeneratePackage";
-      this.cmdGeneratePackage.Size = new System.Drawing.Size(137, 23);
+      this.cmdGeneratePackage.Size = new System.Drawing.Size(107, 23);
       this.cmdGeneratePackage.TabIndex = 5;
       this.cmdGeneratePackage.Text = "Generate Package";
+      this.toolTip1.SetToolTip(this.cmdGeneratePackage, "generates the package sources");
       this.cmdGeneratePackage.UseVisualStyleBackColor = true;
       this.cmdGeneratePackage.Click += new System.EventHandler(this.cmdGeneratePackage_Click);
       // 
       // cmdGenerateTex
       // 
-      this.cmdGenerateTex.Location = new System.Drawing.Point(242, 111);
+      this.cmdGenerateTex.Location = new System.Drawing.Point(200, 95);
       this.cmdGenerateTex.Name = "cmdGenerateTex";
-      this.cmdGenerateTex.Size = new System.Drawing.Size(137, 23);
+      this.cmdGenerateTex.Size = new System.Drawing.Size(88, 23);
       this.cmdGenerateTex.TabIndex = 4;
       this.cmdGenerateTex.Text = "Generate Latex";
+      this.toolTip1.SetToolTip(this.cmdGenerateTex, "generates the latex sources");
       this.cmdGenerateTex.UseVisualStyleBackColor = true;
       this.cmdGenerateTex.Click += new System.EventHandler(this.cmdGenerateTex_Click);
       // 
       // cmdOpenOutDir
       // 
-      this.cmdOpenOutDir.Location = new System.Drawing.Point(99, 111);
+      this.cmdOpenOutDir.Location = new System.Drawing.Point(99, 95);
       this.cmdOpenOutDir.Name = "cmdOpenOutDir";
-      this.cmdOpenOutDir.Size = new System.Drawing.Size(137, 23);
+      this.cmdOpenOutDir.Size = new System.Drawing.Size(95, 23);
       this.cmdOpenOutDir.TabIndex = 3;
       this.cmdOpenOutDir.Text = "Open OutDir";
+      this.toolTip1.SetToolTip(this.cmdOpenOutDir, "opens the specified output dir");
       this.cmdOpenOutDir.UseVisualStyleBackColor = true;
       this.cmdOpenOutDir.Click += new System.EventHandler(this.cmdOpenOutDir_Click);
       // 
@@ -201,7 +225,7 @@
       // 
       this.panel2.Controls.Add(this.cmdClose);
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(3, 409);
+      this.panel2.Location = new System.Drawing.Point(3, 459);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(618, 29);
       this.panel2.TabIndex = 1;
@@ -217,22 +241,56 @@
       this.cmdClose.Text = "&Close";
       this.cmdClose.UseVisualStyleBackColor = true;
       // 
-      // cmdCompileTex
+      // cmdCompileDependencies
       // 
-      this.cmdCompileTex.Location = new System.Drawing.Point(528, 111);
-      this.cmdCompileTex.Name = "cmdCompileTex";
-      this.cmdCompileTex.Size = new System.Drawing.Size(75, 23);
-      this.cmdCompileTex.TabIndex = 11;
-      this.cmdCompileTex.Text = "Compile TeX";
-      this.cmdCompileTex.UseVisualStyleBackColor = true;
-      this.cmdCompileTex.Click += new System.EventHandler(this.cmdCompileTex_Click);
+      this.cmdCompileDependencies.Location = new System.Drawing.Point(488, 95);
+      this.cmdCompileDependencies.Name = "cmdCompileDependencies";
+      this.cmdCompileDependencies.Size = new System.Drawing.Size(128, 23);
+      this.cmdCompileDependencies.TabIndex = 7;
+      this.cmdCompileDependencies.Text = "Compile Dependencies";
+      this.toolTip1.SetToolTip(this.cmdCompileDependencies, "compiles the dependencies");
+      this.cmdCompileDependencies.UseVisualStyleBackColor = true;
+      this.cmdCompileDependencies.Click += new System.EventHandler(this.cmdCompileDependencies_Click);
+      // 
+      // cmdCompilePackage
+      // 
+      this.cmdCompilePackage.Location = new System.Drawing.Point(452, 124);
+      this.cmdCompilePackage.Name = "cmdCompilePackage";
+      this.cmdCompilePackage.Size = new System.Drawing.Size(162, 23);
+      this.cmdCompilePackage.TabIndex = 10;
+      this.cmdCompilePackage.Text = "Compile Package";
+      this.toolTip1.SetToolTip(this.cmdCompilePackage, "compiles the package");
+      this.cmdCompilePackage.UseVisualStyleBackColor = true;
+      this.cmdCompilePackage.Click += new System.EventHandler(this.cmdCompilePackage_Click);
+      // 
+      // cmdAddPackageToSource
+      // 
+      this.cmdAddPackageToSource.Location = new System.Drawing.Point(99, 124);
+      this.cmdAddPackageToSource.Name = "cmdAddPackageToSource";
+      this.cmdAddPackageToSource.Size = new System.Drawing.Size(153, 23);
+      this.cmdAddPackageToSource.TabIndex = 8;
+      this.cmdAddPackageToSource.Text = "Add Package To Source Dir";
+      this.toolTip1.SetToolTip(this.cmdAddPackageToSource, "adds the package to the libsbml source dir");
+      this.cmdAddPackageToSource.UseVisualStyleBackColor = true;
+      this.cmdAddPackageToSource.Click += new System.EventHandler(this.cmdAddPackageToSource_Click);
+      // 
+      // cmdRemovePackageFromSource
+      // 
+      this.cmdRemovePackageFromSource.Location = new System.Drawing.Point(258, 124);
+      this.cmdRemovePackageFromSource.Name = "cmdRemovePackageFromSource";
+      this.cmdRemovePackageFromSource.Size = new System.Drawing.Size(188, 23);
+      this.cmdRemovePackageFromSource.TabIndex = 9;
+      this.cmdRemovePackageFromSource.Text = "Remove Package From Source Dir";
+      this.toolTip1.SetToolTip(this.cmdRemovePackageFromSource, "removes the package from the libsbml source dir");
+      this.cmdRemovePackageFromSource.UseVisualStyleBackColor = true;
+      this.cmdRemovePackageFromSource.Click += new System.EventHandler(this.cmdRemovePackageFromSource_Click);
       // 
       // FormGenerate
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cmdClose;
-      this.ClientSize = new System.Drawing.Size(624, 441);
+      this.ClientSize = new System.Drawing.Size(624, 491);
       this.Controls.Add(this.tableLayoutPanel1);
       this.MinimumSize = new System.Drawing.Size(640, 480);
       this.Name = "FormGenerate";
@@ -266,5 +324,10 @@
     private System.Windows.Forms.TextBox txtPackageFile;
     private System.Windows.Forms.TextBox txtResult;
     private System.Windows.Forms.Button cmdCompileTex;
+    private System.Windows.Forms.Button cmdRemovePackageFromSource;
+    private System.Windows.Forms.Button cmdAddPackageToSource;
+    private System.Windows.Forms.Button cmdCompilePackage;
+    private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.Button cmdCompileDependencies;
   }
 }
