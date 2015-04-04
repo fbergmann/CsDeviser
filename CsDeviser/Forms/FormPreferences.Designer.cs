@@ -31,6 +31,15 @@
       this.components = new System.ComponentModel.Container();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmdBrowseDependencies = new System.Windows.Forms.Button();
+      this.txtDependenciesSourceDir = new System.Windows.Forms.TextBox();
+      this.label12 = new System.Windows.Forms.Label();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.label9 = new System.Windows.Forms.Label();
+      this.cmdBrowseCMake = new System.Windows.Forms.Button();
+      this.txtCmake = new System.Windows.Forms.TextBox();
+      this.label8 = new System.Windows.Forms.Label();
       this.cmbCompilers = new System.Windows.Forms.ComboBox();
       this.label7 = new System.Windows.Forms.Label();
       this.cmdBrowseSource = new System.Windows.Forms.Button();
@@ -54,16 +63,10 @@
       this.panel2 = new System.Windows.Forms.Panel();
       this.cmdOK = new System.Windows.Forms.Button();
       this.cmdCancel = new System.Windows.Forms.Button();
-      this.cmdBrowseCMake = new System.Windows.Forms.Button();
-      this.txtCmake = new System.Windows.Forms.TextBox();
-      this.label8 = new System.Windows.Forms.Label();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label10 = new System.Windows.Forms.Label();
-      this.label11 = new System.Windows.Forms.Label();
-      this.cmdBrowseDependencies = new System.Windows.Forms.Button();
-      this.txtDependenciesSourceDir = new System.Windows.Forms.TextBox();
-      this.label12 = new System.Windows.Forms.Label();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.cmdBrowseSwig = new System.Windows.Forms.Button();
+      this.txtSwig = new System.Windows.Forms.TextBox();
+      this.label13 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
@@ -86,6 +89,9 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.cmdBrowseSwig);
+      this.panel1.Controls.Add(this.txtSwig);
+      this.panel1.Controls.Add(this.label13);
       this.panel1.Controls.Add(this.cmdBrowseDependencies);
       this.panel1.Controls.Add(this.txtDependenciesSourceDir);
       this.panel1.Controls.Add(this.label12);
@@ -120,6 +126,97 @@
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(618, 400);
       this.panel1.TabIndex = 0;
+      // 
+      // cmdBrowseDependencies
+      // 
+      this.cmdBrowseDependencies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseDependencies.Location = new System.Drawing.Point(540, 287);
+      this.cmdBrowseDependencies.Name = "cmdBrowseDependencies";
+      this.cmdBrowseDependencies.Size = new System.Drawing.Size(75, 23);
+      this.cmdBrowseDependencies.TabIndex = 30;
+      this.cmdBrowseDependencies.Text = "...";
+      this.cmdBrowseDependencies.UseVisualStyleBackColor = true;
+      this.cmdBrowseDependencies.Click += new System.EventHandler(this.cmdBrowseDependencies_Click);
+      // 
+      // txtDependenciesSourceDir
+      // 
+      this.txtDependenciesSourceDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtDependenciesSourceDir.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtDependenciesSourceDir.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
+      this.txtDependenciesSourceDir.Location = new System.Drawing.Point(142, 289);
+      this.txtDependenciesSourceDir.Name = "txtDependenciesSourceDir";
+      this.txtDependenciesSourceDir.Size = new System.Drawing.Size(392, 20);
+      this.txtDependenciesSourceDir.TabIndex = 29;
+      this.toolTip1.SetToolTip(this.txtDependenciesSourceDir, "full path to libsbml dependencies sources");
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(5, 292);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(130, 13);
+      this.label12.TabIndex = 28;
+      this.label12.Text = "Dependencies Source dir:";
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(9, 194);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(345, 13);
+      this.label11.TabIndex = 27;
+      this.label11.Text = "The next four entries are needed, to compile the package with libSBML:";
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(9, 118);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(341, 13);
+      this.label10.TabIndex = 26;
+      this.label10.Text = "The next two entries are needed, in order to compile the latex sources: ";
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(9, 16);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(366, 13);
+      this.label9.TabIndex = 25;
+      this.label9.Text = "The next three entries are needed, to generate the package / latex sources:";
+      // 
+      // cmdBrowseCMake
+      // 
+      this.cmdBrowseCMake.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseCMake.Location = new System.Drawing.Point(540, 261);
+      this.cmdBrowseCMake.Name = "cmdBrowseCMake";
+      this.cmdBrowseCMake.Size = new System.Drawing.Size(75, 23);
+      this.cmdBrowseCMake.TabIndex = 24;
+      this.cmdBrowseCMake.Text = "...";
+      this.cmdBrowseCMake.UseVisualStyleBackColor = true;
+      this.cmdBrowseCMake.Click += new System.EventHandler(this.cmdBrowseCMake_Click);
+      // 
+      // txtCmake
+      // 
+      this.txtCmake.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtCmake.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtCmake.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtCmake.Location = new System.Drawing.Point(142, 263);
+      this.txtCmake.Name = "txtCmake";
+      this.txtCmake.Size = new System.Drawing.Size(392, 20);
+      this.txtCmake.TabIndex = 23;
+      this.toolTip1.SetToolTip(this.txtCmake, "full path to cmake executable");
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(32, 266);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(103, 13);
+      this.label8.TabIndex = 22;
+      this.label8.Text = "CMake Executable: ";
       // 
       // cmbCompilers
       // 
@@ -358,96 +455,37 @@
       this.cmdCancel.Text = "&Cancel";
       this.cmdCancel.UseVisualStyleBackColor = true;
       // 
-      // cmdBrowseCMake
+      // cmdBrowseSwig
       // 
-      this.cmdBrowseCMake.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdBrowseCMake.Location = new System.Drawing.Point(540, 261);
-      this.cmdBrowseCMake.Name = "cmdBrowseCMake";
-      this.cmdBrowseCMake.Size = new System.Drawing.Size(75, 23);
-      this.cmdBrowseCMake.TabIndex = 24;
-      this.cmdBrowseCMake.Text = "...";
-      this.cmdBrowseCMake.UseVisualStyleBackColor = true;
-      this.cmdBrowseCMake.Click += new System.EventHandler(this.cmdBrowseCMake_Click);
+      this.cmdBrowseSwig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseSwig.Location = new System.Drawing.Point(540, 313);
+      this.cmdBrowseSwig.Name = "cmdBrowseSwig";
+      this.cmdBrowseSwig.Size = new System.Drawing.Size(75, 23);
+      this.cmdBrowseSwig.TabIndex = 33;
+      this.cmdBrowseSwig.Text = "...";
+      this.cmdBrowseSwig.UseVisualStyleBackColor = true;
+      this.cmdBrowseSwig.Click += new System.EventHandler(this.cmdBrowseSwig_Click);
       // 
-      // txtCmake
+      // txtSwig
       // 
-      this.txtCmake.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.txtSwig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtCmake.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.txtCmake.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
-      this.txtCmake.Location = new System.Drawing.Point(142, 263);
-      this.txtCmake.Name = "txtCmake";
-      this.txtCmake.Size = new System.Drawing.Size(392, 20);
-      this.txtCmake.TabIndex = 23;
-      this.toolTip1.SetToolTip(this.txtCmake, "full path to cmake executable");
+      this.txtSwig.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtSwig.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtSwig.Location = new System.Drawing.Point(142, 315);
+      this.txtSwig.Name = "txtSwig";
+      this.txtSwig.Size = new System.Drawing.Size(392, 20);
+      this.txtSwig.TabIndex = 32;
+      this.toolTip1.SetToolTip(this.txtSwig, "full path to cmake executable");
       // 
-      // label8
+      // label13
       // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(32, 266);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(103, 13);
-      this.label8.TabIndex = 22;
-      this.label8.Text = "CMake Executable: ";
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(9, 16);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(366, 13);
-      this.label9.TabIndex = 25;
-      this.label9.Text = "The next three entries are needed, to generate the package / latex sources:";
-      // 
-      // label10
-      // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(9, 118);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(341, 13);
-      this.label10.TabIndex = 26;
-      this.label10.Text = "The next two entries are needed, in order to compile the latex sources: ";
-      // 
-      // label11
-      // 
-      this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(9, 194);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(345, 13);
-      this.label11.TabIndex = 27;
-      this.label11.Text = "The next four entries are needed, to compile the package with libSBML:";
-      // 
-      // cmdBrowseDependencies
-      // 
-      this.cmdBrowseDependencies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdBrowseDependencies.Location = new System.Drawing.Point(540, 287);
-      this.cmdBrowseDependencies.Name = "cmdBrowseDependencies";
-      this.cmdBrowseDependencies.Size = new System.Drawing.Size(75, 23);
-      this.cmdBrowseDependencies.TabIndex = 30;
-      this.cmdBrowseDependencies.Text = "...";
-      this.cmdBrowseDependencies.UseVisualStyleBackColor = true;
-      this.cmdBrowseDependencies.Click += new System.EventHandler(this.cmdBrowseDependencies_Click);
-      // 
-      // txtDependenciesSourceDir
-      // 
-      this.txtDependenciesSourceDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtDependenciesSourceDir.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.txtDependenciesSourceDir.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
-      this.txtDependenciesSourceDir.Location = new System.Drawing.Point(142, 289);
-      this.txtDependenciesSourceDir.Name = "txtDependenciesSourceDir";
-      this.txtDependenciesSourceDir.Size = new System.Drawing.Size(392, 20);
-      this.txtDependenciesSourceDir.TabIndex = 29;
-      this.toolTip1.SetToolTip(this.txtDependenciesSourceDir, "full path to libsbml dependencies sources");
-      // 
-      // label12
-      // 
-      this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(5, 292);
-      this.label12.Name = "label12";
-      this.label12.Size = new System.Drawing.Size(130, 13);
-      this.label12.TabIndex = 28;
-      this.label12.Text = "Dependencies Source dir:";
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(32, 318);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(92, 13);
+      this.label13.TabIndex = 31;
+      this.label13.Text = "Swig Executable: ";
       // 
       // FormPreferences
       // 
@@ -507,5 +545,8 @@
     private System.Windows.Forms.Label label10;
     private System.Windows.Forms.Label label9;
     private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.Button cmdBrowseSwig;
+    private System.Windows.Forms.TextBox txtSwig;
+    private System.Windows.Forms.Label label13;
   }
 }

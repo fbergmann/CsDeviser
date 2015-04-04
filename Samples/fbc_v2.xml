@@ -35,7 +35,7 @@
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
         <attribute name="type" required="true" type="enum" element="FbcType" abstract="false" />
-        <attribute name="fluxObjective" required="true" type="lo_element" element="FluxObjective" abstract="false" />
+        <attribute name="fluxObjective" required="false" type="lo_element" element="FluxObjective" abstract="false" />
       </attributes>
       <listOfAttributes>
         <listOfAttribute name="activeObjective" required="true" type="SIdRef" abstract="false" />
@@ -55,12 +55,12 @@
         <attribute name="geneProduct" required="true" type="SIdRef" abstract="false" />
       </attributes>
     </element>
-    <element name="FbcAnd" typeCode="SBML_FBC_AND" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="and">
+    <element name="FbcAnd" typeCode="SBML_FBC_AND" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="and">
       <attributes>
         <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
       </attributes>
     </element>
-    <element name="FbcOr" typeCode="SBML_FBC_OR" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="or">
+    <element name="FbcOr" typeCode="SBML_FBC_OR" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="or">
       <attributes>
         <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
       </attributes>

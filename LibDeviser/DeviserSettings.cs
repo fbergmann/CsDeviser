@@ -9,6 +9,30 @@ namespace LibDeviser
   public class DeviserSettings
   {
     public string PythonInterpreter { get; set; }
+    public string PythonIncludes {
+      get
+      {
+        if (string.IsNullOrWhiteSpace(PythonInterpreter))
+          return string.Empty;
+        var path = Path.GetDirectoryName(PythonInterpreter);
+        return Path.Combine(path, "include");
+      }
+    }
+
+    public string PythonLibrary
+    {
+      get { 
+        if (string.IsNullOrWhiteSpace(PythonInterpreter))
+          return string.Empty;
+        var path = Path.GetDirectoryName(PythonInterpreter);
+        var libs = Path.Combine(path, "libs");
+        var files = Directory.GetFiles(libs, "python*.lib", SearchOption.TopDirectoryOnly);
+        if (files.Length == 0) return string.Empty;
+        return files[0];
+
+      }
+    }
+
     public string DeviserRepository { get; set; }
     public string DefaultOutputDir { get; set; }
     public string SBMLPkgSpecDir { get; set; }
@@ -17,6 +41,7 @@ namespace LibDeviser
     public string DependenciesSourceDir { get; set; }
     public string VSBatchFile{ get; set; }
     public string CMake { get; set; }
+    public string Swig { get; set; }
 
     public static DeviserSettings Instance
     {

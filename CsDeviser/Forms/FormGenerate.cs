@@ -150,6 +150,8 @@ namespace CsDeviser.Forms
           Deviser.CompilePackage(DeviserSettings.Instance.LibSBMLSourceDir,
             DeviserSettings.Instance.CMake,
             DeviserSettings.Instance.VSBatchFile,
+            DeviserSettings.Instance.Swig,
+            DeviserSettings.Instance.PythonInterpreter,
             txtOutDir.Text, 
             txtPackageName.Text);
 
@@ -158,6 +160,12 @@ namespace CsDeviser.Forms
       {
         Enabled = true;
       }
+    }
+
+    private void cmdTest_Click(object sender, EventArgs e)
+    {
+      txtResult.Text = Deviser.TestPackage(DeviserSettings.Instance.PythonInterpreter,
+        txtOutDir.Text, txtPackageName.Text);
     }
   }
 }

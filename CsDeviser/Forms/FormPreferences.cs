@@ -34,6 +34,7 @@ namespace CsDeviser.Forms
       CMake = settings.CMake;
       LibSBMLSourceDir = settings.LibSBMLSourceDir;
       DependenciesSourceDir= settings.DependenciesSourceDir;
+      SWIG = settings.Swig;
       VSBatch = settings.VSBatchFile;
     }
 
@@ -47,6 +48,7 @@ namespace CsDeviser.Forms
       settings.CMake = CMake;
       settings.LibSBMLSourceDir = LibSBMLSourceDir;
       settings.DependenciesSourceDir = DependenciesSourceDir;
+      settings.Swig  = SWIG;
       settings.VSBatchFile = VSBatch;
     }
 
@@ -56,6 +58,7 @@ namespace CsDeviser.Forms
         cmbCompilers.SelectedItem = entry.Key;
       } 
     }
+    public string SWIG { get { return txtSwig.Text; } set { txtSwig.Text = value; } }
     public string CMake { get { return txtCmake.Text; } set { txtCmake.Text = value; } }
     public string LibSBMLSourceDir { get { return txtlibSBMLSource.Text; } set { txtlibSBMLSource.Text = value; } }
     public string DependenciesSourceDir { get { return txtDependenciesSourceDir.Text; } set { txtDependenciesSourceDir.Text = value; } }
@@ -199,6 +202,19 @@ namespace CsDeviser.Forms
       {
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           txtDependenciesSourceDir.Text = dialog.SelectedPath;
+      }
+    }
+
+    private void cmdBrowseSwig_Click(object sender, EventArgs e)
+    {
+      string defaultPath = !string.IsNullOrWhiteSpace(txtSwig.Text) ? Path.GetFullPath(txtSwig.Text)
+             : null;
+      string defaultFile = !string.IsNullOrWhiteSpace(txtSwig.Text) ? Path.GetFileName(txtSwig.Text)
+       : null;
+      using (var dialog = new OpenFileDialog { Title = "Locate SWIG Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
+      {
+        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          txtSwig.Text = dialog.FileName;
       }
     }
   }

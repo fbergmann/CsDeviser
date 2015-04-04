@@ -395,7 +395,7 @@ namespace CsDeviser
         builder.AppendLine();
 
         MessageBox.Show(builder.ToString(),
-          "Correctd inconsistencies.",
+          "Corrected inconsistencies.",
           MessageBoxButtons.OK,
           MessageBoxIcon.Information
           );
@@ -497,6 +497,8 @@ namespace CsDeviser
       if (!DeviserSettings.Instance.CanGenerate)
         return;
 
+      if (SaveModelIfDirtyOrCancel()) return;
+
       using (var dlg = new FormGenerate { Package = FileName, PackageName = Model.Name})
         dlg.ShowDialog(this);
 
@@ -504,6 +506,7 @@ namespace CsDeviser
 
     private void cmdViewUML_Click(object sender, EventArgs e)
     {
+
       using (var dlg = new FormYuml {})
       {
         dlg.InitializeFrom(Model);

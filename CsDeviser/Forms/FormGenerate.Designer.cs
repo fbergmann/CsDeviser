@@ -34,6 +34,10 @@
       this.cmdBrowseDir = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmdRemovePackageFromSource = new System.Windows.Forms.Button();
+      this.cmdAddPackageToSource = new System.Windows.Forms.Button();
+      this.cmdCompilePackage = new System.Windows.Forms.Button();
+      this.cmdCompileDependencies = new System.Windows.Forms.Button();
       this.cmdCompileTex = new System.Windows.Forms.Button();
       this.txtResult = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -45,11 +49,8 @@
       this.cmdOpenOutDir = new System.Windows.Forms.Button();
       this.panel2 = new System.Windows.Forms.Panel();
       this.cmdClose = new System.Windows.Forms.Button();
-      this.cmdCompileDependencies = new System.Windows.Forms.Button();
-      this.cmdCompilePackage = new System.Windows.Forms.Button();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.cmdAddPackageToSource = new System.Windows.Forms.Button();
-      this.cmdRemovePackageFromSource = new System.Windows.Forms.Button();
+      this.cmdTest = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
@@ -103,6 +104,7 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.cmdTest);
       this.panel1.Controls.Add(this.cmdRemovePackageFromSource);
       this.panel1.Controls.Add(this.cmdAddPackageToSource);
       this.panel1.Controls.Add(this.cmdCompilePackage);
@@ -124,6 +126,50 @@
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(618, 450);
       this.panel1.TabIndex = 0;
+      // 
+      // cmdRemovePackageFromSource
+      // 
+      this.cmdRemovePackageFromSource.Location = new System.Drawing.Point(258, 124);
+      this.cmdRemovePackageFromSource.Name = "cmdRemovePackageFromSource";
+      this.cmdRemovePackageFromSource.Size = new System.Drawing.Size(188, 23);
+      this.cmdRemovePackageFromSource.TabIndex = 9;
+      this.cmdRemovePackageFromSource.Text = "Remove Package From Source Dir";
+      this.toolTip1.SetToolTip(this.cmdRemovePackageFromSource, "removes the package from the libsbml source dir");
+      this.cmdRemovePackageFromSource.UseVisualStyleBackColor = true;
+      this.cmdRemovePackageFromSource.Click += new System.EventHandler(this.cmdRemovePackageFromSource_Click);
+      // 
+      // cmdAddPackageToSource
+      // 
+      this.cmdAddPackageToSource.Location = new System.Drawing.Point(99, 124);
+      this.cmdAddPackageToSource.Name = "cmdAddPackageToSource";
+      this.cmdAddPackageToSource.Size = new System.Drawing.Size(153, 23);
+      this.cmdAddPackageToSource.TabIndex = 8;
+      this.cmdAddPackageToSource.Text = "Add Package To Source Dir";
+      this.toolTip1.SetToolTip(this.cmdAddPackageToSource, "adds the package to the libsbml source dir");
+      this.cmdAddPackageToSource.UseVisualStyleBackColor = true;
+      this.cmdAddPackageToSource.Click += new System.EventHandler(this.cmdAddPackageToSource_Click);
+      // 
+      // cmdCompilePackage
+      // 
+      this.cmdCompilePackage.Location = new System.Drawing.Point(452, 124);
+      this.cmdCompilePackage.Name = "cmdCompilePackage";
+      this.cmdCompilePackage.Size = new System.Drawing.Size(162, 23);
+      this.cmdCompilePackage.TabIndex = 10;
+      this.cmdCompilePackage.Text = "Compile Package";
+      this.toolTip1.SetToolTip(this.cmdCompilePackage, "compiles the package");
+      this.cmdCompilePackage.UseVisualStyleBackColor = true;
+      this.cmdCompilePackage.Click += new System.EventHandler(this.cmdCompilePackage_Click);
+      // 
+      // cmdCompileDependencies
+      // 
+      this.cmdCompileDependencies.Location = new System.Drawing.Point(488, 95);
+      this.cmdCompileDependencies.Name = "cmdCompileDependencies";
+      this.cmdCompileDependencies.Size = new System.Drawing.Size(128, 23);
+      this.cmdCompileDependencies.TabIndex = 7;
+      this.cmdCompileDependencies.Text = "Compile Dependencies";
+      this.toolTip1.SetToolTip(this.cmdCompileDependencies, "compiles the dependencies");
+      this.cmdCompileDependencies.UseVisualStyleBackColor = true;
+      this.cmdCompileDependencies.Click += new System.EventHandler(this.cmdCompileDependencies_Click);
       // 
       // cmdCompileTex
       // 
@@ -241,49 +287,15 @@
       this.cmdClose.Text = "&Close";
       this.cmdClose.UseVisualStyleBackColor = true;
       // 
-      // cmdCompileDependencies
+      // cmdTest
       // 
-      this.cmdCompileDependencies.Location = new System.Drawing.Point(488, 95);
-      this.cmdCompileDependencies.Name = "cmdCompileDependencies";
-      this.cmdCompileDependencies.Size = new System.Drawing.Size(128, 23);
-      this.cmdCompileDependencies.TabIndex = 7;
-      this.cmdCompileDependencies.Text = "Compile Dependencies";
-      this.toolTip1.SetToolTip(this.cmdCompileDependencies, "compiles the dependencies");
-      this.cmdCompileDependencies.UseVisualStyleBackColor = true;
-      this.cmdCompileDependencies.Click += new System.EventHandler(this.cmdCompileDependencies_Click);
-      // 
-      // cmdCompilePackage
-      // 
-      this.cmdCompilePackage.Location = new System.Drawing.Point(452, 124);
-      this.cmdCompilePackage.Name = "cmdCompilePackage";
-      this.cmdCompilePackage.Size = new System.Drawing.Size(162, 23);
-      this.cmdCompilePackage.TabIndex = 10;
-      this.cmdCompilePackage.Text = "Compile Package";
-      this.toolTip1.SetToolTip(this.cmdCompilePackage, "compiles the package");
-      this.cmdCompilePackage.UseVisualStyleBackColor = true;
-      this.cmdCompilePackage.Click += new System.EventHandler(this.cmdCompilePackage_Click);
-      // 
-      // cmdAddPackageToSource
-      // 
-      this.cmdAddPackageToSource.Location = new System.Drawing.Point(99, 124);
-      this.cmdAddPackageToSource.Name = "cmdAddPackageToSource";
-      this.cmdAddPackageToSource.Size = new System.Drawing.Size(153, 23);
-      this.cmdAddPackageToSource.TabIndex = 8;
-      this.cmdAddPackageToSource.Text = "Add Package To Source Dir";
-      this.toolTip1.SetToolTip(this.cmdAddPackageToSource, "adds the package to the libsbml source dir");
-      this.cmdAddPackageToSource.UseVisualStyleBackColor = true;
-      this.cmdAddPackageToSource.Click += new System.EventHandler(this.cmdAddPackageToSource_Click);
-      // 
-      // cmdRemovePackageFromSource
-      // 
-      this.cmdRemovePackageFromSource.Location = new System.Drawing.Point(258, 124);
-      this.cmdRemovePackageFromSource.Name = "cmdRemovePackageFromSource";
-      this.cmdRemovePackageFromSource.Size = new System.Drawing.Size(188, 23);
-      this.cmdRemovePackageFromSource.TabIndex = 9;
-      this.cmdRemovePackageFromSource.Text = "Remove Package From Source Dir";
-      this.toolTip1.SetToolTip(this.cmdRemovePackageFromSource, "removes the package from the libsbml source dir");
-      this.cmdRemovePackageFromSource.UseVisualStyleBackColor = true;
-      this.cmdRemovePackageFromSource.Click += new System.EventHandler(this.cmdRemovePackageFromSource_Click);
+      this.cmdTest.Location = new System.Drawing.Point(9, 124);
+      this.cmdTest.Name = "cmdTest";
+      this.cmdTest.Size = new System.Drawing.Size(84, 23);
+      this.cmdTest.TabIndex = 12;
+      this.cmdTest.Text = "Test Package";
+      this.cmdTest.UseVisualStyleBackColor = true;
+      this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
       // 
       // FormGenerate
       // 
@@ -329,5 +341,6 @@
     private System.Windows.Forms.Button cmdCompilePackage;
     private System.Windows.Forms.ToolTip toolTip1;
     private System.Windows.Forms.Button cmdCompileDependencies;
+    private System.Windows.Forms.Button cmdTest;
   }
 }

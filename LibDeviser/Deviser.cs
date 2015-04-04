@@ -15,7 +15,7 @@ namespace LibDeviser
     public static string ExtensionColor { get { return "palegreen"; } }
     public static string EnumPrefix { get { return "\u00ABEnumeration\u00BB;"; } }
 
-    public static string CompilePackage(string libSBMLSourceDir, string cMake, string vsBatchFile, string outdir, string packageName)
+    public static string CompilePackage(string libSBMLSourceDir, string cMake, string vsBatchFile, string swig, string python,  string outdir, string packageName)
     {
       var builder = new StringBuilder();
       builder.AppendLine("Compile Package");
@@ -61,7 +61,7 @@ namespace LibDeviser
       var temp = new StringBuilder();
       temp.AppendLine("@echo off");
       temp.AppendFormat("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir);
+      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
       temp.AppendLine("nmake");
       temp.AppendLine("nmake install");
 
@@ -121,7 +121,7 @@ namespace LibDeviser
 
       if (!Directory.Exists(outdir))
       {
-        builder.AppendLine("Error: The outdput dir does not exist, please create it first");
+        builder.AppendLine("Error: The output dir does not exist, please create it first");
         return builder.ToString();
       }
 
@@ -133,7 +133,7 @@ namespace LibDeviser
       var temp = new StringBuilder();
       temp.AppendLine("@echo off");
       temp.AppendFormat("call \"{0}\"{1}", vSBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}", dependenciesSourceDir, Environment.NewLine);
+      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}", dependenciesSourceDir, Environment.NewLine);
       temp.AppendLine("nmake");
       temp.AppendLine("nmake install");
 
@@ -525,6 +525,53 @@ namespace LibDeviser
       builder.AppendLine(task.Result);      
     }
 
-    
+
+    public static string TestPackage(string pythonInterpreter, string outDir, string packageName)
+    {
+      var builder = new StringBuilder();
+      builder.AppendLine("Test package");
+      builder.AppendLine("============");
+      builder.AppendLine();
+
+      var installDir = Path.Combine(outDir, "install_" + packageName + @"_package\bindings\python\libsbml");
+      if (!Directory.Exists(installDir))
+      {
+        builder.AppendLine("Error: Missing install dir, maybe the last compile run was not successful?");
+        return builder.ToString();
+      }
+
+      var interpreter = pythonInterpreter;
+      var test = Path.Combine(Path.GetDirectoryName(pythonInterpreter), @"Scripts\ipython.exe");
+      if (File.Exists(test))
+        interpreter = test;
+
+      if (!File.Exists(interpreter))
+      {
+        builder.AppendLine("Error: Missing interpreter, check settings.");
+        return builder.ToString();
+      }
+
+      var args = new StringBuilder();
+      var info = new ProcessStartInfo
+      {
+        FileName = interpreter,
+        Arguments = args.ToString(),
+        WorkingDirectory = installDir,
+        UseShellExecute = false,
+        CreateNoWindow = false,
+        RedirectStandardError = false,
+        RedirectStandardOutput = false,
+      };
+
+      info.EnvironmentVariables.Remove("PYTHONPATH");
+      info.EnvironmentVariables.Add("PYTHONPATH", installDir);
+      Process.Start(info);
+
+      builder.AppendLine();
+      builder.AppendLine("DONE");
+      builder.AppendLine();
+
+      return builder.ToString();
+    }
   }
 }
