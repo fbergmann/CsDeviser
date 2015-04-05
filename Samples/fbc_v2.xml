@@ -23,11 +23,11 @@
         <attribute name="coefficient" required="true" type="double" abstract="false" />
       </attributes>
     </element>
-    <element name="GeneProteinAssociation" typeCode="SBML_FBC_GENEASSOCIATION" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+    <element name="GeneProteinAssociation" typeCode="SBML_FBC_GENEASSOCIATION" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
       <attributes>
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="name" required="false" type="string" abstract="false" />
-        <attribute name="association" required="true" type="element" element="Association" abstract="false" />
+        <attribute name="association" required="true" type="element" element="Association" abstract="true" />
       </attributes>
     </element>
     <element name="Objective" typeCode="SBML_FBC_OBJECTIVE" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
@@ -57,12 +57,12 @@
     </element>
     <element name="FbcAnd" typeCode="SBML_FBC_AND" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="and">
       <attributes>
-        <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
+        <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="true" />
       </attributes>
     </element>
     <element name="FbcOr" typeCode="SBML_FBC_OR" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="Association" abstract="false" elementName="or">
       <attributes>
-        <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="false" />
+        <attribute name="association" required="false" type="inline_lo_element" element="Association" abstract="true" />
       </attributes>
     </element>
   </elements>
