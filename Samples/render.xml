@@ -70,7 +70,7 @@
     <element name="LineEnding" typeCode="SBML_RENDER_LINEENDING" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="lineEnding">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
-        <attribute name="enableRotationalMapping" required="false" type="boolean" abstract="false" />
+        <attribute name="enableRotationalMapping" required="false" type="bool" abstract="false" />
         <attribute name="g" required="false" type="element" element="RenderGroup" abstract="false" />
         <attribute name="boundingBox" required="false" type="element" element="BoundingBox" abstract="false" />
       </attributes>
@@ -101,7 +101,7 @@
     </element>
     <element name="Polygon" typeCode="SBML_RENDER_POLYGON" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive2D" abstract="false" elementName="polygon">
       <attributes>
-        <attribute name="element" required="true" type="lo_element" element="RenderPoint" abstract="false" />
+        <attribute name="element" required="false" type="lo_element" element="RenderPoint" abstract="false" />
       </attributes>
     </element>
     <element name="RadialGradient" typeCode="SBML_RENDER_RADIALGRADIENT" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GradientBase" abstract="false" elementName="radialGradient">
@@ -146,7 +146,7 @@
       <attributes>
         <attribute name="startHead" required="false" type="SIdRef" abstract="false" />
         <attribute name="endHead" required="false" type="SIdRef" abstract="false" />
-        <attribute name="element" required="true" type="lo_element" element="RenderPoint" abstract="false" />
+        <attribute name="element" required="false" type="lo_element" element="RenderPoint" abstract="false" />
       </attributes>
     </element>
     <element name="RenderPoint" typeCode="SBML_RENDER_POINT" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" elementName="element" listOfName="listOfElements">
@@ -175,7 +175,7 @@
     </element>
     <element name="Transformation2D" typeCode="SBML_RENDER_TRANSFORMATION2D" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation" abstract="true" elementName="listOfDrawables" listOfName="ListOfDrawables">
       <attributes>
-        <attribute name="transform" required="false" type="array" element="double" abstract="false" />
+        <attribute name="transform" required="false" type="string" element="double" abstract="false" />
       </attributes>
       <concretes>
         <concrete name="image" element="Image" />
@@ -183,7 +183,7 @@
     </element>
     <element name="Transformation" typeCode="SBML_RENDER_TRANSFORMATION" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="true">
       <attributes>
-        <attribute name="transform" required="true" type="array" element="double" abstract="false" />
+        <attribute name="transform" required="true" type="string" element="double" abstract="false" />
       </attributes>
     </element>
     <element name="GraphicalPrimitive1D" typeCode="SBML_RENDER_GRAPHICALPRIMITIVE1D" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Transformation2D" abstract="true">
@@ -191,7 +191,7 @@
         <attribute name="id" required="false" type="SId" abstract="false" />
         <attribute name="stroke" required="false" type="string" abstract="false" />
         <attribute name="stroke-width" required="false" type="string" abstract="false" />
-        <attribute name="stroke-dasharray" required="false" type="array" element="unsigned integer" abstract="false" />
+        <attribute name="stroke-dasharray" required="false" type="string" abstract="false" />
       </attributes>
       <concretes>
         <concrete name="text" element="Text" />

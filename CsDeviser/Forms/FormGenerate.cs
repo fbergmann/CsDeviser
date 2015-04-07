@@ -69,12 +69,27 @@ namespace CsDeviser.Forms
         );
     }
 
+    delegate void resultDelegate(string foo);
+    void AppendResult(string result)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new resultDelegate(AppendResult), new object[] {result});
+        return;
+      }
+
+      if (string.IsNullOrWhiteSpace(result)) return;
+      if (IsDisposed) return;
+      if (txtResult.IsDisposed) return;
+      txtResult.AppendText(result + Environment.NewLine);
+    }
+
     private void cmdGeneratePackage_Click(object sender, EventArgs e)
     {
-      txtResult.Text = 
-      Deviser.GeneratePackage(DeviserSettings.Instance.PythonInterpreter,
+      txtResult.Clear();
+      Deviser.GeneratePackageWithReport(DeviserSettings.Instance.PythonInterpreter,
         DeviserSettings.Instance.DeviserRepository,
-        txtOutDir.Text, Package, PackageName
+        txtOutDir.Text, Package, PackageName, AppendResult
         );
     }
 
@@ -94,36 +109,36 @@ namespace CsDeviser.Forms
 
     private void cmdCompileTex_Click(object sender, EventArgs e)
     {
-      Enabled = false;
+      cmdCompileTex.Enabled = false;
       try
       {
-        txtResult.Text =
-          Deviser.CompileTex(DeviserSettings.Instance.MikTexDir,
+        txtResult.Clear();
+          Deviser.CompileTexWithProgress(DeviserSettings.Instance.MikTexDir,
             DeviserSettings.Instance.SBMLPkgSpecDir,
-            txtOutDir.Text, Package, PackageName
+            txtOutDir.Text, Package, PackageName, AppendResult
             );
       }
       finally
       {
-        Enabled = true;
+        cmdCompileTex.Enabled = true;
       }
     }
 
     private void cmdCompileDependencies_Click(object sender, EventArgs e)
     {
-      this.Enabled = false;
+      cmdCompileDependencies.Enabled = false;
       try
       {
-        txtResult.Text =
-          Deviser.CompileDependencies(DeviserSettings.Instance.DependenciesSourceDir,
+        txtResult.Clear();        
+          Deviser.CompileDependenciesWithProgress(DeviserSettings.Instance.DependenciesSourceDir,
             DeviserSettings.Instance.CMake,
             DeviserSettings.Instance.VSBatchFile,
-            txtOutDir.Text);
+            txtOutDir.Text, AppendResult);
         
       }
       finally
       {
-        Enabled = true;
+        cmdCompileDependencies.Enabled = true;
       }
         
     }
@@ -143,22 +158,22 @@ namespace CsDeviser.Forms
 
     private void cmdCompilePackage_Click(object sender, EventArgs e)
     {
-      this.Enabled = false;
+      cmdCompilePackage.Enabled = false;
       try
       {
-        txtResult.Text =
-          Deviser.CompilePackage(DeviserSettings.Instance.LibSBMLSourceDir,
+        txtResult.Clear();
+          Deviser.CompilePackageWithProgress(DeviserSettings.Instance.LibSBMLSourceDir,
             DeviserSettings.Instance.CMake,
             DeviserSettings.Instance.VSBatchFile,
             DeviserSettings.Instance.Swig,
             DeviserSettings.Instance.PythonInterpreter,
             txtOutDir.Text, 
-            txtPackageName.Text);
+            txtPackageName.Text, AppendResult);
 
       }
       finally
       {
-        Enabled = true;
+        cmdCompilePackage.Enabled = true;
       }
     }
 
