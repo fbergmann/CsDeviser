@@ -66,10 +66,7 @@ namespace CsDeviser.Controls
         lstAllClasses.Items.Add(item.Name);
         if (item.HasListOf)
         {
-          if (!string.IsNullOrWhiteSpace(item.ListOfName))
-            lstAllClasses.Items.Add(item.ListOfName);
-          else
-            lstAllClasses.Items.Add("ListOf" + item.Name + "s");
+          lstAllClasses.Items.Add(item.GetListOfName());
         }
       }
 

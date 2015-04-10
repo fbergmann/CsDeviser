@@ -35,6 +35,30 @@ namespace LibDeviser
       return str + "s";
     }
 
+    public static List<string> CoreClasses
+    {
+    get {
+      return CoreClassesTypeCodeMap.Keys.ToList();
+    }
+      
+  }
+
+    public static Dictionary<string, string> CoreClassesTypeCodeMap
+    {
+      get { 
+        var result = new Dictionary<string, string>();
+        foreach (var line in Properties.Resources.CoreClasses.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries))
+        {
+          var entries = line.Split(new char[] {',', ' '}, StringSplitOptions.RemoveEmptyEntries);
+          if (entries.Length == 2)
+          {
+            result[entries[0]] = entries[1];
+          }
+        }
+        return result;
+      }
+    }
+
     public static void InitializeFrom<T>(this List<T> list, XmlNodeList nodes, DeviserPackage parent = null)
    where T : DeviserBase, new()
     {

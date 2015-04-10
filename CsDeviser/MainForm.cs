@@ -29,6 +29,7 @@ namespace CsDeviser
     }
 
     const string NODE_PACKAGE = "nodePackage";
+    const string NODE_MAPPINGS = "nodeMappings";
     const string NODE_ENUMS = "nodeEnums";
     const string NODE_CLASSES = "nodeClasses";
     const string NODE_PLUGINS = "nodePlugins";
@@ -45,6 +46,7 @@ namespace CsDeviser
         if (controlClass1.Visible) return controlClass1;
         if (controlPlugin1.Visible) return controlPlugin1;
         if (controlEnum1.Visible) return controlEnum1;
+        if (controlMappings1.Visible) return controlMappings1;
 
         return null;
       }
@@ -116,6 +118,7 @@ namespace CsDeviser
         controlClass1.Visible = false;
         controlPlugin1.Visible = false;
         controlEnum1.Visible = false;
+        controlMappings1.Visible = false;
         return;
       }
 
@@ -125,6 +128,7 @@ namespace CsDeviser
         controlPlugin1.Visible = false;
         controlPackage1.Visible = true;
         controlEnum1.Visible = false;
+        controlMappings1.Visible = false;
         controlPackage1.InitializeFrom(Current as DeviserPackage);
         return;
       }
@@ -135,6 +139,7 @@ namespace CsDeviser
         controlPlugin1.Visible = true;
         controlPackage1.Visible = false;
         controlEnum1.Visible = false;
+        controlMappings1.Visible = false;
         controlPlugin1.InitializeFrom(Current as DeviserPlugin);
         return;
       }
@@ -145,6 +150,7 @@ namespace CsDeviser
         controlPlugin1.Visible = false;
         controlPackage1.Visible = false;
         controlEnum1.Visible = false;
+        controlMappings1.Visible = false;
         controlClass1.InitializeFrom(Current as DeviserClass);
         return;
       }
@@ -155,17 +161,30 @@ namespace CsDeviser
         controlPlugin1.Visible = false;
         controlPackage1.Visible = false;
         controlEnum1.Visible = true;
+        controlMappings1.Visible = false;
         controlEnum1.InitializeFrom(Current as DeviserEnum);
       }
 
+      if (Current is DeviserMapping)
+      {
+        controlClass1.Visible = false;
+        controlPlugin1.Visible = false;
+        controlPackage1.Visible = false;
+        controlEnum1.Visible = false;
+        controlMappings1.Visible = true;
+        controlMappings1.InitializeFrom(Model);
+      }
 
     }
 
 
     private void OnItemSelect(object sender, TreeViewEventArgs e)
     {
-      if (e.Node.Level == 0)        
+      if (e.Node.Level == 0 && e.Node.Name != NODE_MAPPINGS)
         Current = Model;
+
+      if (e.Node.Level == 0 && e.Node.Name == NODE_MAPPINGS)
+        Current = new DeviserMapping();
 
       if (e.Node.Level == 1 && e.Node.Parent.Name == NODE_CLASSES)
       {
@@ -341,7 +360,7 @@ namespace CsDeviser
       UpdateUI();
     }
 
-    private void cmdRefresh_Click(object sender, EventArgs e)
+    private void OnRefreshClick(object sender, EventArgs e)
     {
       UpdateUI();
     }
@@ -504,7 +523,7 @@ namespace CsDeviser
 
     }
 
-    private void cmdViewUML_Click(object sender, EventArgs e)
+    private void OnViewUmlClick(object sender, EventArgs e)
     {
 
       using (var dlg = new FormYuml {})

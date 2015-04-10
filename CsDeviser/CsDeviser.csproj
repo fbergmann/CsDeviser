@@ -56,6 +56,12 @@
     <Compile Include="Controls\ControlEnum.Designer.cs">
       <DependentUpon>ControlEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ControlMappings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ControlMappings.Designer.cs">
+      <DependentUpon>ControlMappings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ControlPackage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     <EmbeddedResource Include="Controls\ControlEnum.resx">
       <DependentUpon>ControlEnum.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ControlMappings.resx">
+      <DependentUpon>ControlMappings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlPackage.resx">
       <DependentUpon>ControlPackage.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +173,12 @@
       <Project>{bb71fe28-ec9f-44bf-aacb-8e40454b0a69}</Project>
       <Name>LibDeviser</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\list-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\list-remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

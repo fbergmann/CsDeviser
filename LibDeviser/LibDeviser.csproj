@@ -45,6 +45,7 @@
     <Compile Include="DeviserBase.cs" />
     <Compile Include="DeviserEnum.cs" />
     <Compile Include="DeviserListOfAttribute.cs" />
+    <Compile Include="DeviserMapping.cs" />
     <Compile Include="DeviserMessage.cs" />
     <Compile Include="DeviserPackage.cs" />
     <Compile Include="DeviserPlugin.cs" />
@@ -69,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Templates\main.tex" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CoreClasses.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -60,11 +60,14 @@ namespace LibDeviser
     /// </summary>
     public List<DeviserEnum> Enums { get; set; }
 
+    public List<DeviserMapping> Mappings { get; set; }
+
     public DeviserPackage ()
     {
       Elements = new List<DeviserClass>();
       Plugins = new List<DeviserPlugin>();
       Enums = new List<DeviserEnum>();
+      Mappings = new List<DeviserMapping>();
     }
 
     public DeviserPackage(XmlNode node) : this()
@@ -108,8 +111,58 @@ namespace LibDeviser
       Elements.InitializeFrom(Util.getElement(element, "element"));
       Plugins.InitializeFrom(Util.getElement(element, "plugin"));
       Enums.InitializeFrom(Util.getElement(element, "enum"));
+      Mappings.InitializeFrom(Util.getElement(element, "mapping"));
 
       SetParent(this);
+    }
+
+    /// <summary>
+    /// Utility function finding all classes used by this package
+    /// </summary>
+    public void InitializeMappings()
+    {
+      var usedClasses = UsedClasses;
+
+      usedClasses.RemoveAll(Util.CoreClasses.Contains);
+      usedClasses.RemoveAll(DefinedClasses.Contains);
+
+      foreach (var item in usedClasses)
+      {
+        if (Mappings.All(el => el.Name != item))
+        {
+          Mappings.Add(new DeviserMapping {Name = item});
+        }
+      }
+    }
+
+    public List<string> UsedClasses {
+      get {
+        var result = Elements.Select(el => el.BaseClass).Distinct().ToList();
+
+        foreach (var element in Elements)
+        {
+          foreach (var attribute in element.Attributes)
+          {
+            if (attribute.Type == "element")
+              if (!result.Contains(attribute.Element))
+                result.Add(attribute.Element);
+          }
+        }
+
+        var elements = Elements.SelectMany(el => el.Attributes.Where(a => a.Type == "element").Select(a2 => a2.Element)).Distinct().ToList();
+        result.AddRange(elements);
+        var plugins = Plugins.Select(plug => plug.ExtensionPoint).Distinct().ToList();
+        result.AddRange(plugins);
+        result = result.Distinct().ToList();
+        result.Remove("");
+        result.Sort();
+        return result;
+
+      } }
+
+    public List<string> DefinedClasses
+    {
+      get { return Elements.Select(el => el.Name).ToList(); }
     }
 
     public override void SetParent(DeviserPackage doc)
@@ -118,6 +171,7 @@ namespace LibDeviser
       Elements.SetParent(doc);
       Plugins.SetParent(doc);
       Enums.SetParent(doc);
+      Mappings.SetParent(doc);
     }
 
     public void ReadFromFile(string fileName)
@@ -133,6 +187,7 @@ namespace LibDeviser
       Elements = new List<DeviserClass>();
       Plugins = new List<DeviserPlugin>();
       Enums = new List<DeviserEnum>();
+      Mappings = new List<DeviserMapping>();
 
       InitializeFrom(oDocument.DocumentElement);
     }
@@ -172,6 +227,7 @@ namespace LibDeviser
       Elements.WriteListWithName(writer, "elements");
       Plugins.WriteListWithName(writer, "plugins");
       Enums.WriteListWithName(writer, "enums");
+      Mappings.WriteListWithName(writer, "mappings");
       
     }
 
@@ -188,7 +244,7 @@ namespace LibDeviser
     }
 
     /// <summary>
-    /// Writes out the SedMLInfo object to the given fileName the format will be SED-ML
+    /// Writes out the DebiserPackage object to the given fileName
     /// </summary>
     /// <param name="fileName">fileName to write to</param>
     public void WriteTo(string fileName)
@@ -420,7 +476,7 @@ namespace LibDeviser
     }
 
     /// <summary>
-    /// Analyze descriptoon for inconsistencies
+    /// Analyze description for inconsistencies
     /// </summary>
     /// <param name="correct"></param>
     /// <returns></returns>

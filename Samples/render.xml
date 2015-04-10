@@ -16,7 +16,7 @@
         <attribute name="ry" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="GlobalRenderInformation" typeCode="SBML_RENDER_GLOBALRENDERINFORMATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
+    <element name="GlobalRenderInformation" typeCode="SBML_RENDER_GLOBALRENDERINFORMATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation" listOfName="listOfGlobalRenderInformation" listOfClassName="ListOfGlobalRenderInformation">
       <attributes>
         <attribute name="style" required="false" type="lo_element" element="GlobalStyle" abstract="false" />
       </attributes>
@@ -25,8 +25,8 @@
         <listOfAttribute name="versionMinor" required="true" type="uint" abstract="false" />
       </listOfAttributes>
     </element>
-    <element name="GlobalStyle" typeCode="SBML_RENDER_GLOBALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" />
-    <element name="GradientBase" typeCode="SBML_RENDER_GRADIENTDEFINITION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="ListOfGradientDefinitions">
+    <element name="GlobalStyle" typeCode="SBML_RENDER_GLOBALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" listOfName="listOfStyles" listOfClassName="ListOfGlobalStyles" />
+    <element name="GradientBase" typeCode="SBML_RENDER_GRADIENTDEFINITION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="true" baseClass="SBase" abstract="true" listOfName="listOfGradientDefinitions" listOfClassName="ListOfGradientDefinitions">
       <attributes>
         <attribute name="id" required="true" type="SId" abstract="false" />
         <attribute name="spreadMethod" required="false" type="enum" element="GradientSpreadMethod" abstract="false" />
@@ -43,10 +43,10 @@
         <attribute name="stop-color" required="true" type="string" abstract="false" />
       </attributes>
     </element>
-    <element name="RenderGroup" typeCode="SBML_RENDER_GROUP" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="text">
+    <element name="RenderGroup" typeCode="SBML_RENDER_GROUP" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="g">
       <attributes>
-        <attribute name="startHead" required="false" type="SIdRef" abstract="false" />
-        <attribute name="endHead" required="false" type="SIdRef" abstract="false" />
+        <attribute name="startHead" required="false" type="SIdRef" element="LineEnding" abstract="false" />
+        <attribute name="endHead" required="false" type="SIdRef" element="LineEnding" abstract="false" />
         <attribute name="font-family" required="false" type="string" element="FontFamily" abstract="false" />
         <attribute name="font-weight" required="false" type="enum" element="FontWeight" abstract="false" />
         <attribute name="font-style" required="false" type="enum" element="FontStyle" abstract="false" />
@@ -85,7 +85,7 @@
         <attribute name="z2" required="false" type="element" element="RelAbsVector" abstract="false" />
       </attributes>
     </element>
-    <element name="LocalRenderInformation" typeCode="SBML_RENDER_LOCALRENDERINFORMATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation">
+    <element name="LocalRenderInformation" typeCode="SBML_RENDER_LOCALRENDERINFORMATION" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="RenderInformationBase" abstract="false" elementName="renderInformation" listOfName="listOfRenderInformation" listOfClassName="ListOfLocalRenderInformation">
       <attributes>
         <attribute name="style" required="false" type="lo_element" element="LocalStyle" abstract="false" />
       </attributes>
@@ -94,7 +94,7 @@
         <listOfAttribute name="versionMinor" required="true" type="uint" abstract="false" />
       </listOfAttributes>
     </element>
-    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style">
+    <element name="LocalStyle" typeCode="SBML_RENDER_LOCALSTYLE" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="Style" abstract="false" elementName="style" listOfName="listOfStyles" listOfClassName="ListOfLocalStyles">
       <attributes>
         <attribute name="idList" required="false" type="string" abstract="false" />
       </attributes>
@@ -144,8 +144,8 @@
     </element>
     <element name="RenderCurve" typeCode="SBML_RENDER_CURVE" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="GraphicalPrimitive1D" abstract="false" elementName="curve">
       <attributes>
-        <attribute name="startHead" required="false" type="SIdRef" abstract="false" />
-        <attribute name="endHead" required="false" type="SIdRef" abstract="false" />
+        <attribute name="startHead" required="false" type="SIdRef" element="LineEnding" abstract="false" />
+        <attribute name="endHead" required="false" type="SIdRef" element="LineEnding" abstract="false" />
         <attribute name="element" required="false" type="lo_element" element="RenderPoint" abstract="false" />
       </attributes>
     </element>
@@ -235,7 +235,7 @@
   <plugins>
     <plugin typecode="SBML_LAYOUT_GRAPHICALOBJECT" package="layout" extensionPoint="GraphicalObject">
       <attributes>
-        <attribute name="objectRole" required="false" type="SIdRef" abstract="false" />
+        <attribute name="objectRole" required="false" type="string" abstract="false" />
       </attributes>
     </plugin>
     <plugin typecode="SBML_LAYOUT_LAYOUT" package="layout" extensionPoint="Layout">
@@ -310,4 +310,10 @@
       </enumValues>
     </enum>
   </enums>
+  <mappings>
+    <mapping name="BoundingBox" package="layout" />
+    <mapping name="GraphicalObject" package="layout" />
+    <mapping name="Layout" package="layout" />
+    <mapping name="ListOfLayouts" package="layout" />
+  </mappings>
 </package>

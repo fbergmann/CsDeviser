@@ -30,6 +30,7 @@ namespace CsDeviser.Controls
       txtTypeCode.Text = "";
 
       txtListOfName.Text = "";
+      txtListOfClassName.Text = "";
       txtAddDecl.Text = "";
       txtAddImpl.Text = "";
 
@@ -39,10 +40,6 @@ namespace CsDeviser.Controls
 
       splitContainer1.Panel2Collapsed = true;
       splitContainer2.Panel2Collapsed = true;
-      cmdAddConcrete.Visible = false;
-      cmdDelConcrete.Visible = false;
-      cmdAddLoAttribute.Visible = false;
-      cmdDelLoAttribute.Visible = false;
 
 
       Current = package;
@@ -54,18 +51,15 @@ namespace CsDeviser.Controls
       txtElementName.Text = Current.ElementName;
       txtTypeCode.Text = Current.TypeCode;
       txtListOfName.Text = Current.ListOfName;
+      txtListOfClassName.Text = Current.ListOfClassName;
       txtAddDecl.Text = Current.AdditionalDeclarations;
       txtAddImpl.Text = Current.AdditionalDefinitions;
 
       chkAbstract.Checked = Current.Abstract;
       splitContainer1.Panel2Collapsed = !Current.Abstract;
-      cmdAddConcrete.Visible = Current.Abstract;
-      cmdDelConcrete.Visible = Current.Abstract;
       chkHasChildren.Checked = Current.HasChildren;
       chkHasListOf.Checked = Current.HasListOf;
       splitContainer2.Panel2Collapsed = !Current.HasListOf;
-      cmdAddLoAttribute.Visible = Current.HasListOf;
-      cmdDelLoAttribute.Visible = Current.HasListOf;
 
       chkChildrenOverwriteElementName.Checked = Current.ChildrenOverwriteElementName;
       chkHasMath.Checked = Current.HasMath;
@@ -96,6 +90,15 @@ namespace CsDeviser.Controls
 
     }
 
+
+    private void txtListOfClassName_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      Current.ListOfClassName = txtListOfClassName.Text;
+
+    }
+
+
     private void txtTypeCode_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
@@ -114,9 +117,7 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.HasListOf = chkHasListOf.Checked;
-      splitContainer1.Panel2Collapsed = !Current.HasListOf;
-      cmdAddLoAttribute.Visible = Current.HasListOf;
-      cmdDelLoAttribute.Visible = Current.HasListOf;
+      splitContainer2.Panel2Collapsed = !Current.HasListOf;
 
     }
 
@@ -139,8 +140,6 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       Current.Abstract = chkAbstract.Checked;
       splitContainer1.Panel2Collapsed = !Current.Abstract;
-      cmdAddConcrete.Visible = Current.Abstract;
-      cmdDelConcrete.Visible = Current.Abstract;
 
     }
 
@@ -332,6 +331,5 @@ namespace CsDeviser.Controls
           Current.ListOfAttributes.Remove(attr);
       }
     }
-
   }
 }

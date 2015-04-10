@@ -21,6 +21,7 @@ namespace LibDeviser
     public bool Abstract { get; set; }
     public string ElementName { get; set; }
     public string ListOfName { get; set; }
+    public string ListOfClassName { get; set; }
 
     public bool ChildrenOverwriteElementName { get; set; }
 
@@ -70,6 +71,7 @@ namespace LibDeviser
       ChildrenOverwriteElementName = Util.readBool(element, "childrenOverwriteElementName");
       ElementName = element.GetAttribute("elementName");
       ListOfName = element.GetAttribute("listOfName");
+      ListOfClassName = element.GetAttribute("listOfClassName");
 
       AdditionalDeclarations = element.GetAttribute("additionalDecls");
       AdditionalDefinitions = element.GetAttribute("additionalDefs");
@@ -107,6 +109,9 @@ namespace LibDeviser
       if (!string.IsNullOrWhiteSpace(ListOfName))
         writer.WriteAttributeString("listOfName", ListOfName);
 
+      if (!string.IsNullOrWhiteSpace(ListOfClassName))
+        writer.WriteAttributeString("listOfClassName", ListOfClassName);
+
       if (!string.IsNullOrWhiteSpace(AdditionalDeclarations))
         writer.WriteAttributeString("additionalDecls", AdditionalDeclarations);
       if (!string.IsNullOrWhiteSpace(AdditionalDefinitions))
@@ -127,6 +132,8 @@ namespace LibDeviser
 
     public string GetListOfName()
     {
+      if (!string.IsNullOrWhiteSpace(ListOfClassName))
+        return ListOfClassName;
       if (!string.IsNullOrWhiteSpace(ListOfName))
         return ListOfName;
       return "ListOf" + Name.GuessPlural();

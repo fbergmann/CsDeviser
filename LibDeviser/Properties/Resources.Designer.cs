@@ -61,6 +61,31 @@ namespace LibDeviser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SBase, SBML_GENERIC_SBASE
+        ///Compartment, SBML_COMPARTMENT
+        ///Constraint, SBML_CONSTRAINT
+        ///SBMLDocument, SBML_DOCUMENT
+        ///Event, SBML_EVENT
+        ///EventAssignment, SBML_EVENT_ASSIGNMENT
+        ///FunctionDefinition, SBML_FUNCTION_DEFINITION
+        ///InitialAssignment, SBML_INITIAL_ASSIGNMENT
+        ///KineticLaw, SBML_KINETIC_LAW
+        ///ListOf, SBML_LIST_OF
+        ///Model, SBML_MODEL
+        ///Parameter, SBML_PARAMETER
+        ///Reaction, SBML_REACTION
+        ///Rule, SBML_RULE
+        ///Species, SBML_SPECIES
+        ///SpeciesReference, SBML_SPECIES_REFERENCE
+        ///ModifierSpeciesReference, SBML_MODIFIER_SP [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CoreClasses {
+            get {
+                return ResourceManager.GetString("CoreClasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %\documentclass{sbmlpkgspec}
         ///\documentclass[draftspec]{sbmlpkgspec}
         ///\frontNotice{\centering This is a working draft of release 1 of the specification for the package ``@@PACKAGENAME@@&apos;&apos; and not a normative document. Please send feedback to the Package Working Group mailing list at sbml-@@PACKAGENAME@@@lists.sourceforge.net.}
