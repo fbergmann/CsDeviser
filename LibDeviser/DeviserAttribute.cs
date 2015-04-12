@@ -131,9 +131,15 @@ namespace LibDeviser
       string elementName = Element;
       var element = Document.Elements.FirstOrDefault(e => e.Name == elementName);
       string listOfName = string.Format("ListOf{0}", elementName.GuessPlural());
-      if (element != null && !string.IsNullOrWhiteSpace(element.ListOfName))
-        listOfName = element.ListOfName;
-      return string.Format("[{2}]-{1}{3}>[{0}]", source, listOfName.LowerFirst(), listOfName,
+      var link = listOfName.LowerFirst();
+      if (element != null)
+      {
+        listOfName = element.GetListOfName();
+        link = listOfName.LowerFirst();
+        if (!string.IsNullOrWhiteSpace(element.ListOfName))
+          link = element.ListOfName.LowerFirst();
+      }
+      return string.Format("[{2}]-{1}{3}>[{0}]", source, link, listOfName,
         true ? "" : Required ? " ..1" : " ..0,1");
     }
   }

@@ -52,7 +52,7 @@ namespace LibDeviser
     public DeviserClass(XmlNode node)
       : this()
     {
-      InitializeFrom(node);
+      InitializeFrom(node); 
     }
 
 
