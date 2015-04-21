@@ -13,9 +13,9 @@ namespace CsDeviser.Controls
 {
   public partial class ControlMappings : DeviserControl
   {
-    public DeviserPackage Current { get; set;  }
+    public DeviserVersion Current { get; set; }
 
-    public void InitializeFrom(DeviserPackage package)
+    public void InitializeFrom(DeviserVersion package)
     {
       Current = package;
 
@@ -23,8 +23,8 @@ namespace CsDeviser.Controls
 
       if (Current == null) return;
 
-
-      package.InitializeMappings();
+      if (package.Document != null)
+      package.Document.InitializeMappings();
 
       Initializing = true;
 

@@ -52,6 +52,7 @@
     <Compile Include="DeviserReferenceAttribute.cs" />
     <Compile Include="DeviserEnumValue.cs" />
     <Compile Include="DeviserSettings.cs" />
+    <Compile Include="DeviserVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DeviserAttribute.cs" />
     <Compile Include="DeviserClass.cs" />

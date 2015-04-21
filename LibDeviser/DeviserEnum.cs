@@ -12,6 +12,17 @@ namespace LibDeviser
     public string Name { get; set; }
     public List<DeviserEnumValue> Values { get; set; }
 
+    public override object Clone()
+    {
+      return new DeviserEnum(this);
+    }
+
+    public DeviserEnum(DeviserEnum other) : base(other)
+    {
+      Values = other.Values.CloneAll();
+      Name = other.Name;
+    }
+
     public DeviserEnum()
     {
       Values = new List<DeviserEnumValue>();

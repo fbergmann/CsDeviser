@@ -11,6 +11,17 @@ namespace LibDeviser
     {
     }
 
+    public DeviserMapping(DeviserMapping other) : base(other)
+    {
+      Name = other.Name;
+      Package = other.Package;
+    }
+
+    public override object Clone()
+    {
+      return new DeviserMapping(this);
+    }
+
     public DeviserMapping(XmlNode node)
       : this()
     {

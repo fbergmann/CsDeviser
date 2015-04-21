@@ -12,6 +12,17 @@ namespace LibDeviser
     public string Name { get; set; }
     public string Element { get; set; }
 
+    public DeviserConcrete(DeviserConcrete other) : base(other)
+    {
+      Name = other.Name;
+      Element = other.Element;
+    }
+
+    public override object Clone()
+    {
+      return new DeviserConcrete(this);
+    }
+
     public DeviserConcrete()
     {
     }

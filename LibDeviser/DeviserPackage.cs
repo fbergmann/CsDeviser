@@ -48,26 +48,36 @@ namespace LibDeviser
     /// <summary>
     /// All Elements defined by this Package
     /// </summary>
-    public List<DeviserClass> Elements { get; set; }
+    public List<DeviserClass> Elements {
+      get { return Versions.SelectMany(v => v.Elements).ToList(); }
+    }
 
     /// <summary>
     /// All Extension Points  of this package
     /// </summary>
-    public List<DeviserPlugin> Plugins { get; set; }
+    public List<DeviserPlugin> Plugins
+    {
+      get { return Versions.SelectMany(v => v.Plugins).ToList(); }
+    }
 
     /// <summary>
     /// All Enumerations defined by this package
     /// </summary>
-    public List<DeviserEnum> Enums { get; set; }
+    public List<DeviserEnum> Enums {
+      get { return Versions.SelectMany(v => v.Enums).ToList(); }
+    }
 
-    public List<DeviserMapping> Mappings { get; set; }
+    public List<DeviserMapping> Mappings {
+      get { return Versions.SelectMany(v => v.Mappings).ToList(); }
+    }
+
+    public List<DeviserVersion> Versions { get; set; }
+
+    public DeviserVersion CurrentVersion { get; set; }
 
     public DeviserPackage ()
     {
-      Elements = new List<DeviserClass>();
-      Plugins = new List<DeviserPlugin>();
-      Enums = new List<DeviserEnum>();
-      Mappings = new List<DeviserMapping>();
+      Versions = new List<DeviserVersion>();
     }
 
     public DeviserPackage(XmlNode node) : this()
@@ -80,18 +90,24 @@ namespace LibDeviser
       ReadFromFile(fileName);
     }
 
-    public DeviserClass GetElement(string name)
+    public DeviserClass GetElement(string name, object tag = null)
     {
+      if (tag != null && tag is DeviserVersion)
+        return ((DeviserVersion)tag).Elements.FirstOrDefault(e => e.Name == name);
       return Elements.FirstOrDefault(e => e.Name == name);
     }
 
-    public DeviserEnum GetEnum(string name)
+    public DeviserEnum GetEnum(string name, object tag = null)
     {
+      if (tag != null && tag is DeviserVersion)
+        return ((DeviserVersion)tag).Enums.FirstOrDefault(e => e.Name == name);
       return Enums.FirstOrDefault(e => e.Name == name);
     }
 
-    public DeviserPlugin GetPlugin(string name)
+    public DeviserPlugin GetPlugin(string name, object tag = null)
     {
+      if (tag != null && tag is DeviserVersion)
+        return ((DeviserVersion)tag).Plugins.FirstOrDefault(e => e.ExtensionPoint == name);
       return Plugins.FirstOrDefault(e => e.ExtensionPoint == name);
     }
 
@@ -107,11 +123,16 @@ namespace LibDeviser
       Offset = Util.readInt(element, "offset");
       Version = Util.readInt(element, "version");
       Required = Util.readBool(element, "required");
-         
-      Elements.InitializeFrom(Util.getElement(element, "element"));
-      Plugins.InitializeFrom(Util.getElement(element, "plugin"));
-      Enums.InitializeFrom(Util.getElement(element, "enum"));
-      Mappings.InitializeFrom(Util.getElement(element, "mapping"));
+
+      Versions.InitializeFrom(Util.getElement(element, "pkgVersion"));
+
+      if (Versions.Count == 0)
+      {
+        // legacy support
+        Versions.Add(new DeviserVersion(element) {Version = 0, PackageVersion = Version});
+      }
+
+      CurrentVersion = Versions.FirstOrDefault();
 
       SetParent(this);
     }
@@ -168,10 +189,9 @@ namespace LibDeviser
     public override void SetParent(DeviserPackage doc)
     {
       Document = doc;
-      Elements.SetParent(doc);
-      Plugins.SetParent(doc);
-      Enums.SetParent(doc);
-      Mappings.SetParent(doc);
+
+      Versions.SetParent(doc);
+
     }
 
     public void ReadFromFile(string fileName)
@@ -184,10 +204,7 @@ namespace LibDeviser
       var oDocument = new XmlDocument();
       oDocument.LoadXml(packageDocument);
 
-      Elements = new List<DeviserClass>();
-      Plugins = new List<DeviserPlugin>();
-      Enums = new List<DeviserEnum>();
-      Mappings = new List<DeviserMapping>();
+      Versions = new List<DeviserVersion>();
 
       InitializeFrom(oDocument.DocumentElement);
     }
@@ -224,10 +241,7 @@ namespace LibDeviser
     {
       base.WriteElementsTo(writer);
 
-      Elements.WriteListWithName(writer, "elements");
-      Plugins.WriteListWithName(writer, "plugins");
-      Enums.WriteListWithName(writer, "enums");
-      Mappings.WriteListWithName(writer, "mappings");
+      Versions.WriteListWithName(writer, "versions");
       
     }
 
@@ -244,7 +258,7 @@ namespace LibDeviser
     }
 
     /// <summary>
-    /// Writes out the DebiserPackage object to the given fileName
+    /// Writes out the DeviserPackage object to the given fileName
     /// </summary>
     /// <param name="fileName">fileName to write to</param>
     public void WriteTo(string fileName)
@@ -270,6 +284,8 @@ namespace LibDeviser
                  Environment.NewLine,
                  Util.ReformatXML(builder.ToString()));
     }
+
+
 
     public override void WriteTo(XmlWriter writer)
     {

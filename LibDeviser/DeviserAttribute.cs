@@ -32,6 +32,22 @@ namespace LibDeviser
       }
     }
 
+    public override object Clone()
+    {
+      return new DeviserAttribute(this);
+    }
+
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserAttribute"/> class.
+    /// </summary>
+    public DeviserAttribute(DeviserAttribute other) : base(other)
+    {
+      Type = other.Type;
+      Element = other.Element;
+      Required = other.Required;
+      Abstract = other.Abstract;
+    }
 
     public DeviserAttribute()
     {

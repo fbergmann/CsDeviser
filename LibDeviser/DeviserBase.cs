@@ -7,12 +7,23 @@ using System.Xml;
 
 namespace LibDeviser
 {
-  public class DeviserBase
+  public class DeviserBase : ICloneable
   {
     /// <summary>
     /// Get set Dirty state of package
     /// </summary>
     public bool Dirty { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserBase"/> class.
+    /// </summary>
+    public DeviserBase()
+    {
+    }
+  
+    public DeviserBase(DeviserBase other)
+    {
+    }
 
     public virtual void InitializeFrom(XmlNode node)
     {
@@ -76,5 +87,9 @@ namespace LibDeviser
       return "";
     }
 
+    public virtual object Clone()
+    {
+      return new DeviserBase(this);
+    }
   }
 }

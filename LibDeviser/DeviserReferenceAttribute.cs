@@ -16,6 +16,19 @@ namespace LibDeviser
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserReferenceAttribute"/> class.
+    /// </summary>
+    public DeviserReferenceAttribute(DeviserReferenceAttribute other) : base(other)
+    {
+      Name = other.Name;
+    }
+
+    public override object Clone()
+    {
+      return new DeviserReferenceAttribute(this);
+    }
+
     public DeviserReferenceAttribute(XmlNode node)
       : this()
     {

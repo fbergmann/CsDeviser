@@ -14,6 +14,21 @@ namespace LibDeviser
     {
       
     }
+
+    public override object Clone()
+    {
+      return new DeviserListOfAttribute(this);
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserListOfAttribute"/> class.
+    /// </summary>
+    public DeviserListOfAttribute(DeviserListOfAttribute other) : base(other)
+    {
+      
+    }
+
+
     public DeviserListOfAttribute(XmlNode node)
     {
       InitializeFrom(node);

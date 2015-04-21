@@ -56,6 +56,33 @@ namespace LibDeviser
     }
 
 
+    public override object Clone()
+    {
+      return new DeviserClass(this);
+    }
+
+    public DeviserClass(DeviserClass other) : base(other)
+    {
+      BaseClass = other.BaseClass;
+      Attributes = other.Attributes.CloneAll();
+      ListOfAttributes = other.ListOfAttributes.CloneAll();
+      Concretes = other.Concretes.CloneAll();
+
+      Name = other.Name;
+      BaseClass = other.BaseClass;
+      TypeCode = other.TypeCode;
+      HasChildren = other.HasChildren;
+      HasListOf = other.HasListOf;
+      Abstract = other.Abstract;
+      ChildrenOverwriteElementName = other.ChildrenOverwriteElementName;
+      ElementName = other.ElementName;
+      ListOfName = other.ListOfName;
+      ListOfClassName = other.ListOfClassName;
+
+      AdditionalDeclarations = other.AdditionalDeclarations;
+      AdditionalDefinitions = other.AdditionalDefinitions;
+
+    }
     public override void InitializeFrom(XmlElement element)
     {
       base.InitializeFrom(element);

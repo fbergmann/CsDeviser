@@ -10,6 +10,19 @@ namespace LibDeviser
 {
   public static class Util
   {
+    public static List<T> CloneAll<T>(this List<T> list)
+      where T : DeviserBase
+    {
+      var result = new List<T>();
+      foreach (var item in list)
+      {
+        result.Add((T)item.Clone());
+      }
+      return result;
+    }
+
+    
+
     public static void SetParent<T>(this List<T> list, DeviserPackage doc)
       where T : DeviserBase
     {

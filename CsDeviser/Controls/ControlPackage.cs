@@ -33,8 +33,6 @@ namespace CsDeviser.Controls
       txtAddImpls.Text = "";
       chkRequired.Checked = false;
 
-      lstClasses.Items.Clear();
-
       Current = package;
 
       if (Current == null) return;
@@ -48,9 +46,6 @@ namespace CsDeviser.Controls
       txtAddDecls.Text = Current.AdditionalDeclarations;
       txtAddImpls.Text = Current.AdditionalDefinitions;
 
-      foreach(var item in package.Elements)
-        lstClasses.Items.Add(item.Name);
-      
       Initializing = false;
     }
 
@@ -79,37 +74,6 @@ namespace CsDeviser.Controls
     private void txtPackage_Leave(object sender, EventArgs e)
     {
       OnRenamedEvent();
-    }
-
-    private void OnMoveClassDown(object sender, EventArgs e)
-    {
-      var index = lstClasses.SelectedIndex;
-      if (index < 0 || index + 1 > lstClasses.Items.Count || Current == null || Current.Elements.Count <= index + 1) return;
-      if (Current == null || Initializing) return;
-      var elem = Current.Elements[index];
-      Current.Elements.RemoveAt(index);
-      Current.Elements.Insert(index + 1, elem);
-
-      lstClasses.Items.RemoveAt(index);
-      lstClasses.Items.Insert(index + 1, elem.Name);
-
-      lstClasses.SelectedIndex = index + 1;
-    }
-
-    private void OnMoveClassUp(object sender, EventArgs e)
-    {
-      var index = lstClasses.SelectedIndex;
-      if (index < 1 || Current == null || Current.Elements.Count <= index) return;
-      if (Current == null || Initializing) return;
-      var elem = Current.Elements[index];
-      Current.Elements.RemoveAt(index);
-      Current.Elements.Insert(index - 1, elem);
-
-      lstClasses.Items.RemoveAt(index);
-      lstClasses.Items.Insert(index - 1, elem.Name);
-
-      lstClasses.SelectedIndex = index - 1;
-
     }
 
     private void txtFullName_TextChanged(object sender, EventArgs e)

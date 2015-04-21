@@ -62,6 +62,12 @@
     <Compile Include="Controls\ControlMappings.Designer.cs">
       <DependentUpon>ControlMappings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ControlVersion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ControlVersion.Designer.cs">
+      <DependentUpon>ControlVersion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ControlPackage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlMappings.resx">
       <DependentUpon>ControlMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ControlVersion.resx">
+      <DependentUpon>ControlVersion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlPackage.resx">
       <DependentUpon>ControlPackage.cs</DependentUpon>

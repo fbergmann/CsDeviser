@@ -123,6 +123,25 @@ namespace LibDeviser
 
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserPlugin"/> class.
+    /// </summary>
+    public DeviserPlugin(DeviserPlugin other) : base(other)
+    {
+      ExtensionPoint = other.ExtensionPoint;
+      AdditionalDeclarations = other.AdditionalDeclarations;
+      AdditionalDefinitions = other.AdditionalDefinitions;
+      TypeCode = other.TypeCode;
+      Package = other.Package;
+      References = other.References.CloneAll();
+      Attributes = other.Attributes.CloneAll();
+    }
+
+    public override object Clone()
+    {
+      return new DeviserPlugin(this);
+    }
+
     public override void WriteElementsTo(XmlWriter writer)
     {
       base.WriteElementsTo(writer);
