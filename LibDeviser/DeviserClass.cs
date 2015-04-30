@@ -18,7 +18,7 @@ namespace LibDeviser
     public bool HasMath { get; set; }
     public bool HasChildren { get; set; }
 
-    public bool Abstract { get; set; }
+    public bool IsBaseClass { get; set; }
     public string ElementName { get; set; }
     public string ListOfName { get; set; }
     public string ListOfClassName { get; set; }
@@ -35,11 +35,19 @@ namespace LibDeviser
     /// </summary>
     public string AdditionalDefinitions { get; set; }
 
-
+    public bool HasAdditionalCode
+    {
+      get
+      {
+        return !string.IsNullOrWhiteSpace(AdditionalDeclarations) || !string.IsNullOrWhiteSpace(AdditionalDefinitions);
+      }
+    }
 
     public List<DeviserAttribute> Attributes { get; set; }
     public List<DeviserListOfAttribute> ListOfAttributes { get; set; }
     public List<DeviserConcrete> Concretes { get; set; }
+    public int MaxNumberChildren { get; set; }
+    public int MinNumberChildren { get; set; }
 
     public DeviserClass()
     {
@@ -73,7 +81,7 @@ namespace LibDeviser
       TypeCode = other.TypeCode;
       HasChildren = other.HasChildren;
       HasListOf = other.HasListOf;
-      Abstract = other.Abstract;
+      IsBaseClass = other.IsBaseClass;
       ChildrenOverwriteElementName = other.ChildrenOverwriteElementName;
       ElementName = other.ElementName;
       ListOfName = other.ListOfName;
@@ -94,7 +102,9 @@ namespace LibDeviser
       HasListOf = Util.readBool(element, "hasListOf");
       HasChildren = Util.readBool(element, "hasChildren");
       HasMath = Util.readBool(element, "hasMath");
-      Abstract = Util.readBool(element, "abstract");
+      IsBaseClass = Util.readBool(element, "abstract");
+      MinNumberChildren = Util.readInt(element, "minNumListOfChildren");
+      MaxNumberChildren = Util.readInt(element, "maxNumListOfChildren");
       ChildrenOverwriteElementName = Util.readBool(element, "childrenOverwriteElementName");
       ElementName = element.GetAttribute("elementName");
       ListOfName = element.GetAttribute("listOfName");
@@ -124,11 +134,15 @@ namespace LibDeviser
       writer.WriteAttributeString("hasChildren", HasChildren.ToString().ToLowerInvariant());
       writer.WriteAttributeString("hasMath", HasMath.ToString().ToLowerInvariant());
       writer.WriteAttributeString("childrenOverwriteElementName", ChildrenOverwriteElementName.ToString().ToLowerInvariant());
+      if (MinNumberChildren != 0)
+      writer.WriteAttributeString("minNumListOfChildren", MinNumberChildren.ToString());
+      if (MaxNumberChildren != 0)
+      writer.WriteAttributeString("maxNumListOfChildren", MaxNumberChildren.ToString());
 
       if (!string.IsNullOrWhiteSpace(BaseClass))
         writer.WriteAttributeString("baseClass", BaseClass);
 
-      writer.WriteAttributeString("abstract", Abstract.ToString().ToLowerInvariant());
+      writer.WriteAttributeString("abstract", IsBaseClass.ToString().ToLowerInvariant());
 
       if (!string.IsNullOrWhiteSpace(ElementName))
         writer.WriteAttributeString("elementName", ElementName);

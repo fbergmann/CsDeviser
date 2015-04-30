@@ -10,6 +10,7 @@ namespace LibDeviser
 
   public class DeviserAttribute : DeviserReferenceAttribute
   {
+    public string XMLName { get; set; }
     public string Type { get; set; }
     public string Element { get; set; }
     public bool Required { get; set; }
@@ -66,6 +67,7 @@ namespace LibDeviser
 
       Type = element.GetAttribute("type");
       Element = element.GetAttribute("element");
+      XMLName = element.GetAttribute("xmlName");
       Required = Util.readBool(element, "required");
       Abstract = Util.readBool(element, "abstract");
     }
@@ -79,6 +81,8 @@ namespace LibDeviser
         writer.WriteAttributeString("type", Type);
       if (!string.IsNullOrWhiteSpace(Element))
         writer.WriteAttributeString("element", Element);
+      if (!string.IsNullOrWhiteSpace(XMLName))
+        writer.WriteAttributeString("xmlName", XMLName);
       writer.WriteAttributeString("abstract", Abstract.ToString().ToLowerInvariant());
       
     }

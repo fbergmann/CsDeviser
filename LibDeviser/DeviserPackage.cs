@@ -461,7 +461,7 @@ namespace LibDeviser
     {
       foreach (var current in Elements)
       {
-        var isAbstract = current.Abstract;
+        var isAbstract = current.IsBaseClass;
 
         int countUses = 0;
         foreach (var item in Elements)
@@ -478,7 +478,7 @@ namespace LibDeviser
                 Element = item
               });
               if (correct)
-                current.Abstract = true;                
+                current.IsBaseClass = true;                
             }
           }
         }
@@ -492,7 +492,7 @@ namespace LibDeviser
             Element = current
           });
           if (correct)
-            current.Abstract = false;
+            current.IsBaseClass = false;
         }
 
       }

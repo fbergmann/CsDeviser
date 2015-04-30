@@ -21,7 +21,13 @@ namespace LibDeviser
       return result;
     }
 
-    
+    public static int ToInt(this string str)
+    {
+      int val;
+      if (!int.TryParse(str, out val))
+        return 0;
+      return val;
+    }
 
     public static void SetParent<T>(this List<T> list, DeviserPackage doc)
       where T : DeviserBase

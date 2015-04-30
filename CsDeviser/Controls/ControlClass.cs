@@ -31,8 +31,14 @@ namespace CsDeviser.Controls
 
       txtListOfName.Text = "";
       txtListOfClassName.Text = "";
-      txtAddDecl.Text = "";
-      txtAddImpl.Text = "";
+      txtAddDecls.Text = "";
+      txtAddImpls.Text = "";
+
+      txtMinNoChildren.Text = "";
+      txtMaxNoChildren.Text = "";
+
+      chkRequiresAdditionalCode.Checked = false;
+      grpAdditionalFiles.Visible = false;
 
       gridConcrete.Rows.Clear();
       gridAttributes.Rows.Clear();
@@ -52,26 +58,33 @@ namespace CsDeviser.Controls
       txtTypeCode.Text = Current.TypeCode;
       txtListOfName.Text = Current.ListOfName;
       txtListOfClassName.Text = Current.ListOfClassName;
-      txtAddDecl.Text = Current.AdditionalDeclarations;
-      txtAddImpl.Text = Current.AdditionalDefinitions;
+      txtAddDecls.Text = Current.AdditionalDeclarations;
+      txtAddImpls.Text = Current.AdditionalDefinitions;
+      chkRequiresAdditionalCode.Checked = Current.HasAdditionalCode;
+      grpAdditionalFiles.Visible = Current.HasAdditionalCode;
+      txtMinNoChildren.Text = Current.MinNumberChildren.ToString();
+      txtMaxNoChildren.Text = Current.MaxNumberChildren.ToString();
 
-      chkAbstract.Checked = Current.Abstract;
-      splitContainer1.Panel2Collapsed = !Current.Abstract;
+
+      chkIsBaseClass.Checked = Current.IsBaseClass;
+      splitContainer1.Panel2Collapsed = !Current.IsBaseClass;
       chkHasChildren.Checked = Current.HasChildren;
       chkHasListOf.Checked = Current.HasListOf;
+      pnlLoClassName.Visible = Current.HasListOf;
+      pnlLoName.Visible = Current.HasListOf;
       splitContainer2.Panel2Collapsed = !Current.HasListOf;
 
       chkChildrenOverwriteElementName.Checked = Current.ChildrenOverwriteElementName;
       chkHasMath.Checked = Current.HasMath;
 
       foreach( var newAttr in Current.Attributes)
-      gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+        gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
 
       foreach (var newAttr in Current.ListOfAttributes)
-        gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+        gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
 
       foreach (var newAttr in Current.Concretes)
-      gridConcrete.Rows.Add(newAttr.Name, newAttr.Element);
+        gridConcrete.Rows.Add(newAttr.Name, newAttr.Element, newAttr.MinNumChildren == 0 ? "" : newAttr.MinNumChildren.ToString(), newAttr.MaxNumChildren == 0 ? "": newAttr.MaxNumChildren.ToString());
 
       Initializing = false;
     }
@@ -118,6 +131,8 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       Current.HasListOf = chkHasListOf.Checked;
       splitContainer2.Panel2Collapsed = !Current.HasListOf;
+      pnlLoClassName.Visible = Current.HasListOf;
+      pnlLoName.Visible = Current.HasListOf;
 
     }
 
@@ -138,8 +153,8 @@ namespace CsDeviser.Controls
     private void chkAbstract_CheckedChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Abstract = chkAbstract.Checked;
-      splitContainer1.Panel2Collapsed = !Current.Abstract;
+      Current.IsBaseClass = chkIsBaseClass.Checked;
+      splitContainer1.Panel2Collapsed = !Current.IsBaseClass;
 
     }
 
@@ -150,7 +165,7 @@ namespace CsDeviser.Controls
       var newAttr = new DeviserAttribute { Name = "Attribute" + (Current.Attributes.Count + 1).ToString() };
       Current.Attributes.Add(newAttr);
 
-      var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+      var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
       gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
       gridAttributes.BeginEdit(true);
@@ -163,7 +178,7 @@ namespace CsDeviser.Controls
       var newAttr = new DeviserConcrete { Name = "Concrete" + (Current.Concretes.Count + 1).ToString() };
       Current.Concretes.Add(newAttr);
 
-      var row = gridConcrete.Rows.Add(newAttr.Name, newAttr.Element);
+      var row = gridConcrete.Rows.Add(newAttr.Name, newAttr.Element, newAttr.MinNumChildren == 0 ? "" : newAttr.MinNumChildren.ToString(), newAttr.MaxNumChildren == 0 ? "": newAttr.MaxNumChildren.ToString());
       gridConcrete.CurrentCell = gridConcrete[0, row];
       gridConcrete.Focus();
       gridConcrete.BeginEdit(true);
@@ -185,14 +200,17 @@ namespace CsDeviser.Controls
         case 1:
           attribute.Type = row.Cells[1].Value as string;
           break;
-        case 2:
-          attribute.Required = (bool)row.Cells[2].Value;
-          break;
         case 3:
-          attribute.Element = row.Cells[3].Value as string;
+          attribute.Required = (bool)row.Cells[3].Value;
+          break;
+        case 2:
+          attribute.Element = row.Cells[2].Value as string;
           break;
         case 4:
           attribute.Abstract = (bool)row.Cells[4].Value;
+          break;
+        case 5:
+          attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
 
@@ -213,6 +231,18 @@ namespace CsDeviser.Controls
         case 1:
           attribute.Element = row.Cells[1].Value as string;
           break;
+        case 2:
+        {
+          string strVal = row.Cells[2].Value as string;
+          attribute.MinNumChildren = strVal.ToInt();
+          break;
+        }
+        case 3:
+        {
+          string strVal = row.Cells[3].Value as string;
+          attribute.MaxNumChildren = strVal.ToInt();
+          break;
+        }
       }
     }
 
@@ -263,13 +293,13 @@ namespace CsDeviser.Controls
     private void txtAddDecl_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
-      Current.AdditionalDeclarations = txtAddDecl.Text;
+      Current.AdditionalDeclarations = txtAddDecls.Text;
     }
 
     private void txtAddImpl_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
-      Current.AdditionalDefinitions = txtAddImpl.Text;
+      Current.AdditionalDefinitions = txtAddImpls.Text;
     }
 
     public override void OnCommitChanges()
@@ -294,14 +324,17 @@ namespace CsDeviser.Controls
         case 1:
           attribute.Type = row.Cells[1].Value as string;
           break;
-        case 2:
-          attribute.Required = (bool)row.Cells[2].Value;
-          break;
         case 3:
-          attribute.Element = row.Cells[3].Value as string;
+          attribute.Required = (bool)row.Cells[3].Value;
+          break;
+        case 2:
+          attribute.Element = row.Cells[2].Value as string;
           break;
         case 4:
           attribute.Abstract = (bool)row.Cells[4].Value;
+          break;
+        case 5:
+          attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
     }
@@ -313,7 +346,7 @@ namespace CsDeviser.Controls
       var newAttr = new DeviserListOfAttribute { Name = "ListOfAttribute" + (Current.ListOfAttributes.Count + 1).ToString() };
       Current.ListOfAttributes.Add(newAttr);
 
-      var row = gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+      var row = gridLoAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
       gridLoAttributes.CurrentCell = gridLoAttributes[0, row];
       gridLoAttributes.Focus();
       gridLoAttributes.BeginEdit(true);
@@ -330,6 +363,54 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.ListOfAttributes.Remove(attr);
       }
+    }
+
+    private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      grpAdditionalFiles.Visible = chkRequiresAdditionalCode.Checked;
+    }
+
+    private void OnBrowseDeclsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Declaration file", Filter = "Header files|*.h;*.hxx;*.h++;*.hpp;*.hh|All files|*.*" })
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+          txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+        }
+      }
+    }
+
+    private void OnBrowseImplsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Implementation file", Filter = "Implementation files|*.c;*.cpp;*.c++;*.cxx;*.cc|All files|*.*" })
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+          txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+        }
+      }
+    }
+
+    private void txtMaxNoChildren_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      int val;
+      if (int.TryParse(txtMaxNoChildren.Text, out val))
+        Current.MaxNumberChildren = val;
+    }
+
+    private void txtMinNoChildren_TextChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      int val;
+      if (int.TryParse(txtMinNoChildren.Text, out val))
+        Current.MinNumberChildren = val;
     }
   }
 }

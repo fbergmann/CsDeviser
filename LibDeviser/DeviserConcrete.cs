@@ -11,6 +11,8 @@ namespace LibDeviser
   {
     public string Name { get; set; }
     public string Element { get; set; }
+    public int MinNumChildren { get; set; }
+    public int MaxNumChildren { get; set; }
 
     public DeviserConcrete(DeviserConcrete other) : base(other)
     {
@@ -40,6 +42,8 @@ namespace LibDeviser
 
       Name = element.GetAttribute("name");
       Element = element.GetAttribute("element");
+      MinNumChildren = Util.readInt(element, "minNumChildren");
+      MaxNumChildren = Util.readInt(element, "maxNumChildren");
     }
 
     public override void WriteAttributesTo(XmlWriter writer)
@@ -50,6 +54,10 @@ namespace LibDeviser
         writer.WriteAttributeString("name", Name);
       if (!string.IsNullOrWhiteSpace(Element))
         writer.WriteAttributeString("element", Element);
+      if (MinNumChildren != 0)
+        writer.WriteAttributeString("minNumChildren", MinNumChildren.ToString());
+      if (MaxNumChildren != 0)
+        writer.WriteAttributeString("maxNumChildren", MaxNumChildren.ToString());
 
     }
 

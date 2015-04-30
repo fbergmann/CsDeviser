@@ -30,60 +30,78 @@
     {
       this.components = new System.ComponentModel.Container();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-      this.panel1 = new System.Windows.Forms.Panel();
-      this.txtAddImpl = new System.Windows.Forms.TextBox();
-      this.label7 = new System.Windows.Forms.Label();
-      this.txtAddDecl = new System.Windows.Forms.TextBox();
-      this.label6 = new System.Windows.Forms.Label();
       this.chkChildrenOverwriteElementName = new System.Windows.Forms.CheckBox();
-      this.chkHasChildren = new System.Windows.Forms.CheckBox();
       this.txtTypeCode = new System.Windows.Forms.TextBox();
-      this.chkHasListOf = new System.Windows.Forms.CheckBox();
-      this.chkAbstract = new System.Windows.Forms.CheckBox();
       this.txtName = new System.Windows.Forms.TextBox();
+      this.txtListOfName = new System.Windows.Forms.TextBox();
+      this.txtBaseClass = new System.Windows.Forms.TextBox();
+      this.txtElementName = new System.Windows.Forms.TextBox();
+      this.txtListOfClassName = new System.Windows.Forms.TextBox();
+      this.txtAddDecls = new System.Windows.Forms.TextBox();
+      this.txtAddImpls = new System.Windows.Forms.TextBox();
+      this.chkRequiresAdditionalCode = new System.Windows.Forms.CheckBox();
+      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.grpAdditionalFiles = new System.Windows.Forms.GroupBox();
+      this.cmdBrowseImpls = new System.Windows.Forms.Button();
+      this.cmdBrowseDecls = new System.Windows.Forms.Button();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.chkHasChildren = new System.Windows.Forms.CheckBox();
+      this.chkHasListOf = new System.Windows.Forms.CheckBox();
+      this.chkIsBaseClass = new System.Windows.Forms.CheckBox();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.chkHasMath = new System.Windows.Forms.CheckBox();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
-      this.txtListOfName = new System.Windows.Forms.TextBox();
-      this.txtBaseClass = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
-      this.txtElementName = new System.Windows.Forms.TextBox();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-      this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+      this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.addAttrib = new System.Windows.Forms.ToolStripButton();
       this.removeAttr = new System.Windows.Forms.ToolStripButton();
-      this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+      this.toolStripInstantiation = new System.Windows.Forms.ToolStripContainer();
       this.gridConcrete = new System.Windows.Forms.DataGridView();
       this.toolStrip2 = new System.Windows.Forms.ToolStrip();
       this.addConcrete = new System.Windows.Forms.ToolStripButton();
       this.delConcrete = new System.Windows.Forms.ToolStripButton();
+      this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
       this.gridLoAttributes = new System.Windows.Forms.DataGridView();
       this.toolStrip3 = new System.Windows.Forms.ToolStrip();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-      this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
+      this.pnlLoName = new System.Windows.Forms.Panel();
+      this.pnlLoClassName = new System.Windows.Forms.Panel();
+      this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.txtMinNoChildren = new System.Windows.Forms.TextBox();
+      this.label6 = new System.Windows.Forms.Label();
+      this.txtMaxNoChildren = new System.Windows.Forms.TextBox();
+      this.label7 = new System.Windows.Forms.Label();
       this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colConcreteName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colConcreteElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.label8 = new System.Windows.Forms.Label();
-      this.txtListOfClassName = new System.Windows.Forms.TextBox();
+      this.colLoXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colConcreteName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colConcreteElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colMinNoChildren = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colMaxNoChildren = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
+      this.grpAdditionalFiles.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -94,139 +112,256 @@
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
-      this.toolStripContainer1.ContentPanel.SuspendLayout();
-      this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
-      this.toolStripContainer1.SuspendLayout();
+      this.toolStripAttributes.ContentPanel.SuspendLayout();
+      this.toolStripAttributes.LeftToolStripPanel.SuspendLayout();
+      this.toolStripAttributes.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).BeginInit();
       this.toolStrip1.SuspendLayout();
-      this.toolStripContainer2.ContentPanel.SuspendLayout();
-      this.toolStripContainer2.LeftToolStripPanel.SuspendLayout();
-      this.toolStripContainer2.SuspendLayout();
+      this.toolStripInstantiation.ContentPanel.SuspendLayout();
+      this.toolStripInstantiation.LeftToolStripPanel.SuspendLayout();
+      this.toolStripInstantiation.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).BeginInit();
       this.toolStrip2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).BeginInit();
-      this.toolStrip3.SuspendLayout();
       this.toolStripContainer3.ContentPanel.SuspendLayout();
       this.toolStripContainer3.LeftToolStripPanel.SuspendLayout();
       this.toolStripContainer3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).BeginInit();
+      this.toolStrip3.SuspendLayout();
+      this.pnlLoName.SuspendLayout();
+      this.pnlLoClassName.SuspendLayout();
+      this.groupBox1.SuspendLayout();
+      this.groupBox2.SuspendLayout();
+      this.groupBox3.SuspendLayout();
       this.SuspendLayout();
-      // 
-      // tableLayoutPanel1
-      // 
-      this.tableLayoutPanel1.ColumnCount = 2;
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
-      this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 1);
-      this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(511, 425);
-      this.tableLayoutPanel1.TabIndex = 0;
-      // 
-      // panel1
-      // 
-      this.panel1.Controls.Add(this.txtAddImpl);
-      this.panel1.Controls.Add(this.label7);
-      this.panel1.Controls.Add(this.txtAddDecl);
-      this.panel1.Controls.Add(this.label6);
-      this.panel1.Controls.Add(this.chkChildrenOverwriteElementName);
-      this.panel1.Controls.Add(this.chkHasChildren);
-      this.panel1.Controls.Add(this.txtTypeCode);
-      this.panel1.Controls.Add(this.chkHasListOf);
-      this.panel1.Controls.Add(this.chkAbstract);
-      this.panel1.Controls.Add(this.txtName);
-      this.panel1.Controls.Add(this.label1);
-      this.panel1.Controls.Add(this.label2);
-      this.panel1.Controls.Add(this.chkHasMath);
-      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel1.Location = new System.Drawing.Point(3, 3);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(249, 152);
-      this.panel1.TabIndex = 0;
-      // 
-      // txtAddImpl
-      // 
-      this.txtAddImpl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtAddImpl.Location = new System.Drawing.Point(71, 81);
-      this.txtAddImpl.Name = "txtAddImpl";
-      this.txtAddImpl.Size = new System.Drawing.Size(175, 20);
-      this.txtAddImpl.TabIndex = 3;
-      this.toolTip1.SetToolTip(this.txtAddImpl, "file with additional implementations");
-      this.txtAddImpl.TextChanged += new System.EventHandler(this.txtAddImpl_TextChanged);
-      // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(11, 84);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(54, 13);
-      this.label7.TabIndex = 12;
-      this.label7.Text = "Add Impl: ";
-      // 
-      // txtAddDecl
-      // 
-      this.txtAddDecl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtAddDecl.Location = new System.Drawing.Point(71, 55);
-      this.txtAddDecl.Name = "txtAddDecl";
-      this.txtAddDecl.Size = new System.Drawing.Size(175, 20);
-      this.txtAddDecl.TabIndex = 2;
-      this.toolTip1.SetToolTip(this.txtAddDecl, "File with additional declarations");
-      this.txtAddDecl.TextChanged += new System.EventHandler(this.txtAddDecl_TextChanged);
-      // 
-      // label6
-      // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(7, 58);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(62, 13);
-      this.label6.TabIndex = 10;
-      this.label6.Text = "Add Decls: ";
       // 
       // chkChildrenOverwriteElementName
       // 
       this.chkChildrenOverwriteElementName.AutoSize = true;
-      this.chkChildrenOverwriteElementName.Location = new System.Drawing.Point(152, 125);
+      this.chkChildrenOverwriteElementName.Location = new System.Drawing.Point(10, 58);
       this.chkChildrenOverwriteElementName.Name = "chkChildrenOverwriteElementName";
       this.chkChildrenOverwriteElementName.Size = new System.Drawing.Size(90, 17);
       this.chkChildrenOverwriteElementName.TabIndex = 8;
       this.chkChildrenOverwriteElementName.Text = "Children Over";
       this.toolTip1.SetToolTip(this.chkChildrenOverwriteElementName, "Children overwrite Element Name");
       this.chkChildrenOverwriteElementName.UseVisualStyleBackColor = true;
+      this.chkChildrenOverwriteElementName.Visible = false;
       this.chkChildrenOverwriteElementName.CheckedChanged += new System.EventHandler(this.chkChildrenOverwriteElementName_CheckedChanged);
-      // 
-      // chkHasChildren
-      // 
-      this.chkHasChildren.AutoSize = true;
-      this.chkHasChildren.Location = new System.Drawing.Point(82, 104);
-      this.chkHasChildren.Name = "chkHasChildren";
-      this.chkHasChildren.Size = new System.Drawing.Size(81, 17);
-      this.chkHasChildren.TabIndex = 5;
-      this.chkHasChildren.Text = "hasChildren";
-      this.chkHasChildren.UseVisualStyleBackColor = true;
-      this.chkHasChildren.CheckedChanged += new System.EventHandler(this.chkHasChildren_CheckedChanged);
       // 
       // txtTypeCode
       // 
       this.txtTypeCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtTypeCode.Location = new System.Drawing.Point(71, 29);
+      this.txtTypeCode.Location = new System.Drawing.Point(75, 29);
       this.txtTypeCode.Name = "txtTypeCode";
-      this.txtTypeCode.Size = new System.Drawing.Size(175, 20);
+      this.txtTypeCode.Size = new System.Drawing.Size(215, 20);
       this.txtTypeCode.TabIndex = 1;
       this.toolTip1.SetToolTip(this.txtTypeCode, "typecode of this element ");
       this.txtTypeCode.TextChanged += new System.EventHandler(this.txtTypeCode_TextChanged);
       // 
+      // txtName
+      // 
+      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtName.Location = new System.Drawing.Point(75, 3);
+      this.txtName.Name = "txtName";
+      this.txtName.Size = new System.Drawing.Size(215, 20);
+      this.txtName.TabIndex = 0;
+      this.toolTip1.SetToolTip(this.txtName, "The name of this element");
+      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+      // 
+      // txtListOfName
+      // 
+      this.txtListOfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtListOfName.Location = new System.Drawing.Point(76, 3);
+      this.txtListOfName.Name = "txtListOfName";
+      this.txtListOfName.Size = new System.Drawing.Size(214, 20);
+      this.txtListOfName.TabIndex = 10;
+      this.toolTip1.SetToolTip(this.txtListOfName, "name of the listOf xml element");
+      this.txtListOfName.TextChanged += new System.EventHandler(this.txtListOfName_TextChanged);
+      // 
+      // txtBaseClass
+      // 
+      this.txtBaseClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtBaseClass.Location = new System.Drawing.Point(112, 3);
+      this.txtBaseClass.Name = "txtBaseClass";
+      this.txtBaseClass.Size = new System.Drawing.Size(178, 20);
+      this.txtBaseClass.TabIndex = 8;
+      this.toolTip1.SetToolTip(this.txtBaseClass, "the baseclass of this element");
+      this.txtBaseClass.TextChanged += new System.EventHandler(this.txtBaseClass_TextChanged);
+      // 
+      // txtElementName
+      // 
+      this.txtElementName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtElementName.Location = new System.Drawing.Point(112, 29);
+      this.txtElementName.Name = "txtElementName";
+      this.txtElementName.Size = new System.Drawing.Size(178, 20);
+      this.txtElementName.TabIndex = 9;
+      this.toolTip1.SetToolTip(this.txtElementName, "the xml name of this element");
+      this.txtElementName.TextChanged += new System.EventHandler(this.txtElementName_TextChanged);
+      // 
+      // txtListOfClassName
+      // 
+      this.txtListOfClassName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtListOfClassName.Location = new System.Drawing.Point(112, 3);
+      this.txtListOfClassName.Name = "txtListOfClassName";
+      this.txtListOfClassName.Size = new System.Drawing.Size(178, 20);
+      this.txtListOfClassName.TabIndex = 16;
+      this.toolTip1.SetToolTip(this.txtListOfClassName, "name of the listOf class name");
+      this.txtListOfClassName.TextChanged += new System.EventHandler(this.txtListOfClassName_TextChanged);
+      // 
+      // txtAddDecls
+      // 
+      this.txtAddDecls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtAddDecls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtAddDecls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtAddDecls.Location = new System.Drawing.Point(102, 19);
+      this.txtAddDecls.Name = "txtAddDecls";
+      this.txtAddDecls.Size = new System.Drawing.Size(430, 20);
+      this.txtAddDecls.TabIndex = 1;
+      this.toolTip1.SetToolTip(this.txtAddDecls, "Additional declarations to be included in the Package extension header");
+      this.txtAddDecls.TextChanged += new System.EventHandler(this.txtAddDecl_TextChanged);
+      // 
+      // txtAddImpls
+      // 
+      this.txtAddImpls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtAddImpls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtAddImpls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtAddImpls.Location = new System.Drawing.Point(102, 45);
+      this.txtAddImpls.Name = "txtAddImpls";
+      this.txtAddImpls.Size = new System.Drawing.Size(430, 20);
+      this.txtAddImpls.TabIndex = 2;
+      this.toolTip1.SetToolTip(this.txtAddImpls, "Additional implementations to be included in the Package extension source file");
+      this.txtAddImpls.TextChanged += new System.EventHandler(this.txtAddImpl_TextChanged);
+      // 
+      // chkRequiresAdditionalCode
+      // 
+      this.chkRequiresAdditionalCode.AutoSize = true;
+      this.chkRequiresAdditionalCode.Location = new System.Drawing.Point(11, 58);
+      this.chkRequiresAdditionalCode.Name = "chkRequiresAdditionalCode";
+      this.chkRequiresAdditionalCode.Size = new System.Drawing.Size(138, 17);
+      this.chkRequiresAdditionalCode.TabIndex = 18;
+      this.chkRequiresAdditionalCode.Text = "requires additional code";
+      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "Check if the package is required (i.e.: it changes math)");
+      this.chkRequiresAdditionalCode.UseVisualStyleBackColor = true;
+      this.chkRequiresAdditionalCode.CheckedChanged += new System.EventHandler(this.OnCheckRequiresAdditionalCodeCheckedChanged);
+      // 
+      // tableLayoutPanel1
+      // 
+      this.tableLayoutPanel1.ColumnCount = 2;
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanel1.Controls.Add(this.pnlLoClassName, 1, 1);
+      this.tableLayoutPanel1.Controls.Add(this.grpAdditionalFiles, 0, 3);
+      this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+      this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+      this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 2);
+      this.tableLayoutPanel1.Controls.Add(this.pnlLoName, 0, 1);
+      this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+      this.tableLayoutPanel1.RowCount = 4;
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(598, 425);
+      this.tableLayoutPanel1.TabIndex = 0;
+      // 
+      // grpAdditionalFiles
+      // 
+      this.tableLayoutPanel1.SetColumnSpan(this.grpAdditionalFiles, 2);
+      this.grpAdditionalFiles.Controls.Add(this.cmdBrowseImpls);
+      this.grpAdditionalFiles.Controls.Add(this.cmdBrowseDecls);
+      this.grpAdditionalFiles.Controls.Add(this.txtAddDecls);
+      this.grpAdditionalFiles.Controls.Add(this.label9);
+      this.grpAdditionalFiles.Controls.Add(this.txtAddImpls);
+      this.grpAdditionalFiles.Controls.Add(this.label10);
+      this.grpAdditionalFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.grpAdditionalFiles.Location = new System.Drawing.Point(3, 344);
+      this.grpAdditionalFiles.Name = "grpAdditionalFiles";
+      this.grpAdditionalFiles.Size = new System.Drawing.Size(592, 78);
+      this.grpAdditionalFiles.TabIndex = 20;
+      this.grpAdditionalFiles.TabStop = false;
+      this.grpAdditionalFiles.Text = " Additional code files: ";
+      // 
+      // cmdBrowseImpls
+      // 
+      this.cmdBrowseImpls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseImpls.Location = new System.Drawing.Point(538, 43);
+      this.cmdBrowseImpls.Name = "cmdBrowseImpls";
+      this.cmdBrowseImpls.Size = new System.Drawing.Size(48, 23);
+      this.cmdBrowseImpls.TabIndex = 18;
+      this.cmdBrowseImpls.Text = "...";
+      this.cmdBrowseImpls.UseVisualStyleBackColor = true;
+      this.cmdBrowseImpls.Click += new System.EventHandler(this.OnBrowseImplsClick);
+      // 
+      // cmdBrowseDecls
+      // 
+      this.cmdBrowseDecls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseDecls.Location = new System.Drawing.Point(538, 17);
+      this.cmdBrowseDecls.Name = "cmdBrowseDecls";
+      this.cmdBrowseDecls.Size = new System.Drawing.Size(48, 23);
+      this.cmdBrowseDecls.TabIndex = 17;
+      this.cmdBrowseDecls.Text = "...";
+      this.cmdBrowseDecls.UseVisualStyleBackColor = true;
+      this.cmdBrowseDecls.Click += new System.EventHandler(this.OnBrowseDeclsClick);
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(29, 22);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(67, 13);
+      this.label9.TabIndex = 14;
+      this.label9.Text = "Declaration: ";
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(12, 48);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(84, 13);
+      this.label10.TabIndex = 16;
+      this.label10.Text = "Implementation: ";
+      // 
+      // panel1
+      // 
+      this.panel1.Controls.Add(this.txtTypeCode);
+      this.panel1.Controls.Add(this.chkChildrenOverwriteElementName);
+      this.panel1.Controls.Add(this.chkHasListOf);
+      this.panel1.Controls.Add(this.chkIsBaseClass);
+      this.panel1.Controls.Add(this.txtName);
+      this.panel1.Controls.Add(this.label1);
+      this.panel1.Controls.Add(this.label2);
+      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panel1.Location = new System.Drawing.Point(3, 3);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(293, 77);
+      this.panel1.TabIndex = 0;
+      // 
+      // chkHasChildren
+      // 
+      this.chkHasChildren.AutoSize = true;
+      this.chkHasChildren.Location = new System.Drawing.Point(155, 58);
+      this.chkHasChildren.Name = "chkHasChildren";
+      this.chkHasChildren.Size = new System.Drawing.Size(81, 17);
+      this.chkHasChildren.TabIndex = 5;
+      this.chkHasChildren.Text = "hasChildren";
+      this.chkHasChildren.UseVisualStyleBackColor = true;
+      this.chkHasChildren.Visible = false;
+      this.chkHasChildren.CheckedChanged += new System.EventHandler(this.chkHasChildren_CheckedChanged);
+      // 
       // chkHasListOf
       // 
       this.chkHasListOf.AutoSize = true;
-      this.chkHasListOf.Location = new System.Drawing.Point(6, 104);
+      this.chkHasListOf.Location = new System.Drawing.Point(75, 58);
       this.chkHasListOf.Name = "chkHasListOf";
       this.chkHasListOf.Size = new System.Drawing.Size(70, 17);
       this.chkHasListOf.TabIndex = 4;
@@ -234,33 +369,21 @@
       this.chkHasListOf.UseVisualStyleBackColor = true;
       this.chkHasListOf.CheckedChanged += new System.EventHandler(this.chkHasListOf_CheckedChanged);
       // 
-      // chkAbstract
+      // chkIsBaseClass
       // 
-      this.chkAbstract.AutoSize = true;
-      this.chkAbstract.Location = new System.Drawing.Point(82, 125);
-      this.chkAbstract.Name = "chkAbstract";
-      this.chkAbstract.Size = new System.Drawing.Size(64, 17);
-      this.chkAbstract.TabIndex = 7;
-      this.chkAbstract.Text = "abstract";
-      this.chkAbstract.UseVisualStyleBackColor = true;
-      this.chkAbstract.CheckedChanged += new System.EventHandler(this.chkAbstract_CheckedChanged);
-      // 
-      // txtName
-      // 
-      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtName.Location = new System.Drawing.Point(71, 3);
-      this.txtName.Name = "txtName";
-      this.txtName.Size = new System.Drawing.Size(175, 20);
-      this.txtName.TabIndex = 0;
-      this.toolTip1.SetToolTip(this.txtName, "The name of this element");
-      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+      this.chkIsBaseClass.AutoSize = true;
+      this.chkIsBaseClass.Location = new System.Drawing.Point(151, 58);
+      this.chkIsBaseClass.Name = "chkIsBaseClass";
+      this.chkIsBaseClass.Size = new System.Drawing.Size(82, 17);
+      this.chkIsBaseClass.TabIndex = 7;
+      this.chkIsBaseClass.Text = "isBaseClass";
+      this.chkIsBaseClass.UseVisualStyleBackColor = true;
+      this.chkIsBaseClass.CheckedChanged += new System.EventHandler(this.chkAbstract_CheckedChanged);
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(24, 6);
+      this.label1.Location = new System.Drawing.Point(29, 6);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(41, 13);
       this.label1.TabIndex = 2;
@@ -278,65 +401,52 @@
       // chkHasMath
       // 
       this.chkHasMath.AutoSize = true;
-      this.chkHasMath.Location = new System.Drawing.Point(6, 125);
+      this.chkHasMath.Location = new System.Drawing.Point(183, 58);
       this.chkHasMath.Name = "chkHasMath";
       this.chkHasMath.Size = new System.Drawing.Size(67, 17);
       this.chkHasMath.TabIndex = 6;
       this.chkHasMath.Text = "hasMath";
       this.chkHasMath.UseVisualStyleBackColor = true;
+      this.chkHasMath.Visible = false;
       this.chkHasMath.CheckedChanged += new System.EventHandler(this.chkHasMath_CheckedChanged);
       // 
       // panel2
       // 
-      this.panel2.Controls.Add(this.label8);
-      this.panel2.Controls.Add(this.txtListOfClassName);
-      this.panel2.Controls.Add(this.label5);
-      this.panel2.Controls.Add(this.txtListOfName);
+      this.panel2.Controls.Add(this.chkHasChildren);
+      this.panel2.Controls.Add(this.chkRequiresAdditionalCode);
       this.panel2.Controls.Add(this.txtBaseClass);
       this.panel2.Controls.Add(this.label3);
       this.panel2.Controls.Add(this.label4);
       this.panel2.Controls.Add(this.txtElementName);
+      this.panel2.Controls.Add(this.chkHasMath);
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(258, 3);
+      this.panel2.Location = new System.Drawing.Point(302, 3);
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(250, 152);
+      this.panel2.Size = new System.Drawing.Size(293, 77);
       this.panel2.TabIndex = 2;
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(16, 6);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(90, 13);
+      this.label8.TabIndex = 17;
+      this.label8.Text = "ListOfClassName:";
       // 
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(31, 58);
+      this.label5.Location = new System.Drawing.Point(5, 6);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(65, 13);
       this.label5.TabIndex = 15;
       this.label5.Text = "ListOfName:";
       // 
-      // txtListOfName
-      // 
-      this.txtListOfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtListOfName.Location = new System.Drawing.Point(102, 55);
-      this.txtListOfName.Name = "txtListOfName";
-      this.txtListOfName.Size = new System.Drawing.Size(145, 20);
-      this.txtListOfName.TabIndex = 10;
-      this.toolTip1.SetToolTip(this.txtListOfName, "name of the listOf xml element");
-      this.txtListOfName.TextChanged += new System.EventHandler(this.txtListOfName_TextChanged);
-      // 
-      // txtBaseClass
-      // 
-      this.txtBaseClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtBaseClass.Location = new System.Drawing.Point(102, 3);
-      this.txtBaseClass.Name = "txtBaseClass";
-      this.txtBaseClass.Size = new System.Drawing.Size(145, 20);
-      this.txtBaseClass.TabIndex = 8;
-      this.toolTip1.SetToolTip(this.txtBaseClass, "the baseclass of this element");
-      this.txtBaseClass.TextChanged += new System.EventHandler(this.txtBaseClass_TextChanged);
-      // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(34, 6);
+      this.label3.Location = new System.Drawing.Point(44, 6);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(62, 13);
       this.label3.TabIndex = 6;
@@ -345,28 +455,17 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(20, 32);
+      this.label4.Location = new System.Drawing.Point(8, 32);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(76, 13);
+      this.label4.Size = new System.Drawing.Size(101, 13);
       this.label4.TabIndex = 11;
-      this.label4.Text = "ElementName:";
-      // 
-      // txtElementName
-      // 
-      this.txtElementName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtElementName.Location = new System.Drawing.Point(102, 29);
-      this.txtElementName.Name = "txtElementName";
-      this.txtElementName.Size = new System.Drawing.Size(145, 20);
-      this.txtElementName.TabIndex = 9;
-      this.toolTip1.SetToolTip(this.txtElementName, "the xml name of this element");
-      this.txtElementName.TextChanged += new System.EventHandler(this.txtElementName_TextChanged);
+      this.label4.Text = "XML ElementName:";
       // 
       // splitContainer2
       // 
       this.tableLayoutPanel1.SetColumnSpan(this.splitContainer2, 2);
       this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainer2.Location = new System.Drawing.Point(3, 161);
+      this.splitContainer2.Location = new System.Drawing.Point(3, 144);
       this.splitContainer2.Name = "splitContainer2";
       this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
@@ -376,9 +475,9 @@
       // 
       // splitContainer2.Panel2
       // 
-      this.splitContainer2.Panel2.Controls.Add(this.toolStripContainer3);
-      this.splitContainer2.Size = new System.Drawing.Size(505, 261);
-      this.splitContainer2.SplitterDistance = 182;
+      this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
+      this.splitContainer2.Size = new System.Drawing.Size(592, 194);
+      this.splitContainer2.SplitterDistance = 108;
       this.splitContainer2.TabIndex = 15;
       // 
       // splitContainer1
@@ -390,48 +489,53 @@
       // 
       // splitContainer1.Panel1
       // 
-      this.splitContainer1.Panel1.Controls.Add(this.toolStripContainer1);
+      this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
       // 
       // splitContainer1.Panel2
       // 
-      this.splitContainer1.Panel2.Controls.Add(this.toolStripContainer2);
-      this.splitContainer1.Size = new System.Drawing.Size(505, 182);
-      this.splitContainer1.SplitterDistance = 116;
+      this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
+      this.splitContainer1.Size = new System.Drawing.Size(592, 108);
+      this.splitContainer1.SplitterDistance = 52;
       this.splitContainer1.TabIndex = 14;
       // 
-      // toolStripContainer1
+      // toolStripAttributes
       // 
+      this.toolStripAttributes.BottomToolStripPanelVisible = false;
       // 
-      // toolStripContainer1.ContentPanel
+      // toolStripAttributes.ContentPanel
       // 
-      this.toolStripContainer1.ContentPanel.Controls.Add(this.gridAttributes);
-      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(469, 91);
-      this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.toolStripAttributes.ContentPanel.Controls.Add(this.gridAttributes);
+      this.toolStripAttributes.ContentPanel.Size = new System.Drawing.Size(536, 33);
+      this.toolStripAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       // 
-      // toolStripContainer1.LeftToolStripPanel
+      // toolStripAttributes.LeftToolStripPanel
       // 
-      this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip1);
-      this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-      this.toolStripContainer1.Name = "toolStripContainer1";
-      this.toolStripContainer1.Size = new System.Drawing.Size(505, 116);
-      this.toolStripContainer1.TabIndex = 1;
-      this.toolStripContainer1.Text = "toolStripContainer1";
+      this.toolStripAttributes.LeftToolStripPanel.Controls.Add(this.toolStrip1);
+      this.toolStripAttributes.Location = new System.Drawing.Point(3, 16);
+      this.toolStripAttributes.Name = "toolStripAttributes";
+      this.toolStripAttributes.RightToolStripPanelVisible = false;
+      this.toolStripAttributes.Size = new System.Drawing.Size(586, 33);
+      this.toolStripAttributes.TabIndex = 1;
+      this.toolStripAttributes.Text = "toolStripContainer1";
+      this.toolStripAttributes.TopToolStripPanelVisible = false;
       // 
       // gridAttributes
       // 
       this.gridAttributes.AllowUserToAddRows = false;
       this.gridAttributes.AllowUserToDeleteRows = false;
+      this.gridAttributes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.gridAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.gridAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
             this.colType,
-            this.colRequired,
             this.colElement,
-            this.colAbstract});
+            this.colRequired,
+            this.colAbstract,
+            this.colXMLName});
       this.gridAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
-      this.gridAttributes.Size = new System.Drawing.Size(469, 91);
+      this.gridAttributes.Size = new System.Drawing.Size(536, 33);
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAttributes_CellValueChanged);
       // 
@@ -446,7 +550,7 @@
       this.toolStrip1.Location = new System.Drawing.Point(0, 0);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolStrip1.Size = new System.Drawing.Size(36, 91);
+      this.toolStrip1.Size = new System.Drawing.Size(50, 33);
       this.toolStrip1.Stretch = true;
       this.toolStrip1.TabIndex = 15;
       this.toolStrip1.Text = "toolStrip1";
@@ -457,7 +561,7 @@
       this.addAttrib.Image = global::CsDeviser.Properties.Resources.list_add;
       this.addAttrib.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.addAttrib.Name = "addAttrib";
-      this.addAttrib.Size = new System.Drawing.Size(34, 33);
+      this.addAttrib.Size = new System.Drawing.Size(48, 33);
       this.addAttrib.Text = "&Add";
       this.addAttrib.ToolTipText = "Adds an Attribute to this Class";
       this.addAttrib.Click += new System.EventHandler(this.OnAddAttributeClick);
@@ -467,41 +571,47 @@
       this.removeAttr.Image = global::CsDeviser.Properties.Resources.list_remove;
       this.removeAttr.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.removeAttr.Name = "removeAttr";
-      this.removeAttr.Size = new System.Drawing.Size(34, 28);
+      this.removeAttr.Size = new System.Drawing.Size(48, 28);
       this.removeAttr.Text = "&Del";
       this.removeAttr.ToolTipText = "Removes the selected Attribute from the class";
       this.removeAttr.Click += new System.EventHandler(this.OnRemoveAttrClick);
       // 
-      // toolStripContainer2
+      // toolStripInstantiation
       // 
+      this.toolStripInstantiation.BottomToolStripPanelVisible = false;
       // 
-      // toolStripContainer2.ContentPanel
+      // toolStripInstantiation.ContentPanel
       // 
-      this.toolStripContainer2.ContentPanel.Controls.Add(this.gridConcrete);
-      this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(460, 62);
-      this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.toolStripInstantiation.ContentPanel.Controls.Add(this.gridConcrete);
+      this.toolStripInstantiation.ContentPanel.Size = new System.Drawing.Size(536, 33);
+      this.toolStripInstantiation.Dock = System.Windows.Forms.DockStyle.Fill;
       // 
-      // toolStripContainer2.LeftToolStripPanel
+      // toolStripInstantiation.LeftToolStripPanel
       // 
-      this.toolStripContainer2.LeftToolStripPanel.Controls.Add(this.toolStrip2);
-      this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
-      this.toolStripContainer2.Name = "toolStripContainer2";
-      this.toolStripContainer2.Size = new System.Drawing.Size(505, 62);
-      this.toolStripContainer2.TabIndex = 1;
-      this.toolStripContainer2.Text = "toolStripContainer2";
+      this.toolStripInstantiation.LeftToolStripPanel.Controls.Add(this.toolStrip2);
+      this.toolStripInstantiation.Location = new System.Drawing.Point(3, 16);
+      this.toolStripInstantiation.Name = "toolStripInstantiation";
+      this.toolStripInstantiation.RightToolStripPanelVisible = false;
+      this.toolStripInstantiation.Size = new System.Drawing.Size(586, 33);
+      this.toolStripInstantiation.TabIndex = 1;
+      this.toolStripInstantiation.Text = "toolStripContainer2";
+      this.toolStripInstantiation.TopToolStripPanelVisible = false;
       // 
       // gridConcrete
       // 
       this.gridConcrete.AllowUserToAddRows = false;
       this.gridConcrete.AllowUserToDeleteRows = false;
+      this.gridConcrete.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.gridConcrete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.gridConcrete.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colConcreteName,
-            this.colConcreteElement});
+            this.colConcreteElement,
+            this.colMinNoChildren,
+            this.colMaxNoChildren});
       this.gridConcrete.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridConcrete.Location = new System.Drawing.Point(0, 0);
       this.gridConcrete.Name = "gridConcrete";
-      this.gridConcrete.Size = new System.Drawing.Size(460, 62);
+      this.gridConcrete.Size = new System.Drawing.Size(536, 33);
       this.gridConcrete.TabIndex = 15;
       this.gridConcrete.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridConcrete_CellValueChanged);
       // 
@@ -515,7 +625,7 @@
       this.toolStrip2.Location = new System.Drawing.Point(0, 0);
       this.toolStrip2.Name = "toolStrip2";
       this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolStrip2.Size = new System.Drawing.Size(45, 62);
+      this.toolStrip2.Size = new System.Drawing.Size(50, 33);
       this.toolStrip2.Stretch = true;
       this.toolStrip2.TabIndex = 16;
       this.toolStrip2.Text = "toolStrip2";
@@ -526,7 +636,7 @@
       this.addConcrete.Image = global::CsDeviser.Properties.Resources.list_add;
       this.addConcrete.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.addConcrete.Name = "addConcrete";
-      this.addConcrete.Size = new System.Drawing.Size(43, 33);
+      this.addConcrete.Size = new System.Drawing.Size(34, 33);
       this.addConcrete.Text = "A&dd";
       this.addConcrete.ToolTipText = "Adds a new concrete class to the list. ";
       this.addConcrete.Click += new System.EventHandler(this.OnAddConcreteClick);
@@ -536,10 +646,31 @@
       this.delConcrete.Image = global::CsDeviser.Properties.Resources.list_remove;
       this.delConcrete.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.delConcrete.Name = "delConcrete";
-      this.delConcrete.Size = new System.Drawing.Size(44, 20);
+      this.delConcrete.Size = new System.Drawing.Size(34, 28);
       this.delConcrete.Text = "D&el";
       this.delConcrete.ToolTipText = "Deletes the selected concrete element. ";
       this.delConcrete.Click += new System.EventHandler(this.OnRemoveConcreteClick);
+      // 
+      // toolStripContainer3
+      // 
+      this.toolStripContainer3.BottomToolStripPanelVisible = false;
+      // 
+      // toolStripContainer3.ContentPanel
+      // 
+      this.toolStripContainer3.ContentPanel.Controls.Add(this.gridLoAttributes);
+      this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(520, 63);
+      this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+      // 
+      // toolStripContainer3.LeftToolStripPanel
+      // 
+      this.toolStripContainer3.LeftToolStripPanel.Controls.Add(this.toolStrip3);
+      this.toolStripContainer3.Location = new System.Drawing.Point(3, 16);
+      this.toolStripContainer3.Name = "toolStripContainer3";
+      this.toolStripContainer3.RightToolStripPanelVisible = false;
+      this.toolStripContainer3.Size = new System.Drawing.Size(586, 63);
+      this.toolStripContainer3.TabIndex = 1;
+      this.toolStripContainer3.Text = "toolStripContainer3";
+      this.toolStripContainer3.TopToolStripPanelVisible = false;
       // 
       // gridLoAttributes
       // 
@@ -549,13 +680,14 @@
       this.gridLoAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewCheckBoxColumn1,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewCheckBoxColumn2});
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewCheckBoxColumn2,
+            this.colLoXMLName});
       this.gridLoAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridLoAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridLoAttributes.Name = "gridLoAttributes";
-      this.gridLoAttributes.Size = new System.Drawing.Size(460, 75);
+      this.gridLoAttributes.Size = new System.Drawing.Size(520, 63);
       this.gridLoAttributes.TabIndex = 15;
       this.gridLoAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLoAttributes_CellValueChanged);
       // 
@@ -569,7 +701,7 @@
       this.toolStrip3.Location = new System.Drawing.Point(0, 0);
       this.toolStrip3.Name = "toolStrip3";
       this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolStrip3.Size = new System.Drawing.Size(45, 75);
+      this.toolStrip3.Size = new System.Drawing.Size(66, 63);
       this.toolStrip3.Stretch = true;
       this.toolStrip3.TabIndex = 17;
       this.toolStrip3.Text = "toolStrip3";
@@ -590,28 +722,111 @@
       this.toolStripButton2.Image = global::CsDeviser.Properties.Resources.list_remove;
       this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.toolStripButton2.Name = "toolStripButton2";
-      this.toolStripButton2.Size = new System.Drawing.Size(44, 20);
+      this.toolStripButton2.Size = new System.Drawing.Size(34, 28);
       this.toolStripButton2.Text = "D&el";
       this.toolStripButton2.ToolTipText = "Deletes the selected listOf attribute from the class";
       this.toolStripButton2.Click += new System.EventHandler(this.OnRemoveLoAttributeClick);
       // 
-      // toolStripContainer3
+      // pnlLoName
       // 
+      this.pnlLoName.AutoSize = true;
+      this.pnlLoName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+      this.pnlLoName.Controls.Add(this.txtMinNoChildren);
+      this.pnlLoName.Controls.Add(this.label6);
+      this.pnlLoName.Controls.Add(this.txtListOfName);
+      this.pnlLoName.Controls.Add(this.label5);
+      this.pnlLoName.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pnlLoName.Location = new System.Drawing.Point(3, 86);
+      this.pnlLoName.Name = "pnlLoName";
+      this.pnlLoName.Size = new System.Drawing.Size(293, 52);
+      this.pnlLoName.TabIndex = 21;
       // 
-      // toolStripContainer3.ContentPanel
+      // pnlLoClassName
       // 
-      this.toolStripContainer3.ContentPanel.Controls.Add(this.gridLoAttributes);
-      this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(460, 75);
-      this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pnlLoClassName.AutoSize = true;
+      this.pnlLoClassName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+      this.pnlLoClassName.Controls.Add(this.txtMaxNoChildren);
+      this.pnlLoClassName.Controls.Add(this.label7);
+      this.pnlLoClassName.Controls.Add(this.label8);
+      this.pnlLoClassName.Controls.Add(this.txtListOfClassName);
+      this.pnlLoClassName.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pnlLoClassName.Location = new System.Drawing.Point(302, 86);
+      this.pnlLoClassName.Name = "pnlLoClassName";
+      this.pnlLoClassName.Size = new System.Drawing.Size(293, 52);
+      this.pnlLoClassName.TabIndex = 22;
       // 
-      // toolStripContainer3.LeftToolStripPanel
+      // groupBox1
       // 
-      this.toolStripContainer3.LeftToolStripPanel.Controls.Add(this.toolStrip3);
-      this.toolStripContainer3.Location = new System.Drawing.Point(0, 0);
-      this.toolStripContainer3.Name = "toolStripContainer3";
-      this.toolStripContainer3.Size = new System.Drawing.Size(505, 75);
-      this.toolStripContainer3.TabIndex = 1;
-      this.toolStripContainer3.Text = "toolStripContainer3";
+      this.groupBox1.Controls.Add(this.toolStripContainer3);
+      this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.groupBox1.Location = new System.Drawing.Point(0, 0);
+      this.groupBox1.Name = "groupBox1";
+      this.groupBox1.Size = new System.Drawing.Size(592, 82);
+      this.groupBox1.TabIndex = 2;
+      this.groupBox1.TabStop = false;
+      this.groupBox1.Text = " ListOf attributes: ";
+      // 
+      // groupBox2
+      // 
+      this.groupBox2.Controls.Add(this.toolStripInstantiation);
+      this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.groupBox2.Location = new System.Drawing.Point(0, 0);
+      this.groupBox2.Name = "groupBox2";
+      this.groupBox2.Size = new System.Drawing.Size(592, 52);
+      this.groupBox2.TabIndex = 2;
+      this.groupBox2.TabStop = false;
+      this.groupBox2.Text = "Instantiations: ";
+      // 
+      // groupBox3
+      // 
+      this.groupBox3.Controls.Add(this.toolStripAttributes);
+      this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.groupBox3.Location = new System.Drawing.Point(0, 0);
+      this.groupBox3.Name = "groupBox3";
+      this.groupBox3.Size = new System.Drawing.Size(592, 52);
+      this.groupBox3.TabIndex = 2;
+      this.groupBox3.TabStop = false;
+      this.groupBox3.Text = "Class attributes and child elements: ";
+      // 
+      // txtMinNoChildren
+      // 
+      this.txtMinNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtMinNoChildren.Location = new System.Drawing.Point(139, 29);
+      this.txtMinNoChildren.Name = "txtMinNoChildren";
+      this.txtMinNoChildren.Size = new System.Drawing.Size(151, 20);
+      this.txtMinNoChildren.TabIndex = 16;
+      this.toolTip1.SetToolTip(this.txtMinNoChildren, "name of the listOf xml element");
+      this.txtMinNoChildren.TextChanged += new System.EventHandler(this.txtMinNoChildren_TextChanged);
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(4, 32);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(129, 13);
+      this.label6.TabIndex = 17;
+      this.label6.Text = "Minimum number children:";
+      // 
+      // txtMaxNoChildren
+      // 
+      this.txtMaxNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtMaxNoChildren.Location = new System.Drawing.Point(140, 29);
+      this.txtMaxNoChildren.Name = "txtMaxNoChildren";
+      this.txtMaxNoChildren.Size = new System.Drawing.Size(150, 20);
+      this.txtMaxNoChildren.TabIndex = 18;
+      this.toolTip1.SetToolTip(this.txtMaxNoChildren, "name of the listOf xml element");
+      this.txtMaxNoChildren.TextChanged += new System.EventHandler(this.txtMaxNoChildren_TextChanged);
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Location = new System.Drawing.Point(5, 32);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(132, 13);
+      this.label7.TabIndex = 19;
+      this.label7.Text = "Maximum number children:";
       // 
       // colName
       // 
@@ -624,31 +839,25 @@
       this.colType.HeaderText = "Type";
       this.colType.Name = "colType";
       // 
-      // colRequired
-      // 
-      this.colRequired.HeaderText = "Required";
-      this.colRequired.Name = "colRequired";
-      // 
       // colElement
       // 
       this.colElement.HeaderText = "Element";
       this.colElement.Name = "colElement";
+      // 
+      // colRequired
+      // 
+      this.colRequired.HeaderText = "Required";
+      this.colRequired.Name = "colRequired";
       // 
       // colAbstract
       // 
       this.colAbstract.HeaderText = "Abstract";
       this.colAbstract.Name = "colAbstract";
       // 
-      // colConcreteName
+      // colXMLName
       // 
-      this.colConcreteName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colConcreteName.HeaderText = "Name";
-      this.colConcreteName.Name = "colConcreteName";
-      // 
-      // colConcreteElement
-      // 
-      this.colConcreteElement.HeaderText = "Element";
-      this.colConcreteElement.Name = "colConcreteElement";
+      this.colXMLName.HeaderText = "XML name";
+      this.colXMLName.Name = "colXMLName";
       // 
       // dataGridViewTextBoxColumn1
       // 
@@ -661,40 +870,47 @@
       this.dataGridViewTextBoxColumn2.HeaderText = "Type";
       this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
       // 
-      // dataGridViewCheckBoxColumn1
-      // 
-      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
-      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-      // 
       // dataGridViewTextBoxColumn3
       // 
       this.dataGridViewTextBoxColumn3.HeaderText = "Element";
       this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      // 
+      // dataGridViewCheckBoxColumn1
+      // 
+      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
+      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
       // 
       // dataGridViewCheckBoxColumn2
       // 
       this.dataGridViewCheckBoxColumn2.HeaderText = "Abstract";
       this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
       // 
-      // label8
+      // colLoXMLName
       // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(6, 84);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(90, 13);
-      this.label8.TabIndex = 17;
-      this.label8.Text = "ListOfClassName:";
+      this.colLoXMLName.HeaderText = "XML name";
+      this.colLoXMLName.Name = "colLoXMLName";
       // 
-      // txtListOfClassName
+      // colConcreteName
       // 
-      this.txtListOfClassName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtListOfClassName.Location = new System.Drawing.Point(102, 81);
-      this.txtListOfClassName.Name = "txtListOfClassName";
-      this.txtListOfClassName.Size = new System.Drawing.Size(145, 20);
-      this.txtListOfClassName.TabIndex = 16;
-      this.toolTip1.SetToolTip(this.txtListOfClassName, "name of the listOf class name");
-      this.txtListOfClassName.TextChanged += new System.EventHandler(this.txtListOfClassName_TextChanged);
+      this.colConcreteName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colConcreteName.HeaderText = "XML name";
+      this.colConcreteName.Name = "colConcreteName";
+      // 
+      // colConcreteElement
+      // 
+      this.colConcreteElement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colConcreteElement.HeaderText = "Element";
+      this.colConcreteElement.Name = "colConcreteElement";
+      // 
+      // colMinNoChildren
+      // 
+      this.colMinNoChildren.HeaderText = "Min No. Children";
+      this.colMinNoChildren.Name = "colMinNoChildren";
+      // 
+      // colMaxNoChildren
+      // 
+      this.colMaxNoChildren.HeaderText = "Max No. Children";
+      this.colMaxNoChildren.Name = "colMaxNoChildren";
       // 
       // ControlClass
       // 
@@ -702,8 +918,11 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.tableLayoutPanel1);
       this.Name = "ControlClass";
-      this.Size = new System.Drawing.Size(511, 425);
+      this.Size = new System.Drawing.Size(598, 425);
       this.tableLayoutPanel1.ResumeLayout(false);
+      this.tableLayoutPanel1.PerformLayout();
+      this.grpAdditionalFiles.ResumeLayout(false);
+      this.grpAdditionalFiles.PerformLayout();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
       this.panel2.ResumeLayout(false);
@@ -716,30 +935,37 @@
       this.splitContainer1.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
       this.splitContainer1.ResumeLayout(false);
-      this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-      this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
-      this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
-      this.toolStripContainer1.ResumeLayout(false);
-      this.toolStripContainer1.PerformLayout();
+      this.toolStripAttributes.ContentPanel.ResumeLayout(false);
+      this.toolStripAttributes.LeftToolStripPanel.ResumeLayout(false);
+      this.toolStripAttributes.LeftToolStripPanel.PerformLayout();
+      this.toolStripAttributes.ResumeLayout(false);
+      this.toolStripAttributes.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).EndInit();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
-      this.toolStripContainer2.ContentPanel.ResumeLayout(false);
-      this.toolStripContainer2.LeftToolStripPanel.ResumeLayout(false);
-      this.toolStripContainer2.LeftToolStripPanel.PerformLayout();
-      this.toolStripContainer2.ResumeLayout(false);
-      this.toolStripContainer2.PerformLayout();
+      this.toolStripInstantiation.ContentPanel.ResumeLayout(false);
+      this.toolStripInstantiation.LeftToolStripPanel.ResumeLayout(false);
+      this.toolStripInstantiation.LeftToolStripPanel.PerformLayout();
+      this.toolStripInstantiation.ResumeLayout(false);
+      this.toolStripInstantiation.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridConcrete)).EndInit();
       this.toolStrip2.ResumeLayout(false);
       this.toolStrip2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).EndInit();
-      this.toolStrip3.ResumeLayout(false);
-      this.toolStrip3.PerformLayout();
       this.toolStripContainer3.ContentPanel.ResumeLayout(false);
       this.toolStripContainer3.LeftToolStripPanel.ResumeLayout(false);
       this.toolStripContainer3.LeftToolStripPanel.PerformLayout();
       this.toolStripContainer3.ResumeLayout(false);
       this.toolStripContainer3.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.gridLoAttributes)).EndInit();
+      this.toolStrip3.ResumeLayout(false);
+      this.toolStrip3.PerformLayout();
+      this.pnlLoName.ResumeLayout(false);
+      this.pnlLoName.PerformLayout();
+      this.pnlLoClassName.ResumeLayout(false);
+      this.pnlLoClassName.PerformLayout();
+      this.groupBox1.ResumeLayout(false);
+      this.groupBox2.ResumeLayout(false);
+      this.groupBox3.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -760,25 +986,21 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.TextBox txtTypeCode;
     private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.CheckBox chkAbstract;
+    private System.Windows.Forms.CheckBox chkIsBaseClass;
     private System.Windows.Forms.SplitContainer splitContainer1;
     private System.Windows.Forms.DataGridView gridAttributes;
     private System.Windows.Forms.DataGridView gridConcrete;
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.CheckBox chkChildrenOverwriteElementName;
-    private System.Windows.Forms.TextBox txtAddImpl;
-    private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.TextBox txtAddDecl;
-    private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.TextBox txtListOfName;
     private System.Windows.Forms.SplitContainer splitContainer2;
     private System.Windows.Forms.DataGridView gridLoAttributes;
-    private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+    private System.Windows.Forms.ToolStripContainer toolStripAttributes;
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripButton addAttrib;
     private System.Windows.Forms.ToolStripButton removeAttr;
-    private System.Windows.Forms.ToolStripContainer toolStripContainer2;
+    private System.Windows.Forms.ToolStripContainer toolStripInstantiation;
     private System.Windows.Forms.ToolStrip toolStrip2;
     private System.Windows.Forms.ToolStripButton addConcrete;
     private System.Windows.Forms.ToolStripButton delConcrete;
@@ -786,20 +1008,41 @@
     private System.Windows.Forms.ToolStrip toolStrip3;
     private System.Windows.Forms.ToolStripButton toolStripButton1;
     private System.Windows.Forms.ToolStripButton toolStripButton2;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-    private System.Windows.Forms.DataGridViewCheckBoxColumn colRequired;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
-    private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteElement;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.TextBox txtListOfClassName;
+    private System.Windows.Forms.GroupBox grpAdditionalFiles;
+    private System.Windows.Forms.Button cmdBrowseImpls;
+    private System.Windows.Forms.Button cmdBrowseDecls;
+    private System.Windows.Forms.TextBox txtAddDecls;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.TextBox txtAddImpls;
+    private System.Windows.Forms.Label label10;
+    private System.Windows.Forms.CheckBox chkRequiresAdditionalCode;
+    private System.Windows.Forms.Panel pnlLoClassName;
+    private System.Windows.Forms.Panel pnlLoName;
+    private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.GroupBox groupBox2;
+    private System.Windows.Forms.GroupBox groupBox3;
+    private System.Windows.Forms.TextBox txtMaxNoChildren;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.TextBox txtMinNoChildren;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn colRequired;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colXMLName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteElement;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colMinNoChildren;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colMaxNoChildren;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+    private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colLoXMLName;
 
   }
 }
