@@ -28,10 +28,11 @@ namespace CsDeviser.Controls
       txtStartNumber.Text = "0";
       txtPackage.Text = "";
       txtFullName.Text = "";
-      txtVersion.Text = "0";
       txtAddDecls.Text = "";
       txtAddImpls.Text = "";
       chkRequired.Checked = false;
+      chkRequiresAdditionalCode.Checked = false;
+      grpAdditionalFiles.Visible = false;
 
       Current = package;
 
@@ -41,10 +42,12 @@ namespace CsDeviser.Controls
       txtStartNumber.Text = Current.StartNumber.ToString();
       txtPackage.Text = Current.Name;
       txtFullName.Text = Current.FullName;
-      txtVersion.Text = Current.Version.ToString();
       chkRequired.Checked = Current.Required;
       txtAddDecls.Text = Current.AdditionalDeclarations;
       txtAddImpls.Text = Current.AdditionalDefinitions;
+
+      chkRequiresAdditionalCode.Checked = Current.HasAdditionalCode;
+      grpAdditionalFiles.Visible = Current.HasAdditionalCode;
 
       Initializing = false;
     }
@@ -88,14 +91,6 @@ namespace CsDeviser.Controls
       Current.Required = chkRequired.Checked;   
     }
 
-    private void txtVersion_TextChanged(object sender, EventArgs e)
-    {
-      if (Current == null || Initializing) return;
-      int number;
-      if (int.TryParse(txtVersion.Text, out number))
-        Current.Version = number;
-    }
-
     private void txtAddDecls_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
@@ -107,6 +102,39 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.AdditionalDefinitions = txtAddImpls.Text;   
+
+    }
+
+    private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      grpAdditionalFiles.Visible = chkRequiresAdditionalCode.Checked;
+    }
+
+    private void OnBrowseDeclsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Declaration file", Filter = "Header files|*.h;*.hxx;*.h++;*.hpp;*.hh|All files|*.*"} )
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        { 
+          txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+        }
+      }
+    }
+
+    private void OnBrowseImplsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Implementation file", Filter = "Implementation files|*.c;*.cpp;*.c++;*.cxx;*.cc|All files|*.*" })
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+          txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+        }
+      }
 
     }
 

@@ -186,6 +186,13 @@ namespace LibDeviser
       get { return Elements.Select(el => el.Name).ToList(); }
     }
 
+    public bool HasAdditionalCode {
+      get
+      {
+        return !string.IsNullOrWhiteSpace(AdditionalDeclarations) || !string.IsNullOrWhiteSpace(AdditionalDefinitions);
+      }
+    }
+
     public override void SetParent(DeviserPackage doc)
     {
       Document = doc;
