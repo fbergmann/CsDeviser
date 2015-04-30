@@ -33,8 +33,10 @@ namespace CsDeviser.Controls
       gridAttributes.Rows.Clear();
 
       splitContainer1.Panel2Collapsed = true;
-      cmdAddAttribute.Visible = false;
-      cmdDelAttr.Visible = false;
+      chkRequiresAdditionalCode.Checked = false;
+      chkElementFromCore.Checked = true;
+      grpAdditionalFiles.Visible = false;
+      pnlPackage.Visible = !chkElementFromCore.Checked;
 
       Current = package;
 
@@ -47,13 +49,13 @@ namespace CsDeviser.Controls
       txtAddImpls.Text = Current.AdditionalDefinitions;
       txtTypeCode.Text = Current.TypeCode;
       txtPackage.Text = Current.Package;
+      chkElementFromCore.Checked = Util.CoreClasses.Contains(Current.ExtensionPoint);
+      pnlPackage.Visible = !chkElementFromCore.Checked;
 
       if (Current.Attributes.Count > 0)
       {
         chkHasAdditional.Checked = true;
         splitContainer1.Panel2Collapsed = false;
-        cmdAddAttribute.Visible = true;
-        cmdDelAttr.Visible = true;
       }
       else
       {
@@ -74,7 +76,7 @@ namespace CsDeviser.Controls
         lstChildClasses.Items.Add(newAttr.Name);
 
       foreach (var newAttr in Current.Attributes)
-        gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+        gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
 
       Initializing = false;
     }
@@ -89,8 +91,6 @@ namespace CsDeviser.Controls
     private void chkHasAdditional_CheckedChanged(object sender, EventArgs e)
     {
       splitContainer1.Panel2Collapsed = !chkHasAdditional.Checked;
-      cmdAddAttribute.Visible = chkHasAdditional.Checked;
-      cmdDelAttr.Visible = chkHasAdditional.Checked;
     }
 
     private void OnAddClick(object sender, EventArgs e)
@@ -186,14 +186,17 @@ namespace CsDeviser.Controls
         case 1:
           attribute.Type = row.Cells[1].Value as string;
           break;
-        case 2:
-          attribute.Required = (bool)row.Cells[2].Value;
-          break;
         case 3:
-          attribute.Element = row.Cells[3].Value as string;
+          attribute.Required = (bool)row.Cells[3].Value;
+          break;
+        case 2:
+          attribute.Element = row.Cells[2].Value as string;
           break;
         case 4:
           attribute.Abstract = (bool)row.Cells[4].Value;
+          break;
+        case 5:
+          attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
     }
@@ -205,7 +208,7 @@ namespace CsDeviser.Controls
       var newAttr = new DeviserAttribute { Name = "Attribute" + (Current.Attributes.Count + 1).ToString() };
       Current.Attributes.Add(newAttr);
 
-      var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Required, newAttr.Element, newAttr.Abstract);
+      var row = gridAttributes.Rows.Add(newAttr.Name, newAttr.Type, newAttr.Element, newAttr.Required, newAttr.Abstract, newAttr.XMLName);
       gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
       gridAttributes.BeginEdit(true);
@@ -258,8 +261,45 @@ namespace CsDeviser.Controls
     {
       if (Current == null) return;
       Current.Package = txtPackage.Text;
-    }    
+    }
 
+    private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null) return;
+      grpAdditionalFiles.Visible = chkRequiresAdditionalCode.Checked;
+    }
+
+    private void OnBrowseDeclsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Declaration file", Filter = "Header files|*.h;*.hxx;*.h++;*.hpp;*.hh|All files|*.*" })
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+          txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+        }
+      }
+    }
+
+    private void OnBrowseImplsClick(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      using (var dlg = new OpenFileDialog { Title = "Select Implementation file", Filter = "Implementation files|*.c;*.cpp;*.c++;*.cxx;*.cc|All files|*.*" })
+      {
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+          txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
+          Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+        }
+      }
+    }
+
+    private void chkElementFromCore_CheckedChanged(object sender, EventArgs e)
+    {
+      if (Current == null || Initializing) return;
+      pnlPackage.Visible = !chkElementFromCore.Checked;
+    }
 
   }
 }

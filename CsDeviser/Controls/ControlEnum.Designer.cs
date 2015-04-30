@@ -30,64 +30,48 @@
     {
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.cmdRemoveAttr = new System.Windows.Forms.Button();
-      this.cmdAddAttribute = new System.Windows.Forms.Button();
       this.txtName = new System.Windows.Forms.TextBox();
       this.label1 = new System.Windows.Forms.Label();
+      this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
+      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.addAttrib = new System.Windows.Forms.ToolStripButton();
+      this.removeAttr = new System.Windows.Forms.ToolStripButton();
       this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
+      this.toolStripAttributes.ContentPanel.SuspendLayout();
+      this.toolStripAttributes.LeftToolStripPanel.SuspendLayout();
+      this.toolStripAttributes.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).BeginInit();
+      this.toolStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
       // 
       this.tableLayoutPanel1.ColumnCount = 1;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel1.Controls.Add(this.toolStripAttributes, 0, 1);
       this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.gridAttributes, 0, 1);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(319, 311);
       this.tableLayoutPanel1.TabIndex = 0;
       // 
       // panel1
       // 
-      this.panel1.Controls.Add(this.cmdRemoveAttr);
-      this.panel1.Controls.Add(this.cmdAddAttribute);
       this.panel1.Controls.Add(this.txtName);
       this.panel1.Controls.Add(this.label1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(3, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(313, 55);
+      this.panel1.Size = new System.Drawing.Size(313, 29);
       this.panel1.TabIndex = 0;
-      // 
-      // cmdRemoveAttr
-      // 
-      this.cmdRemoveAttr.Location = new System.Drawing.Point(120, 28);
-      this.cmdRemoveAttr.Name = "cmdRemoveAttr";
-      this.cmdRemoveAttr.Size = new System.Drawing.Size(106, 23);
-      this.cmdRemoveAttr.TabIndex = 6;
-      this.cmdRemoveAttr.Text = "&Del Value";
-      this.cmdRemoveAttr.UseVisualStyleBackColor = true;
-      this.cmdRemoveAttr.Click += new System.EventHandler(this.cmdRemoveAttr_Click);
-      // 
-      // cmdAddAttribute
-      // 
-      this.cmdAddAttribute.Location = new System.Drawing.Point(8, 29);
-      this.cmdAddAttribute.Name = "cmdAddAttribute";
-      this.cmdAddAttribute.Size = new System.Drawing.Size(106, 23);
-      this.cmdAddAttribute.TabIndex = 5;
-      this.cmdAddAttribute.Text = "&Add Value";
-      this.cmdAddAttribute.UseVisualStyleBackColor = true;
-      this.cmdAddAttribute.Click += new System.EventHandler(this.cmdAddAttribute_Click);
       // 
       // txtName
       // 
@@ -109,20 +93,76 @@
       this.label1.TabIndex = 4;
       this.label1.Text = "Name: ";
       // 
+      // toolStripAttributes
+      // 
+      this.toolStripAttributes.BottomToolStripPanelVisible = false;
+      // 
+      // toolStripAttributes.ContentPanel
+      // 
+      this.toolStripAttributes.ContentPanel.Controls.Add(this.gridAttributes);
+      this.toolStripAttributes.ContentPanel.Size = new System.Drawing.Size(277, 270);
+      this.toolStripAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
+      // 
+      // toolStripAttributes.LeftToolStripPanel
+      // 
+      this.toolStripAttributes.LeftToolStripPanel.Controls.Add(this.toolStrip1);
+      this.toolStripAttributes.Location = new System.Drawing.Point(3, 38);
+      this.toolStripAttributes.Name = "toolStripAttributes";
+      this.toolStripAttributes.RightToolStripPanelVisible = false;
+      this.toolStripAttributes.Size = new System.Drawing.Size(313, 270);
+      this.toolStripAttributes.TabIndex = 2;
+      this.toolStripAttributes.Text = "toolStripContainer1";
+      this.toolStripAttributes.TopToolStripPanelVisible = false;
+      // 
       // gridAttributes
       // 
       this.gridAttributes.AllowUserToAddRows = false;
       this.gridAttributes.AllowUserToDeleteRows = false;
+      this.gridAttributes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.gridAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.gridAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
-            this.colValue});
+            this.colType});
       this.gridAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.gridAttributes.Location = new System.Drawing.Point(3, 64);
+      this.gridAttributes.Location = new System.Drawing.Point(0, 0);
       this.gridAttributes.Name = "gridAttributes";
-      this.gridAttributes.Size = new System.Drawing.Size(313, 244);
-      this.gridAttributes.TabIndex = 1;
-      this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnGridValueChanged);
+      this.gridAttributes.Size = new System.Drawing.Size(277, 270);
+      this.gridAttributes.TabIndex = 14;
+      // 
+      // toolStrip1
+      // 
+      this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+      this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+      this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addAttrib,
+            this.removeAttr});
+      this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+      this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+      this.toolStrip1.Name = "toolStrip1";
+      this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+      this.toolStrip1.Size = new System.Drawing.Size(36, 270);
+      this.toolStrip1.Stretch = true;
+      this.toolStrip1.TabIndex = 15;
+      this.toolStrip1.Text = "toolStrip1";
+      this.toolStrip1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
+      // 
+      // addAttrib
+      // 
+      this.addAttrib.Image = global::CsDeviser.Properties.Resources.list_add;
+      this.addAttrib.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.addAttrib.Name = "addAttrib";
+      this.addAttrib.Size = new System.Drawing.Size(34, 33);
+      this.addAttrib.Text = "&Add";
+      this.addAttrib.ToolTipText = "Adds an Attribute to this Class";
+      // 
+      // removeAttr
+      // 
+      this.removeAttr.Image = global::CsDeviser.Properties.Resources.list_remove;
+      this.removeAttr.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.removeAttr.Name = "removeAttr";
+      this.removeAttr.Size = new System.Drawing.Size(34, 28);
+      this.removeAttr.Text = "&Del";
+      this.removeAttr.ToolTipText = "Removes the selected Attribute from the class";
       // 
       // colName
       // 
@@ -130,10 +170,10 @@
       this.colName.HeaderText = "Name";
       this.colName.Name = "colName";
       // 
-      // colValue
+      // colType
       // 
-      this.colValue.HeaderText = "Value";
-      this.colValue.Name = "colValue";
+      this.colType.HeaderText = "Value (string)";
+      this.colType.Name = "colType";
       // 
       // ControlEnum
       // 
@@ -145,7 +185,14 @@
       this.tableLayoutPanel1.ResumeLayout(false);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      this.toolStripAttributes.ContentPanel.ResumeLayout(false);
+      this.toolStripAttributes.LeftToolStripPanel.ResumeLayout(false);
+      this.toolStripAttributes.LeftToolStripPanel.PerformLayout();
+      this.toolStripAttributes.ResumeLayout(false);
+      this.toolStripAttributes.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).EndInit();
+      this.toolStrip1.ResumeLayout(false);
+      this.toolStrip1.PerformLayout();
       this.ResumeLayout(false);
 
     }
@@ -154,12 +201,14 @@
 
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.Panel panel1;
-    private System.Windows.Forms.DataGridView gridAttributes;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colValue;
     private System.Windows.Forms.TextBox txtName;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Button cmdRemoveAttr;
-    private System.Windows.Forms.Button cmdAddAttribute;
+    private System.Windows.Forms.ToolStripContainer toolStripAttributes;
+    private System.Windows.Forms.DataGridView gridAttributes;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+    private System.Windows.Forms.ToolStrip toolStrip1;
+    private System.Windows.Forms.ToolStripButton addAttrib;
+    private System.Windows.Forms.ToolStripButton removeAttr;
   }
 }
