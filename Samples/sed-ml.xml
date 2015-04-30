@@ -234,7 +234,7 @@
         <element name="SedSteadyState" typeCode="SEDML_SIMULATION_STEADYSTATE" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SedSimulation" abstract="false" elementName="steadyState" />
         <element name="SedRepeatedTask" typeCode="SEDML_TASK_REPEATEDTASK" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SedTask" abstract="false" elementName="repeatedTask">
           <attributes>
-            <attribute name="rangeId" required="false" type="SIdRef" element="SedRange" abstract="false" />
+            <attribute name="rangeId" required="false" type="SIdRef" element="SedRange" xmlName="range" abstract="false" />
             <attribute name="resetModel" required="false" type="bool" abstract="false" />
             <attribute name="range" required="false" type="lo_element" element="SedRange" abstract="true" />
             <attribute name="taskChange" required="false" type="lo_element" element="SedSetValue" abstract="false" />

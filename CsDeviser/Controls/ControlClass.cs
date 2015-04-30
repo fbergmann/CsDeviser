@@ -67,12 +67,12 @@ namespace CsDeviser.Controls
 
 
       chkIsBaseClass.Checked = Current.IsBaseClass;
-      splitContainer1.Panel2Collapsed = !Current.IsBaseClass;
       chkHasChildren.Checked = Current.HasChildren;
       chkHasListOf.Checked = Current.HasListOf;
       pnlLoClassName.Visible = Current.HasListOf;
       pnlLoName.Visible = Current.HasListOf;
-      splitContainer2.Panel2Collapsed = !Current.HasListOf;
+      splitContainer1.Panel2Collapsed = !Current.HasListOf;
+      splitContainer2.Panel2Collapsed = !Current.IsBaseClass;
 
       chkChildrenOverwriteElementName.Checked = Current.ChildrenOverwriteElementName;
       chkHasMath.Checked = Current.HasMath;
@@ -130,7 +130,7 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.HasListOf = chkHasListOf.Checked;
-      splitContainer2.Panel2Collapsed = !Current.HasListOf;
+      splitContainer1.Panel2Collapsed = !Current.HasListOf;
       pnlLoClassName.Visible = Current.HasListOf;
       pnlLoName.Visible = Current.HasListOf;
 
@@ -154,7 +154,7 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.IsBaseClass = chkIsBaseClass.Checked;
-      splitContainer1.Panel2Collapsed = !Current.IsBaseClass;
+      splitContainer2.Panel2Collapsed = !Current.IsBaseClass;
 
     }
 
