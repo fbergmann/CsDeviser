@@ -55,7 +55,8 @@ namespace CsDeviser.Controls
     private void txtPackage_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Name = txtPackage.Text;      
+      Current.Name = txtPackage.Text;
+      Current.Dirty = true;
     }
 
     private void txtStartNumber_TextChanged(object sender, EventArgs e)
@@ -63,7 +64,10 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtStartNumber.Text, out number))
+      {
         Current.StartNumber = number;
+        Current.Dirty = true;
+      }
     }
 
     private void txtOffset_TextChanged(object sender, EventArgs e)
@@ -71,7 +75,10 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtOffset.Text, out number))
+      {
         Current.Offset = number;
+        Current.Dirty = true;
+      }
     }
 
     private void txtPackage_Leave(object sender, EventArgs e)
@@ -82,27 +89,29 @@ namespace CsDeviser.Controls
     private void txtFullName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.FullName = txtFullName.Text;   
+      Current.FullName = txtFullName.Text;
+      Current.Dirty = true;
     }
 
     private void chkRequired_CheckedChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Required = chkRequired.Checked;   
+      Current.Required = chkRequired.Checked;
+      Current.Dirty = true;
     }
 
     private void txtAddDecls_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.AdditionalDeclarations = txtAddDecls.Text;   
-
+      Current.AdditionalDeclarations = txtAddDecls.Text;
+      Current.Dirty = true;
     }
 
     private void txtAddImpls_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.AdditionalDefinitions = txtAddImpls.Text;   
-
+      Current.AdditionalDefinitions = txtAddImpls.Text;
+      Current.Dirty = true;
     }
 
     private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
@@ -120,6 +129,7 @@ namespace CsDeviser.Controls
         { 
           txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
     }
@@ -133,6 +143,7 @@ namespace CsDeviser.Controls
         {
           txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
 

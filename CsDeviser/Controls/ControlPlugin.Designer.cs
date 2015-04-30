@@ -470,6 +470,7 @@
       this.gridAttributes.Name = "gridAttributes";
       this.gridAttributes.Size = new System.Drawing.Size(641, 44);
       this.gridAttributes.TabIndex = 14;
+      this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
       // 
       // colName
       // 

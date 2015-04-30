@@ -193,6 +193,14 @@ namespace LibDeviser
       }
     }
 
+    public override bool HasModification
+    {
+      get
+      {
+        return Dirty || Versions.Any(item => item.HasModification);
+      }
+    }
+
     public override void SetParent(DeviserPackage doc)
     {
       Document = doc;

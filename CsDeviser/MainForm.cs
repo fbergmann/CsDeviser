@@ -617,7 +617,7 @@ namespace CsDeviser
     /// <returns>true, if model is dirty and the user pressed cancel, false otherwise</returns>
     private bool SaveModelIfDirtyOrCancel()
     {
-      if (Model == null || !Model.Dirty) return false;
+      if (Model == null || !Model.HasModification) return false;
 
       DialogResult result =
         MessageBox.Show(this,

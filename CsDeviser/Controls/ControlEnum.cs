@@ -46,7 +46,8 @@ namespace CsDeviser.Controls
     private void txtName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.Name = txtName.Text;      
+      Current.Name = txtName.Text;
+      Current.Dirty = true;
 
     }
 
@@ -61,6 +62,7 @@ namespace CsDeviser.Controls
       gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
       gridAttributes.BeginEdit(true);
+      Current.Dirty = true;
 
     }
 
@@ -75,6 +77,7 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.Values.Remove(attr);
       }
+      Current.Dirty = true;
 
     }
 
@@ -90,9 +93,11 @@ namespace CsDeviser.Controls
       {
         case 0:
           attribute.Name = row.Cells[0].Value as string;
+          Current.Dirty = true;
           break;
         case 1:
           attribute.Value = row.Cells[1].Value as string;
+          Current.Dirty = true;
           break;
       }
 

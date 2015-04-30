@@ -29,23 +29,23 @@
     private void InitializeComponent()
     {
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-      this.panel1 = new System.Windows.Forms.Panel();
-      this.txtName = new System.Windows.Forms.TextBox();
-      this.label1 = new System.Windows.Forms.Label();
       this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
+      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.addAttrib = new System.Windows.Forms.ToolStripButton();
       this.removeAttr = new System.Windows.Forms.ToolStripButton();
-      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.txtName = new System.Windows.Forms.TextBox();
+      this.label1 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
-      this.panel1.SuspendLayout();
       this.toolStripAttributes.ContentPanel.SuspendLayout();
       this.toolStripAttributes.LeftToolStripPanel.SuspendLayout();
       this.toolStripAttributes.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).BeginInit();
       this.toolStrip1.SuspendLayout();
+      this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -62,36 +62,6 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(319, 311);
       this.tableLayoutPanel1.TabIndex = 0;
-      // 
-      // panel1
-      // 
-      this.panel1.Controls.Add(this.txtName);
-      this.panel1.Controls.Add(this.label1);
-      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel1.Location = new System.Drawing.Point(3, 3);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(313, 29);
-      this.panel1.TabIndex = 0;
-      // 
-      // txtName
-      // 
-      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtName.Location = new System.Drawing.Point(52, 3);
-      this.txtName.Name = "txtName";
-      this.txtName.Size = new System.Drawing.Size(258, 20);
-      this.txtName.TabIndex = 3;
-      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(5, 6);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(41, 13);
-      this.label1.TabIndex = 4;
-      this.label1.Text = "Name: ";
       // 
       // toolStripAttributes
       // 
@@ -128,6 +98,18 @@
       this.gridAttributes.Name = "gridAttributes";
       this.gridAttributes.Size = new System.Drawing.Size(277, 270);
       this.gridAttributes.TabIndex = 14;
+      this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnGridValueChanged);
+      // 
+      // colName
+      // 
+      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colName.HeaderText = "Name";
+      this.colName.Name = "colName";
+      // 
+      // colType
+      // 
+      this.colType.HeaderText = "Value (string)";
+      this.colType.Name = "colType";
       // 
       // toolStrip1
       // 
@@ -154,6 +136,7 @@
       this.addAttrib.Size = new System.Drawing.Size(34, 33);
       this.addAttrib.Text = "&Add";
       this.addAttrib.ToolTipText = "Adds an Attribute to this Class";
+      this.addAttrib.Click += new System.EventHandler(this.cmdAddAttribute_Click);
       // 
       // removeAttr
       // 
@@ -163,17 +146,37 @@
       this.removeAttr.Size = new System.Drawing.Size(34, 28);
       this.removeAttr.Text = "&Del";
       this.removeAttr.ToolTipText = "Removes the selected Attribute from the class";
+      this.removeAttr.Click += new System.EventHandler(this.cmdRemoveAttr_Click);
       // 
-      // colName
+      // panel1
       // 
-      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colName.HeaderText = "Name";
-      this.colName.Name = "colName";
+      this.panel1.Controls.Add(this.txtName);
+      this.panel1.Controls.Add(this.label1);
+      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panel1.Location = new System.Drawing.Point(3, 3);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(313, 29);
+      this.panel1.TabIndex = 0;
       // 
-      // colType
+      // txtName
       // 
-      this.colType.HeaderText = "Value (string)";
-      this.colType.Name = "colType";
+      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtName.Location = new System.Drawing.Point(52, 3);
+      this.txtName.Name = "txtName";
+      this.txtName.Size = new System.Drawing.Size(258, 20);
+      this.txtName.TabIndex = 3;
+      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(5, 6);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(41, 13);
+      this.label1.TabIndex = 4;
+      this.label1.Text = "Name: ";
       // 
       // ControlEnum
       // 
@@ -183,8 +186,6 @@
       this.Name = "ControlEnum";
       this.Size = new System.Drawing.Size(319, 311);
       this.tableLayoutPanel1.ResumeLayout(false);
-      this.panel1.ResumeLayout(false);
-      this.panel1.PerformLayout();
       this.toolStripAttributes.ContentPanel.ResumeLayout(false);
       this.toolStripAttributes.LeftToolStripPanel.ResumeLayout(false);
       this.toolStripAttributes.LeftToolStripPanel.PerformLayout();
@@ -193,6 +194,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.gridAttributes)).EndInit();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.ResumeLayout(false);
 
     }

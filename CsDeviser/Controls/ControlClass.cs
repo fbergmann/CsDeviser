@@ -93,14 +93,14 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.Name= txtName.Text;
-
+      Current.Dirty = true;
     }
 
     private void txtBaseClass_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
       Current.BaseClass = txtBaseClass.Text;
-
+      Current.Dirty = true;
     }
 
 
@@ -108,7 +108,7 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.ListOfClassName = txtListOfClassName.Text;
-
+      Current.Dirty = true;
     }
 
 
@@ -116,14 +116,14 @@ namespace CsDeviser.Controls
     {
       if (Current == null || Initializing) return;
       Current.TypeCode = txtTypeCode.Text;
-
+      Current.Dirty = true;
     }
 
     private void txtElementName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
       Current.ElementName= txtElementName.Text;
-
+      Current.Dirty = true;
     }
 
     private void chkHasListOf_CheckedChanged(object sender, EventArgs e)
@@ -133,21 +133,21 @@ namespace CsDeviser.Controls
       splitContainer1.Panel2Collapsed = !Current.HasListOf;
       pnlLoClassName.Visible = Current.HasListOf;
       pnlLoName.Visible = Current.HasListOf;
-
+      Current.Dirty = true;
     }
 
     private void chkHasChildren_CheckedChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
       Current.HasChildren= chkHasChildren.Checked;
-
+      Current.Dirty = true;
     }
 
     private void chkHasMath_CheckedChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
       Current.HasMath = chkHasMath.Checked;
-
+      Current.Dirty = true;
     }
 
     private void chkAbstract_CheckedChanged(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       Current.IsBaseClass = chkIsBaseClass.Checked;
       splitContainer2.Panel2Collapsed = !Current.IsBaseClass;
-
+      Current.Dirty = true;
     }
 
     private void OnAddAttributeClick(object sender, EventArgs e)
@@ -169,7 +169,7 @@ namespace CsDeviser.Controls
       gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
       gridAttributes.BeginEdit(true);
-
+      Current.Dirty = true;
     }
 
     private void OnAddConcreteClick(object sender, EventArgs e)
@@ -182,7 +182,7 @@ namespace CsDeviser.Controls
       gridConcrete.CurrentCell = gridConcrete[0, row];
       gridConcrete.Focus();
       gridConcrete.BeginEdit(true);
-
+      Current.Dirty = true;
     }
 
     private void gridAttributes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -213,7 +213,7 @@ namespace CsDeviser.Controls
           attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
-
+      Current.Dirty = true;
     }
 
     private void gridConcrete_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -244,6 +244,7 @@ namespace CsDeviser.Controls
           break;
         }
       }
+      Current.Dirty = true;
     }
 
     private void txtName_Leave(object sender, EventArgs e)
@@ -263,6 +264,7 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.Attributes.Remove(attr);
       }
+      Current.Dirty = true;
     }
 
     private void OnRemoveConcreteClick(object sender, EventArgs e)
@@ -275,31 +277,36 @@ namespace CsDeviser.Controls
         var attr = Current.Concretes.FirstOrDefault(a => a.Name == row[i].Cells[0].Value as string);
         if (attr != null)
           Current.Concretes.Remove(attr);
-      }      
+      }
+      Current.Dirty = true;
     }
 
     private void chkChildrenOverwriteElementName_CheckedChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.ChildrenOverwriteElementName = chkChildrenOverwriteElementName.Checked;
+      Current.Dirty = true;
     }
 
     private void txtListOfName_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.ListOfName = txtListOfName.Text;
+      Current.Dirty = true;
     }
 
     private void txtAddDecl_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.AdditionalDeclarations = txtAddDecls.Text;
+      Current.Dirty = true;
     }
 
     private void txtAddImpl_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.AdditionalDefinitions = txtAddImpls.Text;
+      Current.Dirty = true;
     }
 
     public override void OnCommitChanges()
@@ -337,6 +344,7 @@ namespace CsDeviser.Controls
           attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
+      Current.Dirty = true;
     }
 
     private void OnAddLoAttributeClick(object sender, EventArgs e)
@@ -350,6 +358,7 @@ namespace CsDeviser.Controls
       gridLoAttributes.CurrentCell = gridLoAttributes[0, row];
       gridLoAttributes.Focus();
       gridLoAttributes.BeginEdit(true);
+      Current.Dirty = true;
     }
 
     private void OnRemoveLoAttributeClick(object sender, EventArgs e)
@@ -363,6 +372,7 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.ListOfAttributes.Remove(attr);
       }
+      Current.Dirty = true;
     }
 
     private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
@@ -380,6 +390,7 @@ namespace CsDeviser.Controls
         {
           txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
     }
@@ -393,6 +404,7 @@ namespace CsDeviser.Controls
         {
           txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
     }
@@ -402,7 +414,10 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int val;
       if (int.TryParse(txtMaxNoChildren.Text, out val))
+      {
         Current.MaxNumberChildren = val;
+        Current.Dirty = true;
+      }
     }
 
     private void txtMinNoChildren_TextChanged(object sender, EventArgs e)
@@ -410,7 +425,10 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int val;
       if (int.TryParse(txtMinNoChildren.Text, out val))
+      {
         Current.MinNumberChildren = val;
+        Current.Dirty = true;
+      }
     }
   }
 }

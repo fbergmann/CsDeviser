@@ -12,6 +12,16 @@ namespace LibDeviser
     public string Name { get; set; }
     public List<DeviserEnumValue> Values { get; set; }
 
+    public override bool HasModification
+    {
+      get
+      {
+        return Dirty
+          || Values.Any(item => item.HasModification)
+          ;
+      }
+    }
+
     public override object Clone()
     {
       return new DeviserEnum(this);

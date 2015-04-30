@@ -49,8 +49,11 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtCoreLevel.Text, out number))
+      {
         Current.Level = number;
-      OnRenamedEvent();
+        Current.Dirty = true;
+        OnRenamedEvent();
+      }
     }
 
     private void OnVersionChanged(object sender, EventArgs e)
@@ -58,8 +61,11 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtCoreVersion.Text, out number))
+      {
         Current.Version = number;
-      OnRenamedEvent();
+        Current.Dirty = true;
+        OnRenamedEvent();
+      }
     }
 
     private void OnMoveClassDown(object sender, EventArgs e)
@@ -98,9 +104,11 @@ namespace CsDeviser.Controls
       if (Current == null || Initializing) return;
       int number;
       if (int.TryParse(txtPkgVersion.Text, out number))
+      {
         Current.PackageVersion = number;
-
-      OnRenamedEvent();
+        Current.Dirty = true;
+        OnRenamedEvent();
+      }
 
     }
 

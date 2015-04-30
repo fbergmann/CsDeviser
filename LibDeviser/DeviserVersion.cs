@@ -44,7 +44,18 @@ namespace LibDeviser
       return Plugins.FirstOrDefault(e => e.ExtensionPoint == name);
     }
 
-
+    public override bool HasModification
+    {
+      get
+      {
+        return Dirty 
+          ||  Elements.Any(item => item.HasModification)
+          ||  Plugins.Any(item => item.HasModification)
+          ||  Enums.Any(item => item.HasModification)
+          ||  Mappings.Any(item => item.HasModification)
+          ;
+      }
+    }
 
     public DeviserVersion()
     {

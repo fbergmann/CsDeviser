@@ -84,8 +84,8 @@ namespace CsDeviser.Controls
     private void txtExtensionPoint_TextChanged(object sender, EventArgs e)
     {
       if (Current == null || Initializing) return;
-      Current.ExtensionPoint= txtExtensionPoint.Text;      
-
+      Current.ExtensionPoint= txtExtensionPoint.Text;
+      Current.Dirty = true;
     }
 
     private void chkHasAdditional_CheckedChanged(object sender, EventArgs e)
@@ -144,11 +144,11 @@ namespace CsDeviser.Controls
       var selected = lstChildClasses.SelectedItem;
       if (selected == null) return;
 
-        lstChildClasses.Items.Remove(selected);
-        var reference = Current.References.FirstOrDefault(r => r.Name == (string)selected);
-        if (reference != null)
+      lstChildClasses.Items.Remove(selected);
+      var reference = Current.References.FirstOrDefault(r => r.Name == (string)selected);
+      if (reference != null)
         Current.References.Remove(reference);
-
+      Current.Dirty = true;
     }
 
 
@@ -165,6 +165,7 @@ namespace CsDeviser.Controls
         lstChildClasses.Items.Add(item);
         Current.References.Add(new DeviserReferenceAttribute { Name = (string)item, Document = Current.Document });
       }
+      Current.Dirty = true;
     }
     private void OnAllClassesMouseDoubleClick(object sender, MouseEventArgs e)
     {
@@ -199,6 +200,7 @@ namespace CsDeviser.Controls
           attribute.XMLName = row.Cells[5].Value as string;
           break;
       }
+      Current.Dirty = true;
     }
 
     private void cmdAddAttribute_Click(object sender, EventArgs e)
@@ -212,6 +214,7 @@ namespace CsDeviser.Controls
       gridAttributes.CurrentCell = gridAttributes[0, row];
       gridAttributes.Focus();
       gridAttributes.BeginEdit(true);
+      Current.Dirty = true;
     }
 
     private void txtExtensionPoint_Leave(object sender, EventArgs e)
@@ -231,18 +234,21 @@ namespace CsDeviser.Controls
         if (attr != null)
           Current.Attributes.Remove(attr);
       }
+      Current.Dirty = true;
     }
 
     private void txtAddImpls_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.AdditionalDefinitions = txtAddImpls.Text;
+      Current.Dirty = true;
     }
 
     private void txtAddDecls_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.AdditionalDeclarations = txtAddDecls.Text;
+      Current.Dirty = true;
     }
 
 
@@ -255,12 +261,14 @@ namespace CsDeviser.Controls
     {
       if (Current == null) return;
       Current.TypeCode = txtTypeCode.Text;
+      Current.Dirty = true;
     }
 
     private void txtPackage_TextChanged(object sender, EventArgs e)
     {
       if (Current == null) return;
       Current.Package = txtPackage.Text;
+      Current.Dirty = true;
     }
 
     private void OnCheckRequiresAdditionalCodeCheckedChanged(object sender, EventArgs e)
@@ -278,6 +286,7 @@ namespace CsDeviser.Controls
         {
           txtAddDecls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDeclarations = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
     }
@@ -291,6 +300,7 @@ namespace CsDeviser.Controls
         {
           txtAddImpls.Text = dlg.FileName.Replace("\\", "/");
           Current.AdditionalDefinitions = dlg.FileName.Replace("\\", "/");
+          Current.Dirty = true;
         }
       }
     }

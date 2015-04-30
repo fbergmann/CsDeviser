@@ -53,6 +53,7 @@ namespace CsDeviser.Controls
       {
         case 1:
           attribute.Package = row.Cells[1].Value as string;
+          Current.Dirty = true;
           break;
       }
     }

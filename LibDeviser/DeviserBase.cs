@@ -14,6 +14,11 @@ namespace LibDeviser
     /// </summary>
     public bool Dirty { get; set; }
 
+    public virtual bool HasModification
+    {
+      get { return Dirty; }
+    }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DeviserBase"/> class.
     /// </summary>
