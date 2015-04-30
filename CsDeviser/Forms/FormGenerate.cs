@@ -30,7 +30,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtOutDir.Text = dialog.SelectedPath;
       }
     }
@@ -72,9 +72,9 @@ namespace CsDeviser.Forms
     delegate void resultDelegate(string foo);
     void AppendResult(string result)
     {
-      if (this.InvokeRequired)
+      if (InvokeRequired)
       {
-        this.Invoke(new resultDelegate(AppendResult), new object[] {result});
+        Invoke(new resultDelegate(AppendResult), new object[] {result});
         return;
       }
 

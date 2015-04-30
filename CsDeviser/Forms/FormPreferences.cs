@@ -25,7 +25,7 @@ namespace CsDeviser.Forms
     }
 
     public void LoadSettings(DeviserSettings settings)
-    {      
+    {
       PythonInterpreter = settings.PythonInterpreter;
       DeviserRepo = settings.DeviserRepository;
       DefaultOutputDir = settings.DefaultOutputDir;
@@ -33,7 +33,7 @@ namespace CsDeviser.Forms
       SBMLPkgSpecDir = settings.SBMLPkgSpecDir;
       CMake = settings.CMake;
       LibSBMLSourceDir = settings.LibSBMLSourceDir;
-      DependenciesSourceDir= settings.DependenciesSourceDir;
+      DependenciesSourceDir = settings.DependenciesSourceDir;
       SWIG = settings.Swig;
       VSBatch = settings.VSBatchFile;
     }
@@ -48,24 +48,35 @@ namespace CsDeviser.Forms
       settings.CMake = CMake;
       settings.LibSBMLSourceDir = LibSBMLSourceDir;
       settings.DependenciesSourceDir = DependenciesSourceDir;
-      settings.Swig  = SWIG;
+      settings.Swig = SWIG;
       settings.VSBatchFile = VSBatch;
     }
 
-    public string VSBatch { get { return Compilers[cmbCompilers.SelectedItem as string]; } 
-      set { 
+    public string VSBatch
+    {
+      get
+      {
+        string id = cmbCompilers.SelectedItem as string;
+        if (string.IsNullOrWhiteSpace(id) || !Compilers.ContainsKey(id))
+          return "";
+
+        return Compilers[id];
+
+      }
+      set
+      {
         var entry = Compilers.FirstOrDefault(e => e.Value == value);
         cmbCompilers.SelectedItem = entry.Key;
-      } 
+      }
     }
     public string SWIG { get { return txtSwig.Text; } set { txtSwig.Text = value; } }
     public string CMake { get { return txtCmake.Text; } set { txtCmake.Text = value; } }
     public string LibSBMLSourceDir { get { return txtlibSBMLSource.Text; } set { txtlibSBMLSource.Text = value; } }
     public string DependenciesSourceDir { get { return txtDependenciesSourceDir.Text; } set { txtDependenciesSourceDir.Text = value; } }
     public string SBMLPkgSpecDir { get { return txtSBMLPkgSpeciDir.Text; } set { txtSBMLPkgSpeciDir.Text = value; } }
-    public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }    
+    public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }
     public string DefaultOutputDir { get { return txtDefaultDir.Text; } set { txtDefaultDir.Text = value; } }
-    public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }    
+    public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }
     public string DeviserRepo { get { return txtDeviserRepo.Text; } set { txtDeviserRepo.Text = value; } }
 
     private void cmdBrowsePython_Click(object sender, EventArgs e)
@@ -76,7 +87,7 @@ namespace CsDeviser.Forms
        : null;
       using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtPython.Text = dialog.FileName;
       }
     }
@@ -91,7 +102,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtDeviserRepo.Text = dialog.SelectedPath;
       }
     }
@@ -107,14 +118,14 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtDefaultDir.Text = dialog.SelectedPath;
       }
     }
 
     private void cmdBrowsePkgSpec_Click(object sender, EventArgs e)
     {
-      
+
       string defaultPath = !string.IsNullOrWhiteSpace(txtSBMLPkgSpeciDir.Text) ? Path.GetFullPath(txtSBMLPkgSpeciDir.Text)
        : null;
       using (var dialog = new FolderBrowserDialog
@@ -123,7 +134,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtSBMLPkgSpeciDir.Text = dialog.SelectedPath;
       }
     }
@@ -138,7 +149,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtMikTex.Text = dialog.SelectedPath;
       }
     }
@@ -172,7 +183,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtlibSBMLSource.Text = dialog.SelectedPath;
       }
     }
@@ -185,7 +196,7 @@ namespace CsDeviser.Forms
        : null;
       using (var dialog = new OpenFileDialog { Title = "Locate CMake Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtCmake.Text = dialog.FileName;
       }
     }
@@ -200,7 +211,7 @@ namespace CsDeviser.Forms
         SelectedPath = defaultPath
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtDependenciesSourceDir.Text = dialog.SelectedPath;
       }
     }
@@ -213,7 +224,7 @@ namespace CsDeviser.Forms
        : null;
       using (var dialog = new OpenFileDialog { Title = "Locate SWIG Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
           txtSwig.Text = dialog.FileName;
       }
     }

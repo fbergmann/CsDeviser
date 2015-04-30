@@ -105,12 +105,12 @@ namespace CsDeviser.Forms
     {
       using (var dlg = new SaveFileDialog { Title = "Save UML diagram", Filter = "PNG files|*.png|JPG files|*.jpg|PDF files|*.pdf|SVG files|*.svg|YuML files|*.txt"})
       {
-        if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dlg.ShowDialog() == DialogResult.OK)
         {
           var filename = dlg.FileName;
-          this.Enabled = false;
+          Enabled = false;
           SaveAs(filename);
-          this.Enabled = true;
+          Enabled = true;
         }
       }
     }

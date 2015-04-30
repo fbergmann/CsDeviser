@@ -332,7 +332,7 @@ namespace CsDeviser
         Title = "Open Deviser Package"
       })
       {
-        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        if (dialog.ShowDialog() == DialogResult.OK)
         {
           LoadFile(dialog.FileName);
         }
@@ -351,7 +351,7 @@ namespace CsDeviser
           Title = "Save Deviser Package"
         })
         {
-          if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+          if (dialog.ShowDialog() == DialogResult.OK)
           {
             fileName = dialog.FileName;
           }
@@ -546,7 +546,7 @@ namespace CsDeviser
           "Found inconsistencies.",
           MessageBoxButtons.YesNo,
           MessageBoxIcon.Warning
-          ) == System.Windows.Forms.DialogResult.Yes)
+          ) == DialogResult.Yes)
         {
           Model.AnalyzeDescription(true);
         }
@@ -649,7 +649,7 @@ namespace CsDeviser
       using (var dlg = new FormPreferences())
       {
         dlg.LoadSettings(DeviserSettings.Instance);
-        if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+        if (dlg.ShowDialog(this) == DialogResult.OK)
         {
           dlg.WriteToSettings(DeviserSettings.Instance);
           DeviserSettings.Instance.Save();

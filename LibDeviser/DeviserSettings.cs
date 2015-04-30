@@ -110,7 +110,7 @@ namespace LibDeviser
 
     public void WriteXmlToFile(string fileName)
     {
-      var serializer = new System.Xml.Serialization.XmlSerializer(this.GetType());
+      var serializer = new System.Xml.Serialization.XmlSerializer(GetType());
       using (var stream = new StringWriter())
       {
         serializer.Serialize(stream, this);
