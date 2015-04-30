@@ -30,34 +30,36 @@
     {
       this.components = new System.ComponentModel.Container();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.txtMaxNoChildren = new System.Windows.Forms.TextBox();
+      this.txtListOfClassName = new System.Windows.Forms.TextBox();
+      this.txtAddDecls = new System.Windows.Forms.TextBox();
+      this.txtAddImpls = new System.Windows.Forms.TextBox();
+      this.txtTypeCode = new System.Windows.Forms.TextBox();
+      this.chkChildrenOverwriteElementName = new System.Windows.Forms.CheckBox();
+      this.txtName = new System.Windows.Forms.TextBox();
+      this.chkRequiresAdditionalCode = new System.Windows.Forms.CheckBox();
+      this.txtBaseClass = new System.Windows.Forms.TextBox();
+      this.txtElementName = new System.Windows.Forms.TextBox();
+      this.txtMinNoChildren = new System.Windows.Forms.TextBox();
+      this.txtListOfName = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.pnlLoClassName = new System.Windows.Forms.Panel();
-      this.txtMaxNoChildren = new System.Windows.Forms.TextBox();
       this.label7 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
-      this.txtListOfClassName = new System.Windows.Forms.TextBox();
       this.grpAdditionalFiles = new System.Windows.Forms.GroupBox();
       this.cmdBrowseImpls = new System.Windows.Forms.Button();
       this.cmdBrowseDecls = new System.Windows.Forms.Button();
-      this.txtAddDecls = new System.Windows.Forms.TextBox();
       this.label9 = new System.Windows.Forms.Label();
-      this.txtAddImpls = new System.Windows.Forms.TextBox();
       this.label10 = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.txtTypeCode = new System.Windows.Forms.TextBox();
-      this.chkChildrenOverwriteElementName = new System.Windows.Forms.CheckBox();
       this.chkHasListOf = new System.Windows.Forms.CheckBox();
       this.chkIsBaseClass = new System.Windows.Forms.CheckBox();
-      this.txtName = new System.Windows.Forms.TextBox();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.panel2 = new System.Windows.Forms.Panel();
       this.chkHasChildren = new System.Windows.Forms.CheckBox();
-      this.chkRequiresAdditionalCode = new System.Windows.Forms.CheckBox();
-      this.txtBaseClass = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
-      this.txtElementName = new System.Windows.Forms.TextBox();
       this.chkHasMath = new System.Windows.Forms.CheckBox();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -96,9 +98,7 @@
       this.addConcrete = new System.Windows.Forms.ToolStripButton();
       this.delConcrete = new System.Windows.Forms.ToolStripButton();
       this.pnlLoName = new System.Windows.Forms.Panel();
-      this.txtMinNoChildren = new System.Windows.Forms.TextBox();
       this.label6 = new System.Windows.Forms.Label();
-      this.txtListOfName = new System.Windows.Forms.TextBox();
       this.label5 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.pnlLoClassName.SuspendLayout();
@@ -133,6 +133,147 @@
       this.toolStrip2.SuspendLayout();
       this.pnlLoName.SuspendLayout();
       this.SuspendLayout();
+      // 
+      // txtMaxNoChildren
+      // 
+      this.txtMaxNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtMaxNoChildren.Location = new System.Drawing.Point(154, 29);
+      this.txtMaxNoChildren.Name = "txtMaxNoChildren";
+      this.txtMaxNoChildren.Size = new System.Drawing.Size(136, 20);
+      this.txtMaxNoChildren.TabIndex = 18;
+      this.toolTip1.SetToolTip(this.txtMaxNoChildren, "name of the listOf xml element");
+      this.txtMaxNoChildren.TextChanged += new System.EventHandler(this.txtMaxNoChildren_TextChanged);
+      // 
+      // txtListOfClassName
+      // 
+      this.txtListOfClassName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtListOfClassName.Location = new System.Drawing.Point(112, 3);
+      this.txtListOfClassName.Name = "txtListOfClassName";
+      this.txtListOfClassName.Size = new System.Drawing.Size(178, 20);
+      this.txtListOfClassName.TabIndex = 16;
+      this.toolTip1.SetToolTip(this.txtListOfClassName, "name of the listOf class name");
+      this.txtListOfClassName.TextChanged += new System.EventHandler(this.txtListOfClassName_TextChanged);
+      // 
+      // txtAddDecls
+      // 
+      this.txtAddDecls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtAddDecls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtAddDecls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtAddDecls.Location = new System.Drawing.Point(102, 19);
+      this.txtAddDecls.Name = "txtAddDecls";
+      this.txtAddDecls.Size = new System.Drawing.Size(430, 20);
+      this.txtAddDecls.TabIndex = 1;
+      this.toolTip1.SetToolTip(this.txtAddDecls, "Additional declarations to be included in the Package extension header");
+      this.txtAddDecls.TextChanged += new System.EventHandler(this.txtAddDecl_TextChanged);
+      // 
+      // txtAddImpls
+      // 
+      this.txtAddImpls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtAddImpls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtAddImpls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtAddImpls.Location = new System.Drawing.Point(102, 45);
+      this.txtAddImpls.Name = "txtAddImpls";
+      this.txtAddImpls.Size = new System.Drawing.Size(430, 20);
+      this.txtAddImpls.TabIndex = 2;
+      this.toolTip1.SetToolTip(this.txtAddImpls, "Additional implementations to be included in the Package extension source file");
+      this.txtAddImpls.TextChanged += new System.EventHandler(this.txtAddImpl_TextChanged);
+      // 
+      // txtTypeCode
+      // 
+      this.txtTypeCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTypeCode.Location = new System.Drawing.Point(75, 29);
+      this.txtTypeCode.Name = "txtTypeCode";
+      this.txtTypeCode.Size = new System.Drawing.Size(215, 20);
+      this.txtTypeCode.TabIndex = 1;
+      this.toolTip1.SetToolTip(this.txtTypeCode, "the text to give the enumeration of SBMLTypeCode to specify this class");
+      this.txtTypeCode.TextChanged += new System.EventHandler(this.txtTypeCode_TextChanged);
+      // 
+      // chkChildrenOverwriteElementName
+      // 
+      this.chkChildrenOverwriteElementName.AutoSize = true;
+      this.chkChildrenOverwriteElementName.Location = new System.Drawing.Point(10, 58);
+      this.chkChildrenOverwriteElementName.Name = "chkChildrenOverwriteElementName";
+      this.chkChildrenOverwriteElementName.Size = new System.Drawing.Size(90, 17);
+      this.chkChildrenOverwriteElementName.TabIndex = 8;
+      this.chkChildrenOverwriteElementName.Text = "Children Over";
+      this.toolTip1.SetToolTip(this.chkChildrenOverwriteElementName, "Children overwrite Element Name");
+      this.chkChildrenOverwriteElementName.UseVisualStyleBackColor = true;
+      this.chkChildrenOverwriteElementName.Visible = false;
+      this.chkChildrenOverwriteElementName.CheckedChanged += new System.EventHandler(this.chkChildrenOverwriteElementName_CheckedChanged);
+      // 
+      // txtName
+      // 
+      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtName.Location = new System.Drawing.Point(75, 3);
+      this.txtName.Name = "txtName";
+      this.txtName.Size = new System.Drawing.Size(215, 20);
+      this.txtName.TabIndex = 0;
+      this.toolTip1.SetToolTip(this.txtName, "the name to be used for the class in code (camelcase)");
+      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+      // 
+      // chkRequiresAdditionalCode
+      // 
+      this.chkRequiresAdditionalCode.AutoSize = true;
+      this.chkRequiresAdditionalCode.Location = new System.Drawing.Point(11, 58);
+      this.chkRequiresAdditionalCode.Name = "chkRequiresAdditionalCode";
+      this.chkRequiresAdditionalCode.Size = new System.Drawing.Size(138, 17);
+      this.chkRequiresAdditionalCode.TabIndex = 18;
+      this.chkRequiresAdditionalCode.Text = "requires additional code";
+      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "does this class require the user to provide additional code");
+      this.chkRequiresAdditionalCode.UseVisualStyleBackColor = true;
+      this.chkRequiresAdditionalCode.CheckedChanged += new System.EventHandler(this.OnCheckRequiresAdditionalCodeCheckedChanged);
+      // 
+      // txtBaseClass
+      // 
+      this.txtBaseClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtBaseClass.Location = new System.Drawing.Point(112, 3);
+      this.txtBaseClass.Name = "txtBaseClass";
+      this.txtBaseClass.Size = new System.Drawing.Size(178, 20);
+      this.txtBaseClass.TabIndex = 8;
+      this.toolTip1.SetToolTip(this.txtBaseClass, "the name of the base class");
+      this.txtBaseClass.TextChanged += new System.EventHandler(this.txtBaseClass_TextChanged);
+      // 
+      // txtElementName
+      // 
+      this.txtElementName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtElementName.Location = new System.Drawing.Point(112, 29);
+      this.txtElementName.Name = "txtElementName";
+      this.txtElementName.Size = new System.Drawing.Size(178, 20);
+      this.txtElementName.TabIndex = 9;
+      this.toolTip1.SetToolTip(this.txtElementName, "the name the class will have when displays as an XML element (defaults to the Nam" +
+        "e)");
+      this.txtElementName.TextChanged += new System.EventHandler(this.txtElementName_TextChanged);
+      // 
+      // txtMinNoChildren
+      // 
+      this.txtMinNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtMinNoChildren.Location = new System.Drawing.Point(139, 29);
+      this.txtMinNoChildren.Name = "txtMinNoChildren";
+      this.txtMinNoChildren.Size = new System.Drawing.Size(151, 20);
+      this.txtMinNoChildren.TabIndex = 16;
+      this.toolTip1.SetToolTip(this.txtMinNoChildren, "name of the listOf xml element");
+      this.txtMinNoChildren.TextChanged += new System.EventHandler(this.txtMinNoChildren_TextChanged);
+      // 
+      // txtListOfName
+      // 
+      this.txtListOfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtListOfName.Location = new System.Drawing.Point(76, 3);
+      this.txtListOfName.Name = "txtListOfName";
+      this.txtListOfName.Size = new System.Drawing.Size(214, 20);
+      this.txtListOfName.TabIndex = 10;
+      this.toolTip1.SetToolTip(this.txtListOfName, "name of the listOf xml element");
+      this.txtListOfName.TextChanged += new System.EventHandler(this.txtListOfName_TextChanged);
       // 
       // tableLayoutPanel1
       // 
@@ -170,17 +311,6 @@
       this.pnlLoClassName.Size = new System.Drawing.Size(293, 52);
       this.pnlLoClassName.TabIndex = 3;
       // 
-      // txtMaxNoChildren
-      // 
-      this.txtMaxNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtMaxNoChildren.Location = new System.Drawing.Point(154, 29);
-      this.txtMaxNoChildren.Name = "txtMaxNoChildren";
-      this.txtMaxNoChildren.Size = new System.Drawing.Size(136, 20);
-      this.txtMaxNoChildren.TabIndex = 18;
-      this.toolTip1.SetToolTip(this.txtMaxNoChildren, "name of the listOf xml element");
-      this.txtMaxNoChildren.TextChanged += new System.EventHandler(this.txtMaxNoChildren_TextChanged);
-      // 
       // label7
       // 
       this.label7.AutoSize = true;
@@ -198,17 +328,6 @@
       this.label8.Size = new System.Drawing.Size(90, 13);
       this.label8.TabIndex = 17;
       this.label8.Text = "ListOfClassName:";
-      // 
-      // txtListOfClassName
-      // 
-      this.txtListOfClassName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtListOfClassName.Location = new System.Drawing.Point(112, 3);
-      this.txtListOfClassName.Name = "txtListOfClassName";
-      this.txtListOfClassName.Size = new System.Drawing.Size(178, 20);
-      this.txtListOfClassName.TabIndex = 16;
-      this.toolTip1.SetToolTip(this.txtListOfClassName, "name of the listOf class name");
-      this.txtListOfClassName.TextChanged += new System.EventHandler(this.txtListOfClassName_TextChanged);
       // 
       // grpAdditionalFiles
       // 
@@ -249,19 +368,6 @@
       this.cmdBrowseDecls.UseVisualStyleBackColor = true;
       this.cmdBrowseDecls.Click += new System.EventHandler(this.OnBrowseDeclsClick);
       // 
-      // txtAddDecls
-      // 
-      this.txtAddDecls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtAddDecls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.txtAddDecls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
-      this.txtAddDecls.Location = new System.Drawing.Point(102, 19);
-      this.txtAddDecls.Name = "txtAddDecls";
-      this.txtAddDecls.Size = new System.Drawing.Size(430, 20);
-      this.txtAddDecls.TabIndex = 1;
-      this.toolTip1.SetToolTip(this.txtAddDecls, "Additional declarations to be included in the Package extension header");
-      this.txtAddDecls.TextChanged += new System.EventHandler(this.txtAddDecl_TextChanged);
-      // 
       // label9
       // 
       this.label9.AutoSize = true;
@@ -270,19 +376,6 @@
       this.label9.Size = new System.Drawing.Size(67, 13);
       this.label9.TabIndex = 14;
       this.label9.Text = "Declaration: ";
-      // 
-      // txtAddImpls
-      // 
-      this.txtAddImpls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtAddImpls.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.txtAddImpls.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
-      this.txtAddImpls.Location = new System.Drawing.Point(102, 45);
-      this.txtAddImpls.Name = "txtAddImpls";
-      this.txtAddImpls.Size = new System.Drawing.Size(430, 20);
-      this.txtAddImpls.TabIndex = 2;
-      this.toolTip1.SetToolTip(this.txtAddImpls, "Additional implementations to be included in the Package extension source file");
-      this.txtAddImpls.TextChanged += new System.EventHandler(this.txtAddImpl_TextChanged);
       // 
       // label10
       // 
@@ -308,30 +401,6 @@
       this.panel1.Size = new System.Drawing.Size(293, 77);
       this.panel1.TabIndex = 0;
       // 
-      // txtTypeCode
-      // 
-      this.txtTypeCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtTypeCode.Location = new System.Drawing.Point(75, 29);
-      this.txtTypeCode.Name = "txtTypeCode";
-      this.txtTypeCode.Size = new System.Drawing.Size(215, 20);
-      this.txtTypeCode.TabIndex = 1;
-      this.toolTip1.SetToolTip(this.txtTypeCode, "typecode of this element ");
-      this.txtTypeCode.TextChanged += new System.EventHandler(this.txtTypeCode_TextChanged);
-      // 
-      // chkChildrenOverwriteElementName
-      // 
-      this.chkChildrenOverwriteElementName.AutoSize = true;
-      this.chkChildrenOverwriteElementName.Location = new System.Drawing.Point(10, 58);
-      this.chkChildrenOverwriteElementName.Name = "chkChildrenOverwriteElementName";
-      this.chkChildrenOverwriteElementName.Size = new System.Drawing.Size(90, 17);
-      this.chkChildrenOverwriteElementName.TabIndex = 8;
-      this.chkChildrenOverwriteElementName.Text = "Children Over";
-      this.toolTip1.SetToolTip(this.chkChildrenOverwriteElementName, "Children overwrite Element Name");
-      this.chkChildrenOverwriteElementName.UseVisualStyleBackColor = true;
-      this.chkChildrenOverwriteElementName.Visible = false;
-      this.chkChildrenOverwriteElementName.CheckedChanged += new System.EventHandler(this.chkChildrenOverwriteElementName_CheckedChanged);
-      // 
       // chkHasListOf
       // 
       this.chkHasListOf.AutoSize = true;
@@ -340,6 +409,7 @@
       this.chkHasListOf.Size = new System.Drawing.Size(70, 17);
       this.chkHasListOf.TabIndex = 4;
       this.chkHasListOf.Text = "hasListOf";
+      this.toolTip1.SetToolTip(this.chkHasListOf, "does this class have a corresponding ListOf class");
       this.chkHasListOf.UseVisualStyleBackColor = true;
       this.chkHasListOf.CheckedChanged += new System.EventHandler(this.chkHasListOf_CheckedChanged);
       // 
@@ -351,20 +421,9 @@
       this.chkIsBaseClass.Size = new System.Drawing.Size(82, 17);
       this.chkIsBaseClass.TabIndex = 7;
       this.chkIsBaseClass.Text = "isBaseClass";
+      this.toolTip1.SetToolTip(this.chkIsBaseClass, "is this class used as base class");
       this.chkIsBaseClass.UseVisualStyleBackColor = true;
       this.chkIsBaseClass.CheckedChanged += new System.EventHandler(this.chkAbstract_CheckedChanged);
-      // 
-      // txtName
-      // 
-      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtName.Location = new System.Drawing.Point(75, 3);
-      this.txtName.Name = "txtName";
-      this.txtName.Size = new System.Drawing.Size(215, 20);
-      this.txtName.TabIndex = 0;
-      this.toolTip1.SetToolTip(this.txtName, "The name of this element");
-      this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-      this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
       // 
       // label1
       // 
@@ -407,32 +466,10 @@
       this.chkHasChildren.Size = new System.Drawing.Size(81, 17);
       this.chkHasChildren.TabIndex = 5;
       this.chkHasChildren.Text = "hasChildren";
+      this.toolTip1.SetToolTip(this.chkHasChildren, "does this class have child elements");
       this.chkHasChildren.UseVisualStyleBackColor = true;
       this.chkHasChildren.Visible = false;
       this.chkHasChildren.CheckedChanged += new System.EventHandler(this.chkHasChildren_CheckedChanged);
-      // 
-      // chkRequiresAdditionalCode
-      // 
-      this.chkRequiresAdditionalCode.AutoSize = true;
-      this.chkRequiresAdditionalCode.Location = new System.Drawing.Point(11, 58);
-      this.chkRequiresAdditionalCode.Name = "chkRequiresAdditionalCode";
-      this.chkRequiresAdditionalCode.Size = new System.Drawing.Size(138, 17);
-      this.chkRequiresAdditionalCode.TabIndex = 18;
-      this.chkRequiresAdditionalCode.Text = "requires additional code";
-      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "Check if the package is required (i.e.: it changes math)");
-      this.chkRequiresAdditionalCode.UseVisualStyleBackColor = true;
-      this.chkRequiresAdditionalCode.CheckedChanged += new System.EventHandler(this.OnCheckRequiresAdditionalCodeCheckedChanged);
-      // 
-      // txtBaseClass
-      // 
-      this.txtBaseClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtBaseClass.Location = new System.Drawing.Point(112, 3);
-      this.txtBaseClass.Name = "txtBaseClass";
-      this.txtBaseClass.Size = new System.Drawing.Size(178, 20);
-      this.txtBaseClass.TabIndex = 8;
-      this.toolTip1.SetToolTip(this.txtBaseClass, "the baseclass of this element");
-      this.txtBaseClass.TextChanged += new System.EventHandler(this.txtBaseClass_TextChanged);
       // 
       // label3
       // 
@@ -451,17 +488,6 @@
       this.label4.Size = new System.Drawing.Size(101, 13);
       this.label4.TabIndex = 11;
       this.label4.Text = "XML ElementName:";
-      // 
-      // txtElementName
-      // 
-      this.txtElementName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtElementName.Location = new System.Drawing.Point(112, 29);
-      this.txtElementName.Name = "txtElementName";
-      this.txtElementName.Size = new System.Drawing.Size(178, 20);
-      this.txtElementName.TabIndex = 9;
-      this.toolTip1.SetToolTip(this.txtElementName, "the xml name of this element");
-      this.txtElementName.TextChanged += new System.EventHandler(this.txtElementName_TextChanged);
       // 
       // chkHasMath
       // 
@@ -872,17 +898,6 @@
       this.pnlLoName.Size = new System.Drawing.Size(293, 52);
       this.pnlLoName.TabIndex = 2;
       // 
-      // txtMinNoChildren
-      // 
-      this.txtMinNoChildren.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtMinNoChildren.Location = new System.Drawing.Point(139, 29);
-      this.txtMinNoChildren.Name = "txtMinNoChildren";
-      this.txtMinNoChildren.Size = new System.Drawing.Size(151, 20);
-      this.txtMinNoChildren.TabIndex = 16;
-      this.toolTip1.SetToolTip(this.txtMinNoChildren, "name of the listOf xml element");
-      this.txtMinNoChildren.TextChanged += new System.EventHandler(this.txtMinNoChildren_TextChanged);
-      // 
       // label6
       // 
       this.label6.AutoSize = true;
@@ -891,17 +906,6 @@
       this.label6.Size = new System.Drawing.Size(129, 13);
       this.label6.TabIndex = 17;
       this.label6.Text = "Minimum number children:";
-      // 
-      // txtListOfName
-      // 
-      this.txtListOfName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtListOfName.Location = new System.Drawing.Point(76, 3);
-      this.txtListOfName.Name = "txtListOfName";
-      this.txtListOfName.Size = new System.Drawing.Size(214, 20);
-      this.txtListOfName.TabIndex = 10;
-      this.toolTip1.SetToolTip(this.txtListOfName, "name of the listOf xml element");
-      this.txtListOfName.TextChanged += new System.EventHandler(this.txtListOfName_TextChanged);
       // 
       // label5
       // 

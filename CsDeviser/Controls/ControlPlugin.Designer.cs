@@ -140,7 +140,7 @@
       this.chkRequiresAdditionalCode.Size = new System.Drawing.Size(138, 17);
       this.chkRequiresAdditionalCode.TabIndex = 6;
       this.chkRequiresAdditionalCode.Text = "requires additional code";
-      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "Check if the package is required (i.e.: it changes math)");
+      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "does this class require the user to provide additional code");
       this.chkRequiresAdditionalCode.UseVisualStyleBackColor = true;
       this.chkRequiresAdditionalCode.CheckedChanged += new System.EventHandler(this.OnCheckRequiresAdditionalCodeCheckedChanged);
       // 
@@ -162,7 +162,7 @@
       this.txtTypeCode.Name = "txtTypeCode";
       this.txtTypeCode.Size = new System.Drawing.Size(357, 20);
       this.txtTypeCode.TabIndex = 12;
-      this.toolTip1.SetToolTip(this.txtTypeCode, "In case the extension point is not from \'core\', please state the package name");
+      this.toolTip1.SetToolTip(this.txtTypeCode, "the SBMLTypeCode_t enumeration for this extension point");
       this.txtTypeCode.TextChanged += new System.EventHandler(this.txtTypeCode_TextChanged);
       // 
       // txtPackage
@@ -171,7 +171,7 @@
       this.txtPackage.Name = "txtPackage";
       this.txtPackage.Size = new System.Drawing.Size(173, 20);
       this.txtPackage.TabIndex = 10;
-      this.toolTip1.SetToolTip(this.txtPackage, "In case the extension point is not from \'core\', please state the package name");
+      this.toolTip1.SetToolTip(this.txtPackage, " the name of the sbml package that the extension point comes from");
       this.txtPackage.TextChanged += new System.EventHandler(this.txtPackage_TextChanged);
       // 
       // tableLayoutPanel1

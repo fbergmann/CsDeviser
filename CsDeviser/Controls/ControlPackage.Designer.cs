@@ -58,7 +58,8 @@
       this.txtFullName.Name = "txtFullName";
       this.txtFullName.Size = new System.Drawing.Size(239, 20);
       this.txtFullName.TabIndex = 2;
-      this.toolTip1.SetToolTip(this.txtFullName, "The full name of the package as used in the specification and error messages");
+      this.toolTip1.SetToolTip(this.txtFullName, "This is the longer descriptive name of the package used by documentation e.g. Qua" +
+        "litative Models");
       this.txtFullName.TextChanged += new System.EventHandler(this.txtFullName_TextChanged);
       // 
       // txtOffset
@@ -89,7 +90,7 @@
       this.txtPackage.Name = "txtPackage";
       this.txtPackage.Size = new System.Drawing.Size(239, 20);
       this.txtPackage.TabIndex = 1;
-      this.toolTip1.SetToolTip(this.txtPackage, "The name of the package");
+      this.toolTip1.SetToolTip(this.txtPackage, "This is the short name of the package e.g. qual");
       this.txtPackage.TextChanged += new System.EventHandler(this.txtPackage_TextChanged);
       this.txtPackage.Leave += new System.EventHandler(this.txtPackage_Leave);
       // 
@@ -101,7 +102,7 @@
       this.chkRequired.Size = new System.Drawing.Size(64, 17);
       this.chkRequired.TabIndex = 3;
       this.chkRequired.Text = "required";
-      this.toolTip1.SetToolTip(this.chkRequired, "Check if the package is required (i.e.: it changes math)");
+      this.toolTip1.SetToolTip(this.chkRequired, "Indicates the status of the package required attribute on the sbml element");
       this.chkRequired.UseVisualStyleBackColor = true;
       this.chkRequired.CheckedChanged += new System.EventHandler(this.chkRequired_CheckedChanged);
       // 
@@ -139,7 +140,7 @@
       this.chkRequiresAdditionalCode.Size = new System.Drawing.Size(138, 17);
       this.chkRequiresAdditionalCode.TabIndex = 4;
       this.chkRequiresAdditionalCode.Text = "requires additional code";
-      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "Check if the package is required (i.e.: it changes math)");
+      this.toolTip1.SetToolTip(this.chkRequiresAdditionalCode, "does this class require the user to provide additional code");
       this.chkRequiresAdditionalCode.UseVisualStyleBackColor = true;
       this.chkRequiresAdditionalCode.CheckedChanged += new System.EventHandler(this.OnCheckRequiresAdditionalCodeCheckedChanged);
       // 
