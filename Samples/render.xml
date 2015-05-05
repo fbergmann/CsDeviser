@@ -236,7 +236,7 @@
             <attribute name="lineEnding" required="false" type="lo_element" element="LineEnding" abstract="false" />
           </attributes>
         </element>
-        <element name="DefaultValues" typeCode="SBML_RENDER_DEFAULTS" hasListOf="false" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+        <element name="DefaultValues" typeCode="SBML_RENDER_DEFAULTS" hasListOf="false" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
           <attributes>
             <attribute name="backgroundColor" required="false" type="string" abstract="false" />
             <attribute name="spreadMethod" required="false" type="enum" element="GradientSpreadMethod" abstract="false" />

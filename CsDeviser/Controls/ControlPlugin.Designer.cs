@@ -60,18 +60,18 @@
       this.groupAttr = new System.Windows.Forms.GroupBox();
       this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
-      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-      this.addAttrib = new System.Windows.Forms.ToolStripButton();
-      this.removeAttr = new System.Windows.Forms.ToolStripButton();
-      this.pnlPackage = new System.Windows.Forms.Panel();
-      this.label5 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
       this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.addAttrib = new System.Windows.Forms.ToolStripButton();
+      this.removeAttr = new System.Windows.Forms.ToolStripButton();
+      this.pnlPackage = new System.Windows.Forms.Panel();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.grpAdditionalFiles.SuspendLayout();
       this.panel1.SuspendLayout();
@@ -429,7 +429,7 @@
       this.groupAttr.Size = new System.Drawing.Size(697, 63);
       this.groupAttr.TabIndex = 4;
       this.groupAttr.TabStop = false;
-      this.groupAttr.Text = "Class attributes and child elements: ";
+      this.groupAttr.Text = "Plugin attributes and child elements: ";
       // 
       // toolStripAttributes
       // 
@@ -471,6 +471,37 @@
       this.gridAttributes.Size = new System.Drawing.Size(641, 44);
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+      // 
+      // colName
+      // 
+      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colName.HeaderText = "Name";
+      this.colName.Name = "colName";
+      // 
+      // colType
+      // 
+      this.colType.HeaderText = "Type";
+      this.colType.Name = "colType";
+      // 
+      // colElement
+      // 
+      this.colElement.HeaderText = "Element";
+      this.colElement.Name = "colElement";
+      // 
+      // colRequired
+      // 
+      this.colRequired.HeaderText = "Required";
+      this.colRequired.Name = "colRequired";
+      // 
+      // colAbstract
+      // 
+      this.colAbstract.HeaderText = "isBaseClass";
+      this.colAbstract.Name = "colAbstract";
+      // 
+      // colXMLName
+      // 
+      this.colXMLName.HeaderText = "XML name";
+      this.colXMLName.Name = "colXMLName";
       // 
       // toolStrip1
       // 
@@ -540,37 +571,6 @@
       this.label4.Size = new System.Drawing.Size(53, 13);
       this.label4.TabIndex = 11;
       this.label4.Text = "Package:";
-      // 
-      // colName
-      // 
-      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colName.HeaderText = "Name";
-      this.colName.Name = "colName";
-      // 
-      // colType
-      // 
-      this.colType.HeaderText = "Type";
-      this.colType.Name = "colType";
-      // 
-      // colElement
-      // 
-      this.colElement.HeaderText = "Element";
-      this.colElement.Name = "colElement";
-      // 
-      // colRequired
-      // 
-      this.colRequired.HeaderText = "Required";
-      this.colRequired.Name = "colRequired";
-      // 
-      // colAbstract
-      // 
-      this.colAbstract.HeaderText = "isBaseClass";
-      this.colAbstract.Name = "colAbstract";
-      // 
-      // colXMLName
-      // 
-      this.colXMLName.HeaderText = "XML name";
-      this.colXMLName.Name = "colXMLName";
       // 
       // ControlPlugin
       // 

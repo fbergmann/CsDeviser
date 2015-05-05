@@ -62,8 +62,8 @@ namespace CsDeviser.Controls
       txtAddImpls.Text = Current.AdditionalDefinitions;
       chkRequiresAdditionalCode.Checked = Current.HasAdditionalCode;
       grpAdditionalFiles.Visible = Current.HasAdditionalCode;
-      txtMinNoChildren.Text = Current.MinNumberChildren.ToString();
-      txtMaxNoChildren.Text = Current.MaxNumberChildren.ToString();
+      txtMinNoChildren.Text = Current.MinNumberChildren == 0 ? "" : Current.MinNumberChildren.ToString();
+      txtMaxNoChildren.Text = Current.MaxNumberChildren == 0 ? "" : Current.MaxNumberChildren.ToString();
 
 
       chkIsBaseClass.Checked = Current.IsBaseClass;

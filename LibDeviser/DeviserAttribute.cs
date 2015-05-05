@@ -100,11 +100,15 @@ namespace LibDeviser
     public override string ToYuml(bool usecolor = true)
     {
       var builder = new StringBuilder();
-      builder.Append(Name);
+      string name = Name.LowerFirst();
+      if (!string.IsNullOrWhiteSpace(XMLName))
+        name = XMLName.LowerFirst();
+
+      builder.Append(name);
       if (!string.IsNullOrWhiteSpace(Type))
-      { 
+      {
         if (!IsComplexType)
-        { 
+        {
           builder.Append(" : " + Type);
         }
         else
@@ -117,9 +121,9 @@ namespace LibDeviser
               builder.Append(" : " + Element);
           else
             if (IsListOf)
-            builder.Append(" : " + element.GetListOfName());
-            else 
-            builder.Append(" : " + element.Name);
+              builder.Append(" : " + element.GetListOfName());
+            else
+              builder.Append(" : " + element.Name);
 
 
         }
@@ -131,23 +135,27 @@ namespace LibDeviser
 
     public string GetYumlReferences(string source)
     {
+      string lowerName = Name.LowerFirst();
+      if (!string.IsNullOrWhiteSpace(XMLName))
+        lowerName = XMLName.LowerFirst();
+
       if (Type == "element")
       {
-        return string.Format("[{2}]<{1}{3}-[{0}]", source, Name.LowerFirst(), Element,
+        return string.Format("[{2}]<{1}{3}-[{0}]", source, lowerName, Element,
           true ? "" : Required ? " ..1" : " ..0,1");
       }
 
       if (Type == "inline_lo_element")
       {
-        return string.Format("[{0}]-{1}{3}>[{2}]", source, Name.LowerFirst(), Element,
+        return string.Format("[{0}]-{1}{3}>[{2}]", source, lowerName, Element,
         Required ? " 1..* " : " *");
       }
 
       if (Type == "enum")
       {
-        return string.Format("[{0}]-{1}>[{3}{2}]", source, Name.LowerFirst(), Element, Deviser.EnumPrefix);
+        return string.Format("[{0}]-{1}>[{3}{2}]", source, lowerName, Element, Deviser.EnumPrefix);
       }
-      
+
       string elementName = Element;
       var element = Document.Elements.FirstOrDefault(e => e.Name == elementName);
       string listOfName = string.Format("ListOf{0}", elementName.GuessPlural());

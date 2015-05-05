@@ -66,12 +66,24 @@
       this.groupAttr = new System.Windows.Forms.GroupBox();
       this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
+      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.addAttrib = new System.Windows.Forms.ToolStripButton();
       this.removeAttr = new System.Windows.Forms.ToolStripButton();
       this.groupLoAttr = new System.Windows.Forms.GroupBox();
       this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
       this.gridLoAttributes = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colLoXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip3 = new System.Windows.Forms.ToolStrip();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -88,18 +100,6 @@
       this.pnlLoName = new System.Windows.Forms.Panel();
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
-      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colLoXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.pnlLoClassName.SuspendLayout();
       this.grpAdditionalFiles.SuspendLayout();
@@ -590,6 +590,37 @@
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAttributes_CellValueChanged);
       // 
+      // colName
+      // 
+      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colName.HeaderText = "Name";
+      this.colName.Name = "colName";
+      // 
+      // colType
+      // 
+      this.colType.HeaderText = "Type";
+      this.colType.Name = "colType";
+      // 
+      // colElement
+      // 
+      this.colElement.HeaderText = "Element";
+      this.colElement.Name = "colElement";
+      // 
+      // colRequired
+      // 
+      this.colRequired.HeaderText = "Required";
+      this.colRequired.Name = "colRequired";
+      // 
+      // colAbstract
+      // 
+      this.colAbstract.HeaderText = "isBaseClass";
+      this.colAbstract.Name = "colAbstract";
+      // 
+      // colXMLName
+      // 
+      this.colXMLName.HeaderText = "XML name";
+      this.colXMLName.Name = "colXMLName";
+      // 
       // toolStrip1
       // 
       this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -663,6 +694,7 @@
       // 
       this.gridLoAttributes.AllowUserToAddRows = false;
       this.gridLoAttributes.AllowUserToDeleteRows = false;
+      this.gridLoAttributes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.gridLoAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.gridLoAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -677,6 +709,36 @@
       this.gridLoAttributes.Size = new System.Drawing.Size(520, 34);
       this.gridLoAttributes.TabIndex = 15;
       this.gridLoAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLoAttributes_CellValueChanged);
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Type";
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.HeaderText = "Element";
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      // 
+      // dataGridViewCheckBoxColumn1
+      // 
+      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
+      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+      // 
+      // dataGridViewCheckBoxColumn2
+      // 
+      this.dataGridViewCheckBoxColumn2.HeaderText = "isBaseClass";
+      this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+      // 
+      // colLoXMLName
+      // 
+      this.colLoXMLName.HeaderText = "XML name";
+      this.colLoXMLName.Name = "colLoXMLName";
       // 
       // toolStrip3
       // 
@@ -853,68 +915,6 @@
       this.label5.Size = new System.Drawing.Size(65, 13);
       this.label5.TabIndex = 15;
       this.label5.Text = "ListOfName:";
-      // 
-      // colName
-      // 
-      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colName.HeaderText = "Name";
-      this.colName.Name = "colName";
-      // 
-      // colType
-      // 
-      this.colType.HeaderText = "Type";
-      this.colType.Name = "colType";
-      // 
-      // colElement
-      // 
-      this.colElement.HeaderText = "Element";
-      this.colElement.Name = "colElement";
-      // 
-      // colRequired
-      // 
-      this.colRequired.HeaderText = "Required";
-      this.colRequired.Name = "colRequired";
-      // 
-      // colAbstract
-      // 
-      this.colAbstract.HeaderText = "isBaseClass";
-      this.colAbstract.Name = "colAbstract";
-      // 
-      // colXMLName
-      // 
-      this.colXMLName.HeaderText = "XML name";
-      this.colXMLName.Name = "colXMLName";
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      // 
-      // dataGridViewTextBoxColumn2
-      // 
-      this.dataGridViewTextBoxColumn2.HeaderText = "Type";
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      // 
-      // dataGridViewTextBoxColumn3
-      // 
-      this.dataGridViewTextBoxColumn3.HeaderText = "Element";
-      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-      // 
-      // dataGridViewCheckBoxColumn1
-      // 
-      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
-      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-      // 
-      // dataGridViewCheckBoxColumn2
-      // 
-      this.dataGridViewCheckBoxColumn2.HeaderText = "isBaseClass";
-      this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-      // 
-      // colLoXMLName
-      // 
-      this.colLoXMLName.HeaderText = "XML name";
-      this.colLoXMLName.Name = "colLoXMLName";
       // 
       // ControlClass
       // 
