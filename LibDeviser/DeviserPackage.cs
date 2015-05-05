@@ -467,7 +467,7 @@ namespace LibDeviser
 
           foreach(var reference in item.References)
           {
-            if (reference.Name != current.ListOfClassName) continue;
+            if (reference.Name != current.GetListOfName()) continue;
             ++countUses;
             if (!hasListOf)
             {
