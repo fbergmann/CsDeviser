@@ -60,18 +60,18 @@
       this.groupAttr = new System.Windows.Forms.GroupBox();
       this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
-      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.addAttrib = new System.Windows.Forms.ToolStripButton();
       this.removeAttr = new System.Windows.Forms.ToolStripButton();
       this.pnlPackage = new System.Windows.Forms.Panel();
       this.label5 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
+      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.grpAdditionalFiles.SuspendLayout();
       this.panel1.SuspendLayout();
@@ -472,37 +472,6 @@
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
       // 
-      // colName
-      // 
-      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colName.HeaderText = "Name";
-      this.colName.Name = "colName";
-      // 
-      // colType
-      // 
-      this.colType.HeaderText = "Type";
-      this.colType.Name = "colType";
-      // 
-      // colElement
-      // 
-      this.colElement.HeaderText = "Element";
-      this.colElement.Name = "colElement";
-      // 
-      // colRequired
-      // 
-      this.colRequired.HeaderText = "Required";
-      this.colRequired.Name = "colRequired";
-      // 
-      // colAbstract
-      // 
-      this.colAbstract.HeaderText = "Abstract";
-      this.colAbstract.Name = "colAbstract";
-      // 
-      // colXMLName
-      // 
-      this.colXMLName.HeaderText = "XML name";
-      this.colXMLName.Name = "colXMLName";
-      // 
       // toolStrip1
       // 
       this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -571,6 +540,37 @@
       this.label4.Size = new System.Drawing.Size(53, 13);
       this.label4.TabIndex = 11;
       this.label4.Text = "Package:";
+      // 
+      // colName
+      // 
+      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colName.HeaderText = "Name";
+      this.colName.Name = "colName";
+      // 
+      // colType
+      // 
+      this.colType.HeaderText = "Type";
+      this.colType.Name = "colType";
+      // 
+      // colElement
+      // 
+      this.colElement.HeaderText = "Element";
+      this.colElement.Name = "colElement";
+      // 
+      // colRequired
+      // 
+      this.colRequired.HeaderText = "Required";
+      this.colRequired.Name = "colRequired";
+      // 
+      // colAbstract
+      // 
+      this.colAbstract.HeaderText = "isBaseClass";
+      this.colAbstract.Name = "colAbstract";
+      // 
+      // colXMLName
+      // 
+      this.colXMLName.HeaderText = "XML name";
+      this.colXMLName.Name = "colXMLName";
       // 
       // ControlPlugin
       // 
@@ -645,14 +645,14 @@
     private System.Windows.Forms.GroupBox groupAttr;
     private System.Windows.Forms.ToolStripContainer toolStripAttributes;
     private System.Windows.Forms.DataGridView gridAttributes;
+    private System.Windows.Forms.ToolStrip toolStrip1;
+    private System.Windows.Forms.ToolStripButton addAttrib;
+    private System.Windows.Forms.ToolStripButton removeAttr;
     private System.Windows.Forms.DataGridViewTextBoxColumn colName;
     private System.Windows.Forms.DataGridViewTextBoxColumn colType;
     private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colRequired;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
     private System.Windows.Forms.DataGridViewTextBoxColumn colXMLName;
-    private System.Windows.Forms.ToolStrip toolStrip1;
-    private System.Windows.Forms.ToolStripButton addAttrib;
-    private System.Windows.Forms.ToolStripButton removeAttr;
   }
 }

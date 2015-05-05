@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package name="Spatial" number="300" offset="1200000" required="false">
+<package name="Spatial" fullname="Spatial" number="300" offset="1200000" required="false">
   <versions>
     <pkgVersion level="3" version="1" pkg_version="1">
       <elements>
@@ -71,7 +71,7 @@
             <attribute name="sampledField" required="true" type="SIdRef" abstract="false" />
           </attributes>
         </element>
-        <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_sampledfield.h.txt" additionalDefs="spatial_sampledfield.cpp.txt">
+        <element name="SampledField" typeCode="SBML_SPATIAL_SAMPLEDFIELD" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false" additionalDecls="spatial_sampledfield.h.txt" additionalDefs="spatial_sampledfield.cpp.txt">
           <attributes>
             <attribute name="id" required="true" type="SId" abstract="false" />
             <attribute name="dataType" required="true" type="enum" element="DataKind" abstract="false" />
@@ -113,7 +113,7 @@
             <attribute name="parametricObject" required="false" type="lo_element" element="ParametricObject" abstract="false" />
           </attributes>
         </element>
-        <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="true" hasChildren="true" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
+        <element name="ParametricObject" typeCode="SBML_SPATIAL_PARAMETRICOBJECT" hasListOf="true" hasChildren="false" hasMath="false" childrenOverwriteElementName="false" baseClass="SBase" abstract="false">
           <attributes>
             <attribute name="id" required="true" type="SId" abstract="false" />
             <attribute name="polygonType" required="true" type="enum" element="PolygonKind" abstract="false" />

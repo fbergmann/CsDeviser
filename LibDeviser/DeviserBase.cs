@@ -16,7 +16,12 @@ namespace LibDeviser
 
     public virtual bool HasModification
     {
-      get { return Dirty; }
+      get { return Dirty; }      
+    }
+
+    public virtual void ClearDirty()
+    {
+      Dirty = false;
     }
 
     /// <summary>

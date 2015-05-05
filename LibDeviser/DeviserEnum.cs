@@ -22,6 +22,12 @@ namespace LibDeviser
       }
     }
 
+    public override void ClearDirty()
+    {
+      Dirty = false;
+      Values.ClearDirty();
+    }
+
     public override object Clone()
     {
       return new DeviserEnum(this);

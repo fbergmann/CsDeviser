@@ -157,7 +157,9 @@ namespace LibDeviser
     }
 
     public List<string> UsedClasses {
-      get {
+      
+      get 
+      {
         var result = Elements.Select(el => el.BaseClass).Distinct().ToList();
 
         foreach (var element in Elements)
@@ -179,7 +181,8 @@ namespace LibDeviser
         result.Sort();
         return result;
 
-      } }
+      } 
+    }
 
     public List<string> DefinedClasses
     {
@@ -200,6 +203,13 @@ namespace LibDeviser
         return Dirty || Versions.Any(item => item.HasModification);
       }
     }
+
+    public override void ClearDirty()
+    {
+      Dirty = false;
+      Versions.ClearDirty();
+    }
+
 
     public override void SetParent(DeviserPackage doc)
     {
@@ -278,6 +288,8 @@ namespace LibDeviser
     /// <param name="fileName">fileName to write to</param>
     public void WriteTo(string fileName)
     {
+      FixHiddenBooleanAttributes();
+      ClearDirty();
       File.WriteAllText(fileName, ToXmlString());
     }
 
@@ -318,17 +330,18 @@ namespace LibDeviser
       {
         var hasChildren = item.HasChildren;
         int numChildren = 0;
+
         foreach (var attr in item.Attributes)
         {
-          if (attr.Type == "element" || attr.Type == "lo_element")
+          if ((attr.Type == "element" && attr.Name != "math") || attr.Type == "lo_element" || attr.Type == "inline_lo_element")
             ++numChildren;
         }
+        
         foreach (var attr in item.ListOfAttributes)
         {
-          if (attr.Type == "element" || attr.Type == "lo_element")
+          if (attr.Type == "element" || attr.Type == "lo_element" || attr.Type == "inline_lo_element")
             ++numChildren;
         }
-
 
         if (hasChildren && numChildren == 0)
         {
@@ -337,6 +350,7 @@ namespace LibDeviser
             Message = string.Format("Class: '{0}' has hasChildren=true, but no children", item.Name),
             Element = item
           });
+          
           if (correct)
             item.HasChildren = false;
         }
@@ -348,6 +362,7 @@ namespace LibDeviser
             Message = string.Format("Class: '{0}' has hasChildren=false, but children", item.Name),
             Element = item
           });
+          
           if (correct)
             item.HasChildren = true;
         }
@@ -411,7 +426,7 @@ namespace LibDeviser
 
           foreach (var attr in item.Attributes)
           {
-            if (attr.Type != "lo_element") continue;
+            if (attr.Type != "lo_element" && attr.Type != "inline_lo_element") continue;
             if (attr.Element != current.Name) continue;
 
             ++countUses;
@@ -419,7 +434,7 @@ namespace LibDeviser
             {
               log.Add(new DeviserMessage
               {
-                Message = string.Format("Class: '{0}' uses a list of '{1}', which is not marked having a list",
+                Message = string.Format("Class: '{0}' uses a list of '{1}', which is not marked having a list.",
                   item.Name, current.Name),
                 Element = item
               });
@@ -433,7 +448,7 @@ namespace LibDeviser
         {
           foreach (var attr in item.Attributes)
           {
-            if (attr.Type != "lo_element") continue;
+            if (attr.Type != "lo_element" && attr.Type != "inline_lo_element") continue;
             if (attr.Element != current.Name) continue;
 
             ++countUses;
@@ -441,7 +456,24 @@ namespace LibDeviser
             {
               log.Add(new DeviserMessage
               {
-                Message = string.Format("Plugin for '{0}' uses a list of '{1}', which is not marked having a list",
+                Message = string.Format("Plugin for '{0}' uses a list of '{1}', which is not marked having a list.",
+                  item.ExtensionPoint, current.Name),
+                Element = item
+              });
+              if (correct)
+                current.HasListOf = true;
+            }
+          }
+
+          foreach(var reference in item.References)
+          {
+            if (reference.Name != current.ListOfClassName) continue;
+            ++countUses;
+            if (!hasListOf)
+            {
+              log.Add(new DeviserMessage
+              {
+                Message = string.Format("Plugin for '{0}' uses a list of '{1}', which is not marked having a list.",
                   item.ExtensionPoint, current.Name),
                 Element = item
               });
@@ -455,7 +487,7 @@ namespace LibDeviser
         {
           log.Add(new DeviserMessage
           {
-            Message = string.Format("Class: '{0}' is marked as having a list of, but no listOf of it is used", current.Name),
+            Message = string.Format("Class: '{0}' is marked as having a list of, but no listOf of it is used.", current.Name),
             Element = current
           });
           if (correct)
@@ -482,7 +514,7 @@ namespace LibDeviser
             {
               log.Add(new DeviserMessage
               {
-                Message = string.Format("Class: '{0}' uses BaseClass '{1}', which is not marked as abstract", item.Name, item.BaseClass),
+                Message = string.Format("Class: '{0}' uses BaseClass '{1}', which is not marked as 'isBaseClass'.", item.Name, item.BaseClass),
                 Element = item
               });
               if (correct)
@@ -491,12 +523,11 @@ namespace LibDeviser
           }
         }
 
-        
         if (isAbstract && countUses== 0)
         {
           log.Add(new DeviserMessage
           {
-            Message = string.Format("Class: '{0}' is marked as abstract, but not used", current.Name),
+            Message = string.Format("Class: '{0}' is marked as 'isBaseClass', but not used.", current.Name),
             Element = current
           });
           if (correct)
@@ -516,13 +547,41 @@ namespace LibDeviser
       var log = new List<DeviserMessage>();
 
       // test for inconsistencies in elements
-      TestForInconsistenciesInHasChildren(log, correct);
+      //TestForInconsistenciesInHasChildren(log, correct);
+
+      if (string.IsNullOrWhiteSpace(Name))
+      {
+        log.Add(new DeviserMessage { Message = "Package: missing name attribute.", Element = this} );
+      }
+
+      if (string.IsNullOrWhiteSpace(FullName))
+      {
+        log.Add(new DeviserMessage { Message = "Package: missing full name attribute.", Element = this });
+        if (correct)
+        {
+          FullName = Name;
+        }
+      }
+
       TestForInconsistenciesInHasListOf(log, correct);
       TestForInconsistenciesInAbstract(log, correct);
-      TestForInconsistenciesInHasMath(log, correct);
+      //TestForInconsistenciesInHasMath(log, correct);
 
       return log;
     }
+
+    /// <summary>
+    /// This method sets the legacy attributes for 'math' and 'children'
+    /// </summary>
+    public void FixHiddenBooleanAttributes()
+    {
+      var log = new List<DeviserMessage>();
+
+      // test for inconsistencies in elements
+      TestForInconsistenciesInHasChildren(log, true);
+      TestForInconsistenciesInHasMath(log, true);
+    }
+
 
     public override string ToYuml(bool usecolor = true)
     {
@@ -535,6 +594,5 @@ namespace LibDeviser
         builder.Append(item.ToYuml(usecolor));
       return builder.ToString();
     }
-
   }
 }

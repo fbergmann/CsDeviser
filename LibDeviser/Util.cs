@@ -10,6 +10,15 @@ namespace LibDeviser
 {
   public static class Util
   {
+    public static void ClearDirty<T>(this List<T> list)
+      where T : DeviserBase
+    {
+      foreach (var item in list)
+      {
+        item.ClearDirty();
+      }      
+    }
+
     public static List<T> CloneAll<T>(this List<T> list)
       where T : DeviserBase
     {

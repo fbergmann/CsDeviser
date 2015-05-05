@@ -42,6 +42,9 @@
       this.txtElementName = new System.Windows.Forms.TextBox();
       this.txtMinNoChildren = new System.Windows.Forms.TextBox();
       this.txtListOfName = new System.Windows.Forms.TextBox();
+      this.chkHasListOf = new System.Windows.Forms.CheckBox();
+      this.chkIsBaseClass = new System.Windows.Forms.CheckBox();
+      this.chkHasChildren = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.pnlLoClassName = new System.Windows.Forms.Panel();
       this.label7 = new System.Windows.Forms.Label();
@@ -52,12 +55,9 @@
       this.label9 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.chkHasListOf = new System.Windows.Forms.CheckBox();
-      this.chkIsBaseClass = new System.Windows.Forms.CheckBox();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.panel2 = new System.Windows.Forms.Panel();
-      this.chkHasChildren = new System.Windows.Forms.CheckBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.chkHasMath = new System.Windows.Forms.CheckBox();
@@ -66,24 +66,12 @@
       this.groupAttr = new System.Windows.Forms.GroupBox();
       this.toolStripAttributes = new System.Windows.Forms.ToolStripContainer();
       this.gridAttributes = new System.Windows.Forms.DataGridView();
-      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.addAttrib = new System.Windows.Forms.ToolStripButton();
       this.removeAttr = new System.Windows.Forms.ToolStripButton();
       this.groupLoAttr = new System.Windows.Forms.GroupBox();
       this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
       this.gridLoAttributes = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.colLoXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.toolStrip3 = new System.Windows.Forms.ToolStrip();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -100,6 +88,18 @@
       this.pnlLoName = new System.Windows.Forms.Panel();
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
+      this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colElement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.colRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colAbstract = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.colLoXMLName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.pnlLoClassName.SuspendLayout();
       this.grpAdditionalFiles.SuspendLayout();
@@ -275,6 +275,43 @@
       this.toolTip1.SetToolTip(this.txtListOfName, "name of the listOf xml element");
       this.txtListOfName.TextChanged += new System.EventHandler(this.txtListOfName_TextChanged);
       // 
+      // chkHasListOf
+      // 
+      this.chkHasListOf.AutoSize = true;
+      this.chkHasListOf.Location = new System.Drawing.Point(75, 58);
+      this.chkHasListOf.Name = "chkHasListOf";
+      this.chkHasListOf.Size = new System.Drawing.Size(70, 17);
+      this.chkHasListOf.TabIndex = 4;
+      this.chkHasListOf.Text = "hasListOf";
+      this.toolTip1.SetToolTip(this.chkHasListOf, "does this class have a corresponding ListOf class");
+      this.chkHasListOf.UseVisualStyleBackColor = true;
+      this.chkHasListOf.CheckedChanged += new System.EventHandler(this.chkHasListOf_CheckedChanged);
+      // 
+      // chkIsBaseClass
+      // 
+      this.chkIsBaseClass.AutoSize = true;
+      this.chkIsBaseClass.Location = new System.Drawing.Point(151, 58);
+      this.chkIsBaseClass.Name = "chkIsBaseClass";
+      this.chkIsBaseClass.Size = new System.Drawing.Size(82, 17);
+      this.chkIsBaseClass.TabIndex = 7;
+      this.chkIsBaseClass.Text = "isBaseClass";
+      this.toolTip1.SetToolTip(this.chkIsBaseClass, "is this class used as base class");
+      this.chkIsBaseClass.UseVisualStyleBackColor = true;
+      this.chkIsBaseClass.CheckedChanged += new System.EventHandler(this.chkAbstract_CheckedChanged);
+      // 
+      // chkHasChildren
+      // 
+      this.chkHasChildren.AutoSize = true;
+      this.chkHasChildren.Location = new System.Drawing.Point(155, 58);
+      this.chkHasChildren.Name = "chkHasChildren";
+      this.chkHasChildren.Size = new System.Drawing.Size(81, 17);
+      this.chkHasChildren.TabIndex = 5;
+      this.chkHasChildren.Text = "hasChildren";
+      this.toolTip1.SetToolTip(this.chkHasChildren, "does this class have child elements");
+      this.chkHasChildren.UseVisualStyleBackColor = true;
+      this.chkHasChildren.Visible = false;
+      this.chkHasChildren.CheckedChanged += new System.EventHandler(this.chkHasChildren_CheckedChanged);
+      // 
       // tableLayoutPanel1
       // 
       this.tableLayoutPanel1.ColumnCount = 2;
@@ -401,30 +438,6 @@
       this.panel1.Size = new System.Drawing.Size(293, 77);
       this.panel1.TabIndex = 0;
       // 
-      // chkHasListOf
-      // 
-      this.chkHasListOf.AutoSize = true;
-      this.chkHasListOf.Location = new System.Drawing.Point(75, 58);
-      this.chkHasListOf.Name = "chkHasListOf";
-      this.chkHasListOf.Size = new System.Drawing.Size(70, 17);
-      this.chkHasListOf.TabIndex = 4;
-      this.chkHasListOf.Text = "hasListOf";
-      this.toolTip1.SetToolTip(this.chkHasListOf, "does this class have a corresponding ListOf class");
-      this.chkHasListOf.UseVisualStyleBackColor = true;
-      this.chkHasListOf.CheckedChanged += new System.EventHandler(this.chkHasListOf_CheckedChanged);
-      // 
-      // chkIsBaseClass
-      // 
-      this.chkIsBaseClass.AutoSize = true;
-      this.chkIsBaseClass.Location = new System.Drawing.Point(151, 58);
-      this.chkIsBaseClass.Name = "chkIsBaseClass";
-      this.chkIsBaseClass.Size = new System.Drawing.Size(82, 17);
-      this.chkIsBaseClass.TabIndex = 7;
-      this.chkIsBaseClass.Text = "isBaseClass";
-      this.toolTip1.SetToolTip(this.chkIsBaseClass, "is this class used as base class");
-      this.chkIsBaseClass.UseVisualStyleBackColor = true;
-      this.chkIsBaseClass.CheckedChanged += new System.EventHandler(this.chkAbstract_CheckedChanged);
-      // 
       // label1
       // 
       this.label1.AutoSize = true;
@@ -457,19 +470,6 @@
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(293, 77);
       this.panel2.TabIndex = 1;
-      // 
-      // chkHasChildren
-      // 
-      this.chkHasChildren.AutoSize = true;
-      this.chkHasChildren.Location = new System.Drawing.Point(155, 58);
-      this.chkHasChildren.Name = "chkHasChildren";
-      this.chkHasChildren.Size = new System.Drawing.Size(81, 17);
-      this.chkHasChildren.TabIndex = 5;
-      this.chkHasChildren.Text = "hasChildren";
-      this.toolTip1.SetToolTip(this.chkHasChildren, "does this class have child elements");
-      this.chkHasChildren.UseVisualStyleBackColor = true;
-      this.chkHasChildren.Visible = false;
-      this.chkHasChildren.CheckedChanged += new System.EventHandler(this.chkHasChildren_CheckedChanged);
       // 
       // label3
       // 
@@ -590,37 +590,6 @@
       this.gridAttributes.TabIndex = 14;
       this.gridAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAttributes_CellValueChanged);
       // 
-      // colName
-      // 
-      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.colName.HeaderText = "Name";
-      this.colName.Name = "colName";
-      // 
-      // colType
-      // 
-      this.colType.HeaderText = "Type";
-      this.colType.Name = "colType";
-      // 
-      // colElement
-      // 
-      this.colElement.HeaderText = "Element";
-      this.colElement.Name = "colElement";
-      // 
-      // colRequired
-      // 
-      this.colRequired.HeaderText = "Required";
-      this.colRequired.Name = "colRequired";
-      // 
-      // colAbstract
-      // 
-      this.colAbstract.HeaderText = "Abstract";
-      this.colAbstract.Name = "colAbstract";
-      // 
-      // colXMLName
-      // 
-      this.colXMLName.HeaderText = "XML name";
-      this.colXMLName.Name = "colXMLName";
-      // 
       // toolStrip1
       // 
       this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -708,37 +677,6 @@
       this.gridLoAttributes.Size = new System.Drawing.Size(520, 34);
       this.gridLoAttributes.TabIndex = 15;
       this.gridLoAttributes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLoAttributes_CellValueChanged);
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      // 
-      // dataGridViewTextBoxColumn2
-      // 
-      this.dataGridViewTextBoxColumn2.HeaderText = "Type";
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      // 
-      // dataGridViewTextBoxColumn3
-      // 
-      this.dataGridViewTextBoxColumn3.HeaderText = "Element";
-      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-      // 
-      // dataGridViewCheckBoxColumn1
-      // 
-      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
-      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-      // 
-      // dataGridViewCheckBoxColumn2
-      // 
-      this.dataGridViewCheckBoxColumn2.HeaderText = "Abstract";
-      this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-      // 
-      // colLoXMLName
-      // 
-      this.colLoXMLName.HeaderText = "XML name";
-      this.colLoXMLName.Name = "colLoXMLName";
       // 
       // toolStrip3
       // 
@@ -916,6 +854,68 @@
       this.label5.TabIndex = 15;
       this.label5.Text = "ListOfName:";
       // 
+      // colName
+      // 
+      this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.colName.HeaderText = "Name";
+      this.colName.Name = "colName";
+      // 
+      // colType
+      // 
+      this.colType.HeaderText = "Type";
+      this.colType.Name = "colType";
+      // 
+      // colElement
+      // 
+      this.colElement.HeaderText = "Element";
+      this.colElement.Name = "colElement";
+      // 
+      // colRequired
+      // 
+      this.colRequired.HeaderText = "Required";
+      this.colRequired.Name = "colRequired";
+      // 
+      // colAbstract
+      // 
+      this.colAbstract.HeaderText = "isBaseClass";
+      this.colAbstract.Name = "colAbstract";
+      // 
+      // colXMLName
+      // 
+      this.colXMLName.HeaderText = "XML name";
+      this.colXMLName.Name = "colXMLName";
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Type";
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.HeaderText = "Element";
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      // 
+      // dataGridViewCheckBoxColumn1
+      // 
+      this.dataGridViewCheckBoxColumn1.HeaderText = "Required";
+      this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+      // 
+      // dataGridViewCheckBoxColumn2
+      // 
+      this.dataGridViewCheckBoxColumn2.HeaderText = "isBaseClass";
+      this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+      // 
+      // colLoXMLName
+      // 
+      this.colLoXMLName.HeaderText = "XML name";
+      this.colLoXMLName.Name = "colLoXMLName";
+      // 
       // ControlClass
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1031,16 +1031,16 @@
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.TextBox txtMinNoChildren;
     private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteElement;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colMinNoChildren;
+    private System.Windows.Forms.DataGridViewTextBoxColumn colMaxNoChildren;
     private System.Windows.Forms.DataGridViewTextBoxColumn colName;
     private System.Windows.Forms.DataGridViewTextBoxColumn colType;
     private System.Windows.Forms.DataGridViewTextBoxColumn colElement;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colRequired;
     private System.Windows.Forms.DataGridViewCheckBoxColumn colAbstract;
     private System.Windows.Forms.DataGridViewTextBoxColumn colXMLName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colConcreteElement;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colMinNoChildren;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colMaxNoChildren;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

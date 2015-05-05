@@ -307,6 +307,7 @@
       // 
       // cmdOpenOutDir
       // 
+      this.cmdOpenOutDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.cmdOpenOutDir.Location = new System.Drawing.Point(549, 67);
       this.cmdOpenOutDir.Name = "cmdOpenOutDir";
       this.cmdOpenOutDir.Size = new System.Drawing.Size(104, 23);

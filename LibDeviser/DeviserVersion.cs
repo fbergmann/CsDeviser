@@ -57,6 +57,15 @@ namespace LibDeviser
       }
     }
 
+    public override void ClearDirty()
+    {
+      Dirty = false;
+      Elements.ClearDirty();
+      Plugins.ClearDirty();
+      Enums.ClearDirty();
+      Mappings.ClearDirty();
+    }
+
     public DeviserVersion()
     {
       Elements = new List<DeviserClass>();
