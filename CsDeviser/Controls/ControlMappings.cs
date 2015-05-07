@@ -15,20 +15,19 @@ namespace CsDeviser.Controls
   {
     public DeviserVersion Current { get; set; }
 
-    public void InitializeFrom(DeviserVersion package)
+    public void InitializeFrom(DeviserVersion version)
     {
-      Current = package;
+      Current = version;
 
       gridMappings.Rows.Clear();
 
       if (Current == null) return;
 
-      if (package.Document != null)
-      package.Document.InitializeMappings();
+      version.InitializeMappings();
 
       Initializing = true;
 
-      foreach(var item in package.Mappings)
+      foreach(var item in version.Mappings)
       {
         gridMappings.Rows.Add(item.Name, item.Package);
       }

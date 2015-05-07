@@ -137,57 +137,6 @@ namespace LibDeviser
       SetParent(this);
     }
 
-    /// <summary>
-    /// Utility function finding all classes used by this package
-    /// </summary>
-    public void InitializeMappings()
-    {
-      var usedClasses = UsedClasses;
-
-      usedClasses.RemoveAll(Util.CoreClasses.Contains);
-      usedClasses.RemoveAll(DefinedClasses.Contains);
-
-      foreach (var item in usedClasses)
-      {
-        if (Mappings.All(el => el.Name != item))
-        {
-          Mappings.Add(new DeviserMapping {Name = item});
-        }
-      }
-    }
-
-    public List<string> UsedClasses {
-      
-      get 
-      {
-        var result = Elements.Select(el => el.BaseClass).Distinct().ToList();
-
-        foreach (var element in Elements)
-        {
-          foreach (var attribute in element.Attributes)
-          {
-            if (attribute.Type == "element")
-              if (!result.Contains(attribute.Element))
-                result.Add(attribute.Element);
-          }
-        }
-
-        var elements = Elements.SelectMany(el => el.Attributes.Where(a => a.Type == "element").Select(a2 => a2.Element)).Distinct().ToList();
-        result.AddRange(elements);
-        var plugins = Plugins.Select(plug => plug.ExtensionPoint).Distinct().ToList();
-        result.AddRange(plugins);
-        result = result.Distinct().ToList();
-        result.Remove("");
-        result.Sort();
-        return result;
-
-      } 
-    }
-
-    public List<string> DefinedClasses
-    {
-      get { return Elements.Select(el => el.Name).ToList(); }
-    }
 
     public bool HasAdditionalCode {
       get
