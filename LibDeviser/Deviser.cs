@@ -629,7 +629,7 @@ namespace LibDeviser
         File.WriteAllText(mainFile, mainText);
       }
 
-      if (!File.Exists(Path.Combine(mikTexDir, "texify.exe")))
+      if (Util.IsWindows && !File.Exists(Path.Combine(mikTexDir, "texify.exe")))
       {
         progress("Error: texify.exe was not present in '" + mikTexDir + "' please ensure you have the path entered correctly.");
         return;
