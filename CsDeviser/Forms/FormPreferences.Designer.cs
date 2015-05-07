@@ -198,7 +198,7 @@
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(345, 13);
       this.label11.TabIndex = 27;
-      this.label11.Text = "The next four entries are needed, to compile the package with libSBML:";
+      this.label11.Text = "The next five entries are needed, to compile the package with libSBML:";
       // 
       // label10
       // 

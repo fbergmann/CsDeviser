@@ -284,7 +284,7 @@ namespace LibDeviser
         return;
       }
 
-      if (!File.Exists(vSBatchFile))
+      if (Util.IsWindows && !File.Exists(vSBatchFile))
       {
         progress("Error: The Visual studio file does not exist, please validate your settings.");
         return ;
@@ -302,6 +302,7 @@ namespace LibDeviser
         Directory.CreateDirectory(buildDir);
 
       string file;
+      var args = new StringBuilder();        
       if (Util.IsWindows)
       {
         file = Path.Combine(buildDir, "script.bat");
@@ -321,16 +322,19 @@ namespace LibDeviser
         file = Path.Combine(buildDir, "script.sh");
         var temp = new StringBuilder();
         temp.AppendFormat(
-          "cmake -G \"Unix Makefiles\"-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}",
+          "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}",
           dependenciesSourceDir, Environment.NewLine);
         temp.AppendLine("make");
         temp.AppendLine("make install");
         File.WriteAllText(file, temp.ToString());
+        Process.Start ("chmod", "+x \"" + file + "\"");
+        //file = "bash";
+        //args.AppendFormat ("-x \"{0}\"", file);
+
       }
 
 
       {
-        var args = new StringBuilder();        
         var info = new ProcessStartInfo
         {
           FileName = file,
@@ -795,14 +799,27 @@ namespace LibDeviser
     private static void CopyFiles(string outDir, string source, string target, StringBuilder builder, bool recursive = true)
     {
       var args = new StringBuilder();
+      if (recursive && !Util.IsWindows)
+        args.AppendFormat("-R ");
       args.AppendFormat("\"{0}\" ", source);
-      args.AppendFormat("\"{0}\" ", target);
-      if (recursive)
+      if (Util.IsWindows) 
+      {
+        args.AppendFormat ("\"{0}\" ", target);
+      }
+      else 
+      {
+        if (recursive && Directory.Exists(target) && Directory.Exists(source) && target.EndsWith("src"))
+          args.AppendFormat ("\"{0}/..\" ", target);
+          else
+          args.AppendFormat ("\"{0}\" ", target);
+      }
+      if (recursive && Util.IsWindows)
       args.AppendFormat("/e ");
+      if (Util.IsWindows)
       args.AppendFormat("/y ");
       var info = new ProcessStartInfo
       {
-        FileName = "xcopy",
+        FileName = Util.IsWindows ? "xcopy" : "cp",
         Arguments = args.ToString(),
         WorkingDirectory = outDir,
         UseShellExecute = false,
@@ -830,14 +847,18 @@ namespace LibDeviser
       }
 
       var lowerFirst = packageName.LowerFirst();
+      var src = Util.IsWindows ? @"src\" : "src/";
+      var packages = src + (Util.IsWindows ? @"sbml\packages\" : "sbml/packages/");
+
 
       DeleteFile(Path.Combine(libSBMLSourceDir, lowerFirst + "-package.cmake"));
-      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\" + lowerFirst + "-package.cmake"));
-      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\sbml\packages" + lowerFirst + "-register.cxx"));
-      DeleteFile(Path.Combine(libSBMLSourceDir, @"src\sbml\packages" + lowerFirst + "-register.h"));
-      DeleteDir(Path.Combine(libSBMLSourceDir, @"src\sbml\packages\" + lowerFirst));
+      DeleteFile(Path.Combine(libSBMLSourceDir, src + lowerFirst + "-package.cmake"));
+      DeleteFile(Path.Combine(libSBMLSourceDir, packages + lowerFirst + "-register.cxx"));
+      DeleteFile(Path.Combine(libSBMLSourceDir, packages + lowerFirst + "-register.h"));
+      DeleteDir(Path.Combine(libSBMLSourceDir, packages + lowerFirst));
 
-      DeleteRecursive(Path.Combine(libSBMLSourceDir, @"src\bindings"), lowerFirst, builder);
+      DeleteRecursive(Path.Combine(libSBMLSourceDir, Util.IsWindows ? @"src\bindings" : "src/bindings") , lowerFirst, builder);
+
 
       builder.AppendLine();
       builder.AppendLine("DONE");
@@ -862,14 +883,22 @@ namespace LibDeviser
     private static void DeleteRecursive(string dir, string filter, StringBuilder builder)
     {
       var args = new StringBuilder();
-      args.AppendFormat("/C ");
-      args.AppendFormat("del "); 
-      args.AppendFormat("\"*{0}*\" ", filter);
-      args.AppendFormat("/s ");
-      args.AppendFormat("/q ");
+      if (Util.IsWindows)
+      {
+        args.AppendFormat ("/C ");
+        args.AppendFormat ("del "); 
+        args.AppendFormat ("\"*{0}*\" ", filter);
+        args.AppendFormat ("/s ");
+        args.AppendFormat ("/q ");
+      } else
+      {
+        args.AppendFormat ("-c ");
+        args.AppendFormat ("\"find . | grep {0} | xargs rm -rf\"", filter);
+
+      }
       var info = new ProcessStartInfo
       {
-        FileName = "cmd",
+        FileName = Util.IsWindows ?  "cmd" : "bash",
         Arguments = args.ToString(),
         WorkingDirectory = dir,
         UseShellExecute = false,

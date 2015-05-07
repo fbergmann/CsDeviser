@@ -145,7 +145,7 @@ namespace LibDeviser
     {
       get
       {
-        return !string.IsNullOrWhiteSpace(VSBatchFile) && File.Exists(VSBatchFile) &&
+				return ( !Util.IsWindows || ( !string.IsNullOrWhiteSpace(VSBatchFile) && File.Exists(VSBatchFile) ) ) &&
                !string.IsNullOrWhiteSpace(LibSBMLSourceDir) && Directory.Exists(LibSBMLSourceDir) &&
                !string.IsNullOrWhiteSpace(DependenciesSourceDir) && Directory.Exists(DependenciesSourceDir) &&
                !string.IsNullOrWhiteSpace(CMake) && File.Exists(CMake);
