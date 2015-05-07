@@ -176,8 +176,9 @@ namespace CsDeviser.Forms
         if (File.Exists(vs10)) Compilers["Microsoft Visual Studio 2010"] = vs10;
         if (File.Exists(vs09)) Compilers["Microsoft Visual Studio 2008"] = vs09;
       }
-      
-      try
+      else
+      {
+        try
         {
           Process.Start("g++", "--version");
           Compilers["G++"] = "g++";
@@ -186,15 +187,15 @@ namespace CsDeviser.Forms
         {
         }
 
-      try
-      {
-        Process.Start("clang", "--version");
-        Compilers["CLANG"] = "clang";
+        try
+        {
+          Process.Start("clang", "--version");
+          Compilers["CLANG"] = "clang";
+        }
+        catch
+        {
+        }
       }
-      catch
-      {
-      }
-
       cmbCompilers.Items.Clear();
       foreach (var key in Compilers.Keys)
         cmbCompilers.Items.Add(key);

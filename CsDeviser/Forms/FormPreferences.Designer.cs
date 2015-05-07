@@ -321,7 +321,7 @@
       this.txtMikTex.Name = "txtMikTex";
       this.txtMikTex.Size = new System.Drawing.Size(392, 20);
       this.txtMikTex.TabIndex = 13;
-      this.toolTip1.SetToolTip(this.txtMikTex, "bin directory containing texify");
+      this.toolTip1.SetToolTip(this.txtMikTex, "miktex bin directory (windows) or directory containing pdflatex (OSX / Linux)");
       // 
       // label5
       // 
