@@ -660,6 +660,8 @@ namespace LibDeviser
           sbmlPkgSpecDir += "//";
         if (info.EnvironmentVariables.ContainsKey("TEXINPUTS") && !Util.IsWindows)
           sbmlPkgSpecDir = info.EnvironmentVariables["TEXINPUTS"] + ":" + sbmlPkgSpecDir;
+        else if (!Util.IsWindows)
+          sbmlPkgSpecDir = "$TEXINPUTS:" + sbmlPkgSpecDir;
         if (!Util.IsWindows)
           sbmlPkgSpecDir += ":.";
         Console.WriteLine("TEXINPUTS=" + sbmlPkgSpecDir);
