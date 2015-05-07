@@ -656,6 +656,10 @@ namespace LibDeviser
         info.EnvironmentVariables.Remove("TEXINPUTS");
         if (sbmlPkgSpecDir.EndsWith("\\"))
           sbmlPkgSpecDir = sbmlPkgSpecDir.Substring(0, sbmlPkgSpecDir.Length - 1) + "//";
+        if (info.EnvironmentVariables.ContainsKey("TEXINPUTS") && !Util.IsWindows)
+          sbmlPkgSpecDir = info.EnvironmentVariables["TEXINPUTS"] + ":" + sbmlPkgSpecDir;
+        if (!Util.IsWindows)
+          sbmlPkgSpecDir += ":.";
         info.EnvironmentVariables.Add("TEXINPUTS", sbmlPkgSpecDir);
         info.EnvironmentVariables.Add("BIBINPUTS", sbmlPkgSpecDir);
 
