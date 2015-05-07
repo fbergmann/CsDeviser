@@ -661,7 +661,7 @@ namespace LibDeviser
         if (info.EnvironmentVariables.ContainsKey("TEXINPUTS") && !string.IsNullOrWhiteSpace(info.EnvironmentVariables["TEXINPUTS"]) && !Util.IsWindows)
           sbmlPkgSpecDir = info.EnvironmentVariables["TEXINPUTS"] + ":" + sbmlPkgSpecDir;
         else if (!Util.IsWindows)
-          sbmlPkgSpecDir = "$TEXINPUTS:" + sbmlPkgSpecDir;
+          sbmlPkgSpecDir = "/usr/share/texmf/tex/latex//:" + sbmlPkgSpecDir;
         if (!Util.IsWindows)
           sbmlPkgSpecDir += ":.";
         Console.WriteLine("TEXINPUTS=" + sbmlPkgSpecDir);
