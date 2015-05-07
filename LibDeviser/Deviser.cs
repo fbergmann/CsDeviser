@@ -661,10 +661,9 @@ namespace LibDeviser
         if (info.EnvironmentVariables.ContainsKey("TEXINPUTS") && !string.IsNullOrWhiteSpace(info.EnvironmentVariables["TEXINPUTS"]) && !Util.IsWindows)
           sbmlPkgSpecDir = info.EnvironmentVariables["TEXINPUTS"] + ":" + sbmlPkgSpecDir;
         else if (!Util.IsWindows)
-          sbmlPkgSpecDir = "/usr/share/texmf/tex/latex//:" + sbmlPkgSpecDir;
+          sbmlPkgSpecDir = "/usr/share/texmf//:/usr/share/texlive//:" + sbmlPkgSpecDir;
         if (!Util.IsWindows)
-          sbmlPkgSpecDir += ":.";
-        Console.WriteLine("TEXINPUTS=" + sbmlPkgSpecDir);
+          sbmlPkgSpecDir += ":.";         
         info.EnvironmentVariables.Add("TEXINPUTS", sbmlPkgSpecDir);
         info.EnvironmentVariables.Add("BIBINPUTS", sbmlPkgSpecDir);
 
