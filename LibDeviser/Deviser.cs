@@ -204,15 +204,13 @@ namespace LibDeviser
           "cd  \"{0}\"{1}",
           buildDir, Environment.NewLine);
 
-        string pythonInclude = "`python-config --includes`";
-        string pythonLib = "`python-config --libs`";
 
         temp.AppendFormat(
-          "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant (), packageName.ToUpperInvariant (), depDir, swig, python, pythonInclude, pythonLib);
+          "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
         temp.AppendLine("make");
         temp.AppendLine("make install");
         File.WriteAllText(file, temp.ToString());
-        Process.Start ("chmod", "+x \"" + file + "\"");
+        Process.Start ("chmod", string.Format("+x \"{0}\"", file));
       }
 
       {

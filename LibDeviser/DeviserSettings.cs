@@ -9,28 +9,45 @@ namespace LibDeviser
   public class DeviserSettings
   {
     public string PythonInterpreter { get; set; }
-    public string PythonIncludes {
+    private string _PythonIncludes;
+    public string PythonIncludes
+    {
       get
       {
+        if (!string.IsNullOrWhiteSpace(_PythonIncludes))
+          return _PythonIncludes;
         if (string.IsNullOrWhiteSpace(PythonInterpreter))
           return string.Empty;
         var path = Path.GetDirectoryName(PythonInterpreter);
-        return Path.Combine(path, "include");
+        string dirPath = Path.Combine(path, "include");
+        if (Directory.Exists(dirPath))
+        return dirPath;
+        return string.Empty;
       }
+      set { _PythonIncludes = value; }
     }
 
+    private string _PythonLibrary;
     public string PythonLibrary
     {
-      get { 
+      get
+      {
+        if (!string.IsNullOrWhiteSpace(_PythonLibrary))
+          return _PythonLibrary;
         if (string.IsNullOrWhiteSpace(PythonInterpreter))
           return string.Empty;
         var path = Path.GetDirectoryName(PythonInterpreter);
         var libs = Path.Combine(path, "libs");
+        if (Directory.Exists(libs))
+        {
         var files = Directory.GetFiles(libs, "python*.lib", SearchOption.TopDirectoryOnly);
         if (files.Length == 0) return string.Empty;
         return files[0];
+        }
+        return string.Empty;
 
       }
+      set { _PythonLibrary = value; }
     }
 
     public string DeviserRepository { get; set; }

@@ -28,6 +28,9 @@ namespace CsDeviser.Forms
     public void LoadSettings(DeviserSettings settings)
     {
       PythonInterpreter = settings.PythonInterpreter;
+      PythonIncludeDir = settings.PythonIncludes;
+      PythonLib = settings.PythonLibrary;
+
       DeviserRepo = settings.DeviserRepository;
       DefaultOutputDir = settings.DefaultOutputDir;
       MikTexDir = settings.MikTexDir;
@@ -42,6 +45,8 @@ namespace CsDeviser.Forms
     public void WriteToSettings(DeviserSettings settings)
     {
       settings.PythonInterpreter = PythonInterpreter;
+      settings.PythonIncludes = PythonIncludeDir;
+      settings.PythonLibrary = PythonLib;
       settings.DeviserRepository = DeviserRepo;
       settings.DefaultOutputDir = DefaultOutputDir;
       settings.SBMLPkgSpecDir = SBMLPkgSpecDir;
@@ -78,6 +83,8 @@ namespace CsDeviser.Forms
     public string MikTexDir { get { return txtMikTex.Text; } set { txtMikTex.Text = value; } }
     public string DefaultOutputDir { get { return txtDefaultDir.Text; } set { txtDefaultDir.Text = value; } }
     public string PythonInterpreter { get { return txtPython.Text; } set { txtPython.Text = value; } }
+    public string PythonIncludeDir { get { return txtPythonInclude.Text; } set { txtPythonInclude.Text = value; } }
+    public string PythonLib { get { return txtPythonLib.Text; } set { txtPythonLib.Text = value; } }
     public string DeviserRepo { get { return txtDeviserRepo.Text; } set { txtDeviserRepo.Text = value; } }
 
     private void cmdBrowsePython_Click(object sender, EventArgs e)
@@ -255,6 +262,16 @@ namespace CsDeviser.Forms
         if (dialog.ShowDialog() == DialogResult.OK)
           txtSwig.Text = dialog.FileName;
       }
+    }
+
+    private void txtPythonInclude_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void txtPythonLib_TextChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }
