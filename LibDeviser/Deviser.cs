@@ -40,7 +40,7 @@ namespace LibDeviser
         return builder.ToString();
       }
 
-      if (!File.Exists(vsBatchFile))
+      if (Util.IsWindows && !File.Exists(vsBatchFile))
       {
         builder.AppendLine("Error: The Visual studio file does not exist, please validate your settings.");
         return builder.ToString();
@@ -64,15 +64,34 @@ namespace LibDeviser
       if (!Directory.Exists(buildDir))
         Directory.CreateDirectory(buildDir);
 
-      var temp = new StringBuilder();
-      temp.AppendLine("@echo off");
-      temp.AppendFormat("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
-      temp.AppendLine("nmake");
-      temp.AppendLine("nmake install");
+      string file;
+      if (Util.IsWindows)
+      {
+        var temp = new StringBuilder ();
+     
+        temp.AppendLine ("@echo off");
+        temp.AppendFormat ("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
+        temp.AppendFormat ("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant (), packageName.ToUpperInvariant (), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
+        temp.AppendLine ("nmake");
+        temp.AppendLine ("nmake install");
 
-      var file = Path.Combine(buildDir, "script.bat");
-      File.WriteAllText(file, temp.ToString());
+        file = Path.Combine (buildDir, "script.bat");
+        File.WriteAllText (file, temp.ToString ());
+      }
+      else
+      {
+        file = Path.Combine(buildDir, "script.sh");
+        var temp = new StringBuilder();
+        temp.AppendFormat(
+          "cd  \"{0}\"{1}",
+          buildDir, Environment.NewLine);
+        temp.AppendFormat(
+          "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant (), packageName.ToUpperInvariant (), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
+        temp.AppendLine("make");
+        temp.AppendLine("make install");
+        File.WriteAllText(file, temp.ToString());
+        Process.Start ("chmod", "+x \"" + file + "\"");
+      }
 
       {
         var args = new StringBuilder();
@@ -86,9 +105,22 @@ namespace LibDeviser
           RedirectStandardError = true,
           RedirectStandardOutput = true,
         };
-        var task = RunProcessAsync(info);
-        task.Wait();
-        builder.AppendLine(task.Result);
+
+        if (Util.IsWindows)
+        {
+          var task = RunProcessAsync (info);
+          task.Wait ();
+          builder.AppendLine (task.Result);
+        } 
+        else
+        {
+          info.FileName = "bash";
+          info.Arguments = "-c " + file;
+
+          var p = Process.Start (info);
+          p.WaitForExit ();
+          builder.AppendLine (p.StandardOutput.ReadToEnd ());
+        }
 
       }
 
@@ -126,7 +158,7 @@ namespace LibDeviser
         return ;
       }
 
-      if (!File.Exists(vsBatchFile))
+      if (Util.IsWindows && !File.Exists(vsBatchFile))
       {
         progress("Error: The Visual studio file does not exist, please validate your settings.");
         return ;
@@ -150,16 +182,38 @@ namespace LibDeviser
       if (!Directory.Exists(buildDir))
         Directory.CreateDirectory(buildDir);
 
-      var temp = new StringBuilder();
-      temp.AppendLine("@echo off");
-      temp.AppendFormat("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant(), packageName.ToUpperInvariant(), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
-      temp.AppendLine("nmake");
-      temp.AppendLine("nmake install");
+      string file;
+      if (Util.IsWindows)
+      {
+        var temp = new StringBuilder ();
 
-      var file = Path.Combine(buildDir, "script.bat");
-      
-      File.WriteAllText(file, temp.ToString());
+        temp.AppendLine ("@echo off");
+        temp.AppendFormat ("call \"{0}\"{1}", vsBatchFile, Environment.NewLine);
+        temp.AppendFormat ("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant (), packageName.ToUpperInvariant (), depDir, swig, python, DeviserSettings.Instance.PythonIncludes, DeviserSettings.Instance.PythonLibrary);
+        temp.AppendLine ("nmake");
+        temp.AppendLine ("nmake install");
+
+        file = Path.Combine (buildDir, "script.bat");
+        File.WriteAllText (file, temp.ToString ());
+      }
+      else
+      {
+        file = Path.Combine(buildDir, "script.sh");
+        var temp = new StringBuilder();
+        temp.AppendFormat(
+          "cd  \"{0}\"{1}",
+          buildDir, Environment.NewLine);
+
+        string pythonInclude = "`python-config --includes`";
+        string pythonLib = "`python-config --libs`";
+
+        temp.AppendFormat(
+          "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DSWIG_EXECUTABLE=\"{5}\" -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=\"{6}\" -DPYTHON_LIBRARY=\"{8}\" -DPYTHON_INCLUDE_DIR=\"{7}\" -DLIBSBML_DEPENDENCY_DIR=\"{4}\" -DENABLE_LAYOUT=ON -DENABLE_{3}=ON -DCMAKE_INSTALL_PREFIX=../install_{2}_package  \"{0}\"{1}", libSBMLSourceDir, Environment.NewLine, packageName.ToLowerInvariant (), packageName.ToUpperInvariant (), depDir, swig, python, pythonInclude, pythonLib);
+        temp.AppendLine("make");
+        temp.AppendLine("make install");
+        File.WriteAllText(file, temp.ToString());
+        Process.Start ("chmod", "+x \"" + file + "\"");
+      }
 
       {
         var args = new StringBuilder();
@@ -173,8 +227,22 @@ namespace LibDeviser
           RedirectStandardError = true,
           RedirectStandardOutput = true,
         };
-        var task = RunProcessAsyncWithProgress(info, progress);
-        await task;
+
+        if (Util.IsWindows)
+        {
+          var task = RunProcessAsyncWithProgress (info, progress);
+          await task;
+        } 
+        else
+        {
+          info.FileName = "bash";
+          info.Arguments = "-c " + file;
+
+          var p = Process.Start (info);
+          p.WaitForExit ();
+          progress (p.StandardOutput.ReadToEnd ());
+          progress (p.StandardError.ReadToEnd ());
+        }
 
       }
 
