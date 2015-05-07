@@ -637,7 +637,10 @@ namespace LibDeviser
 
       {
         var args = new StringBuilder();
-        args.AppendFormat("--pdf --batch ");
+        if (Util.IsWindows)
+          args.AppendFormat("--pdf --batch ");
+        else
+          args.AppendFormat(" -interaction=nonstopmode ");
         args.AppendFormat("main.tex ");
         var info = new ProcessStartInfo
         {
