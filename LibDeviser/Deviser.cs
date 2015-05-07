@@ -301,15 +301,33 @@ namespace LibDeviser
       if (!Directory.Exists(buildDir))
         Directory.CreateDirectory(buildDir);
 
-      var temp = new StringBuilder();
-      temp.AppendLine("@echo off");
-      temp.AppendFormat("call \"{0}\"{1}", vSBatchFile, Environment.NewLine);
-      temp.AppendFormat("cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}", dependenciesSourceDir, Environment.NewLine);
-      temp.AppendLine("nmake");
-      temp.AppendLine("nmake install");
+      string file;
+      if (Util.IsWindows)
+      {
+        file = Path.Combine(buildDir, "script.bat");
+        var temp = new StringBuilder();
+        temp.AppendLine("@echo off");
+        temp.AppendFormat("call \"{0}\"{1}", vSBatchFile, Environment.NewLine);
+        temp.AppendFormat(
+          "cmake -G \"NMake Makefiles\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}",
+          dependenciesSourceDir, Environment.NewLine);
+        temp.AppendLine("nmake");
+        temp.AppendLine("nmake install");
 
-      var file = Path.Combine(buildDir, "script.bat");
-      File.WriteAllText(file, temp.ToString());
+        File.WriteAllText(file, temp.ToString());
+      }
+      else
+      {
+        file = Path.Combine(buildDir, "script.sh");
+        var temp = new StringBuilder();
+        temp.AppendFormat(
+          "cmake -G \"Unix Makefiles\"-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}",
+          dependenciesSourceDir, Environment.NewLine);
+        temp.AppendLine("make");
+        temp.AppendLine("make install");
+        File.WriteAllText(file, temp.ToString());
+      }
+
 
       {
         var args = new StringBuilder();        
@@ -394,7 +412,7 @@ namespace LibDeviser
         Directory.CreateDirectory(destDir);
       {
         var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, @"deviser\dev\test\generateLatex.py"));
+        args.AppendFormat("\"{0}\" ", Path.Combine(repo, Util.IsWindows ? @"deviser\dev\test\generateLatex.py" : "deviser/dev/test/generateLatex.py"));
         args.AppendFormat("\"{0}\" ", packageDesc);
         var info = new ProcessStartInfo
         {
@@ -623,7 +641,7 @@ namespace LibDeviser
         args.AppendFormat("main.tex ");
         var info = new ProcessStartInfo
         {
-          FileName = Path.Combine(mikTexDir, "texify.exe"),
+          FileName = Path.Combine(mikTexDir, Util.IsWindows ? "texify.exe" : "pdflatex"),
           Arguments = args.ToString(),
           WorkingDirectory = destDir,
           UseShellExecute = false,
