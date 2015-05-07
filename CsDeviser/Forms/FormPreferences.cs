@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -85,7 +86,7 @@ namespace CsDeviser.Forms
        : null;
       string defaultFile = !string.IsNullOrWhiteSpace(txtPython.Text) ? Path.GetFileName(txtPython.Text)
        : null;
-      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
+      using (var dialog = new OpenFileDialog { Title = "Locate Python interpreter", Filter = Util.ExecutableFilter, InitialDirectory = defaultPath, FileName = defaultFile })
       {
         if (dialog.ShowDialog() == DialogResult.OK)
           txtPython.Text = dialog.FileName;
@@ -159,14 +160,40 @@ namespace CsDeviser.Forms
     private void InitializeCompilers()
     {
       Compilers = new Dictionary<string, string>();
-      string vs12 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 12.0\VC\vcvarsall.bat");
-      string vs11 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 11.0\VC\vcvarsall.bat");
-      string vs10 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 10.0\VC\vcvarsall.bat");
-      string vs09 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft Visual Studio 9.0\VC\vcvarsall.bat");
-      if (File.Exists(vs12)) Compilers["Microsoft Visual Studio 2013"] = vs12;
-      if (File.Exists(vs11)) Compilers["Microsoft Visual Studio 2012"] = vs11;
-      if (File.Exists(vs10)) Compilers["Microsoft Visual Studio 2010"] = vs10;
-      if (File.Exists(vs09)) Compilers["Microsoft Visual Studio 2008"] = vs09;
+
+      if (Util.IsWindows)
+      {
+        string vs12 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+          @"Microsoft Visual Studio 12.0\VC\vcvarsall.bat");
+        string vs11 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+          @"Microsoft Visual Studio 11.0\VC\vcvarsall.bat");
+        string vs10 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+          @"Microsoft Visual Studio 10.0\VC\vcvarsall.bat");
+        string vs09 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+          @"Microsoft Visual Studio 9.0\VC\vcvarsall.bat");
+        if (File.Exists(vs12)) Compilers["Microsoft Visual Studio 2013"] = vs12;
+        if (File.Exists(vs11)) Compilers["Microsoft Visual Studio 2012"] = vs11;
+        if (File.Exists(vs10)) Compilers["Microsoft Visual Studio 2010"] = vs10;
+        if (File.Exists(vs09)) Compilers["Microsoft Visual Studio 2008"] = vs09;
+      }
+      
+      try
+        {
+          Process.Start("g++", "--version");
+          Compilers["G++"] = "g++";
+        }
+        catch
+        {
+        }
+
+      try
+      {
+        Process.Start("clang", "--version");
+        Compilers["CLANG"] = "clang";
+      }
+      catch
+      {
+      }
 
       cmbCompilers.Items.Clear();
       foreach (var key in Compilers.Keys)
@@ -194,7 +221,7 @@ namespace CsDeviser.Forms
              : null;
       string defaultFile = !string.IsNullOrWhiteSpace(txtCmake.Text) ? Path.GetFileName(txtCmake.Text)
        : null;
-      using (var dialog = new OpenFileDialog { Title = "Locate CMake Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
+      using (var dialog = new OpenFileDialog { Title = "Locate CMake Executable", Filter = Util.ExecutableFilter, InitialDirectory = defaultPath, FileName = defaultFile })
       {
         if (dialog.ShowDialog() == DialogResult.OK)
           txtCmake.Text = dialog.FileName;
@@ -222,7 +249,7 @@ namespace CsDeviser.Forms
              : null;
       string defaultFile = !string.IsNullOrWhiteSpace(txtSwig.Text) ? Path.GetFileName(txtSwig.Text)
        : null;
-      using (var dialog = new OpenFileDialog { Title = "Locate SWIG Executable", Filter = "Executables|*.exe|All files|*.*", InitialDirectory = defaultPath, FileName = defaultFile })
+      using (var dialog = new OpenFileDialog { Title = "Locate SWIG Executable", Filter = Util.ExecutableFilter, InitialDirectory = defaultPath, FileName = defaultFile })
       {
         if (dialog.ShowDialog() == DialogResult.OK)
           txtSwig.Text = dialog.FileName;

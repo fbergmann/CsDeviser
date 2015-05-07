@@ -10,6 +10,39 @@ namespace LibDeviser
 {
   public static class Util
   {
+
+    /// <summary>
+    /// Helper determining whether this assembly runs on Windows or not
+    /// </summary>
+    public static bool IsWindows
+    {
+      get
+      {
+        
+        int p = (int)Environment.OSVersion.Platform;        
+        if ((p == 4) || (p == 6) || (p == 128))
+        {
+          return false;
+        }
+
+        return true;
+      }
+    }
+
+    /// <summary>
+    /// Returns the file filter for executable files (.exe for windows / .* for other platforms)
+    /// </summary>
+    public static string ExecutableFilter 
+    {
+      get
+      {
+        if (IsWindows)
+          return "Executables|*.exe;*.bat;*.cmd;*.com|All files|*.*";
+        return "All files|*.*";
+      }
+    }
+
+
     public static void ClearDirty<T>(this List<T> list)
       where T : DeviserBase
     {

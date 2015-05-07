@@ -31,6 +31,9 @@
       this.components = new System.ComponentModel.Container();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.cmdBrowseSwig = new System.Windows.Forms.Button();
+      this.txtSwig = new System.Windows.Forms.TextBox();
+      this.label13 = new System.Windows.Forms.Label();
       this.cmdBrowseDependencies = new System.Windows.Forms.Button();
       this.txtDependenciesSourceDir = new System.Windows.Forms.TextBox();
       this.label12 = new System.Windows.Forms.Label();
@@ -64,9 +67,6 @@
       this.cmdOK = new System.Windows.Forms.Button();
       this.cmdCancel = new System.Windows.Forms.Button();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.cmdBrowseSwig = new System.Windows.Forms.Button();
-      this.txtSwig = new System.Windows.Forms.TextBox();
-      this.label13 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
@@ -126,6 +126,38 @@
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(618, 400);
       this.panel1.TabIndex = 0;
+      // 
+      // cmdBrowseSwig
+      // 
+      this.cmdBrowseSwig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdBrowseSwig.Location = new System.Drawing.Point(540, 313);
+      this.cmdBrowseSwig.Name = "cmdBrowseSwig";
+      this.cmdBrowseSwig.Size = new System.Drawing.Size(75, 23);
+      this.cmdBrowseSwig.TabIndex = 33;
+      this.cmdBrowseSwig.Text = "...";
+      this.cmdBrowseSwig.UseVisualStyleBackColor = true;
+      this.cmdBrowseSwig.Click += new System.EventHandler(this.cmdBrowseSwig_Click);
+      // 
+      // txtSwig
+      // 
+      this.txtSwig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtSwig.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      this.txtSwig.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+      this.txtSwig.Location = new System.Drawing.Point(142, 315);
+      this.txtSwig.Name = "txtSwig";
+      this.txtSwig.Size = new System.Drawing.Size(392, 20);
+      this.txtSwig.TabIndex = 32;
+      this.toolTip1.SetToolTip(this.txtSwig, "full path to cmake executable");
+      // 
+      // label13
+      // 
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(44, 318);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(92, 13);
+      this.label13.TabIndex = 31;
+      this.label13.Text = "Swig Executable: ";
       // 
       // cmdBrowseDependencies
       // 
@@ -229,11 +261,11 @@
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(24, 239);
+      this.label7.Location = new System.Drawing.Point(82, 239);
       this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(112, 13);
+      this.label7.Size = new System.Drawing.Size(53, 13);
       this.label7.TabIndex = 18;
-      this.label7.Text = "Visual Studio Version: ";
+      this.label7.Text = "Compiler: ";
       // 
       // cmdBrowseSource
       // 
@@ -262,7 +294,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(45, 213);
+      this.label6.Location = new System.Drawing.Point(46, 213);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(90, 13);
       this.label6.TabIndex = 15;
@@ -289,6 +321,7 @@
       this.txtMikTex.Name = "txtMikTex";
       this.txtMikTex.Size = new System.Drawing.Size(392, 20);
       this.txtMikTex.TabIndex = 13;
+      this.toolTip1.SetToolTip(this.txtMikTex, "bin directory containing texify");
       // 
       // label5
       // 
@@ -324,11 +357,11 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(45, 137);
+      this.label4.Location = new System.Drawing.Point(50, 137);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(91, 13);
+      this.label4.Size = new System.Drawing.Size(86, 13);
       this.label4.TabIndex = 9;
-      this.label4.Text = "sbmlpkgspec Dir: ";
+      this.label4.Text = "sbmlpkgspec dir:";
       // 
       // cmdBrowseOutput
       // 
@@ -355,11 +388,11 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(35, 88);
+      this.label3.Location = new System.Drawing.Point(43, 88);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(101, 13);
+      this.label3.Size = new System.Drawing.Size(89, 13);
       this.label3.TabIndex = 6;
-      this.label3.Text = "Default Output Dir:  ";
+      this.label3.Text = "default output dir:";
       // 
       // cmdBrowseRepo
       // 
@@ -386,11 +419,11 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(23, 61);
+      this.label2.Location = new System.Drawing.Point(26, 61);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(113, 13);
+      this.label2.Size = new System.Drawing.Size(110, 13);
       this.label2.TabIndex = 3;
-      this.label2.Text = "DEVISER Repository: ";
+      this.label2.Text = "DEVISER Repository:";
       // 
       // cmdBrowsePython
       // 
@@ -417,11 +450,11 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(39, 35);
+      this.label1.Location = new System.Drawing.Point(42, 35);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(97, 13);
+      this.label1.Size = new System.Drawing.Size(94, 13);
       this.label1.TabIndex = 0;
-      this.label1.Text = "Python Interpreter: ";
+      this.label1.Text = "Python Interpreter:";
       // 
       // panel2
       // 
@@ -454,38 +487,6 @@
       this.cmdCancel.TabIndex = 0;
       this.cmdCancel.Text = "&Cancel";
       this.cmdCancel.UseVisualStyleBackColor = true;
-      // 
-      // cmdBrowseSwig
-      // 
-      this.cmdBrowseSwig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdBrowseSwig.Location = new System.Drawing.Point(540, 313);
-      this.cmdBrowseSwig.Name = "cmdBrowseSwig";
-      this.cmdBrowseSwig.Size = new System.Drawing.Size(75, 23);
-      this.cmdBrowseSwig.TabIndex = 33;
-      this.cmdBrowseSwig.Text = "...";
-      this.cmdBrowseSwig.UseVisualStyleBackColor = true;
-      this.cmdBrowseSwig.Click += new System.EventHandler(this.cmdBrowseSwig_Click);
-      // 
-      // txtSwig
-      // 
-      this.txtSwig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtSwig.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.txtSwig.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
-      this.txtSwig.Location = new System.Drawing.Point(142, 315);
-      this.txtSwig.Name = "txtSwig";
-      this.txtSwig.Size = new System.Drawing.Size(392, 20);
-      this.txtSwig.TabIndex = 32;
-      this.toolTip1.SetToolTip(this.txtSwig, "full path to cmake executable");
-      // 
-      // label13
-      // 
-      this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(32, 318);
-      this.label13.Name = "label13";
-      this.label13.Size = new System.Drawing.Size(92, 13);
-      this.label13.TabIndex = 31;
-      this.label13.Text = "Swig Executable: ";
       // 
       // FormPreferences
       // 

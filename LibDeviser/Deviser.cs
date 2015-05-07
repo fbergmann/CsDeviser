@@ -158,6 +158,7 @@ namespace LibDeviser
       temp.AppendLine("nmake install");
 
       var file = Path.Combine(buildDir, "script.bat");
+      
       File.WriteAllText(file, temp.ToString());
 
       {
