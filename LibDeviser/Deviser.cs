@@ -322,15 +322,15 @@ namespace LibDeviser
         file = Path.Combine(buildDir, "script.sh");
         var temp = new StringBuilder();
         temp.AppendFormat(
+          "cd  \"{0}\"{1}",
+          buildDir, Environment.NewLine);
+        temp.AppendFormat(
           "cmake -G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install_dependencies  \"{0}\"{1}",
           dependenciesSourceDir, Environment.NewLine);
         temp.AppendLine("make");
         temp.AppendLine("make install");
         File.WriteAllText(file, temp.ToString());
         Process.Start ("chmod", "+x \"" + file + "\"");
-        //file = "bash";
-        //args.AppendFormat ("-x \"{0}\"", file);
-
       }
 
 
@@ -345,8 +345,21 @@ namespace LibDeviser
           RedirectStandardError = true,
           RedirectStandardOutput = true,
         };
-        var task = RunProcessAsyncWithProgress(info, progress);
-        await task;
+
+        if (Util.IsWindows)
+        {
+          var task = RunProcessAsyncWithProgress (info, progress);
+          await task;
+        } 
+        else
+        {
+          info.FileName = "bash";
+          info.Arguments = "-c " + file;
+
+          var p = Process.Start (info);
+          p.WaitForExit ();
+          progress (p.StandardOutput.ReadToEnd ());
+        }
 
       }
 
