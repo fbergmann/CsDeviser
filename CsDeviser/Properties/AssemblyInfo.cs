@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CsDeviser")]
-[assembly: AssemblyDescription("Application for Creating / Editing Deviser Packages")]
+[assembly: AssemblyTitle("Deviser Edit")]
+[assembly: AssemblyDescription("DEVISER Edit is a tool that allows users to easily create and edit the structure of an XML based description. It provides an interface to the DEVISER functionality for generating code, LaTeX and UML diagrams.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CsDeviser")]
+[assembly: AssemblyProduct("Deviser Edit")]
 [assembly: AssemblyCopyright("Copyright ©  2014-2015 SBML Team")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

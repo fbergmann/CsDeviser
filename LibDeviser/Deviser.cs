@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -680,7 +681,7 @@ namespace LibDeviser
     public static async void CompileTexWithProgress(string mikTexDir, 
       string sbmlPkgSpecDir, 
       string outDir, 
-      string package, 
+      DeviserPackage package, 
       string packageName,
       Action<string> progress)
     {
@@ -709,6 +710,28 @@ namespace LibDeviser
       if (!File.Exists(mainFile))
       {
         string mainText = Properties.Resources.main.Replace("@@PACKAGENAME@@", lowerCasePackageName);
+        if (package != null && !string.IsNullOrWhiteSpace(package.FullName))
+          mainText = mainText.Replace("@@FULL_PACKAGE_NAME@@", package.FullName);
+        else
+          mainText = mainText.Replace("@@FULL_PACKAGE_NAME@@", lowerCasePackageName);
+
+
+        var version = package != null ?  package.CurrentVersion : null;
+        if (version == null && package != null)
+          version = package.Versions.FirstOrDefault();
+
+        if (version != null)
+        {
+          mainText = mainText.Replace("@@CORE_LEVEL@@", version.Level.ToString());
+          mainText = mainText.Replace("@@CORE_VERSION@@", version.Version.ToString());
+          mainText = mainText.Replace("@@PACKAGE_VERSION@@", version.PackageVersion.ToString());
+        }
+        else
+        {
+          mainText = mainText.Replace("@@CORE_LEVEL@@", "3");
+          mainText = mainText.Replace("@@CORE_VERSION@@", "1");
+          mainText = mainText.Replace("@@PACKAGE_VERSION@@", "1");
+        }
         File.WriteAllText(mainFile, mainText);
       }
 

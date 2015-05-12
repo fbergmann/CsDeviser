@@ -63,6 +63,16 @@ namespace CsDeviser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABOUT_Deviser {
+            get {
+                object obj = ResourceManager.GetObject("ABOUT_Deviser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap invalid {
             get {
                 object obj = ResourceManager.GetObject("invalid", resourceCulture);

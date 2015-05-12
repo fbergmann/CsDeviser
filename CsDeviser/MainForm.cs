@@ -75,7 +75,7 @@ namespace CsDeviser
       if (string.IsNullOrWhiteSpace(FileName))
         FileName = "untitled.xml";
 
-      Text = string.Format("Deviser [ {0} ]", Path.GetFileName(FileName));
+      Text = string.Format("Deviser Edit [ {0} ]", Path.GetFileName(FileName));
     }
 
     bool initializing = false;
@@ -671,7 +671,7 @@ namespace CsDeviser
 
       if (SaveModelIfDirtyOrCancel()) return;
 
-      using (var dlg = new FormGenerate { Package = FileName, PackageName = Model.Name})
+      using (var dlg = new FormGenerate { Package = FileName, PackageName = Model.Name, ThePackage = Model})
         dlg.ShowDialog(this);
 
     }

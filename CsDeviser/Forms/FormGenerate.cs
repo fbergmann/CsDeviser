@@ -60,6 +60,8 @@ namespace CsDeviser.Forms
       set { txtPackageName.Text = value; }
     }
 
+    public DeviserPackage ThePackage { get; set; }
+
     private void cmdGenerateTex_Click(object sender, EventArgs e)
     {
       txtResult.Text = 
@@ -115,7 +117,7 @@ namespace CsDeviser.Forms
         txtResult.Clear();
           Deviser.CompileTexWithProgress(DeviserSettings.Instance.MikTexDir,
             DeviserSettings.Instance.SBMLPkgSpecDir,
-            txtOutDir.Text, Package, PackageName, AppendResult
+            txtOutDir.Text, ThePackage, PackageName, AppendResult
             );
       }
       finally
