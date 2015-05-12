@@ -496,7 +496,8 @@ namespace LibDeviser
         Directory.CreateDirectory(destDir);
       {
         var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, Util.IsWindows ? @"deviser\dev\test\generateLatex.py" : "deviser/dev/test/generateLatex.py"));
+        args.AppendFormat("\"{0}\" ", Path.Combine(repo, Util.IsWindows ? @"generator\deviser.py" : "generator/deviser.py"));
+        args.AppendFormat("-l ");
         args.AppendFormat("\"{0}\" ", packageDesc);
         var info = new ProcessStartInfo
         {
@@ -536,38 +537,16 @@ namespace LibDeviser
         return;
       }
 
-      if (!File.Exists(Path.Combine(repo, "createDirStruct.py")) ||
-          !File.Exists(Path.Combine(repo, "run.py"))
-        )
+      string deviserScript = Path.Combine(Path.Combine(repo, "generator"), "deviser.py");
+      if (!File.Exists(deviserScript))
       {
-        report("Error: The 'run.py' and 'createDirStruct.py' scripts could not be found in '" + repo + "'.");
-        return;
-      }
-
-      if (!Directory.Exists(Path.Combine(outDir, packageName.ToLowerInvariant())))
-      {
-        var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, "createDirStruct.py"));
-        args.AppendFormat("\"{0}\" ", packageName.ToLowerInvariant());
-        var info = new ProcessStartInfo
-        {
-          FileName = python,
-          Arguments = args.ToString(),
-          WorkingDirectory = outDir,
-          UseShellExecute = false,
-          CreateNoWindow = true,
-          RedirectStandardError = true,
-          RedirectStandardOutput = true,
-        };
-
-        var task = RunProcessAsyncWithProgress(info, report);
-        await task;
-
+        report("Error: The 'deviser.py' script could not be found in '" + repo + "'.");
+        return ;
       }
       {
         var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, "run.py"));
-        args.AppendFormat("\"{0}\" ", packageName.ToLowerInvariant());
+        args.AppendFormat("\"{0}\" ", deviserScript);
+        args.AppendFormat("-g ");
         args.AppendFormat("\"{0}\" ", packageDesc);
         var info = new ProcessStartInfo
         {
@@ -608,39 +587,16 @@ namespace LibDeviser
         return builder.ToString();
       }
 
-      if (!File.Exists(Path.Combine(repo, "createDirStruct.py")) ||
-          !File.Exists(Path.Combine(repo, "run.py"))
-        )
+      string deviserScript = Path.Combine(Path.Combine(repo, "generator"), "deviser.py");
+      if (!File.Exists(deviserScript))
       {
-        builder.AppendLine("Error: The 'run.py' and 'createDirStruct.py' scripts could not be found in '" + repo + "'.");
+        builder.AppendLine("Error: The 'deviser.py' script could not be found in '" + repo + "'.");
         return builder.ToString();
       }
-
-      if (!Directory.Exists(Path.Combine(outDir, packageName.ToLowerInvariant())))
       {
         var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, "createDirStruct.py"));
-        args.AppendFormat("\"{0}\" ", packageName.ToLowerInvariant());
-        var info = new ProcessStartInfo
-        {
-          FileName = python,
-          Arguments = args.ToString(),
-          WorkingDirectory = outDir,
-          UseShellExecute = false,
-          CreateNoWindow = true,
-          RedirectStandardError = true,
-          RedirectStandardOutput = true,
-        };
-
-        var task = RunProcessAsync(info);
-        task.Wait();
-        builder.AppendLine(task.Result);
-
-      }
-      {
-        var args = new StringBuilder();
-        args.AppendFormat("\"{0}\" ", Path.Combine(repo, "run.py"));
-        args.AppendFormat("\"{0}\" ", packageName.ToLowerInvariant());
+        args.AppendFormat("\"{0}\" ", deviserScript);
+        args.AppendFormat("-g ");
         args.AppendFormat("\"{0}\" ", packageDesc);
         var info = new ProcessStartInfo
         {

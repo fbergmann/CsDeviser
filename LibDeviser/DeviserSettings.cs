@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 
 namespace LibDeviser
 {
@@ -93,11 +94,18 @@ namespace LibDeviser
     {
       var instance = FromXmlFile(ConfigFile);
       if (instance == null)
-        return new DeviserSettings
-        {
-          Height = current.Height,
-          Width = current.Width
-        };
+      {
+        var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var master = dir == null ? "" : Path.Combine(dir, "default_config.xml");
+        if (File.Exists(master))
+          instance = FromXmlFile(master);
+        if (instance == null)
+          return new DeviserSettings
+          {
+            Height = current.Height,
+            Width = current.Width
+          };
+      }
 
       _instance = instance;
       return instance;
