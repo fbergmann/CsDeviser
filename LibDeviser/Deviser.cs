@@ -29,6 +29,12 @@ namespace LibDeviser
       builder.AppendLine("===============");
       builder.AppendLine();
 
+      if (string.IsNullOrWhiteSpace(outdir) || !Directory.Exists(outdir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
+
+
       if (!Directory.Exists(libSBMLSourceDir))
       {
         builder.AppendLine("Error: The libsbml source dir does not exist, please validate your settings.");
@@ -147,6 +153,14 @@ namespace LibDeviser
       progress("===============");
       progress(Environment.NewLine);
 
+
+      if (string.IsNullOrWhiteSpace(outdir) || !Directory.Exists(outdir))
+      {
+        progress("Error: No output dir specified, or output dir does not exist.");
+        return;
+      }
+
+
       if (!Directory.Exists(libSBMLSourceDir))
       {
         progress("Error: The libsbml source dir does not exist, please validate your settings.");
@@ -263,6 +277,12 @@ namespace LibDeviser
       builder.AppendLine("====================");
       builder.AppendLine();
 
+      if (string.IsNullOrWhiteSpace(outdir) || !Directory.Exists(outdir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
+
+
       if (!Directory.Exists(dependenciesSourceDir))
       {
         builder.AppendLine("Error: The dependencies source dir does not exist, please validate your settings.");
@@ -338,6 +358,13 @@ namespace LibDeviser
       progress("Compile Dependencies");
       progress("====================");
       progress(Environment.NewLine);
+
+      if (string.IsNullOrWhiteSpace(outdir) || !Directory.Exists(outdir))
+      {
+        progress("Error: No output dir specified, or output dir does not exist.");
+        return;
+      }
+
 
       if (!Directory.Exists(dependenciesSourceDir))
       {
@@ -490,6 +517,12 @@ namespace LibDeviser
       builder.AppendLine("================");
       builder.AppendLine();
 
+
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
+
       string lowerCasePackageName = packageName.ToLowerInvariant();
       string destDir = Path.Combine(outDir, lowerCasePackageName + "-spec");
       if (!Directory.Exists(destDir))
@@ -530,6 +563,12 @@ namespace LibDeviser
       report("==================");
       report(Environment.NewLine);
       
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        report("Error: No output dir specified, or output dir does not exist.");
+        return;
+      }
+
 
       if (!File.Exists(python))
       {
@@ -579,6 +618,10 @@ namespace LibDeviser
       builder.AppendLine("==================");
       builder.AppendLine();
 
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
 
 
       if (!File.Exists(python))
@@ -644,6 +687,13 @@ namespace LibDeviser
       progress("Compile Latex");
       progress("=============");
       progress("");
+
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        progress("Error: No output dir specified, or output dir does not exist.");
+        return;
+      }
+
 
       string lowerCasePackageName = packageName.ToLowerInvariant();
       string destDir = Path.Combine(outDir, lowerCasePackageName + "-spec");
@@ -750,6 +800,12 @@ namespace LibDeviser
       builder.AppendLine("=============");
       builder.AppendLine();
 
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
+
+
       string lowerCasePackageName = packageName.ToLowerInvariant();
       string destDir = Path.Combine(outDir, lowerCasePackageName + "-spec");
       if (!Directory.Exists(destDir))
@@ -820,6 +876,13 @@ namespace LibDeviser
       builder.AppendLine("Adding Package to Source");
       builder.AppendLine("========================");
       builder.AppendLine();
+
+
+      if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+      {
+        return "Error: No output dir specified, or output dir does not exist.";
+      }
+
 
       var lowerFirst = packageName.LowerFirst();
       var packageDir = Path.Combine(outDir, lowerFirst);

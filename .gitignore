@@ -42,3 +42,8 @@ obj
 *.suo
 *.user
 bin
+
+# installer binary files (python, deviser, sbmlpkgspec)
+
+dist
+installer/*.exe
