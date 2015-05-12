@@ -8,6 +8,9 @@ using System.Xml;
 
 namespace LibDeviser
 {
+  /// <summary>
+  /// The main entry point for a deviser package
+  /// </summary>
   public class DeviserPackage : DeviserBase
   {
 
@@ -31,8 +34,14 @@ namespace LibDeviser
     /// </summary>
     public int Offset { get; set; }
 
+    /// <summary>
+    /// The version of the xml format
+    /// </summary>
     public int Version { get; set; }
 
+    /// <summary>
+    /// boolean indicating whether the package is required or not
+    /// </summary>
     public bool Required { get; set; }
 
     /// <summary>
@@ -67,24 +76,45 @@ namespace LibDeviser
       get { return Versions.SelectMany(v => v.Enums).ToList(); }
     }
 
+    /// <summary>
+    /// All mappings to other packages
+    /// </summary>
     public List<DeviserMapping> Mappings {
       get { return Versions.SelectMany(v => v.Mappings).ToList(); }
     }
 
+    /// <summary>
+    /// All Versions of the currently package
+    /// </summary>
     public List<DeviserVersion> Versions { get; set; }
 
+    /// <summary>
+    /// the currently selected version
+    /// </summary>
     public DeviserVersion CurrentVersion { get; set; }
 
+    /// <summary>
+    /// Default constructor
+    /// </summary>
     public DeviserPackage ()
     {
       Versions = new List<DeviserVersion>();
+      Version = 1;
     }
 
+    /// <summary>
+    /// Initializes a new package from an xml node
+    /// </summary>
+    /// <param name="node">the node to initialize from</param>
     public DeviserPackage(XmlNode node) : this()
     {
       InitializeFrom(node);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviserPackage"/> class from the given file.
+    /// </summary>
+    /// <param name="fileName">Name of the file.</param>
     public DeviserPackage(string fileName)  : this()
     {
       ReadFromFile(fileName);
@@ -199,8 +229,10 @@ namespace LibDeviser
       if (Offset!= 0)
         writer.WriteAttributeString("offset", Offset.ToString());
 
-      if (Version != 0)
-        writer.WriteAttributeString("version", Version.ToString());
+      // version here is now re-used to track the xml version 
+      if (Version == 0)
+        Version = 1;
+      writer.WriteAttributeString("version", Version.ToString());
 
       writer.WriteAttributeString("required", Required ? "true" : "false");
 
