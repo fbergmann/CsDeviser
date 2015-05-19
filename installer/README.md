@@ -1,27 +1,21 @@
-###DEVISER
-
-----------
+##DEVISER
 
 
 *DEVISER* stands for *"Design Explorer and
 Viewer for Iterative SBML Enhancement of Representations"*. 
 
-----
 
-####Authors 
+*Authors*:      [Frank Bergmann](http://www.cos.uni-heidelberg.de/index.php/f.bergmann?l=_e) and [Sarah Keating](http://www.ebi.ac.uk/about/people/sarah-keating),
+with contributions from [Mike Hucka](http://www.cds.caltech.edu/~mhucka).
 
-(In alphabetical order)
+*License*:      This code is licensed under the LGPL version 2.1.  Please see the file [LICENSE.txt](https://raw.githubusercontent.com/sbmlteam/moccasin/master/LICENSE.txt) for details.
 
-Frank Bergmann
-
-Mike Hucka 
-
-Sarah Keating
-
-----------
+*Repository*:   [https://github.com/sbmlteam/deviser](https://github.com/sbmlteam/deviser)
 
 
-#### Background
+*Pivotal tracker*: [https://www.pivotaltracker.com/n/projects/977192](https://www.pivotaltracker.com/n/projects/977192)
+
+## Background
 
 
 Computation modeling has become a crucial aspect of biological research, and [SBML](http://sbml.org) (the Systems Biology Markup Language) has become the de facto standard open format for exchanging models between software tools in systems biology.
@@ -32,14 +26,14 @@ the package specific code and building with the package enabled.
  SBML Level 3 is being developed as a core with additional optional packages. DEVISER facilitates the development of these packages by providing a means of creating a basic specification, UML diagrams and code for integration with libSBML.
 
 
-DEVISER is written in Python and is compatible with Python 2.7 and 3.3.
+DEVISER is written in Python and is compatible with Python version 2.6 onwards.
+
+## Windows installer
+
+This Windows installer includes a Python interpreter (Python 27 32 bit) and the sbmlpkgspec files in addition to the Deviser Edit tool (CsDeviser.exe) and the DEVISER code.
 
 
-----------
-
-
-#### Using DEVISER
-
+## Using DEVISER ##
 
 The Deviser Edit tool allows you to quickly define an SBML L3 package. It then provides the  following functionality
 
@@ -49,22 +43,13 @@ The Deviser Edit tool allows you to quickly define an SBML L3 package. It then p
 4.	Integrate and test the package with libSBML.
 
 
-Full documentation is available in the [docs](deviser\docs) directory.
-
-Please see the [NEWS.txt](deviser\NEWS.txt) file for the latest information. 
-
-----------
-
-
-#### Acknowledgments
+## Acknowledgments
 
 We achnowledge funding for DEVISER from the National Institutes of Health (USA) under
 grant R01 GM070923.
 
 
-----------
-
-#### Copyright and license
+## Copyright and license
 
 
 Copyright (C) 2014-2015 jointly by the California Institute of Technology, Pasadena, CA, USA, EMBL European Bioinformatics Institute (EMBL-EBI), Hinxton, UK and the University of Heidelberg, Heidelberg, Germany
