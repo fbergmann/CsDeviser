@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Deviser Edit")]
-[assembly: AssemblyDescription("DEVISER Edit is a tool that allows users to easily create and edit the structure of an XML based description. It provides an interface to the DEVISER functionality for generating code, LaTeX and UML diagrams.")]
+[assembly: AssemblyDescription("Deviser Edit is a tool that allows users to easily create and edit the structure of an XML based description. It provides an interface to the Deviser functionality for generating code, LaTeX and UML diagrams.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Deviser Edit")]
