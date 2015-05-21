@@ -45,7 +45,7 @@ The Deviser Edit tool allows you to quickly define an SBML L3 package. It then p
 
 ## Acknowledgments
 
-We achnowledge funding for Deviser from the National Institutes of Health (USA) under
+We acknowledge funding for Deviser from the National Institutes of Health (USA) under
 grant R01 GM070923.
 
 
