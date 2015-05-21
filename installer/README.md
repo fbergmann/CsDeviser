@@ -1,7 +1,7 @@
-##DEVISER
+##Deviser
 
 
-*DEVISER* stands for *"Design Explorer and
+*Deviser* stands for *"Design Explorer and
 Viewer for Iterative SBML Enhancement of Representations"*. 
 
 
@@ -23,17 +23,17 @@ Computation modeling has become a crucial aspect of biological research, and [SB
 [LibSBML](http://sbml.org/Software/libSBML) is a free, open-source programming library to help you read, write, manipulate, translate, and validate SBML files and data streams. Support for SBML Level 3 packages can be added by integrating 
 the package specific code and building with the package enabled.
 
- SBML Level 3 is being developed as a core with additional optional packages. DEVISER facilitates the development of these packages by providing a means of creating a basic specification, UML diagrams and code for integration with libSBML.
+ SBML Level 3 is being developed as a core with additional optional packages. Deviser facilitates the development of these packages by providing a means of creating a basic specification, UML diagrams and code for integration with libSBML.
 
 
-DEVISER is written in Python and is compatible with Python version 2.6 onwards.
+Deviser is written in Python and is compatible with Python version 2.6 onwards.
 
 ## Windows installer
 
-This Windows installer includes a Python interpreter (Python 27 32 bit) and the sbmlpkgspec files in addition to the Deviser Edit tool (CsDeviser.exe) and the DEVISER code.
+This Windows installer includes a Python interpreter (Python 27 32 bit) and the sbmlpkgspec files in addition to the Deviser Edit tool (CsDeviser.exe) and the Deviser code.
 
 
-## Using DEVISER ##
+## Using Deviser ##
 
 The Deviser Edit tool allows you to quickly define an SBML L3 package. It then provides the  following functionality
 
@@ -45,7 +45,7 @@ The Deviser Edit tool allows you to quickly define an SBML L3 package. It then p
 
 ## Acknowledgments
 
-We achnowledge funding for DEVISER from the National Institutes of Health (USA) under
+We achnowledge funding for Deviser from the National Institutes of Health (USA) under
 grant R01 GM070923.
 
 
